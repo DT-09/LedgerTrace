@@ -1,0 +1,5 @@
+receipt_number,po_number,item_code,quantity,receipt_date
+GR-7001,PO-5001,PART-A,10,2026-09-28
+GR-7002,PO-5002,PART-B,12,2026-09-29
+GR-7003,PO-5003,PART-C,15,2026-10-01
+GR-7004,PO-5004,PART-D,5,2026-10-02
