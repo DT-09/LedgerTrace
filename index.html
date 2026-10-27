@@ -102,191 +102,117 @@ h1{font-weight:500}h1 em{color:#b5c7cb}.hero-desc{color:#c2c0b6}
 
 .go-to-market{margin-top:14px;padding:25px;border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;background:rgba(21,21,19,.35)}.go-to-market h3{font-size:clamp(22px,3vw,31px);font-weight:450;line-height:1.15;letter-spacing:-.05em;margin:12px 0}.go-to-market p{font-size:12px;color:var(--muted);line-height:1.85}.go-to-market ol{padding:0;margin:0;list-style:none;counter-reset:route}.go-to-market li{counter-increment:route;display:grid;grid-template-columns:28px 1fr;column-gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.go-to-market li:last-child{border-bottom:0}.go-to-market li:before{content:counter(route,decimal-leading-zero);font:10px var(--mono);color:#9ab7c2;padding-top:3px}.go-to-market li strong{font-size:12px;font-weight:500}.go-to-market li span{grid-column:2;color:var(--muted);font-size:11px;line-height:1.7;margin-top:3px}.payment-flow{margin-top:14px;padding:25px;border:1px solid var(--line);border-radius:12px}.payment-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:20px 0}.payment-steps>div{border-top:1px solid var(--line2);padding-top:12px}.payment-steps span{display:block;font:10px var(--mono);color:#9ab7c2;margin-bottom:12px}.payment-steps strong{font:500 13px var(--display)}.payment-steps p{font-size:11px;color:var(--muted);line-height:1.7;margin:8px 0 0}.brand-mark svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.brand-mark{position:relative;width:26px;height:28px;display:block}@media(max-width:800px){.go-to-market{grid-template-columns:1fr}.payment-steps{grid-template-columns:repeat(2,1fr)}}
 
-/* LedgerTrace visual system: deep petrol, aged ivory, brass, and muted olive. */
-body{background:radial-gradient(ellipse at 14% 8%,rgba(129,143,105,.13),transparent 34%),radial-gradient(ellipse at 88% 18%,rgba(81,119,119,.19),transparent 38%),linear-gradient(145deg,#101a1b 0%,#172322 42%,#111a1c 100%);background-attachment:fixed}
-body:before{background-image:linear-gradient(rgba(198,177,134,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(198,177,134,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,black,transparent 78%)}
-body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(196,161,106,.08),transparent 36%),radial-gradient(ellipse at 25% 75%,rgba(80,116,107,.08),transparent 38%);opacity:.9}
-::selection{background:rgba(196,161,106,.35);color:#fff8e9}
-.header{background:rgba(16,26,27,.76);border-color:rgba(196,161,106,.24);box-shadow:0 16px 54px rgba(0,0,0,.22)}
-.header.scrolled{background:rgba(16,26,27,.96);border-color:rgba(196,161,106,.34)}
-.brand-mark{border-color:rgba(196,161,106,.8);background:linear-gradient(145deg,rgba(196,161,106,.09),transparent)}
-.brand-mark .mark-trace{stroke:#d8b77e}
-.brand-mark .mark-letter{stroke:#f3eee2;stroke-opacity:1;stroke-width:1.8}
-.brand-name{color:#f3eee2;letter-spacing:.19em}
-.nav a{color:#c2c7bb}.nav a:hover{color:#f3eee2}
-.header-cta,.button{border-color:#c4a16a;background:#c4a16a;color:#1a211e}
-.button:hover,.header-cta:hover{background:#d8ba85;border-color:#d8ba85}
-.button.secondary{border-color:#596a60;color:var(--text)}
-.button.secondary:hover{border-color:#c4a16a;background:rgba(196,161,106,.08)}
-.button.ghost:hover{background:rgba(196,161,106,.08)}
-.eyebrow,.section-index{color:#d0ad75}
-.hero h1 em{color:#d0ad75}
-.hero-desc{color:#c9cfc3}
-.privacy-note:before{background:#a5b58a;box-shadow:0 0 10px rgba(165,181,138,.35)}
-.trace-rule{background:linear-gradient(90deg,#c4a16a,rgba(196,161,106,.1) 70%,transparent)}
-.trace-rule:before{background:#c4a16a;box-shadow:0 0 14px rgba(196,161,106,.5)}
-.scene-grid{background-image:linear-gradient(rgba(196,177,134,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(196,177,134,.075) 1px,transparent 1px)}
-.scene-glow{background:radial-gradient(ellipse,rgba(95,133,124,.2),transparent 68%)}
-.scene-path{stroke:rgba(196,161,106,.62)}.scene-path.broken{stroke:#d8a45f}
-.scene-node{stroke:#c4a16a}.scene-node.warn{stroke:#d8a45f}
-.document{background:linear-gradient(145deg,rgba(34,49,47,.98),rgba(19,30,30,.97));border-color:rgba(196,177,134,.29)}
-.document:hover{border-color:#c4a16a;box-shadow:0 0 0 1px rgba(196,161,106,.12),0 22px 70px rgba(0,0,0,.4)}
-.doc-symbol{color:#d0ad75}.doc-status{color:#a5b58a}.doc-status.warn{color:#d8a45f}
-.section{border-color:rgba(196,177,134,.15)}
-.workbench{background:linear-gradient(180deg,rgba(29,47,44,.42),transparent 86%);border-color:rgba(196,177,134,.18)}
-.workbench-shell{background:rgba(15,25,25,.88);border-color:#3b4b43}
-.workbench-bar{background:rgba(33,48,44,.78);border-color:#3b4b43}
-.live-dot{background:#a5b58a;box-shadow:0 0 12px rgba(165,181,138,.4)}
-.source-card,.metric,.report,.method-card{background:rgba(28,42,39,.7);border-color:#3b4b43}
-.source-icon{border-color:rgba(196,161,106,.35);color:#d0ad75}
-.file-input::file-selector-button{background:#263832;border-color:#53625b;color:#f3eee2}
-.search,.review-note,.evidence-value,.builder,.builder-summary,.contact-generated{background:#182725;border-color:#43544b}
-th{background:#22322e}
-tbody tr:hover,tbody tr:focus{background:rgba(196,161,106,.07)}
-.filter-btn.active{border-color:#c4a16a;background:rgba(196,161,106,.11)}
-.pill.exception{color:#e0b16f;background:rgba(216,164,95,.12)}
-.pill.matched{color:#b6c59c;background:rgba(165,181,138,.12)}
-.pill.review{color:#e39a8b;background:rgba(217,130,114,.12)}
-.metric-value.amber{color:#e0b16f}
-.report{background:linear-gradient(145deg,rgba(33,48,44,.92),rgba(17,27,27,.92))}
-.drawer,.contact-panel{background:#142120;border-color:#53625b}
-.drawer-backdrop,.contact-panel-backdrop{background:rgba(4,10,9,.72)}
-.drawer-section,.drawer-top,.report-block,.report-footer{border-color:#3b4b43}
-.option:has(input:checked){border-color:#c4a16a;background:rgba(196,161,106,.1)}
-.option input{accent-color:#c4a16a}
-.builder{background:rgba(20,33,31,.92)}
-.builder-head{border-color:#3b4b43}
-.evaluation{background:radial-gradient(ellipse at 70% 45%,rgba(95,133,124,.13),transparent 44%)}
-.footer{border-color:rgba(196,177,134,.2)}
-.wordmark{color:#eee6d6}
-.wordmark-trace path{stroke:#c4a16a}
-.footer-column a:hover,.footer-links a:hover{color:#d0ad75}
-.footer-bottom{border-color:#3b4b43}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
-
-/* LedgerTrace dark system — graphite, deep blue-steel, muted teal. */
+/* LedgerTrace visual system: charcoal, mineral sage, and restrained brass. */
 :root{
- color-scheme:dark;
- --bg:#10151B; --panel:#171F27; --panel2:#1D2932; --line:#2B3943; --line2:#40515B;
- --text:#E7ECEE; --muted:#9AA8AE; --blue:#79B8B0; --amber:#C6A36A; --green:#8EB9A0; --red:#D38C85;
- --mono:"IBM Plex Mono",monospace; --display:"Space Grotesk",sans-serif; --body:"Inter",sans-serif;
- background:var(--bg);color:var(--text)
+ color-scheme:dark!important;
+ --bg:#222521!important;--panel:#2a2e28!important;--panel2:#32372f!important;
+ --line:#41473e!important;--line2:#596052!important;--text:#f0ede4!important;
+ --muted:#b0b4a8!important;--blue:#9bb4a0!important;--amber:#c5a36a!important;
+ --green:#a4c1a6!important;--red:#d99488!important;
 }
-html,body{background:#10151B!important;color:#E7ECEE!important}
-body:before{background-image:linear-gradient(rgba(132,158,169,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(132,158,169,.025) 1px,transparent 1px)!important;background-size:72px 72px!important;mask-image:linear-gradient(to bottom,black,transparent 76%)!important}
-body:after{display:none!important}
-::selection{background:rgba(121,184,176,.28)!important;color:#F4F7F7!important}
-.header,.header.scrolled{background:rgba(16,21,27,.94)!important;border-color:#2B3943!important;box-shadow:0 10px 34px rgba(0,0,0,.2)!important;backdrop-filter:blur(18px)!important}
-.brand-mark{background:#17232A!important;border:1px solid #40515B!important;border-radius:7px!important;color:#E7ECEE!important}
-.brand-mark svg{inset:2px!important;width:calc(100% - 4px)!important;height:calc(100% - 4px)!important}
-.brand-mark .mark-trace,.footer-brand .mark-trace{stroke:#79B8B0!important;stroke-width:1.8!important;stroke-dasharray:none!important;stroke-dashoffset:0!important}
-.brand-mark .mark-letter{stroke:#E7ECEE!important}
-.brand-name{color:#E7ECEE!important;letter-spacing:.14em!important}
-.nav a{color:#A8B5BB!important}.nav a:hover{color:#E7ECEE!important}
-.header-cta,.button{background:#79B8B0!important;border-color:#79B8B0!important;color:#10201F!important}
-.header-cta:hover,.button:hover{background:#91C9C1!important;border-color:#91C9C1!important;color:#10201F!important}
-.button.secondary{background:#171F27!important;border-color:#40515B!important;color:#E7ECEE!important}
-.button.secondary:hover{background:#1D2932!important;border-color:#79B8B0!important}
-.button.ghost{color:#9AA8AE!important}.button.ghost:hover{background:#1D2932!important;color:#E7ECEE!important}
-.menu-toggle{border-color:#40515B!important;color:#E7ECEE!important}
-.eyebrow,.section-index{color:#79B8B0!important}
-.trace-rule{background:linear-gradient(90deg,#79B8B0,rgba(121,184,176,.12) 70%,transparent)!important}
-.trace-rule:before{background:#79B8B0!important;box-shadow:0 0 10px rgba(121,184,176,.22)!important}
-h1,h2,h3{color:#E7ECEE}
-h1 em{color:#79B8B0!important}
-.hero-desc{color:#B2BEC3!important}
-.privacy-note{color:#9AA8AE!important}.privacy-note:before{background:#8EB9A0!important;box-shadow:none!important}
-.scene-grid{background-image:linear-gradient(rgba(121,184,176,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(121,184,176,.065) 1px,transparent 1px)!important}
-.scene-glow{display:none!important}
-.scene-path{stroke:rgba(121,184,176,.52)!important}.scene-path.broken{stroke:#C6A36A!important}
-.scene-node{fill:#10151B!important;stroke:#79B8B0!important}.scene-node.warn{stroke:#C6A36A!important}
-.document{background:linear-gradient(145deg,#1B252D,#151D24)!important;border-color:#34434D!important;box-shadow:0 20px 50px rgba(0,0,0,.25)!important;backdrop-filter:none!important}
-.document:hover{border-color:#79B8B0!important;box-shadow:0 0 0 1px rgba(121,184,176,.07),0 20px 50px rgba(0,0,0,.28)!important}
-.doc-symbol{border-color:#40515B!important;color:#79B8B0!important}
-.doc-top,.doc-sub,.scene-label,.scene-coord{color:#9AA8AE!important}
-.doc-line{background:#2B3943!important}.doc-data b{color:#E7ECEE!important}
-.doc-status{color:#8EB9A0!important}.doc-status.warn{color:#C6A36A!important}
+html{background:#222521!important}
+body{background:#222521!important;color:#f0ede4!important}
+body:before{background-image:linear-gradient(rgba(185,190,170,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(185,190,170,.035) 1px,transparent 1px)!important;background-size:68px 68px!important;opacity:.65!important}
+body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(155,180,160,.055),transparent 36%)!important;opacity:.8!important}
+::selection{background:rgba(155,180,160,.28)!important;color:#f0ede4!important}
+.header,.header.scrolled{background:rgba(34,37,33,.94)!important;border-color:#41473e!important;box-shadow:0 12px 34px rgba(0,0,0,.18)!important}
+.brand-mark,.footer-brand .brand-mark{width:32px!important;height:32px!important;display:grid!important;place-items:center!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important;transform:scale(1);transform-origin:center;transition:transform .18s ease!important}
+.brand:hover .brand-mark,.brand:focus-visible .brand-mark,.footer-brand:hover .brand-mark,.footer-brand:focus-visible .brand-mark{transform:scale(1.09)!important}
+.brand-mark svg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;overflow:visible!important}
+.brand-mark .mark-frame{stroke:#c5a36a!important;stroke-width:1.05!important;stroke-dasharray:none!important;stroke-dashoffset:0!important;opacity:.92!important;transition:none!important}
+.brand-mark .mark-trace{stroke:#9bb4a0!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;stroke-dasharray:none!important;stroke-dashoffset:0!important;transition:none!important}
+.brand-mark .mark-node{fill:#c5a36a!important}
+.brand-name{color:#f0ede4!important;letter-spacing:.15em!important}
+.nav a{color:#b0b4a8!important}.nav a:hover{color:#f0ede4!important}
+.header-cta,.button{background:#9bb4a0!important;border-color:#9bb4a0!important;color:#20251f!important}
+.header-cta:hover,.button:hover{background:#b0c5b0!important;border-color:#b0c5b0!important;color:#20251f!important}
+.button.secondary{background:#2a2e28!important;border-color:#596052!important;color:#f0ede4!important}
+.button.secondary:hover{background:#32372f!important;border-color:#9bb4a0!important}
+.menu-toggle{background:#2a2e28!important;border-color:#596052!important;color:#f0ede4!important}
+.eyebrow,.section-index,.step-label{color:#c5a36a!important}
+.trace-rule{background:linear-gradient(90deg,#c5a36a,rgba(197,163,106,.12) 70%,transparent)!important}
+.trace-rule:before{background:#c5a36a!important;box-shadow:0 0 10px rgba(197,163,106,.22)!important}
+h1,h2,h3,.section-title{color:#f0ede4!important}
+h1 em{color:#9bb4a0!important}
+.hero-desc,.section-lead{color:#b0b4a8!important}
+.privacy-note{color:#b0b4a8!important}
+.scene-grid{background-image:linear-gradient(rgba(155,180,160,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(155,180,160,.055) 1px,transparent 1px)!important}
+.scene-path{stroke:rgba(155,180,160,.55)!important}.scene-path.broken{stroke:#c5a36a!important}
+.scene-node{fill:#222521!important;stroke:#9bb4a0!important}.scene-node.warn{stroke:#c5a36a!important}
+.document{background:linear-gradient(145deg,#2a2e28,#252923)!important;border-color:#41473e!important;box-shadow:0 20px 50px rgba(0,0,0,.2)!important}
+.document:hover{border-color:#9bb4a0!important;box-shadow:0 0 0 1px rgba(155,180,160,.07),0 20px 50px rgba(0,0,0,.24)!important}
+.doc-symbol{border-color:#596052!important;color:#9bb4a0!important}
+.doc-top,.doc-sub,.scene-label,.scene-coord{color:#b0b4a8!important}
+.doc-line{background:#41473e!important}.doc-data b{color:#f0ede4!important}
+.doc-status{color:#a4c1a6!important}.doc-status.warn{color:#c5a36a!important}
 .section{background:transparent!important}
-.section-title{color:#E7ECEE!important}.section-lead{color:#9AA8AE!important}
-.signal-strip,.signal+.signal{border-color:#2B3943!important}
-.signal strong{color:#E7ECEE!important}.signal span{color:#9AA8AE!important}
-.workbench{background:#121920!important;border-color:#2B3943!important}
-.workbench-shell,.builder{background:#141C23!important;border-color:#2B3943!important;box-shadow:0 24px 70px rgba(0,0,0,.18)!important}
-.workbench-bar,.source-card,.metric,.method-card,.report,.report .report-block,.evidence-value{background:#182129!important;border-color:#2B3943!important}
-.workbench-title strong,.source-head strong,.results-head h3,.report-head h3,.method-card h3,.drawer-top h2,.drawer-section h3,.builder-head strong{color:#E7ECEE!important}
-.workbench-title span,.source-head small,.source-card p,.metric-label,.metric-note,.results-head p,.report-head p,.report-block p,.report-block li,.method-card p,.builder-head span{color:#9AA8AE!important}
-.source-icon{border-color:#34434D!important;color:#79B8B0!important}
-.file-input{color:#9AA8AE!important}
-.file-input::file-selector-button{background:#202B34!important;border-color:#40515B!important;color:#E7ECEE!important}
-.metric-value{color:#E7ECEE!important}.metric-value.amber{color:#C6A36A!important}
-.filter-btn{border-color:#34434D!important;color:#9AA8AE!important}
-.filter-btn.active{border-color:#79B8B0!important;color:#D5EFEB!important;background:rgba(121,184,176,.09)!important}
-.search{background:#10171D!important;border-color:#34434D!important;color:#E7ECEE!important}
-.table-wrap{border-color:#2B3943!important}
-th{background:#202B34!important;color:#A8B5BB!important}
-th,td{border-bottom-color:#26343D!important}
-tbody tr:hover,tbody tr:focus{background:rgba(121,184,176,.055)!important}
-.cell-main{color:#E7ECEE!important}.cell-sub,.table-note{color:#9AA8AE!important}
-.findings-cell{color:#C2CCD0!important}
-.pill.exception{color:#D9B87E!important;background:rgba(198,163,106,.11)!important}
-.pill.matched{color:#9BC8AC!important;background:rgba(142,185,160,.1)!important}
-.pill.review{color:#E0A09A!important;background:rgba(211,140,133,.1)!important}
-.report{background:#171F27!important}
-.report-block{border-top-color:#2B3943!important}
-.drawer-backdrop{background:rgba(2,6,9,.72)!important}
-.drawer{background:#141C23!important;border-left-color:#34434D!important;box-shadow:-22px 0 70px rgba(0,0,0,.35)!important}
-.drawer-top,.drawer-section,.report-footer{border-color:#2B3943!important}
-.icon-button{border-color:#40515B!important;color:#E7ECEE!important}
-.evidence-value span{color:#9AA8AE!important}.evidence-value strong{color:#E7ECEE!important}
-.finding-list li{color:#C2CCD0!important}
-.review-note,.review-state select{background:#10171D!important;border-color:#40515B!important;color:#E7ECEE!important}
-.review-state{color:#9AA8AE!important}
-.methodology,.evaluation{border-color:#2B3943!important}
-.boundary{background:rgba(198,163,106,.06)!important;border-color:rgba(198,163,106,.25)!important}
-.boundary strong{color:#E7ECEE!important}.boundary p{color:#9AA8AE!important}
-.evaluation{background:linear-gradient(180deg,#121920,#10151B)!important}
-.eval-copy p{color:#9AA8AE!important}.eval-point{color:#C2CCD0!important}
-.builder-head{background:#182129!important;border-color:#2B3943!important}
-.builder-step+.builder-step{border-color:#2B3943!important}
-.step-label{color:#79B8B0!important}
-.option{border-color:#34434D!important;color:#B2BEC3!important}
-.option:has(input:checked){border-color:#79B8B0!important;background:rgba(121,184,176,.09)!important;color:#E7ECEE!important}
-.option input{accent-color:#79B8B0!important}
-footer,.footer,.site-footer{background:#0C1116!important;color:#E7ECEE!important;border-color:#26343D!important}
-footer a,.footer a,.footer-brand .brand-name{color:#E7ECEE!important}
-footer p,footer .muted,footer .small,.footer p,.footer .muted{color:#9AA8AE!important}
-footer .brand-mark,.footer .brand-mark{background:#17232A!important;border-color:#40515B!important}
-footer .trace-rule{background:linear-gradient(90deg,#79B8B0,rgba(121,184,176,.12) 70%,transparent)!important}
-.error{background:rgba(211,140,133,.09)!important;border-color:rgba(211,140,133,.4)!important;color:#E7A49E!important}
-.toast{background:#E7ECEE!important;color:#10151B!important}
-input,textarea,select{accent-color:#79B8B0}
-button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#79B8B0!important}
-@media(max-width:760px){.header,.header.scrolled{background:rgba(16,21,27,.98)!important}.nav{background:#171F27!important;border-color:#2B3943!important}.workbench-body{background:#141C23!important}}
-@media(prefers-reduced-motion:reduce){.scene-path{animation:none!important}}
-
-/* Restrained charcoal, sage and brass identity. */
-:root{color-scheme:dark!important;--bg:#222521!important;--panel:#2a2e28!important;--panel2:#32372f!important;--line:#41473e!important;--line2:#596052!important;--text:#f0ede4!important;--muted:#b0b4a8!important;--blue:#9bb4a0!important;--amber:#c5a36a!important;--green:#a4c1a6!important;--red:#d99488!important}
-body{background:var(--bg)!important;color:var(--text)!important}
-body:before{opacity:.35!important;background-image:radial-gradient(rgba(185,190,170,.12) .6px,transparent .6px)!important;background-size:20px 20px!important}
-body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(155,180,160,.07),transparent 34%)!important;opacity:.8!important}
-.header,.header.scrolled{background:rgba(34,37,33,.94)!important;border-color:rgba(155,180,160,.18)!important;box-shadow:0 8px 28px rgba(0,0,0,.12)!important;backdrop-filter:blur(18px)!important}
-.brand-name{color:#f0ede4!important;letter-spacing:.16em!important}
-input,textarea,select{background:#292e28!important;color:#f0ede4!important;border-color:#41473e!important}
-table{color:#f0ede4!important}th{color:#b0b4a8!important}td{border-color:#41473e!important}
-::selection{background:#465449;color:#f0ede4}
-.brand-mark,.footer-brand .brand-mark{width:38px!important;height:38px!important;border:0!important;border-radius:0!important;background:transparent!important;overflow:visible!important}
-.brand-mark svg{inset:0!important;width:100%!important;height:100%!important;overflow:visible}
-.brand-mark .mark-frame{stroke:#c5a36a;stroke-width:1.05;stroke-dasharray:78;stroke-dashoffset:0;opacity:.88;transition:stroke-dashoffset .7s ease}
-.brand-mark .mark-trace{stroke:#9bb4a0!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;stroke-dasharray:46!important;stroke-dashoffset:46!important;transition:stroke-dashoffset .8s ease!important}
-.brand-mark .mark-node{fill:#c5a36a}
-.brand:hover .mark-trace,.brand:focus-visible .mark-trace{stroke-dashoffset:0!important}
-.brand:hover .mark-frame,.brand:focus-visible .mark-frame{stroke-dashoffset:-78}
-.brand-name{color:#f0ede4!important;letter-spacing:.16em!important}
-input,textarea,select{background:#fbfaf6!important;color:#252b27!important;border-color:#d0d2c7!important}
-table{color:#252b27!important}th{color:#68736a!important}td{border-color:#d9dbd1!important}
-::selection{background:#d8e1d6;color:#252b27}
-
+.signal-strip,.signal+.signal{border-color:#41473e!important}
+.signal strong{color:#f0ede4!important}.signal span{color:#b0b4a8!important}
+.workbench{background:#252923!important;border-color:#41473e!important}
+.workbench-shell,.builder{background:#2a2e28!important;border-color:#41473e!important;box-shadow:0 24px 70px rgba(0,0,0,.18)!important}
+.workbench-bar,.source-card,.metric,.method-card,.report,.report .report-block,.evidence-value,.builder-head{background:#2a2e28!important;border-color:#41473e!important}
+.workbench-title strong,.source-head strong,.results-head h3,.report-head h3,.method-card h3,.drawer-top h2,.drawer-section h3,.builder-head strong{color:#f0ede4!important}
+.workbench-title span,.source-head small,.source-card p,.metric-label,.metric-note,.results-head p,.report-head p,.report-block p,.report-block li,.method-card p,.builder-head span{color:#b0b4a8!important}
+.source-icon{border-color:#41473e!important;color:#9bb4a0!important}
+.file-input{color:#b0b4a8!important}
+.file-input::file-selector-button{background:#32372f!important;border-color:#596052!important;color:#f0ede4!important}
+.metric-value{color:#f0ede4!important}.metric-value.amber{color:#c5a36a!important}
+.filter-btn{border-color:#41473e!important;color:#b0b4a8!important}
+.filter-btn.active{border-color:#9bb4a0!important;color:#e1e8dc!important;background:rgba(155,180,160,.09)!important}
+.search{background:#252923!important;border-color:#41473e!important;color:#f0ede4!important}
+.table-wrap{border-color:#41473e!important}
+th{background:#32372f!important;color:#b0b4a8!important}
+th,td{border-bottom-color:#41473e!important}
+tbody tr:hover,tbody tr:focus{background:rgba(155,180,160,.055)!important}
+.cell-main{color:#f0ede4!important}.cell-sub,.table-note{color:#b0b4a8!important}
+.findings-cell{color:#d6d6cc!important}
+.pill.exception{color:#d3b47f!important;background:rgba(197,163,106,.11)!important}
+.pill.matched{color:#a4c1a6!important;background:rgba(164,193,166,.1)!important}
+.pill.review{color:#d99488!important;background:rgba(217,148,136,.1)!important}
+.report-block{border-top-color:#41473e!important}
+.drawer-backdrop{background:rgba(2,5,3,.72)!important}
+.drawer{background:#2a2e28!important;border-left-color:#41473e!important;box-shadow:-22px 0 70px rgba(0,0,0,.3)!important}
+.drawer-top,.drawer-section,.report-footer{border-color:#41473e!important}
+.icon-button{background:#2a2e28!important;border-color:#596052!important;color:#f0ede4!important}
+.evidence-value span{color:#b0b4a8!important}.evidence-value strong{color:#f0ede4!important}
+.finding-list li{color:#d6d6cc!important}
+.review-note,.review-state select,input,textarea,select{background:#252923!important;border-color:#41473e!important;color:#f0ede4!important}
+.review-state{color:#b0b4a8!important}
+.methodology,.evaluation{border-color:#41473e!important}
+.boundary{background:rgba(197,163,106,.06)!important;border-color:rgba(197,163,106,.25)!important}
+.boundary strong{color:#f0ede4!important}.boundary p{color:#b0b4a8!important}
+.evaluation{background:linear-gradient(180deg,#252923,#222521)!important}
+.eval-copy p{color:#b0b4a8!important}.eval-point{color:#d6d6cc!important}
+.builder-step+.builder-step{border-color:#41473e!important}
+.option{border-color:#41473e!important;color:#b0b4a8!important}
+.option:has(input:checked){border-color:#9bb4a0!important;background:rgba(155,180,160,.09)!important;color:#f0ede4!important}
+.option input{accent-color:#9bb4a0!important}
+.footer{background:#1d201c!important;color:#f0ede4!important;border-top:1px solid #41473e!important}
+.footer-heading{border-color:#41473e!important}
+.footer-heading h2{max-width:720px!important}
+.footer-directory{grid-template-columns:1fr 1fr 1.15fr!important;gap:clamp(24px,4vw,54px)!important}
+.footer-column h3{color:#c5a36a!important}
+.footer-column a{color:#b0b4a8!important}.footer-column a:hover{color:#f0ede4!important}
+.footer-brand-row{border-color:#41473e!important;padding-top:25px!important}
+.footer-brand{gap:12px!important}
+.footer-brand-name{font-size:22px!important;letter-spacing:-.045em!important;color:#f0ede4!important}
+.footer-legal p{color:#b0b4a8!important}
+.footer .brand-mark{width:34px!important;height:34px!important}
+.error{background:rgba(217,148,136,.09)!important;border-color:rgba(217,148,136,.4)!important;color:#d99488!important}
+.toast{background:#f0ede4!important;color:#222521!important}
+input,textarea,select{accent-color:#9bb4a0!important}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#c5a36a!important}
+@media(max-width:760px){
+ .header,.header.scrolled{background:rgba(34,37,33,.97)!important}
+ .nav{background:#2a2e28!important;border-color:#41473e!important}
+ .footer-directory{grid-template-columns:1fr 1fr!important;gap:28px 22px!important}
+ .footer-column:last-child{grid-column:1/-1!important}
+ .footer-brand-row{align-items:flex-start!important;flex-direction:column!important}
+ .footer-legal{text-align:left!important}
+}
+@media(max-width:430px){.footer-directory{grid-template-columns:1fr!important}.footer-column:last-child{grid-column:auto!important}}
+@media(prefers-reduced-motion:reduce){.brand-mark,.footer-brand .brand-mark{transition:none!important}}
 </style>
 </head>
 <body>
@@ -413,8 +339,11 @@ table{color:#252b27!important}th{color:#68736a!important}td{border-color:#d9dbd1
       <div class="footer-column"><h3>Project &amp; scope</h3><a href="https://github.com/DT-09/LedgerTrace" target="_blank" rel="noopener noreferrer">Source repository ↗</a><p>Early-stage pilot. No account system, hosted data storage or production-grade controls are implied.</p></div>
     </div>
     <div class="footer-brand-row">
-      <a class="footer-brand" href="#top" aria-label="LedgerTrace back to top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><path class="mark-frame" d="M14 4.8H26L35.2 14V26L26 35.2H14L4.8 26V14Z" fill="none"/><path class="mark-trace" d="M10 14H19V9L29 19L19 29V24H10" fill="none"/><circle class="mark-node" cx="10" cy="14" r="1.7"/><circle class="mark-node" cx="29" cy="19" r="1.7"/></svg></span><span class="footer-brand-name">LedgerTrace</span></a>
-      <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> LedgerTrace. All rights reserved.</p><p>AP reconciliation evidence workbench · Sample data is illustrative · Findings require human verification.</p></div>
+      <a class="footer-brand" href="#top" aria-label="LedgerTrace home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path class="mark-frame" d="M14 4.8H26L35.2 14V26L26 35.2H14L4.8 26V14Z" fill="none"/><path class="mark-trace" d="M10 14H19V9L29 19L19 29V24H10" fill="none"/><circle class="mark-node" cx="10" cy="14" r="1.7"/><circle class="mark-node" cx="29" cy="19" r="1.7"/></svg></span>
+        <span class="footer-brand-name">LedgerTrace</span>
+      </a>
+      <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> LedgerTrace</p><p>Browser-side AP reconciliation · Illustrative data · Human review required</p></div>
     </div>
   </div>
 </footer>
