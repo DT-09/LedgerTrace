@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#10151B">
+<meta name="theme-color" content="#19272B">
 <meta name="description" content="LedgerTrace compares supplier invoices, purchase orders and goods receipts, then traces exceptions to source records and explicit rules.">
-<title>LedgerTrace — Every discrepancy needs evidence.</title>
+<title>LedgerTrace — Find the discrepancy. Follow the evidence.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -218,6 +218,56 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:430px){.footer-directory{grid-template-columns:1fr!important}.footer-column:last-child{grid-column:auto!important}}
 @media(prefers-reduced-motion:reduce){.brand-mark,.footer-brand .brand-mark{transition:none!important}}
 </style>
+
+<style id="ledgertrace-final-theme">
+:root{
+ color-scheme:dark;
+ --bg:#19272B;
+ --panel:#223034;
+ --panel2:#282321;
+ --line:#35464A;
+ --line2:#53625F;
+ --text:#F1EBDD;
+ --muted:#B8BDB4;
+ --blue:#8FA9A0;
+ --amber:#BDA16C;
+ --green:#A6B9A4;
+ --red:#D68F86;
+}
+html{background:#19272B!important}
+body{background:var(--bg)!important;color:var(--text)!important}
+.header,.header.scrolled{background:rgba(25,39,43,.94)!important;border-color:#35464A!important}
+.nav{background:#282321!important;border-color:#46504C!important}
+.nav a,.footer-column a{color:#B8BDB4!important}
+.nav a:hover,.footer-column a:hover{color:#F1EBDD!important}
+.hero,.section,.footer{color:var(--text)!important}
+h1,h2,h3,.brand-name,.footer-brand-name{color:#F1EBDD!important}
+h1 em,.eyebrow,.section-index,.record-id,.micro,.metric-label{color:#BDA16C!important}
+p,.hero-desc,.section-intro,.muted{color:#B8BDB4}
+.button{background:#8FA9A0!important;border-color:#8FA9A0!important;color:#19272B!important}
+.button:hover{background:#A8BDB4!important;border-color:#A8BDB4!important}
+.button.secondary,.header-cta{background:transparent!important;border-color:#53625F!important;color:#F1EBDD!important}
+.button.secondary:hover,.header-cta:hover{border-color:#BDA16C!important;color:#F1EBDD!important}
+.document,.builder,.report-card,.metric-card,.evidence-card,.method-card,.finding-card,.panel,.card{background:#223034!important;border-color:#35464A!important}
+.document .doc-status,.status,.tag{border-color:#53625F!important}
+.go-to-market,.payment-flow{background:#282321!important;border-color:#46504C!important;color:#F1EBDD!important}
+.go-to-market li:before,.payment-steps span{color:#BDA16C!important}
+.go-to-market p,.go-to-market li span,.payment-steps p,.footer-legal p{color:#B8BDB4!important}
+.footer{background:#19272B!important;border-color:#35464A!important}
+.footer-column h3{color:#BDA16C!important}
+.footer-brand-row{border-color:#46504C!important}
+.footer-brand-name{color:#F1EBDD!important}
+.contact-panel{background:#19272B!important;border-color:#53625F!important}
+.form-control,input,textarea,select{background:#282321!important;border-color:#46504C!important;color:#F1EBDD!important;accent-color:#8FA9A0!important}
+.form-control::placeholder,input::placeholder,textarea::placeholder{color:#A7AEA5!important}
+.toast{background:#F1EBDD!important;color:#19272B!important}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#BDA16C!important}
+.scene-svg text{fill:#BDA16C!important}
+.scene-svg path[stroke="#ffb45e"]{stroke:#BDA16C!important}
+.scene-node.warn{fill:#BDA16C!important;stroke:#BDA16C!important}
+@media(max-width:760px){.header,.header.scrolled{background:rgba(25,39,43,.98)!important}.nav{background:#282321!important;border-color:#46504C!important}}
+</style>
+
 </head>
 <body>
 <header class="header" id="header">
@@ -232,9 +282,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 <section class="hero container" id="top">
   <div class="hero-copy" id="product">
     <div class="eyebrow">Accounts payable / Evidence-led reconciliation</div>
-    <h1>Every discrepancy <em>needs evidence.</em></h1>
-    <p class="hero-desc">Compare supplier invoices with purchase orders and goods receipts. Trace mismatches to source records and explicit rules—so finance teams can see what differs before deciding what to do next.</p>
-    <div class="hero-actions"><a class="button" href="#investigation">Investigate sample <span aria-hidden="true">↓</span></a><a class="button secondary" href="#methodology">See how it works <span aria-hidden="true">↗</span></a></div>
+    <h1>Find the discrepancy. <em>Follow the evidence.</em></h1>
+    <p class="hero-desc">Compare supplier invoices with purchase orders and goods receipts. See which records disagree, why a check was triggered, and what needs human review—before deciding what to do next.</p>
+    <div class="hero-actions"><a class="button" href="#investigation">Explore the sample <span aria-hidden="true">↓</span></a><a class="button secondary" href="#methodology">How it works <span aria-hidden="true">↗</span></a></div>
     <div class="privacy-note">ILLUSTRATIVE DATA · NO CUSTOMER FILES REQUIRED</div>
   </div>
   <div class="scene" id="scene" aria-label="Illustration of invoice, purchase order and receipt records connected by evidence paths">
@@ -313,7 +363,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 <section class="section evaluation" id="evaluation">
   <div class="container">
     <div class="eval-grid">
-      <div class="eval-copy"><div class="section-index">05 / Paid evaluation</div><h2>Test against a known answer—not a sales demo.</h2><p><strong>Introductory evaluation: US$150 fixed fee.</strong> One invoice-to-PO-to-receipt workflow, up to 500 combined CSV rows, an exception export, a findings report and a 30-minute review. Five business days after clean inputs and scope approval. No payment or accounting action is automated.</p><p>The goal is to establish what the tool catches, what it misses, which findings are real, and whether the workflow merits further investment.</p><div class="eval-points"><div class="eval-point">A human-reviewed reference set for comparison</div><div class="eval-point">Confirmed findings, false positives and missed exceptions</div><div class="eval-point">A traceable report and agreed review criteria</div><div class="eval-point">Written scope, agreed exclusions and acceptance criteria</div></div></div>
+      <div class="eval-copy"><div class="section-index">05 / Paid evaluation</div><h2>Evaluate it against a known answer.</h2><p><strong>Introductory evaluation: US$150 fixed fee.</strong> One invoice-to-PO-to-receipt workflow, up to 500 combined CSV rows, an exception export, a findings report and a 30-minute review. Five business days after clean inputs and scope approval. No payment or accounting action is automated.</p><p>The goal is to establish what the tool catches, what it misses, which findings are real, and whether the workflow merits further investment.</p><div class="eval-points"><div class="eval-point">A human-reviewed reference set for comparison</div><div class="eval-point">Confirmed findings, false positives and missed exceptions</div><div class="eval-point">A traceable report and agreed review criteria</div><div class="eval-point">Written scope, agreed exclusions and acceptance criteria</div></div></div>
       <div class="builder">
         <div class="builder-head"><strong>Evaluation scope builder</strong><span>CONFIGURE / REVIEW / CONTACT</span></div>
         <div class="builder-body">
