@@ -272,7 +272,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 <body>
 <header class="header" id="header">
   <a class="brand" href="#top" aria-label="LedgerTrace home">
-    <span class="brand-mark" aria-hidden="true"><svg class="ledgertrace-logo" viewBox="0 0 177 192" role="img" aria-label="Original LedgerTrace monogram" xmlns="http://www.w3.org/2000/svg"><path class="logo-blue" d="M91 42C61 45 39 70 39 101c0 37 26 64 61 64 33 0 58-24 60-57h-20c-2 21-18 37-40 37-23 0-41-18-41-42 0-18 10-33 26-40l-9 48h40V94H96l7-50z"/><path class="logo-gray" d="M99 42h61v43h-18V61h-23l-15 76c-4 7-10 12-18 16l22-111h-9z"/></svg></span><span class="brand-name">LEDGERTRACE</span>
+    <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span><span class="brand-name">LEDGERTRACE</span>
   </a>
   <nav class="nav" id="nav" aria-label="Primary navigation"><a href="#product">Product</a><a href="#investigation">Investigation</a><a href="#buyer-assurance">Buyer proof</a><a href="#methodology">Methodology</a><a href="#evaluation">Evaluation</a></nav>
   <a class="header-cta" href="#evaluation">Discuss an evaluation <span aria-hidden="true">↗</span></a>
@@ -405,7 +405,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     </div>
     <div class="footer-brand-row">
       <a class="footer-brand" href="#top" aria-label="LedgerTrace home">
-        <span class="brand-mark" aria-hidden="true"><svg class="ledgertrace-logo" viewBox="0 0 177 192" role="img" aria-label="Original LedgerTrace monogram" xmlns="http://www.w3.org/2000/svg"><path class="logo-blue" d="M91 42C61 45 39 70 39 101c0 37 26 64 61 64 33 0 58-24 60-57h-20c-2 21-18 37-40 37-23 0-41-18-41-42 0-18 10-33 26-40l-9 48h40V94H96l7-50z"/><path class="logo-gray" d="M99 42h61v43h-18V61h-23l-15 76c-4 7-10 12-18 16l22-111h-9z"/></svg></span>
+        <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span>
         <span class="footer-brand-name">LedgerTrace</span>
       </a>
       <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> LedgerTrace</p><p>Browser-side AP reconciliation · Illustrative data · Human review required</p></div>
@@ -421,9 +421,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 </aside>
 
 <div class="contact-panel-backdrop" id="contactBackdrop"></div><aside class="contact-panel" id="contactPanel" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-hidden="true">
-  <div class="drawer-top"><div><div class="eyebrow">Commercial inquiry / Scope handoff</div><h2 id="contactTitle">Start with the problem.</h2></div><button class="icon-button" id="closeContact" aria-label="Close contact panel">×</button></div>
-  <p>Share a short description of the reconciliation workflow. No confidential invoices, supplier names or financial records are needed.</p>
-  <form id="contactForm"><label class="form-label" for="contactEmail">Your email</label><input class="form-control" id="contactEmail" type="email" placeholder="you@company.com" autocomplete="email" required><label class="form-label" for="contactDescription">What needs investigating?</label><textarea class="form-control" id="contactDescription" placeholder="For example: invoice, PO and receipt mismatches across monthly exports…" required></textarea><div class="contact-generated"><strong>Scope brief included</strong><p id="contactScopeSummary">A short description and any evaluation selections will be included in your inquiry brief.</p></div><div class="contact-channel"><button class="button" type="submit">Prepare inquiry brief ↗</button><button class="button secondary" type="button" id="copyBrief">Copy scope brief</button></div><div class="contact-channel" id="configuredChannels"></div></form>
+  <div class="drawer-top"><div><div class="eyebrow">Commercial inquiry / Scope handoff</div><h2 id="contactTitle">Discuss a paid investigation.</h2></div><button class="icon-button" id="closeContact" aria-label="Close contact panel">×</button></div>
+  <p>Describe the reconciliation problem and desired business outcome. Scope, fee, timeline and acceptance criteria are agreed before work begins. Do not send confidential financial records.</p>
+  <form id="contactForm"><label class="form-label" for="contactEmail">Your email</label><input class="form-control" id="contactEmail" type="email" placeholder="you@company.com" autocomplete="email" required><label class="form-label" for="contactDescription">What needs investigating?</label><textarea class="form-control" id="contactDescription" placeholder="For example: invoice, PO and receipt mismatches across monthly exports…" required></textarea><div class="contact-generated"><strong>Scope brief included</strong><p id="contactScopeSummary">A short description and any evaluation selections will be included in your inquiry brief.</p></div><div class="contact-channel"><button class="button" type="submit">Prepare paid-scope inquiry ↗</button><button class="button secondary" type="button" id="copyBrief">Copy scope brief</button></div><div class="contact-channel" id="configuredChannels"></div></form>
   <p class="contact-note" id="contactStatus" role="status">Your inquiry opens in your email app with a prepared brief. Review it and send it; no message is sent automatically.</p>
 </aside>
 <div id="toast" role="status" aria-live="polite" style="position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:120;padding:11px 16px;background:#152432;border:1px solid #344656;border-radius:9px;color:#f3f7fc;font-size:11px;transition:opacity .2s,transform .2s;max-width:calc(100% - 30px)"></div>
