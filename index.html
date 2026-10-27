@@ -494,11 +494,12 @@ state.usingSample=true;loadSamples();updateScope();
 </style>
 
 <style id="ledgertrace-logo-nav-trust-final">
-/* Preserve the supplied LedgerTrace monogram; remove the invented tile treatment. */
+/* Keep the original monogram geometry. Render it as one restrained silhouette. */
 .brand-mark,.footer-brand .brand-mark{width:36px!important;height:39px!important;flex:0 0 36px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;transform:none!important}
-.brand-mark .ledgertrace-logo,.footer-brand .ledgertrace-logo{display:block!important;width:100%!important;height:100%!important;object-fit:contain;opacity:.82;filter:saturate(.82);transition:opacity .2s ease,filter .2s ease}
-.brand:hover .ledgertrace-logo,.brand:focus-visible .ledgertrace-logo,.footer-brand:hover .ledgertrace-logo,.footer-brand:focus-visible .ledgertrace-logo{opacity:1;filter:saturate(1)}
-.ledgertrace-logo .logo-blue{fill:#159FE3!important;stroke:none!important}.ledgertrace-logo .logo-gray{fill:#737578!important;stroke:none!important}
+.brand-mark .ledgertrace-logo,.footer-brand .ledgertrace-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;object-fit:contain;opacity:.72!important;filter:none!important;transition:opacity .2s ease!important}
+.brand:hover .ledgertrace-logo,.brand:focus-visible .ledgertrace-logo,.footer-brand:hover .ledgertrace-logo,.footer-brand:focus-visible .ledgertrace-logo{opacity:.9!important;filter:none!important}
+/* Both original paths share one muted sage tone: no bright blue/grey split. */
+.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#aeb9af!important;stroke:none!important;opacity:1!important}
 .header{background:rgba(25,39,43,.68)!important;border-color:rgba(241,235,221,.15)!important;backdrop-filter:blur(22px) saturate(125%)!important;-webkit-backdrop-filter:blur(22px) saturate(125%)!important;box-shadow:0 12px 42px rgba(0,0,0,.19),inset 0 1px 0 rgba(241,235,221,.045)!important}
 .header.scrolled{background:rgba(25,39,43,.76)!important;border-color:rgba(143,169,160,.24)!important}
 .hero-proofline{max-width:440px;margin:16px 0 0;color:#aeb9af;font-size:11px;line-height:1.75}
@@ -533,6 +534,12 @@ state.usingSample=true;loadSamples();updateScope();
   color:#f1ebdd!important;
 }
 .header .header-cta:hover{background:rgba(143,169,160,.18)!important;border-color:#bda16c!important}
+</style>
+
+
+<style id="ledgertrace-logo-silhouette-fix">
+.brand-mark .ledgertrace-logo,.footer-brand .ledgertrace-logo{opacity:.72!important;filter:none!important}
+.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#aeb9af!important;stroke:none!important}
 </style>
 
 </body>
