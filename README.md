@@ -4,7 +4,7 @@ LedgerTrace is a browser-based accounts-payable reconciliation workbench. It com
 
 ## Run it
 
-Open [LedgerTrace](https://dt-09.github.io/LedgerTrace/) after GitHub Pages is enabled for the repository, or open `index.html` directly in a modern browser. No build step or package install is required.
+Deploy this repository to Cloudflare Pages with the repository root as the project directory, no build command, and the output directory set to `/` (the root). The site is static HTML/CSS/JavaScript; no package install or build step is required. After Cloudflare finishes its deployment, use the `*.pages.dev` URL shown in your Pages project. You can also open `index.html` directly in a modern browser.
 
 1. Load the included sample data or upload three CSV exports.
 2. Use one row per document line.
@@ -36,7 +36,7 @@ Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_
 
 This is a **local-first pilot application**, not yet a production multi-tenant SaaS. Files are processed in the browser; there is no server upload, account, saved history, payment system, or recurring subscription. It does not automatically resolve exceptions or authorize payments.
 
-The current matching key is purchase-order number + item code. It does not yet perform robust supplier master-data resolution, multi-currency conversion, tax treatment, credit-note netting, tolerance profiles, split/merged line matching, partial-payment accounting, or ERP integrations. Exception value is an indicative sum of flagged invoice line amounts, not a verified loss or recoverable amount. A line with no findings means only that the current configured rules did not trigger.
+The current matching key is purchase-order number + item code. It does not yet perform robust supplier master-data resolution, currency conversion, tax treatment, credit-note netting, tolerance profiles, split/merged line matching, partial-payment accounting, or ERP integrations. Exception value is an indicative sum of flagged invoice line amounts, not a verified loss or recoverable amount. A line with no findings means only that the current configured rules did not trigger.
 
 Use synthetic or approved anonymized records for evaluation. Review all findings against source documents before taking accounting or payment action.
 
