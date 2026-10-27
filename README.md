@@ -20,20 +20,21 @@ Deploy this repository to Cloudflare Pages with the repository root as the proje
 Use one row per document line. Header names are normalized, so spaces, hyphens, and capitalization are tolerated.
 
 - **Invoices:** `invoice_number`, `supplier`, `po_number`, `item_code`, `quantity`, `unit_price`; optional `line_amount`, `invoice_date`, `currency`.
-- **Purchase orders:** `po_number`, `supplier`, `item_code`, `quantity`, `unit_price`.
+- **Purchase orders:** `po_number`, `supplier`, `item_code`, `quantity`, `unit_price`; optional `currency`.
 - **Goods receipts:** `receipt_number`, `po_number`, `item_code`, `quantity`, `receipt_date`.
 
-Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_order_number`, and `grn` are accepted. Quantities and unit prices must be numeric. Use consistent currency and units across all three files.
+Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_order_number`, and `grn` are accepted. Quantities and unit prices must be numeric. Invoice and PO currency codes must agree; when omitted, the app assumes USD. The app rejects mixed invoice/PO currencies rather than displaying a misleading combined total. Use consistent units across all three files.
 
 ## Current checks
 
-- Repeated invoice identifiers.
+- Potential duplicate invoice-line signatures (invoice ID, supplier, PO/item, quantity, unit price and line amount); repeated invoice IDs across distinct line items are not automatically treated as duplicates.
 - Missing PO references and missing matching PO lines.
 - Supplier mismatches between invoice and PO.
-- Invoiced quantity above ordered quantity.
+- Combined invoiced quantity above combined ordered quantity for the same PO/item matching key.
 - Unit-price differences greater than 0.01 in the input currency.
 - Invoice line amount inconsistent with quantity × unit price.
-- Missing goods receipt and invoiced quantity above total received quantity.
+- Missing goods receipt and combined invoiced quantity above total received quantity for the same PO/item matching key.
+- Multiple PO rows sharing a matching key are surfaced for review; mixed PO unit prices are not silently resolved.
 - PO lines without invoice matches and goods receipts without PO matches.
 
 ## Data handling
