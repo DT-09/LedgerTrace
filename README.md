@@ -20,10 +20,10 @@ Deploy this repository to Cloudflare Pages with the repository root as the proje
 Use one row per document line. Header names are normalized, so spaces, hyphens, and capitalization are tolerated.
 
 - **Invoices:** `invoice_number`, `supplier`, `po_number`, `item_code`, `quantity`, `unit_price`; optional `line_amount`, `invoice_date`, `currency`.
-- **Purchase orders:** `po_number`, `supplier`, `item_code`, `quantity`, `unit_price`.
+- **Purchase orders:** `po_number`, `supplier`, `item_code`, `quantity`, `unit_price`; optional `currency`.
 - **Goods receipts:** `receipt_number`, `po_number`, `item_code`, `quantity`, `receipt_date`.
 
-Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_order_number`, and `grn` are accepted. Quantities and unit prices must be numeric. Use consistent currency and units across all three files.
+Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_order_number`, and `grn` are accepted. Quantities and unit prices must be numeric. Invoice and PO currency codes must agree; when omitted, the app assumes USD. The app rejects mixed invoice/PO currencies rather than displaying a misleading combined total. Use consistent units across all three files.
 
 ## Current checks
 
