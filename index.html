@@ -265,12 +265,38 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:760px){.header,.header.scrolled{background:rgba(16,21,27,.98)!important}.nav{background:#171F27!important;border-color:#2B3943!important}.workbench-body{background:#141C23!important}}
 @media(prefers-reduced-motion:reduce){.scene-path{animation:none!important}}
 
+/* Warm mineral paper, graphite ink, sage and brass identity. */
+:root{color-scheme:light!important;--bg:#f0eee7!important;--panel:#f8f7f2!important;--panel2:#e8e8df!important;--line:#d7d8cd!important;--line2:#b8bbae!important;--text:#252b27!important;--muted:#69716a!important;--blue:#54796d!important;--amber:#b28b54!important;--green:#4d7964!important;--red:#b86f61!important}
+body{background:var(--bg)!important;color:var(--text)!important}
+body:before{opacity:.16!important;background-image:radial-gradient(rgba(63,82,69,.22) .65px,transparent .65px)!important;background-size:18px 18px!important}
+.header,.header.scrolled{background:rgba(240,238,231,.92)!important;border-color:rgba(99,112,99,.22)!important;box-shadow:0 8px 28px rgba(39,45,38,.055)!important;backdrop-filter:blur(18px)!important}
+.brand-mark,.footer-brand .brand-mark{width:38px!important;height:38px!important;border:0!important;border-radius:0!important;background:transparent!important;overflow:visible!important}
+.brand-mark svg{inset:0!important;width:100%!important;height:100%!important;overflow:visible}
+.brand-mark .mark-frame{stroke:#b28b54;stroke-width:1.05;stroke-dasharray:78;stroke-dashoffset:0;opacity:.88;transition:stroke-dashoffset .7s ease}
+.brand-mark .mark-trace{stroke:#54796d!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;stroke-dasharray:46!important;stroke-dashoffset:46!important;transition:stroke-dashoffset .8s ease!important}
+.brand-mark .mark-node{fill:#b28b54}
+.brand:hover .mark-trace,.brand:focus-visible .mark-trace{stroke-dashoffset:0!important}
+.brand:hover .mark-frame,.brand:focus-visible .mark-frame{stroke-dashoffset:-78}
+.brand-name{color:#29332d!important;letter-spacing:.16em!important}
+input,textarea,select{background:#fbfaf6!important;color:#252b27!important;border-color:#d0d2c7!important}
+table{color:#252b27!important}th{color:#68736a!important}td{border-color:#d9dbd1!important}
+::selection{background:#d8e1d6;color:#252b27}
+.scroll-trace{position:fixed;z-index:30;left:22px;top:17vh;height:66vh;width:24px;pointer-events:none;display:flex;justify-content:center;opacity:.82}
+.scroll-trace__base,.scroll-trace__fill{position:absolute;top:0;bottom:0;left:11px;width:1px;background:#c8cbbf}
+.scroll-trace__fill{bottom:auto;height:0;background:#668779;box-shadow:0 0 7px rgba(84,121,109,.22)}
+.scroll-trace__cursor{position:absolute;top:0;left:7px;width:9px;height:9px;border-radius:50%;border:1px solid #54796d;background:#f0eee7;box-shadow:0 0 0 3px rgba(84,121,109,.10)}
+.scroll-trace__label{position:absolute;left:11px;top:calc(100% + 12px);writing-mode:vertical-rl;transform:rotate(180deg);font:9px/1 "IBM Plex Mono",monospace;letter-spacing:.15em;color:#8b9287;white-space:nowrap}
+@media(max-width:1050px){.scroll-trace{left:8px;opacity:.55}.scroll-trace__label{display:none}}
+@media(max-width:760px){.scroll-trace{display:none}.header,.header.scrolled{background:rgba(240,238,231,.97)!important}.nav{background:#f8f7f2!important;border-color:#d7d8cd!important}.brand-mark,.footer-brand .brand-mark{width:33px!important;height:33px!important}}
+@media(prefers-reduced-motion:reduce){.brand-mark .mark-trace,.brand-mark .mark-frame{transition:none!important;stroke-dashoffset:0!important}}
+
 </style>
 </head>
 <body>
+<div class="scroll-trace" aria-hidden="true"><span class="scroll-trace__base"></span><span class="scroll-trace__fill" id="scrollTraceFill"></span><span class="scroll-trace__cursor" id="scrollTraceCursor"></span><span class="scroll-trace__label">TRACE / PROGRESS</span></div>
 <header class="header" id="header">
   <a class="brand" href="#top" aria-label="LedgerTrace home">
-    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path class="mark-trace" d="M6 8V24H14M6 8H25V16M14 24H25V16M14 8V24" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></span><span class="brand-name">LEDGERTRACE</span>
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><path class="mark-frame" d="M14 4.8H26L35.2 14V26L26 35.2H14L4.8 26V14Z" fill="none"/><path class="mark-trace" d="M10 14H19V9L29 19L19 29V24H10" fill="none"/><circle class="mark-node" cx="10" cy="14" r="1.7"/><circle class="mark-node" cx="29" cy="19" r="1.7"/></svg></span><span class="brand-name">LEDGERTRACE</span>
   </a>
   <nav class="nav" id="nav" aria-label="Primary navigation"><a href="#product">Product</a><a href="#investigation">Investigation</a><a href="#methodology">Methodology</a><a href="#evaluation">Evaluation</a></nav>
   <a class="header-cta" href="#evaluation">Define a test <span aria-hidden="true">↗</span></a>
@@ -391,7 +417,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
       <div class="footer-column"><h3>Project &amp; scope</h3><a href="https://github.com/DT-09/LedgerTrace" target="_blank" rel="noopener noreferrer">Source repository ↗</a><p>Early-stage pilot. No account system, hosted data storage or production-grade controls are implied.</p></div>
     </div>
     <div class="footer-brand-row">
-      <a class="footer-brand" href="#top" aria-label="LedgerTrace back to top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" aria-hidden="true"><path class="mark-trace" d="M6 8V24H14M6 8H25V16M14 24H25V16M14 8V24" fill="none" stroke-linecap="square" stroke-linejoin="miter"/></svg></span><span class="footer-brand-name">LedgerTrace</span></a>
+      <a class="footer-brand" href="#top" aria-label="LedgerTrace back to top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><path class="mark-frame" d="M14 4.8H26L35.2 14V26L26 35.2H14L4.8 26V14Z" fill="none"/><path class="mark-trace" d="M10 14H19V9L29 19L19 29V24H10" fill="none"/><circle class="mark-node" cx="10" cy="14" r="1.7"/><circle class="mark-node" cx="29" cy="19" r="1.7"/></svg></span><span class="footer-brand-name">LedgerTrace</span></a>
       <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> LedgerTrace. All rights reserved.</p><p>AP reconciliation evidence workbench · Sample data is illustrative · Findings require human verification.</p></div>
     </div>
   </div>
@@ -463,5 +489,6 @@ const copyrightYear=$('copyrightYear');if(copyrightYear)copyrightYear.textConten
 state.usingSample=true;loadSamples();updateScope();
 })();
 </script>
+<script>(function(){const fill=document.getElementById("scrollTraceFill"),cursor=document.getElementById("scrollTraceCursor");function update(){const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);const p=Math.min(1,Math.max(0,window.scrollY/max));if(fill)fill.style.height=(p*100)+"%";if(cursor)cursor.style.top="calc("+(p*100)+"% - 4px)"}window.addEventListener("scroll",update,{passive:true});window.addEventListener("resize",update,{passive:true});update()})();</script>
 </body>
 </html>
