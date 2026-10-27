@@ -303,6 +303,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <div class="document doc-invoice" data-depth="3"><div class="doc-top"><span>01 / INVOICE</span><span class="doc-symbol">IN</span></div><div class="doc-title">INV-1003</div><div class="doc-sub">HARBOR SUPPLY</div><div class="doc-line"></div><div class="doc-data"><span>ITEM PART-C</span><b>20 × $9.00</b></div><div class="doc-status warn">PRICE REVIEW</div></div>
     <div class="document doc-po" data-depth="2"><div class="doc-top"><span>02 / PURCHASE ORDER</span><span class="doc-symbol">PO</span></div><div class="doc-title">PO-5003</div><div class="doc-sub">HARBOR SUPPLY</div><div class="doc-line"></div><div class="doc-data"><span>ITEM PART-C</span><b>20 × $8.50</b></div><div class="doc-status warn">PRICE DIFFERENCE</div></div>
     <div class="document doc-receipt" data-depth="3"><div class="doc-top"><span>03 / GOODS RECEIPT</span><span class="doc-symbol">GR</span></div><div class="doc-title">GR-7003</div><div class="doc-sub">PO-5003 / PART-C</div><div class="doc-line"></div><div class="doc-data"><span>RECEIVED</span><b>15 OF 20</b></div><div class="doc-status warn">SHORT RECEIPT</div></div>
+    <div class="ledgertrace-evidence-card" data-depth="2" aria-label="Illustrative price variance evidence">
+      <div class="evidence-card-head"><span>TRACE FINDING / 001</span><span class="evidence-dot"></span></div>
+      <div class="evidence-card-title">Unit price variance</div>
+      <div class="evidence-values"><span>Invoice <b>$9.00</b></span><span>PO <b>$8.50</b></span></div>
+      <div class="evidence-card-rule"><span>RULE</span><b>Invoice price ≠ PO price</b></div>
+      <div class="evidence-card-foot"><span>DIFFERENCE / UNIT</span><strong>+$0.50</strong></div>
+    </div>
     <span class="scene-label label-a">Source records / linked by rule</span><span class="scene-label label-b">TRACE 001 / ILLUSTRATIVE</span><span class="scene-coord">LT / 01.001</span><div class="scene-caption">Illustrative records · inspect the runnable sample below</div>
   </div>
 </section>
@@ -619,5 +626,57 @@ body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgb
 }
 </style>
 
+
+<style id="ledgertrace-final-illustration-and-wordmark">
+/* Make the wordmark readable at a glance while preserving the restrained header. */
+.header .brand-name{
+  font-size:15px!important;
+  letter-spacing:.13em!important;
+  line-height:1.1!important;
+  font-weight:700!important;
+}
+.footer-brand .brand-name{font-size:13px!important;letter-spacing:.13em!important}
+.brand,.footer-brand{transition:transform 180ms ease,opacity 180ms ease}
+.brand:hover,.brand:focus-visible,.footer-brand:hover,.footer-brand:focus-visible{transform:scale(1.025)}
+/* A compact evidence card turns the abstract paths into a concrete, inspectable finding. */
+.ledgertrace-evidence-card{
+  position:absolute;z-index:5;right:2.5%;bottom:5%;width:205px;
+  padding:13px 14px 12px;border:1px solid rgba(197,166,117,.38);
+  border-radius:9px;background:rgba(20,30,27,.96);
+  box-shadow:0 16px 38px rgba(0,0,0,.36),inset 0 1px 0 rgba(237,233,222,.04);
+  transform:translate3d(var(--px,0),var(--py,0),0);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.evidence-card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font:8px var(--mono);letter-spacing:.09em;color:var(--muted)}
+.evidence-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 9px rgba(208,166,110,.35)}
+.evidence-card-title{font:600 15px var(--display);color:var(--text);margin:11px 0 9px}
+.evidence-values{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.evidence-values span{display:flex;flex-direction:column;gap:4px;padding:8px;background:rgba(237,233,222,.035);border:1px solid rgba(165,176,165,.13);border-radius:5px;font:8px var(--mono);color:var(--muted)}
+.evidence-values b{font:600 13px var(--mono);color:var(--text)}
+.evidence-card-rule{display:flex;flex-direction:column;gap:4px;padding:9px 0;border-bottom:1px solid rgba(165,176,165,.17)}
+.evidence-card-rule span,.evidence-card-foot span{font:8px var(--mono);letter-spacing:.08em;color:var(--muted)}
+.evidence-card-rule b{font:10px var(--mono);font-weight:500;color:var(--text)}
+.evidence-card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:9px}
+.evidence-card-foot strong{font:600 14px var(--mono);color:var(--amber)}
+@media(max-width:760px){
+ .header .brand-name{font-size:12px!important;letter-spacing:.1em!important}
+ .footer-brand .brand-name{font-size:12px!important}
+ .ledgertrace-evidence-card{right:2%;bottom:2%;width:176px;padding:10px}
+ .evidence-card-title{font-size:13px;margin:8px 0}
+ .evidence-card-rule{padding:7px 0}
+ .evidence-card-foot{padding-top:7px}
+}
+@media(max-width:430px){
+ .ledgertrace-evidence-card{right:1%;bottom:1%;width:158px;padding:8px}
+ .evidence-card-head{font-size:7px}
+ .evidence-card-title{font-size:12px}
+ .evidence-values{gap:4px}
+ .evidence-values span{padding:6px}
+ .evidence-values b{font-size:11px}
+ .evidence-card-rule b{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.brand,.footer-brand{transition:none!important}}
+@media(prefers-reduced-transparency:reduce){.ledgertrace-evidence-card{background:#17221F;backdrop-filter:none;-webkit-backdrop-filter:none}}
+</style>
 </body>
 </html>
