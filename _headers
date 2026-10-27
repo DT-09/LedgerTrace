@@ -1,0 +1,12 @@
+/*
+  Cloudflare Pages security headers for the static, browser-only pilot.
+  Tighten or adjust Content-Security-Policy only after verifying the deployed app.
+*/
+ /*
+  This header file is intentionally conservative. It does not enable a CSP yet,
+  because the current app uses inline CSS and JavaScript; a strict CSP would break it.
+ */
+ /*
+  Keep financial exports local; do not add analytics or external script tags without
+  updating the privacy notice and reviewing the data flow.
+ */
