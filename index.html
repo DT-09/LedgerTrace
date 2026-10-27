@@ -103,32 +103,32 @@ h1{font-weight:500}h1 em{color:#b5c7cb}.hero-desc{color:#c2c0b6}
 .go-to-market{margin-top:14px;padding:25px;border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;background:rgba(21,21,19,.35)}.go-to-market h3{font-size:clamp(22px,3vw,31px);font-weight:450;line-height:1.15;letter-spacing:-.05em;margin:12px 0}.go-to-market p{font-size:12px;color:var(--muted);line-height:1.85}.go-to-market ol{padding:0;margin:0;list-style:none;counter-reset:route}.go-to-market li{counter-increment:route;display:grid;grid-template-columns:28px 1fr;column-gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.go-to-market li:last-child{border-bottom:0}.go-to-market li:before{content:counter(route,decimal-leading-zero);font:10px var(--mono);color:#9ab7c2;padding-top:3px}.go-to-market li strong{font-size:12px;font-weight:500}.go-to-market li span{grid-column:2;color:var(--muted);font-size:11px;line-height:1.7;margin-top:3px}.payment-flow{margin-top:14px;padding:25px;border:1px solid var(--line);border-radius:12px}.payment-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:20px 0}.payment-steps>div{border-top:1px solid var(--line2);padding-top:12px}.payment-steps span{display:block;font:10px var(--mono);color:#9ab7c2;margin-bottom:12px}.payment-steps strong{font:500 13px var(--display)}.payment-steps p{font-size:11px;color:var(--muted);line-height:1.7;margin:8px 0 0}.brand-mark svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.brand-mark{position:relative;width:26px;height:28px;display:block}@media(max-width:800px){.go-to-market{grid-template-columns:1fr}.payment-steps{grid-template-columns:repeat(2,1fr)}}
 
 
-/* LedgerTrace visual system: charcoal, mineral sage, and restrained brass. */
+/* LedgerTrace visual system: graphite, warm ivory, mineral sage, antique brass. */
 :root{
  color-scheme:dark!important;
- --bg:#222521!important;--panel:#2a2e28!important;--panel2:#32372f!important;
- --line:#41473e!important;--line2:#596052!important;--text:#f0ede4!important;
+ --bg:#1b1d19!important;--panel:#242721!important;--panel2:#2c3029!important;
+ --line:#393e35!important;--line2:#4b5146!important;--text:#f0ede4!important;
  --muted:#b0b4a8!important;--blue:#9bb4a0!important;--amber:#c5a36a!important;
  --green:#a4c1a6!important;--red:#d99488!important;
 }
-html{background:#222521!important}
-body{background:#222521!important;color:#f0ede4!important}
+html{background:#1b1d19!important}
+body{background:#1b1d19!important;color:#f0ede4!important}
 body:before{background-image:linear-gradient(rgba(185,190,170,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(185,190,170,.035) 1px,transparent 1px)!important;background-size:68px 68px!important;opacity:.65!important}
 body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(155,180,160,.055),transparent 36%)!important;opacity:.8!important}
 ::selection{background:rgba(155,180,160,.28)!important;color:#f0ede4!important}
-.header,.header.scrolled{background:rgba(34,37,33,.94)!important;border-color:#41473e!important;box-shadow:0 12px 34px rgba(0,0,0,.18)!important}
-.brand-mark,.footer-brand .brand-mark{width:32px!important;height:32px!important;display:grid!important;place-items:center!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important;transform:scale(1);transform-origin:center;transition:transform .18s ease!important}
+.header,.header.scrolled{background:rgba(27,29,25,.95)!important;border-color:#41473e!important;box-shadow:0 12px 34px rgba(0,0,0,.18)!important}
+.brand-mark,.footer-brand .brand-mark{width:36px!important;height:36px!important;display:grid!important;place-items:center!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important;transform:scale(1);transform-origin:center;transition:transform .18s ease!important}
 .brand:hover .brand-mark,.brand:focus-visible .brand-mark,.footer-brand:hover .brand-mark,.footer-brand:focus-visible .brand-mark{transform:scale(1.09)!important}
-.brand-mark svg{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;overflow:visible!important}
-.brand-mark .mark-frame{stroke:#c5a36a!important;stroke-width:1.05!important;stroke-dasharray:none!important;stroke-dashoffset:0!important;opacity:.92!important;transition:none!important}
-.brand-mark .mark-trace{stroke:#9bb4a0!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;stroke-dasharray:none!important;stroke-dashoffset:0!important;transition:none!important}
-.brand-mark .mark-node{fill:#c5a36a!important}
+.brand-mark .ledgertrace-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;overflow:visible!important}.ledgertrace-logo .logo-blue{stroke:#159fe3!important}.ledgertrace-logo .logo-gray{stroke:#737578!important}
+
+
+
 .brand-name{color:#f0ede4!important;letter-spacing:.15em!important}
 .nav a{color:#b0b4a8!important}.nav a:hover{color:#f0ede4!important}
 .header-cta,.button{background:#9bb4a0!important;border-color:#9bb4a0!important;color:#20251f!important}
 .header-cta:hover,.button:hover{background:#b0c5b0!important;border-color:#b0c5b0!important;color:#20251f!important}
-.button.secondary{background:#2a2e28!important;border-color:#596052!important;color:#f0ede4!important}
-.button.secondary:hover{background:#32372f!important;border-color:#9bb4a0!important}
+.button.secondary{background:#242721!important;border-color:#596052!important;color:#f0ede4!important}
+.button.secondary:hover{background:#2c3029!important;border-color:#9bb4a0!important}
 .menu-toggle{background:#2a2e28!important;border-color:#596052!important;color:#f0ede4!important}
 .eyebrow,.section-index,.step-label{color:#c5a36a!important}
 .trace-rule{background:linear-gradient(90deg,#c5a36a,rgba(197,163,106,.12) 70%,transparent)!important}
@@ -149,7 +149,7 @@ h1 em{color:#9bb4a0!important}
 .section{background:transparent!important}
 .signal-strip,.signal+.signal{border-color:#41473e!important}
 .signal strong{color:#f0ede4!important}.signal span{color:#b0b4a8!important}
-.workbench{background:#252923!important;border-color:#41473e!important}
+.workbench{background:#20231e!important;border-color:#41473e!important}
 .workbench-shell,.builder{background:#2a2e28!important;border-color:#41473e!important;box-shadow:0 24px 70px rgba(0,0,0,.18)!important}
 .workbench-bar,.source-card,.metric,.method-card,.report,.report .report-block,.evidence-value,.builder-head{background:#2a2e28!important;border-color:#41473e!important}
 .workbench-title strong,.source-head strong,.results-head h3,.report-head h3,.method-card h3,.drawer-top h2,.drawer-section h3,.builder-head strong{color:#f0ede4!important}
@@ -188,7 +188,7 @@ tbody tr:hover,tbody tr:focus{background:rgba(155,180,160,.055)!important}
 .option{border-color:#41473e!important;color:#b0b4a8!important}
 .option:has(input:checked){border-color:#9bb4a0!important;background:rgba(155,180,160,.09)!important;color:#f0ede4!important}
 .option input{accent-color:#9bb4a0!important}
-.footer{background:#1d201c!important;color:#f0ede4!important;border-top:1px solid #41473e!important}
+.footer{background:#181a16!important;color:#f0ede4!important;border-top:1px solid #41473e!important}
 .footer-heading{border-color:#41473e!important}
 .footer-heading h2{max-width:720px!important}
 .footer-directory{grid-template-columns:1fr 1fr 1.15fr!important;gap:clamp(24px,4vw,54px)!important}
@@ -202,13 +202,13 @@ tbody tr:hover,tbody tr:focus{background:rgba(155,180,160,.055)!important}
 .footer-brand{gap:12px!important}
 .footer-brand-name{font-size:22px!important;letter-spacing:-.045em!important;color:#f0ede4!important}
 .footer-legal p{color:#b0b4a8!important}
-.footer .brand-mark{width:34px!important;height:34px!important}
+.footer .brand-mark{width:36px!important;height:36px!important}
 .error{background:rgba(217,148,136,.09)!important;border-color:rgba(217,148,136,.4)!important;color:#d99488!important}
 .toast{background:#f0ede4!important;color:#222521!important}
 input,textarea,select{accent-color:#9bb4a0!important}
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#c5a36a!important}
 @media(max-width:760px){
- .header,.header.scrolled{background:rgba(34,37,33,.97)!important}
+ .header,.header.scrolled{background:rgba(27,29,25,.97)!important}
  .nav{background:#2a2e28!important;border-color:#41473e!important}
  .footer-directory{grid-template-columns:1fr 1fr!important;gap:28px 22px!important}
  .footer-column:last-child{grid-column:1/-1!important}
@@ -222,7 +222,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 <body>
 <header class="header" id="header">
   <a class="brand" href="#top" aria-label="LedgerTrace home">
-    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><path class="mark-frame" d="M14 4.8H26L35.2 14V26L26 35.2H14L4.8 26V14Z" fill="none"/><path class="mark-trace" d="M10 14H19V9L29 19L19 29V24H10" fill="none"/><circle class="mark-node" cx="10" cy="14" r="1.7"/><circle class="mark-node" cx="29" cy="19" r="1.7"/></svg></span><span class="brand-name">LEDGERTRACE</span>
+    <span class="brand-mark" aria-hidden="true"><svg class="ledgertrace-logo" viewBox="0 0 134 134" role="img" aria-label="LedgerTrace logo"><path class="logo-blue" d="M87 8C75 5 63 6 51 11 28 20 12 42 10 65c-3 30 20 56 50 59 29 3 56-17 62-45 1-4 1-8 1-12" fill="none" stroke-width="10" stroke-linecap="round"/><path class="logo-blue" d="M65 22 47 72h32v-8" fill="none" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/><path class="logo-gray" d="M73 8c25 3 45 22 50 47 1 4 1 8 1 12H99V48H78" fill="none" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/><path class="logo-gray" d="M91 48v45" fill="none" stroke-width="10" stroke-linecap="square"/></svg></span><span class="brand-name">LEDGERTRACE</span>
   </a>
   <nav class="nav" id="nav" aria-label="Primary navigation"><a href="#product">Product</a><a href="#investigation">Investigation</a><a href="#methodology">Methodology</a><a href="#evaluation">Evaluation</a></nav>
   <a class="header-cta" href="#evaluation">Define a test <span aria-hidden="true">↗</span></a>
@@ -344,7 +344,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     </div>
     <div class="footer-brand-row">
       <a class="footer-brand" href="#top" aria-label="LedgerTrace home">
-        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path class="mark-frame" d="M14 4.8H26L35.2 14V26L26 35.2H14L4.8 26V14Z" fill="none"/><path class="mark-trace" d="M10 14H19V9L29 19L19 29V24H10" fill="none"/><circle class="mark-node" cx="10" cy="14" r="1.7"/><circle class="mark-node" cx="29" cy="19" r="1.7"/></svg></span>
+        <span class="brand-mark" aria-hidden="true"><svg class="ledgertrace-logo" viewBox="0 0 134 134" role="img" aria-label="LedgerTrace logo"><path class="logo-blue" d="M87 8C75 5 63 6 51 11 28 20 12 42 10 65c-3 30 20 56 50 59 29 3 56-17 62-45 1-4 1-8 1-12" fill="none" stroke-width="10" stroke-linecap="round"/><path class="logo-blue" d="M65 22 47 72h32v-8" fill="none" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/><path class="logo-gray" d="M73 8c25 3 45 22 50 47 1 4 1 8 1 12H99V48H78" fill="none" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/><path class="logo-gray" d="M91 48v45" fill="none" stroke-width="10" stroke-linecap="square"/></svg></span>
         <span class="footer-brand-name">LedgerTrace</span>
       </a>
       <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> LedgerTrace</p><p>Browser-side AP reconciliation · Illustrative data · Human review required</p></div>
