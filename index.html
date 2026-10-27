@@ -294,11 +294,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   <div class="scene" id="scene" aria-label="Illustration of invoice, purchase order and receipt records connected by evidence paths">
     <div class="scene-grid" data-depth="1"></div><div class="scene-glow" data-depth="2"></div>
     <svg class="scene-svg" viewBox="0 0 620 500" aria-hidden="true">
-      <path class="scene-path" d="M150 120 C220 120 225 185 300 185 S390 180 450 220"/>
-      <path class="scene-path broken" d="M300 185 C330 250 275 320 235 365"/>
-      <path class="scene-path" d="M450 220 C440 305 370 360 300 400"/>
-      <circle class="scene-node" cx="150" cy="120" r="4"/><circle class="scene-node warn" cx="300" cy="185" r="5"/><circle class="scene-node" cx="450" cy="220" r="4"/><circle class="scene-node warn" cx="235" cy="365" r="4"/><circle class="scene-node" cx="300" cy="400" r="4"/>
-      <path d="M300 185V145H338" stroke="#ffb45e" stroke-width="1" fill="none"/><text x="345" y="148" fill="#ffb45e" font-size="10" font-family="IBM Plex Mono,monospace">EXCEPTION</text>
+      <path class="scene-path" d="M142 105 C205 105 223 142 278 169"/>
+      <path class="scene-path broken" d="M278 169 C312 190 325 223 351 250"/>
+      <path class="scene-path" d="M445 220 C425 252 405 278 383 303"/>
+      <path class="scene-path" d="M155 345 C210 332 244 285 278 169"/>
+      <circle class="scene-node" cx="142" cy="105" r="4"/><circle class="scene-node warn" cx="278" cy="169" r="5"/><circle class="scene-node" cx="445" cy="220" r="4"/><circle class="scene-node" cx="155" cy="345" r="4"/><circle class="scene-node warn" cx="383" cy="303" r="4"/>
+      <path d="M278 169V128H316" stroke="#C5A675" stroke-width="1" fill="none"/><text x="322" y="131" fill="#C5A675" font-size="9" font-family="IBM Plex Mono,monospace">PRICE DELTA</text>
     </svg>
     <div class="document doc-invoice" data-depth="3"><div class="doc-top"><span>01 / INVOICE</span><span class="doc-symbol">IN</span></div><div class="doc-title">INV-1003</div><div class="doc-sub">HARBOR SUPPLY</div><div class="doc-line"></div><div class="doc-data"><span>ITEM PART-C</span><b>20 × $9.00</b></div><div class="doc-status warn">PRICE REVIEW</div></div>
     <div class="document doc-po" data-depth="2"><div class="doc-top"><span>02 / PURCHASE ORDER</span><span class="doc-symbol">PO</span></div><div class="doc-title">PO-5003</div><div class="doc-sub">HARBOR SUPPLY</div><div class="doc-line"></div><div class="doc-data"><span>ITEM PART-C</span><b>20 × $8.50</b></div><div class="doc-status warn">PRICE DIFFERENCE</div></div>
@@ -677,6 +678,83 @@ body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgb
 }
 @media(prefers-reduced-motion:reduce){.brand,.footer-brand{transition:none!important}}
 @media(prefers-reduced-transparency:reduce){.ledgertrace-evidence-card{background:#17221F;backdrop-filter:none;-webkit-backdrop-filter:none}}
+</style>
+
+<style id="ledgertrace-final-scene-redesign">
+/* A coherent evidence composition: three source records, one explicit finding. */
+.scene{min-height:500px!important}
+.scene-grid{background-image:linear-gradient(rgba(165,176,165,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(165,176,165,.055) 1px,transparent 1px)!important;background-size:30px 30px!important}
+.scene-glow{width:76%;height:74%;left:12%;top:10%;background:radial-gradient(ellipse,rgba(165,181,138,.12),rgba(197,166,117,.035) 36%,transparent 70%)!important}
+.scene-svg{inset:0!important;height:100%!important}
+.scene-path{stroke:rgba(165,176,165,.48)!important;stroke-width:1.25!important;stroke-dasharray:4 7!important}
+.scene-path.broken{stroke:rgba(197,166,117,.9)!important;stroke-dasharray:3 5!important}
+.scene-node{fill:#17221F!important;stroke:#A5B58A!important;stroke-width:1.5!important}
+.scene-node.warn{stroke:#C5A675!important}
+.document{
+ width:194px!important;min-height:136px!important;padding:13px 14px 12px!important;
+ background:linear-gradient(145deg,rgba(31,44,39,.97),rgba(20,29,26,.97))!important;
+ border-color:rgba(165,176,165,.24)!important;border-radius:8px!important;
+ box-shadow:0 18px 44px rgba(0,0,0,.26),inset 0 1px 0 rgba(237,233,222,.035)!important;
+}
+.document:hover{border-color:rgba(197,166,117,.6)!important;box-shadow:0 0 0 1px rgba(197,166,117,.08),0 20px 50px rgba(0,0,0,.34)!important}
+.doc-invoice{left:1.5%!important;top:5%!important;--rot:-2deg!important}
+.doc-po{right:1%!important;top:25%!important;--rot:2deg!important}
+.doc-receipt{left:8%!important;bottom:4%!important;--rot:1deg!important}
+.doc-top{font-size:8px!important;letter-spacing:.08em!important}
+.doc-symbol{border-color:rgba(197,166,117,.34)!important;color:var(--blue)!important}
+.doc-title{font-size:16px!important;margin:10px 0 3px!important}
+.doc-sub{font-size:9px!important}
+.doc-line{background:rgba(165,176,165,.2)!important;margin:10px 0 8px!important}
+.doc-data{font-size:9px!important}
+.doc-status{font-size:8px!important;letter-spacing:.035em}
+.ledgertrace-evidence-card{
+ right:1%!important;bottom:3%!important;width:188px!important;padding:12px 13px 11px!important;
+ background:linear-gradient(150deg,rgba(30,43,37,.98),rgba(17,25,22,.99))!important;
+ border-color:rgba(197,166,117,.52)!important;border-radius:8px!important;
+ box-shadow:0 20px 48px rgba(0,0,0,.38),inset 0 1px 0 rgba(237,233,222,.055)!important;
+}
+.evidence-card-head{font-size:7px!important}
+.evidence-card-title{font-size:14px!important;margin:9px 0 8px!important}
+.evidence-values span{background:rgba(237,233,222,.035)!important;border-color:rgba(165,176,165,.15)!important}
+.evidence-card-rule b{font-size:9px!important}
+.evidence-card-foot strong{color:#D0B47D!important}
+.scene-label{font-size:8px!important;letter-spacing:.08em!important}
+.label-a{left:1%!important;bottom:0!important}
+.label-b{right:1%!important;top:2%!important}
+.scene-coord{display:none!important}
+.scene-caption{right:1%!important;bottom:-20px!important;font-size:8px!important}
+@media(max-width:1000px){
+ .scene{min-height:500px!important}
+}
+@media(max-width:650px){
+ .scene{min-height:450px!important;transform:none!important}
+ .document{width:158px!important;min-height:123px!important;padding:10px!important}
+ .doc-invoice{left:0!important;top:5%!important}
+ .doc-po{right:0!important;top:27%!important}
+ .doc-receipt{left:2%!important;bottom:4%!important}
+ .doc-title{font-size:13px!important}
+ .doc-top{font-size:7px!important}
+ .doc-data{font-size:8px!important}
+ .doc-status{font-size:7px!important}
+ .ledgertrace-evidence-card{right:0!important;bottom:2%!important;width:157px!important;padding:8px!important}
+ .evidence-card-head{font-size:6px!important}
+ .evidence-card-title{font-size:11px!important;margin:7px 0!important}
+ .evidence-values{gap:4px!important}
+ .evidence-values span{font-size:7px!important;padding:5px!important}
+ .evidence-values b{font-size:10px!important}
+ .evidence-card-rule{padding:6px 0!important}
+ .evidence-card-rule span,.evidence-card-foot span{font-size:6px!important}
+ .evidence-card-rule b{font-size:8px!important}
+ .evidence-card-foot{padding-top:6px!important}
+ .evidence-card-foot strong{font-size:11px!important}
+ .scene-label{font-size:6px!important}
+}
+@media(max-width:380px){
+ .scene{min-height:430px!important}
+ .document{width:145px!important}
+ .ledgertrace-evidence-card{width:145px!important}
+}
+@media(prefers-reduced-motion:reduce){.scene-path{animation:none!important}}
 </style>
 </body>
 </html>
