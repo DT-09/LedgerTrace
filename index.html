@@ -526,7 +526,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
-const state={invoices:[],pos:[],receipts:[],results:[],filter:'all',runAt:null,selected:null,review:new Map(),lastFocus:null,scopeBrief:''};
+const state={invoices:[],pos:[],receipts:[],results:[],filter:'all',runAt:null,selected:null,review:new Map(),lastFocus:null,scopeBrief:'',currency:'USD'};
 const CONTACT_EMAIL='dhairytopia@gmail.com';
 const WHATSAPP_NUMBER='+91 9133404350';
 const samples={
@@ -539,7 +539,7 @@ function parseCSV(text){const rows=[];let row=[],field='',quoted=false;for(let i
 function val(o,...keys){for(const k of keys){const v=o[norm(k)];if(v!==undefined&&v!=='')return String(v).trim()}return ''}
 function id(v){return String(v??'').trim().toUpperCase().replace(/\s+/g,'')}
 function num(v){if(v===undefined||v===null||String(v).trim()==='')return NaN;const n=Number(String(v).replace(/[$,£€₹\s]/g,''));return Number.isFinite(n)?n:NaN}
-function money(n){if(!Number.isFinite(n))return '—';return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}).format(n)}
+function money(n){if(!Number.isFinite(n))return '—';return new Intl.NumberFormat('en-US',{style:'currency',currency:state.currency||'USD',maximumFractionDigits:2}).format(n)}
 function readRecords(rows,type){return rows.map(r=>{const c={row:r._row,supplier:val(r,'supplier','vendor','supplier_name','vendor_name'),po:id(val(r,'po_number','purchase_order','purchase_order_number','po','po_ref')),item:id(val(r,'item_code','sku','product_code','item','part_number')),desc:val(r,'description','item_description'),qty:num(val(r,'quantity','qty','invoiced_quantity','ordered_quantity','received_quantity')),price:num(val(r,'unit_price','price','rate','unit_cost')),amount:num(val(r,'line_amount','amount','net_amount','total'))};if(!Number.isFinite(c.amount)&&Number.isFinite(c.qty)&&Number.isFinite(c.price))c.amount=c.qty*c.price;if(type==='invoice')return {...c,invoice:id(val(r,'invoice_number','invoice_no','invoice_id','bill_number','document_number')),date:val(r,'invoice_date','date','document_date'),currency:val(r,'currency')||'USD'};if(type==='po')return {...c,currency:val(r,'currency')||'USD'};return {...c,receipt:id(val(r,'receipt_number','goods_receipt','grn','receipt_id','document_number')),date:val(r,'receipt_date','date')}})}
 function validate(records,type){if(!records.length)throw Error('No '+type+' rows found.');const required=type==='invoice'?['invoice']:['po','item'];const missing=records.filter(r=>required.some(k=>!r[k]));if(missing.length)throw Error(type+' file is missing required identifiers on row(s): '+missing.slice(0,8).map(r=>r.row).join(', ')+(missing.length>8?'…':''));const bad=records.filter(r=>!Number.isFinite(r.qty)||r.qty<0);if(bad.length)throw Error(type+' file has missing, nonnumeric or negative quantities on row(s): '+bad.slice(0,8).map(r=>r.row).join(', ')+(bad.length>8?'…':''))}
 function group(items,fn){const m=new Map();items.forEach(x=>{const k=fn(x);if(!m.has(k))m.set(k,[]);m.get(k).push(x)});return m}
@@ -553,6 +553,9 @@ function reconcile(){
  try{
   if(!state.invoices.length||!state.pos.length||!state.receipts.length)throw Error('Load sample data or select all three CSV files before running reconciliation.');
   validate(state.invoices,'invoice');validate(state.pos,'purchase order');validate(state.receipts,'goods receipt');
+  const currencies=[...new Set([...state.invoices,...state.pos].map(row=>(row.currency||'USD').toUpperCase()))];
+  if(currencies.length>1)throw Error('Invoice and purchase-order files contain mixed currencies ('+currencies.join(', ')+'). Convert them to one currency or include matching ISO currency codes before running.');
+  state.currency=currencies[0]||'USD';
   const poGroups=group(state.pos,key),rcGroups=group(state.receipts,key),invoiceGroups=group(state.invoices,key);
   const duplicateSignature=r=>[id(r.invoice),id(r.supplier),key(r),Number.isFinite(r.qty)?r.qty:'',Number.isFinite(r.price)?r.price:'',Number.isFinite(r.amount)?r.amount:''].join('|');
   const duplicateGroups=group(state.invoices,duplicateSignature);
