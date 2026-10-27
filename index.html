@@ -31,6 +31,55 @@ a{color:inherit}button,input,textarea,select{font:inherit}button,a{touch-action:
 @media(max-width:1000px){.container{width:calc(100% - 44px)}.header{gap:16px;padding:0 17px}.nav{gap:15px}.nav a{font-size:9px}.hero{grid-template-columns:1fr;gap:22px;padding-top:150px}.hero-copy{max-width:760px}.scene{max-width:760px;width:100%;margin:0 auto;min-height:450px}.section-top{grid-template-columns:1fr;gap:13px}.eval-grid{grid-template-columns:1fr;gap:30px}.eval-copy{max-width:750px}.footer-top{align-items:start;flex-direction:column}.footer-links{margin-top:5px}}
 @media(max-width:650px){.container{width:calc(100% - 30px)}.header{top:10px;width:calc(100% - 20px);height:58px;padding:0 12px;border-radius:14px;gap:10px}.header.scrolled{height:52px}.brand-name{font-size:10px}.brand-mark{width:28px;height:28px}.nav{display:none;position:absolute;top:calc(100% + 9px);left:0;right:0;margin:0;padding:15px;border:1px solid var(--line2);border-radius:12px;background:rgba(10,14,19,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:stretch;gap:0}.nav.open{display:flex}.nav a{padding:12px 8px;font-size:11px}.header-cta{margin-left:auto;padding:9px 10px;font-size:10px}.menu-toggle{display:inline-grid;place-items:center;width:36px;height:36px}.hero{padding:130px 0 58px;min-height:auto}.hero h1{font-size:clamp(48px,13.2vw,75px);margin:21px 0}.hero-desc{font-size:14px}.hero-actions .button{flex:1}.scene{min-height:410px;transform:scale(.96);transform-origin:center}.document{width:174px;min-height:132px;padding:12px}.doc-invoice{left:0;top:9%}.doc-po{right:0;top:31%}.doc-receipt{left:13%;bottom:3%}.doc-title{font-size:13px}.doc-data{font-size:9px}.scene-caption{right:0;font-size:8px}.signal-strip{grid-template-columns:1fr}.signal,.signal+.signal{padding:17px 0;border-left:0;border-bottom:1px solid var(--line)}.signal:last-child{border-bottom:0}.section{padding:72px 0;scroll-margin-top:82px}.section-title{font-size:clamp(34px,10vw,49px)}.section-top{margin-bottom:28px}.workbench-bar{align-items:start;flex-direction:column;padding:14px}.bar-actions{width:100%}.bar-actions .button{flex:1}.workbench-body{padding:12px}.input-grid{grid-template-columns:1fr}.source-card p{min-height:0}.metrics{grid-template-columns:repeat(2,1fr);gap:7px}.metric{padding:13px}.metric-value{font-size:25px}.results-head{align-items:start;flex-direction:column}.results-head .button{width:100%}.results-toolbar{align-items:stretch}.search{width:100%}.report{padding:16px}.report-head{flex-direction:column}.report-grid{grid-template-columns:1fr;gap:17px}.drawer,.contact-panel{padding:20px}.evidence-pair{grid-template-columns:1fr 1fr}.method-grid{grid-template-columns:1fr}.boundary{padding:14px}.option-grid{grid-template-columns:1fr 1fr}.option{padding:10px 8px;font-size:10px}.builder-body{padding:14px}.builder-head{padding:15px}.summary-list{grid-template-columns:1fr 1fr}.footer{padding-top:65px}.footer-top h2{font-size:32px}.wordmark{font-size:14vw}.footer-bottom{flex-direction:column;gap:8px}.footer-links{gap:13px}.contact-panel h2{font-size:32px}}
 @media(max-width:380px){.brand-name{letter-spacing:.1em}.header-cta{font-size:9px;padding:8px}.scene{min-height:365px}.document{width:155px}.doc-title{font-size:12px}.doc-data{font-size:8px}.option-grid{grid-template-columns:1fr}.wordmark{font-size:13.2vw}}
+
+:root{--bg:#0d0d0c;--panel:#151513;--panel2:#1b1b18;--line:#343430;--line2:#4a4a43;--text:#e9e7df;--muted:#aaa99f;--blue:#9ab7c2;--amber:#d8a66c;--green:#a8bca5;--red:#d68f86;--max:1260px}
+body{background:var(--bg)}
+body:before{background-image:linear-gradient(rgba(205,201,187,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(205,201,187,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,black,transparent 76%)}
+body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(154,183,194,.045),transparent 34%)}
+.header{height:62px;top:16px;border-radius:999px;background:rgba(16,16,15,.7);border-color:rgba(205,201,187,.2);padding:0 21px}
+.header.scrolled{height:52px;background:rgba(16,16,15,.94);border-color:rgba(205,201,187,.25)}
+.brand-mark{width:28px;height:28px;border:0;border-radius:0;font:500 12px var(--mono)}.brand-name{font:500 11px var(--mono);letter-spacing:.14em;color:#deddd5}
+.nav a{color:#b4b2a8}.nav a:hover{color:#fff}
+.header-cta,.button{background:#d7d5cc;border-color:#d7d5cc;color:#171714;font-weight:600;border-radius:999px}
+.header-cta:hover,.button:hover{background:#f0eee5;border-color:#f0eee5}
+.button.secondary{background:transparent;border-color:#4a4a43;color:var(--text)}.button.secondary:hover{border-color:#aaa99f;background:rgba(233,231,223,.045)}
+.eyebrow,.section-index{color:#b9b6aa}.hero .eyebrow:before{background:#9ab7c2}
+h1{font-weight:500}h1 em{color:#b5c7cb}.hero-desc{color:#c2c0b6}
+.scene-glow{background:radial-gradient(ellipse,rgba(154,183,194,.065),transparent 68%)}
+.scene-grid{background-image:linear-gradient(rgba(205,201,187,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(205,201,187,.065) 1px,transparent 1px)}
+.scene-path{stroke:rgba(177,194,195,.48)}.scene-path.broken{stroke:var(--amber)}.scene-node{stroke:#b1c2c3}.scene-node.warn{stroke:var(--amber)}
+.document{background:linear-gradient(145deg,rgba(31,31,27,.97),rgba(18,18,16,.96));border-color:rgba(205,201,187,.23)}
+.document:hover{border-color:#b1c2c3;box-shadow:0 0 0 1px rgba(177,194,195,.08),0 22px 70px rgba(0,0,0,.4)}
+.doc-symbol,.source-icon{color:#b1c2c3}.doc-status{color:var(--green)}
+.trace-rule{background:linear-gradient(90deg,#9ab7c2,rgba(154,183,194,.08) 70%,transparent)}.trace-rule:before{background:#9ab7c2;box-shadow:0 0 10px rgba(154,183,194,.35)}
+.section{padding:100px 0}.section-title{font-weight:450}
+.workbench-shell,.source-card,.metric,.method-card,.builder,.report{background:rgba(21,21,19,.76);border-color:var(--line)}
+.workbench-bar{background:rgba(28,28,25,.7)}.source-icon{border-color:rgba(177,194,195,.2)}
+.filter-btn.active{border-color:#9ab7c2;background:rgba(154,183,194,.07)}tbody tr:hover,tbody tr:focus{background:rgba(177,194,195,.045)}
+.pill.exception{color:var(--amber);background:rgba(216,166,108,.09)}.pill.matched{color:var(--green);background:rgba(168,188,165,.08)}
+.option:has(input:checked){border-color:#9ab7c2;background:rgba(154,183,194,.055)}
+.evaluation{background:radial-gradient(ellipse at 70% 45%,rgba(154,183,194,.035),transparent 42%)}
+.footer{padding:86px 0 25px;border-top:1px solid var(--line);overflow:hidden}
+.footer-top{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;margin-bottom:40px}
+.footer-top h2{max-width:570px;font-size:clamp(27px,3vw,42px);line-height:1.1;font-weight:450;letter-spacing:-.055em;margin:14px 0 0;color:#deddd5}
+.footer-links{display:grid;grid-template-columns:repeat(2,minmax(110px,1fr));gap:13px 24px}
+.footer-links a{font:10px var(--mono);color:#b4b2a8;text-decoration:none;white-space:nowrap}.footer-links a:hover{color:#fff}
+.wordmark-wrap{margin:44px 0 24px;min-height:clamp(100px,17vw,210px)}
+.wordmark{font-size:clamp(76px,15.7vw,218px);font-weight:400;color:rgba(233,231,223,.10);-webkit-text-stroke:1px rgba(233,231,223,.15)}
+.footer-glow{background:radial-gradient(ellipse at var(--fx,50%) var(--fy,50%),rgba(154,183,194,.17),transparent 26%)}
+.wordmark-trace path{stroke:rgba(154,183,194,.32)}
+.footer-bottom{color:#85857d}.footer-bottom strong{font-weight:500;color:#c5c3b9}
+.audience{border-top:1px solid var(--line)}.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.audience-card{padding:24px;border:1px solid var(--line);border-radius:12px;background:rgba(21,21,19,.55)}
+.audience-num{font:10px var(--mono);letter-spacing:.08em;color:#aaa99f}
+.audience-card h3{font-size:22px;font-weight:450;letter-spacing:-.04em;margin:25px 0 10px}
+.audience-card p{font-size:12px;color:var(--muted);line-height:1.85;margin:0}
+.commercial-proof{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:25px;border:1px solid var(--line);border-radius:12px}
+.commercial-proof h3{font-size:clamp(22px,3vw,32px);line-height:1.15;font-weight:450;letter-spacing:-.05em;margin:12px 0 0;max-width:470px}
+.commercial-proof ul{margin:0;padding-left:18px;color:var(--muted);font-size:12px;line-height:1.9}
+@media(max-width:800px){.footer-top{grid-template-columns:1fr;gap:25px}.footer-links{max-width:300px}.audience-grid,.commercial-proof{grid-template-columns:1fr}.wordmark{font-size:clamp(67px,14.5vw,120px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
 </style>
 </head>
 <body>
@@ -49,7 +98,7 @@ a{color:inherit}button,input,textarea,select{font:inherit}button,a{touch-action:
     <h1>Every discrepancy <em>needs evidence.</em></h1>
     <p class="hero-desc">Compare supplier invoices with purchase orders and goods receipts. Trace mismatches to source records and explicit rules—so finance teams can see what differs before deciding what to do next.</p>
     <div class="hero-actions"><a class="button" href="#investigation">Investigate sample <span aria-hidden="true">↓</span></a><a class="button secondary" href="#methodology">See how it works <span aria-hidden="true">↗</span></a></div>
-    <div class="privacy-note">LOCAL SAMPLE DATA · NO CUSTOMER FILES REQUIRED</div>
+    <div class="privacy-note">ILLUSTRATIVE DATA · NO CUSTOMER FILES REQUIRED</div>
   </div>
   <div class="scene" id="scene" aria-label="Illustration of invoice, purchase order and receipt records connected by evidence paths">
     <div class="scene-grid" data-depth="1"></div><div class="scene-glow" data-depth="2"></div>
@@ -60,10 +109,10 @@ a{color:inherit}button,input,textarea,select{font:inherit}button,a{touch-action:
       <circle class="scene-node" cx="150" cy="120" r="4"/><circle class="scene-node warn" cx="300" cy="185" r="5"/><circle class="scene-node" cx="450" cy="220" r="4"/><circle class="scene-node warn" cx="235" cy="365" r="4"/><circle class="scene-node" cx="300" cy="400" r="4"/>
       <path d="M300 185V145H338" stroke="#ffb45e" stroke-width="1" fill="none"/><text x="345" y="148" fill="#ffb45e" font-size="10" font-family="IBM Plex Mono,monospace">EXCEPTION</text>
     </svg>
-    <div class="document doc-invoice" data-depth="3"><div class="doc-top"><span>01 / INVOICE</span><span class="doc-symbol">IN</span></div><div class="doc-title">INV-1003</div><div class="doc-sub">HARBOR SUPPLY</div><div class="doc-line"></div><div class="doc-data"><span>ITEM PART-C</span><b>20 × $9.00</b></div><div class="doc-status warn">PRICE REVIEW</div></div>
-    <div class="document doc-po" data-depth="2"><div class="doc-top"><span>02 / PURCHASE ORDER</span><span class="doc-symbol">PO</span></div><div class="doc-title">PO-5003</div><div class="doc-sub">HARBOR SUPPLY</div><div class="doc-line"></div><div class="doc-data"><span>ITEM PART-C</span><b>20 × $8.50</b></div><div class="doc-status warn">PRICE DIFFERENCE</div></div>
-    <div class="document doc-receipt" data-depth="3"><div class="doc-top"><span>03 / GOODS RECEIPT</span><span class="doc-symbol">GR</span></div><div class="doc-title">GR-7003</div><div class="doc-sub">PO-5003 / PART-C</div><div class="doc-line"></div><div class="doc-data"><span>RECEIVED</span><b>15 OF 20</b></div><div class="doc-status warn">SHORT RECEIPT</div></div>
-    <span class="scene-label label-a">Source records / linked by rule</span><span class="scene-label label-b">Trace 001 — illustrative</span><span class="scene-coord">LT / 01.001</span><div class="scene-caption">Illustrative records · inspect the runnable sample below</div>
+    <div class="document doc-invoice" data-depth="3"><div class="doc-top"><span>01 / INVOICE</span><span class="doc-symbol">IN</span></div><div class="doc-title">INV-2048</div><div class="doc-sub">NORTHSTAR COMPONENTS</div><div class="doc-line"></div><div class="doc-data"><span>ITEM BRACKET-04</span><b>20 × $9.00</b></div><div class="doc-status warn">PRICE REVIEW</div></div>
+    <div class="document doc-po" data-depth="2"><div class="doc-top"><span>02 / PURCHASE ORDER</span><span class="doc-symbol">PO</span></div><div class="doc-title">PO-771</div><div class="doc-sub">HARBOR SUPPLY</div><div class="doc-line"></div><div class="doc-data"><span>ITEM PART-C</span><b>20 × $8.50</b></div><div class="doc-status warn">PRICE DIFFERENCE</div></div>
+    <div class="document doc-receipt" data-depth="3"><div class="doc-top"><span>03 / GOODS RECEIPT</span><span class="doc-symbol">GR</span></div><div class="doc-title">GR-771</div><div class="doc-sub">PO-5003 / PART-C</div><div class="doc-line"></div><div class="doc-data"><span>RECEIVED</span><b>15 OF 20</b></div><div class="doc-status warn">SHORT RECEIPT</div></div>
+    <span class="scene-label label-a">Source records / linked by rule</span><span class="scene-label label-b">TRACE 001 / ILLUSTRATIVE</span><span class="scene-coord">LT / 01.001</span><div class="scene-caption">Illustrative records · inspect the runnable sample below</div>
   </div>
 </section>
 <div class="container"><div class="trace-rule"></div><div class="signal-strip">
@@ -102,9 +151,18 @@ a{color:inherit}button,input,textarea,select{font:inherit}button,a{touch-action:
   </div>
 </section>
 
+<section class="section audience" id="who-for"><div class="container">
+<div class="section-top"><div class="section-index">03 / Who it serves</div><div><h2 class="section-title">For finance teams that need to explain a mismatch—not just flag one.</h2><p class="section-lead">Designed for accounts-payable leads, controllers, and finance operations teams reviewing supplier invoices against purchase orders and goods receipts. Most relevant where spreadsheet checks are repetitive and exceptions need a clear trail back to source rows.</p></div></div>
+<div class="audience-grid">
+<article class="audience-card"><span class="audience-num">A / THE PROBLEM</span><h3>Checks are scattered.</h3><p>Invoice, PO and receipt data often sit in separate exports. A status or total alone does not tell a reviewer which row disagrees or why.</p></article>
+<article class="audience-card"><span class="audience-num">B / THE OUTPUT</span><h3>One reviewable trail.</h3><p>Compare configured fields, see the triggered rule, inspect source-row references and export exceptions for human review.</p></article>
+<article class="audience-card"><span class="audience-num">C / THE BOUNDARY</span><h3>Assist review; do not replace it.</h3><p>This is an early-stage workbench, not an ERP, payment approval system, audit certification or promise that every exception will be detected.</p></article>
+</div>
+<div class="commercial-proof"><div><div class="eyebrow">Why consider a test?</div><h3>Choose it for inspectability—not for a claim we cannot yet prove.</h3></div><ul><li>Rules and compared values are visible.</li><li>Sample data can be reset explicitly.</li><li>Results and exceptions can be exported for review.</li><li>Scope, acceptance criteria and fee are agreed before paid work starts.</li></ul></div>
+</div></section>
 <section class="section methodology" id="methodology">
   <div class="container">
-    <div class="section-top"><div class="section-index">03 / Methodology</div><div><h2 class="section-title">A finding should explain itself.</h2><p class="section-lead">LedgerTrace applies explicit comparisons to the records provided. It does not infer intent, decide whether an invoice is fraudulent, or replace an AP review process.</p></div></div>
+    <div class="section-top"><div class="section-index">04 / Methodology</div><div><h2 class="section-title">A finding should explain itself.</h2><p class="section-lead">LedgerTrace applies explicit comparisons to the records provided. It does not infer intent, decide whether an invoice is fraudulent, or replace an AP review process.</p></div></div>
     <div class="method-grid">
       <article class="method-card"><span class="number">01 / MATCH</span><h3>Connect the source rows</h3><p>Normalize identifiers and compare invoice lines with purchase-order and receipt rows using PO number and item code. Missing or ambiguous relationships must remain visible.</p></article>
       <article class="method-card"><span class="number">02 / EXPLAIN</span><h3>Show the rule and values</h3><p>Flag configured conditions such as duplicate invoice IDs, supplier differences, price deltas, quantity excesses, missing receipts and unmatched source rows.</p></article>
@@ -117,7 +175,7 @@ a{color:inherit}button,input,textarea,select{font:inherit}button,a{touch-action:
 <section class="section evaluation" id="evaluation">
   <div class="container">
     <div class="eval-grid">
-      <div class="eval-copy"><div class="section-index">04 / Paid evaluation</div><h2>Test against a known answer—not a sales demo.</h2><p>Define a bounded reconciliation problem first. Agree on inputs, supported checks, exclusions, deliverables, fee, timeline and acceptance criteria before any paid work begins.</p><p>The goal is to establish what the tool catches, what it misses, which findings are real, and whether the workflow merits further investment.</p><div class="eval-points"><div class="eval-point">A human-reviewed reference set for comparison</div><div class="eval-point">Confirmed findings, false positives and missed exceptions</div><div class="eval-point">A traceable report and agreed review criteria</div><div class="eval-point">Scope and commercial terms agreed before work starts</div></div></div>
+      <div class="eval-copy"><div class="section-index">05 / Paid evaluation</div><h2>Test against a known answer—not a sales demo.</h2><p>Define a bounded reconciliation problem first. Agree on inputs, supported checks, exclusions, deliverables, fee, timeline and acceptance criteria before any paid work begins.</p><p>The goal is to establish what the tool catches, what it misses, which findings are real, and whether the workflow merits further investment.</p><div class="eval-points"><div class="eval-point">A human-reviewed reference set for comparison</div><div class="eval-point">Confirmed findings, false positives and missed exceptions</div><div class="eval-point">A traceable report and agreed review criteria</div><div class="eval-point">Scope and commercial terms agreed before work starts</div></div></div>
       <div class="builder">
         <div class="builder-head"><strong>Evaluation scope builder</strong><span>CONFIGURE / REVIEW / CONTACT</span></div>
         <div class="builder-body">
@@ -137,7 +195,7 @@ a{color:inherit}button,input,textarea,select{font:inherit}button,a{touch-action:
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-top"><div><div class="eyebrow">05 / End of trace</div><h2>Bring the workflow. We'll define the test.</h2></div><div class="footer-links"><a href="#product">Product ↑</a><a href="#investigation">Investigation ↑</a><a href="#methodology">Methodology ↑</a><a href="#evaluation">Evaluation ↑</a><a href="#" id="footerContact">Contact ↗</a></div></div>
+    <div class="footer-top"><div><div class="eyebrow">06 / Close the trace</div><h2>Start with the records. Agree the test. Review the evidence.</h2><p class="muted small" style="max-width:420px;margin-top:14px">LedgerTrace is an early-stage reconciliation workbench. A paid evaluation is scoped before work begins; no savings or detection-rate claims are assumed.</p></div><div class="footer-links"><a href="#product">01&nbsp; Product</a><a href="#investigation">02&nbsp; Investigation</a><a href="#who-for">03&nbsp; Who it serves</a><a href="#methodology">04&nbsp; Methodology</a><a href="#evaluation">05&nbsp; Paid evaluation</a><a href="#" id="footerContact">06&nbsp; Contact / scope ↗</a><a href="https://github.com/DT-09/LedgerTrace" target="_blank" rel="noopener noreferrer">07&nbsp; Source repository ↗</a></div></div>
     <div class="trace-rule"></div>
     <div class="wordmark-wrap" id="wordmarkWrap"><div class="footer-glow"></div><div class="wordmark">LedgerTrace</div><svg class="wordmark-trace" viewBox="0 0 1200 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0 138H105L145 100H230L268 138H395L430 88H515L555 138H680L718 105H830L868 138H990L1027 94H1115L1150 138H1200"/></svg></div>
     <div class="footer-bottom"><span><strong>LEDGERTRACE</strong> / AP RECONCILIATION EVIDENCE</span><span>Browser-side pilot · Human review required</span></div>
