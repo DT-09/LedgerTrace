@@ -40,6 +40,10 @@ The current matching key is purchase-order number + item code. It does not yet p
 
 Use synthetic or approved anonymized records for evaluation. Review all findings against source documents before taking accounting or payment action.
 
-## Commercial next step
+## Introductory paid evaluation
 
-Do not assume the application has product-market fit. Validate it against an accounts-payable team's actual exception workflow and compare its findings with a human-reviewed reference set before adding authentication, cloud storage, integrations, or billing. Those features introduce security, privacy, and operational obligations and should be built around a confirmed buyer workflow.
+**US$150 fixed fee · one AP workflow · up to 500 combined CSV rows · five business days after clean inputs and written scope approval.** Deliverables: an exception CSV, concise findings report, comparison against a human-reviewed reference set, and a 30-minute review handoff.
+
+This is a bounded evaluation service, not a subscription or production-software claim. It excludes ERP integrations, hosted data storage, payment actions, currency conversion, tax/credit-note treatment, robust split/merged line matching, and guaranteed detection. Use synthetic or client-approved anonymized data only. Confirm scope, exclusions, data handling, acceptance criteria, and payment terms in writing before work starts.
+
+Do not assume product-market fit. Validate the workflow and findings with a real AP team before building authentication, cloud storage, integrations, or billing. These features create security, privacy, and operational obligations and should be built around a confirmed buyer workflow.
