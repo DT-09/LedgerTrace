@@ -291,64 +291,84 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <div class="hero-actions"><a class="button" href="#investigation">Explore the sample <span aria-hidden="true">↓</span></a><a class="button secondary" href="#methodology">How it works <span aria-hidden="true">↗</span></a></div>
     <div class="privacy-note">ILLUSTRATIVE DATA · NO CUSTOMER FILES REQUIRED</div><p class="hero-proofline">Built for accounts-payable teams and finance service providers. Inspect the sample first; agree scope, expected results and commercial terms before any evaluation.</p>
   </div>
-  <div class="scene ledger-illustration" id="scene" aria-label="LedgerTrace illustration showing invoice and purchase order lines compared, with a unit price discrepancy highlighted for review">
-  <div class="ledger-art-top"><span>LEDGERTRACE / EVIDENCE VIEW</span><span>DEMO CASE 001</span></div>
-  <svg class="ledger-art-svg" viewBox="0 0 680 430" role="img" aria-labelledby="ledgerArtTitle ledgerArtDesc">
-    <title id="ledgerArtTitle">Invoice reconciliation evidence</title>
-    <desc id="ledgerArtDesc">Invoice and purchase order show different unit prices for the same item. A rule-based finding highlights the fifty-cent difference per unit.</desc>
+  <div class="scene ledger-illustration" id="scene" aria-label="LedgerTrace product illustration: invoice, purchase order and goods receipt data flow through a reconciliation engine into matched records, traceable exceptions and a reviewable evidence package">
+  <div class="ledger-art-top"><span>LEDGERTRACE / PRODUCT SYSTEM</span><span>FROM RAW RECORDS TO REVIEWABLE EVIDENCE</span></div>
+  <svg class="ledger-art-svg" viewBox="0 0 900 620" role="img" aria-labelledby="ledgerArtTitle ledgerArtDesc">
+    <title id="ledgerArtTitle">How LedgerTrace works</title>
+    <desc id="ledgerArtDesc">Three accounts-payable data sources enter a reconciliation engine. The engine normalizes fields, matches records and applies comparison rules. Results become matched records or traceable exceptions with source evidence for human review.</desc>
     <defs>
-      <linearGradient id="ledgerPanel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#23342d"/><stop offset="1" stop-color="#17221e"/></linearGradient>
-      <linearGradient id="ledgerAccent" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c5a675" stop-opacity=".05"/><stop offset="1" stop-color="#c5a675" stop-opacity=".16"/></linearGradient>
+      <linearGradient id="ltCanvas" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d2a24"/><stop offset="1" stop-color="#121a17"/></linearGradient>
+      <linearGradient id="ltCore" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a3a31"/><stop offset="1" stop-color="#1b2822"/></linearGradient>
+      <linearGradient id="ltGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c5a675" stop-opacity=".04"/><stop offset="1" stop-color="#c5a675" stop-opacity=".2"/></linearGradient>
     </defs>
-    <rect x="1" y="1" width="678" height="428" rx="10" fill="#141d19" stroke="#425148" stroke-opacity=".8"/>
-    <path d="M1 42H679" stroke="#46554b" stroke-opacity=".8"/>
-    <circle cx="22" cy="22" r="3" fill="#c5a675"/><circle cx="34" cy="22" r="3" fill="#65766a"/><circle cx="46" cy="22" r="3" fill="#65766a"/>
-    <text x="65" y="25" fill="#a5b0a5" font-size="9" letter-spacing="1.8" font-family="monospace">RECONCILIATION / LINE-LEVEL COMPARISON</text>
-    <text x="24" y="70" fill="#a5b0a5" font-size="9" letter-spacing="1.6" font-family="monospace">SOURCE RECORDS</text>
-    <text x="465" y="70" fill="#a5b0a5" font-size="9" letter-spacing="1.6" font-family="monospace">FINDING</text>
-    <rect x="22" y="86" width="407" height="88" rx="6" fill="url(#ledgerPanel)" stroke="#506156" stroke-opacity=".65"/>
-    <rect x="22" y="86" width="3" height="88" rx="1.5" fill="#a5b58a"/>
-    <text x="39" y="108" fill="#a5b58a" font-size="9" letter-spacing="1.2" font-family="monospace">01 / SUPPLIER INVOICE</text>
-    <text x="39" y="131" fill="#ede9de" font-size="16" font-family="Georgia,serif">INV-1003</text>
-    <text x="39" y="151" fill="#a5b0a5" font-size="10" font-family="monospace">HARBOR SUPPLY · PART-C · QTY 20</text>
-    <text x="397" y="135" fill="#ede9de" font-size="17" text-anchor="end" font-family="monospace">$9.00</text>
-    <text x="397" y="151" fill="#a5b0a5" font-size="8" text-anchor="end" font-family="monospace">UNIT PRICE</text>
-    <rect x="22" y="190" width="407" height="88" rx="6" fill="url(#ledgerPanel)" stroke="#506156" stroke-opacity=".65"/>
-    <rect x="22" y="190" width="3" height="88" rx="1.5" fill="#a5b58a"/>
-    <text x="39" y="212" fill="#a5b58a" font-size="9" letter-spacing="1.2" font-family="monospace">02 / PURCHASE ORDER</text>
-    <text x="39" y="235" fill="#ede9de" font-size="16" font-family="Georgia,serif">PO-5003</text>
-    <text x="39" y="255" fill="#a5b0a5" font-size="10" font-family="monospace">HARBOR SUPPLY · PART-C · QTY 20</text>
-    <text x="397" y="239" fill="#ede9de" font-size="17" text-anchor="end" font-family="monospace">$8.50</text>
-    <text x="397" y="255" fill="#a5b0a5" font-size="8" text-anchor="end" font-family="monospace">UNIT PRICE</text>
-    <path d="M429 130H445V234H429" fill="none" stroke="#c5a675" stroke-width="1.2" stroke-dasharray="3 4"/>
-    <path d="M445 182H459" stroke="#c5a675" stroke-width="1.2"/>
-    <circle cx="445" cy="182" r="3" fill="#c5a675"/>
-    <rect x="465" y="86" width="192" height="192" rx="6" fill="#1e2a24" stroke="#c5a675" stroke-opacity=".75"/>
-    <rect x="465" y="86" width="192" height="4" rx="2" fill="#c5a675"/>
-    <text x="482" y="111" fill="#c5a675" font-size="8" letter-spacing="1.2" font-family="monospace">RULE TRIGGERED</text>
-    <text x="482" y="137" fill="#ede9de" font-size="16" font-family="Georgia,serif">Price variance</text>
-    <text x="482" y="157" fill="#a5b0a5" font-size="9" font-family="monospace">INVOICE ≠ PO</text>
-    <path d="M482 173H640" stroke="#536158"/>
-    <text x="482" y="193" fill="#a5b0a5" font-size="8" letter-spacing="1" font-family="monospace">DIFFERENCE / UNIT</text>
-    <text x="482" y="224" fill="#d9bd88" font-size="29" font-family="Georgia,serif">+$0.50</text>
-    <rect x="482" y="242" width="116" height="20" rx="3" fill="#c5a675" fill-opacity=".12" stroke="#c5a675" stroke-opacity=".35"/>
-    <circle cx="493" cy="252" r="2.5" fill="#c5a675"/>
-    <text x="502" y="255" fill="#d9bd88" font-size="8" letter-spacing=".7" font-family="monospace">REVIEW REQUIRED</text>
-    <path d="M22 301H657" stroke="#46554b" stroke-opacity=".8"/>
-    <text x="24" y="324" fill="#a5b0a5" font-size="9" letter-spacing="1.5" font-family="monospace">EVIDENCE TRAIL</text>
-    <rect x="22" y="340" width="194" height="54" rx="5" fill="#1c2922" stroke="#435348"/>
-    <text x="35" y="359" fill="#a5b58a" font-size="8" letter-spacing="1" font-family="monospace">MATCHED FIELDS</text>
-    <text x="35" y="378" fill="#ede9de" font-size="10" font-family="monospace">PO · ITEM · SUPPLIER</text>
-    <path d="M216 367H234" stroke="#718174" stroke-width="1.2"/><path d="M229 362L234 367L229 372" fill="none" stroke="#718174" stroke-width="1.2"/>
-    <rect x="238" y="340" width="194" height="54" rx="5" fill="#1c2922" stroke="#435348"/>
-    <text x="251" y="359" fill="#a5b58a" font-size="8" letter-spacing="1" font-family="monospace">COMPARISON RULE</text>
-    <text x="251" y="378" fill="#ede9de" font-size="10" font-family="monospace">UNIT PRICE DIFFERENCE</text>
-    <path d="M432 367H450" stroke="#718174" stroke-width="1.2"/><path d="M445 362L450 367L445 372" fill="none" stroke="#718174" stroke-width="1.2"/>
-    <rect x="454" y="340" width="203" height="54" rx="5" fill="url(#ledgerAccent)" stroke="#c5a675" stroke-opacity=".55"/>
-    <text x="467" y="359" fill="#c5a675" font-size="8" letter-spacing="1" font-family="monospace">NEXT STEP</text>
-    <text x="467" y="378" fill="#ede9de" font-size="10" font-family="monospace">HUMAN REVIEW</text>
+    <rect x="1" y="1" width="898" height="618" rx="12" fill="url(#ltCanvas)" stroke="#45564b"/>
+    <path d="M1 48H899" stroke="#45564b"/>
+    <circle cx="24" cy="24" r="4" fill="#c5a675"/><circle cx="39" cy="24" r="4" fill="#64766a"/><circle cx="54" cy="24" r="4" fill="#64766a"/>
+    <text x="77" y="28" fill="#a5b0a5" font-size="11" letter-spacing="2" font-family="monospace">ACCOUNTS PAYABLE / RECONCILIATION WORKFLOW</text>
+    <text x="34" y="81" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">01 — INPUTS</text>
+    <text x="34" y="103" fill="#ede9de" font-size="19" font-family="Georgia,serif">Bring records together</text>
+    <text x="866" y="90" fill="#a5b0a5" text-anchor="end" font-size="10" letter-spacing="1.5" font-family="monospace">CSV FILES · LOCAL WORKFLOW</text>
+    <g>
+      <rect x="34" y="125" width="258" height="116" rx="7" fill="#202e27" stroke="#526457"/>
+      <rect x="34" y="125" width="4" height="116" rx="2" fill="#a5b58a"/>
+      <rect x="54" y="145" width="31" height="39" rx="3" fill="#a5b58a" fill-opacity=".12" stroke="#a5b58a" stroke-opacity=".8"/>
+      <path d="M61 155H77M61 163H77M61 171H73" stroke="#a5b58a" stroke-width="1.5"/>
+      <text x="101" y="154" fill="#a5b58a" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE A</text>
+      <text x="101" y="176" fill="#ede9de" font-size="17" font-family="Georgia,serif">Supplier invoices</text>
+      <text x="54" y="215" fill="#a5b0a5" font-size="10" font-family="monospace">Line items · quantities · prices</text>
+      <rect x="321" y="125" width="258" height="116" rx="7" fill="#202e27" stroke="#526457"/>
+      <rect x="321" y="125" width="4" height="116" rx="2" fill="#c5a675"/>
+      <rect x="341" y="145" width="31" height="39" rx="3" fill="#c5a675" fill-opacity=".12" stroke="#c5a675" stroke-opacity=".8"/>
+      <path d="M348 155H364M348 163H364M348 171H360" stroke="#c5a675" stroke-width="1.5"/>
+      <text x="388" y="154" fill="#c5a675" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE B</text>
+      <text x="388" y="176" fill="#ede9de" font-size="17" font-family="Georgia,serif">Purchase orders</text>
+      <text x="341" y="215" fill="#a5b0a5" font-size="10" font-family="monospace">Authorised items · agreed terms</text>
+      <rect x="608" y="125" width="258" height="116" rx="7" fill="#202e27" stroke="#526457"/>
+      <rect x="608" y="125" width="4" height="116" rx="2" fill="#8ea9a0"/>
+      <rect x="628" y="145" width="31" height="39" rx="3" fill="#8ea9a0" fill-opacity=".12" stroke="#8ea9a0" stroke-opacity=".8"/>
+      <path d="M635 155H651M635 163H651M635 171H647" stroke="#8ea9a0" stroke-width="1.5"/>
+      <text x="675" y="154" fill="#8ea9a0" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE C</text>
+      <text x="675" y="176" fill="#ede9de" font-size="17" font-family="Georgia,serif">Goods receipts</text>
+      <text x="628" y="215" fill="#a5b0a5" font-size="10" font-family="monospace">Delivered quantities · receipt status</text>
+    </g>
+    <g fill="none" stroke="#748578" stroke-width="1.5">
+      <path d="M163 241V265H450V287"/>
+      <path d="M450 241V287"/>
+      <path d="M737 241V265H450"/>
+    </g>
+    <circle cx="163" cy="265" r="3" fill="#a5b58a"/><circle cx="450" cy="265" r="3" fill="#c5a675"/><circle cx="737" cy="265" r="3" fill="#8ea9a0"/>
+    <text x="34" y="304" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">02 — RECONCILIATION ENGINE</text>
+    <rect x="34" y="322" width="832" height="132" rx="8" fill="url(#ltCore)" stroke="#657568" stroke-opacity=".8"/>
+    <text x="58" y="353" fill="#ede9de" font-size="22" font-family="Georgia,serif">One traceable comparison process</text>
+    <text x="58" y="376" fill="#a5b0a5" font-size="11" font-family="monospace">Normalize fields → match related records → test comparison rules</text>
+    <path d="M58 395H842" stroke="#526457"/>
+    <g>
+      <rect x="58" y="407" width="224" height="30" rx="4" fill="#111a16" stroke="#506156"/>
+      <circle cx="73" cy="422" r="4" fill="#a5b58a"/><text x="86" y="426" fill="#ede9de" font-size="10" font-family="monospace">FIELD NORMALIZATION</text>
+      <rect x="338" y="407" width="224" height="30" rx="4" fill="#111a16" stroke="#506156"/>
+      <circle cx="353" cy="422" r="4" fill="#c5a675"/><text x="366" y="426" fill="#ede9de" font-size="10" font-family="monospace">RECORD MATCHING</text>
+      <rect x="618" y="407" width="224" height="30" rx="4" fill="#111a16" stroke="#506156"/>
+      <circle cx="633" cy="422" r="4" fill="#8ea9a0"/><text x="646" y="426" fill="#ede9de" font-size="10" font-family="monospace">RULE VALIDATION</text>
+    </g>
+    <path d="M450 454V477H245V497M450 477H655V497" fill="none" stroke="#748578" stroke-width="1.5"/>
+    <circle cx="450" cy="477" r="4" fill="#c5a675"/>
+    <text x="34" y="488" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">03 — REVIEWABLE OUTPUTS</text>
+    <rect x="34" y="504" width="404" height="88" rx="7" fill="#1c2922" stroke="#526457"/>
+    <rect x="34" y="504" width="4" height="88" rx="2" fill="#a5b58a"/>
+    <circle cx="61" cy="531" r="8" fill="#a5b58a" fill-opacity=".16" stroke="#a5b58a"/>
+    <path d="M57 531L60 534L66 527" fill="none" stroke="#a5b58a" stroke-width="1.5"/>
+    <text x="82" y="535" fill="#a5b58a" font-size="10" letter-spacing="1.5" font-family="monospace">MATCHED RECORDS</text>
+    <text x="56" y="561" fill="#ede9de" font-size="16" font-family="Georgia,serif">Consistent lines identified</text>
+    <text x="56" y="579" fill="#a5b0a5" font-size="10" font-family="monospace">Keep the comparison result</text>
+    <rect x="462" y="504" width="404" height="88" rx="7" fill="url(#ltGold)" stroke="#c5a675" stroke-opacity=".75"/>
+    <rect x="462" y="504" width="4" height="88" rx="2" fill="#c5a675"/>
+    <circle cx="489" cy="531" r="8" fill="#c5a675" fill-opacity=".16" stroke="#c5a675"/>
+    <path d="M489 526V532M489 536V537" stroke="#c5a675" stroke-width="1.5"/>
+    <text x="510" y="535" fill="#c5a675" font-size="10" letter-spacing="1.5" font-family="monospace">EXCEPTIONS + EVIDENCE</text>
+    <text x="484" y="561" fill="#ede9de" font-size="16" font-family="Georgia,serif">Source values · rule · finding</text>
+    <text x="484" y="579" fill="#a5b0a5" font-size="10" font-family="monospace">Human review before action</text>
   </svg>
-  <div class="ledger-art-caption"><span>ILLUSTRATIVE RECORDS · NOT CUSTOMER DATA</span><span>RULE-BASED · HUMAN REVIEW</span></div>
+  <div class="ledger-art-caption"><span>PRODUCT WORKFLOW · NOT A SINGLE DEMO CASE</span><span>TRACEABLE FINDINGS · HUMAN REVIEW</span></div>
 </div>
   </div>
 </section>
@@ -796,10 +816,10 @@ body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgb
 </style>
 <style id="ledgertrace-editorial-art-css">
 /* Replace the scattered floating-card scene with one composed, legible evidence view. */
-.ledger-illustration{min-height:0!important;height:auto!important;max-width:700px;margin:0 auto;perspective:none!important;isolation:isolate;overflow:visible;padding:0!important}
+.ledger-illustration{min-height:0!important;height:auto!important;max-width:900px;width:100%;margin:0 auto;perspective:none!important;isolation:isolate;overflow:visible;padding:0!important}
 .ledger-art-top,.ledger-art-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#a5b0a5;font:8px var(--mono);letter-spacing:.11em}
 .ledger-art-top{padding:0 3px 13px}
-.ledger-art-caption{padding:12px 3px 0;font-size:7px;letter-spacing:.07em}
+.ledger-art-caption{padding:12px 3px 0;font-size:9px;letter-spacing:.07em}
 .ledger-art-svg{display:block;width:100%;height:auto;filter:drop-shadow(0 22px 42px rgba(0,0,0,.22))}
 .ledger-illustration .scene-grid,.ledger-illustration .scene-glow,.ledger-illustration .scene-path,.ledger-illustration .document,.ledger-illustration .ledgertrace-evidence-card,.ledger-illustration .scene-label,.ledger-illustration .scene-coord,.ledger-illustration .scene-caption{display:none!important}
 @media(max-width:650px){
