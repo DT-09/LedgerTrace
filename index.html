@@ -291,27 +291,65 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <div class="hero-actions"><a class="button" href="#investigation">Explore the sample <span aria-hidden="true">↓</span></a><a class="button secondary" href="#methodology">How it works <span aria-hidden="true">↗</span></a></div>
     <div class="privacy-note">ILLUSTRATIVE DATA · NO CUSTOMER FILES REQUIRED</div><p class="hero-proofline">Built for accounts-payable teams and finance service providers. Inspect the sample first; agree scope, expected results and commercial terms before any evaluation.</p>
   </div>
-  <div class="scene" id="scene" aria-label="Illustration of invoice, purchase order and receipt records connected by evidence paths">
-    <div class="scene-grid" data-depth="1"></div><div class="scene-glow" data-depth="2"></div>
-    <svg class="scene-svg" viewBox="0 0 620 500" aria-hidden="true">
-      <path class="scene-path" d="M142 105 C205 105 223 142 278 169"/>
-      <path class="scene-path broken" d="M278 169 C312 190 325 223 351 250"/>
-      <path class="scene-path" d="M445 220 C425 252 405 278 383 303"/>
-      <path class="scene-path" d="M155 345 C210 332 244 285 278 169"/>
-      <circle class="scene-node" cx="142" cy="105" r="4"/><circle class="scene-node warn" cx="278" cy="169" r="5"/><circle class="scene-node" cx="445" cy="220" r="4"/><circle class="scene-node" cx="155" cy="345" r="4"/><circle class="scene-node warn" cx="383" cy="303" r="4"/>
-      <path d="M278 169V128H316" stroke="#C5A675" stroke-width="1" fill="none"/><text x="322" y="131" fill="#C5A675" font-size="9" font-family="IBM Plex Mono,monospace">PRICE DELTA</text>
-    </svg>
-    <div class="document doc-invoice" data-depth="3"><div class="doc-top"><span>01 / INVOICE</span><span class="doc-symbol">IN</span></div><div class="doc-title">INV-1003</div><div class="doc-sub">HARBOR SUPPLY</div><div class="doc-line"></div><div class="doc-data"><span>ITEM PART-C</span><b>20 × $9.00</b></div><div class="doc-status warn">PRICE REVIEW</div></div>
-    <div class="document doc-po" data-depth="2"><div class="doc-top"><span>02 / PURCHASE ORDER</span><span class="doc-symbol">PO</span></div><div class="doc-title">PO-5003</div><div class="doc-sub">HARBOR SUPPLY</div><div class="doc-line"></div><div class="doc-data"><span>ITEM PART-C</span><b>20 × $8.50</b></div><div class="doc-status warn">PRICE DIFFERENCE</div></div>
-    <div class="document doc-receipt" data-depth="3"><div class="doc-top"><span>03 / GOODS RECEIPT</span><span class="doc-symbol">GR</span></div><div class="doc-title">GR-7003</div><div class="doc-sub">PO-5003 / PART-C</div><div class="doc-line"></div><div class="doc-data"><span>RECEIVED</span><b>15 OF 20</b></div><div class="doc-status warn">SHORT RECEIPT</div></div>
-    <div class="ledgertrace-evidence-card" data-depth="2" aria-label="Illustrative price variance evidence">
-      <div class="evidence-card-head"><span>TRACE FINDING / 001</span><span class="evidence-dot"></span></div>
-      <div class="evidence-card-title">Unit price variance</div>
-      <div class="evidence-values"><span>Invoice <b>$9.00</b></span><span>PO <b>$8.50</b></span></div>
-      <div class="evidence-card-rule"><span>RULE</span><b>Invoice price ≠ PO price</b></div>
-      <div class="evidence-card-foot"><span>DIFFERENCE / UNIT</span><strong>+$0.50</strong></div>
-    </div>
-    <span class="scene-label label-a">Source records / linked by rule</span><span class="scene-label label-b">TRACE 001 / ILLUSTRATIVE</span><span class="scene-coord">LT / 01.001</span><div class="scene-caption">Illustrative records · inspect the runnable sample below</div>
+  <div class="scene ledger-illustration" id="scene" aria-label="LedgerTrace illustration showing invoice and purchase order lines compared, with a unit price discrepancy highlighted for review">
+  <div class="ledger-art-top"><span>LEDGERTRACE / EVIDENCE VIEW</span><span>DEMO CASE 001</span></div>
+  <svg class="ledger-art-svg" viewBox="0 0 680 430" role="img" aria-labelledby="ledgerArtTitle ledgerArtDesc">
+    <title id="ledgerArtTitle">Invoice reconciliation evidence</title>
+    <desc id="ledgerArtDesc">Invoice and purchase order show different unit prices for the same item. A rule-based finding highlights the fifty-cent difference per unit.</desc>
+    <defs>
+      <linearGradient id="ledgerPanel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#23342d"/><stop offset="1" stop-color="#17221e"/></linearGradient>
+      <linearGradient id="ledgerAccent" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c5a675" stop-opacity=".05"/><stop offset="1" stop-color="#c5a675" stop-opacity=".16"/></linearGradient>
+    </defs>
+    <rect x="1" y="1" width="678" height="428" rx="10" fill="#141d19" stroke="#425148" stroke-opacity=".8"/>
+    <path d="M1 42H679" stroke="#46554b" stroke-opacity=".8"/>
+    <circle cx="22" cy="22" r="3" fill="#c5a675"/><circle cx="34" cy="22" r="3" fill="#65766a"/><circle cx="46" cy="22" r="3" fill="#65766a"/>
+    <text x="65" y="25" fill="#a5b0a5" font-size="9" letter-spacing="1.8" font-family="monospace">RECONCILIATION / LINE-LEVEL COMPARISON</text>
+    <text x="24" y="70" fill="#a5b0a5" font-size="9" letter-spacing="1.6" font-family="monospace">SOURCE RECORDS</text>
+    <text x="465" y="70" fill="#a5b0a5" font-size="9" letter-spacing="1.6" font-family="monospace">FINDING</text>
+    <rect x="22" y="86" width="407" height="88" rx="6" fill="url(#ledgerPanel)" stroke="#506156" stroke-opacity=".65"/>
+    <rect x="22" y="86" width="3" height="88" rx="1.5" fill="#a5b58a"/>
+    <text x="39" y="108" fill="#a5b58a" font-size="9" letter-spacing="1.2" font-family="monospace">01 / SUPPLIER INVOICE</text>
+    <text x="39" y="131" fill="#ede9de" font-size="16" font-family="Georgia,serif">INV-1003</text>
+    <text x="39" y="151" fill="#a5b0a5" font-size="10" font-family="monospace">HARBOR SUPPLY · PART-C · QTY 20</text>
+    <text x="397" y="135" fill="#ede9de" font-size="17" text-anchor="end" font-family="monospace">$9.00</text>
+    <text x="397" y="151" fill="#a5b0a5" font-size="8" text-anchor="end" font-family="monospace">UNIT PRICE</text>
+    <rect x="22" y="190" width="407" height="88" rx="6" fill="url(#ledgerPanel)" stroke="#506156" stroke-opacity=".65"/>
+    <rect x="22" y="190" width="3" height="88" rx="1.5" fill="#a5b58a"/>
+    <text x="39" y="212" fill="#a5b58a" font-size="9" letter-spacing="1.2" font-family="monospace">02 / PURCHASE ORDER</text>
+    <text x="39" y="235" fill="#ede9de" font-size="16" font-family="Georgia,serif">PO-5003</text>
+    <text x="39" y="255" fill="#a5b0a5" font-size="10" font-family="monospace">HARBOR SUPPLY · PART-C · QTY 20</text>
+    <text x="397" y="239" fill="#ede9de" font-size="17" text-anchor="end" font-family="monospace">$8.50</text>
+    <text x="397" y="255" fill="#a5b0a5" font-size="8" text-anchor="end" font-family="monospace">UNIT PRICE</text>
+    <path d="M429 130H445V234H429" fill="none" stroke="#c5a675" stroke-width="1.2" stroke-dasharray="3 4"/>
+    <path d="M445 182H459" stroke="#c5a675" stroke-width="1.2"/>
+    <circle cx="445" cy="182" r="3" fill="#c5a675"/>
+    <rect x="465" y="86" width="192" height="192" rx="6" fill="#1e2a24" stroke="#c5a675" stroke-opacity=".75"/>
+    <rect x="465" y="86" width="192" height="4" rx="2" fill="#c5a675"/>
+    <text x="482" y="111" fill="#c5a675" font-size="8" letter-spacing="1.2" font-family="monospace">RULE TRIGGERED</text>
+    <text x="482" y="137" fill="#ede9de" font-size="16" font-family="Georgia,serif">Price variance</text>
+    <text x="482" y="157" fill="#a5b0a5" font-size="9" font-family="monospace">INVOICE ≠ PO</text>
+    <path d="M482 173H640" stroke="#536158"/>
+    <text x="482" y="193" fill="#a5b0a5" font-size="8" letter-spacing="1" font-family="monospace">DIFFERENCE / UNIT</text>
+    <text x="482" y="224" fill="#d9bd88" font-size="29" font-family="Georgia,serif">+$0.50</text>
+    <rect x="482" y="242" width="116" height="20" rx="3" fill="#c5a675" fill-opacity=".12" stroke="#c5a675" stroke-opacity=".35"/>
+    <circle cx="493" cy="252" r="2.5" fill="#c5a675"/>
+    <text x="502" y="255" fill="#d9bd88" font-size="8" letter-spacing=".7" font-family="monospace">REVIEW REQUIRED</text>
+    <path d="M22 301H657" stroke="#46554b" stroke-opacity=".8"/>
+    <text x="24" y="324" fill="#a5b0a5" font-size="9" letter-spacing="1.5" font-family="monospace">EVIDENCE TRAIL</text>
+    <rect x="22" y="340" width="194" height="54" rx="5" fill="#1c2922" stroke="#435348"/>
+    <text x="35" y="359" fill="#a5b58a" font-size="8" letter-spacing="1" font-family="monospace">MATCHED FIELDS</text>
+    <text x="35" y="378" fill="#ede9de" font-size="10" font-family="monospace">PO · ITEM · SUPPLIER</text>
+    <path d="M216 367H234" stroke="#718174" stroke-width="1.2"/><path d="M229 362L234 367L229 372" fill="none" stroke="#718174" stroke-width="1.2"/>
+    <rect x="238" y="340" width="194" height="54" rx="5" fill="#1c2922" stroke="#435348"/>
+    <text x="251" y="359" fill="#a5b58a" font-size="8" letter-spacing="1" font-family="monospace">COMPARISON RULE</text>
+    <text x="251" y="378" fill="#ede9de" font-size="10" font-family="monospace">UNIT PRICE DIFFERENCE</text>
+    <path d="M432 367H450" stroke="#718174" stroke-width="1.2"/><path d="M445 362L450 367L445 372" fill="none" stroke="#718174" stroke-width="1.2"/>
+    <rect x="454" y="340" width="203" height="54" rx="5" fill="url(#ledgerAccent)" stroke="#c5a675" stroke-opacity=".55"/>
+    <text x="467" y="359" fill="#c5a675" font-size="8" letter-spacing="1" font-family="monospace">NEXT STEP</text>
+    <text x="467" y="378" fill="#ede9de" font-size="10" font-family="monospace">HUMAN REVIEW</text>
+  </svg>
+  <div class="ledger-art-caption"><span>ILLUSTRATIVE RECORDS · NOT CUSTOMER DATA</span><span>RULE-BASED · HUMAN REVIEW</span></div>
+</div>
   </div>
 </section>
 <div class="container"><div class="trace-rule"></div><div class="signal-strip">
@@ -756,5 +794,19 @@ body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgb
 }
 @media(prefers-reduced-motion:reduce){.scene-path{animation:none!important}}
 </style>
-</body>
+<style id="ledgertrace-editorial-art-css">
+/* Replace the scattered floating-card scene with one composed, legible evidence view. */
+.ledger-illustration{min-height:0!important;height:auto!important;max-width:700px;margin:0 auto;perspective:none!important;isolation:isolate;overflow:visible;padding:0!important}
+.ledger-art-top,.ledger-art-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#a5b0a5;font:8px var(--mono);letter-spacing:.11em}
+.ledger-art-top{padding:0 3px 13px}
+.ledger-art-caption{padding:12px 3px 0;font-size:7px;letter-spacing:.07em}
+.ledger-art-svg{display:block;width:100%;height:auto;filter:drop-shadow(0 22px 42px rgba(0,0,0,.22))}
+.ledger-illustration .scene-grid,.ledger-illustration .scene-glow,.ledger-illustration .scene-path,.ledger-illustration .document,.ledger-illustration .ledgertrace-evidence-card,.ledger-illustration .scene-label,.ledger-illustration .scene-coord,.ledger-illustration .scene-caption{display:none!important}
+@media(max-width:650px){
+ .ledger-art-top{font-size:7px;letter-spacing:.07em}
+ .ledger-art-caption{align-items:flex-start;flex-direction:column;gap:5px;font-size:7px}
+ .ledger-art-svg{filter:drop-shadow(0 12px 24px rgba(0,0,0,.18))}
+}
+@media(prefers-reduced-motion:reduce){.ledger-art-svg{filter:none}}
+</style></body>
 </html>
