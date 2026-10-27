@@ -164,12 +164,122 @@ tbody tr:hover,tbody tr:focus{background:rgba(196,161,106,.07)}
 .footer-bottom{border-color:#3b4b43}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+
+/* LedgerTrace visual system — paper, ink, forest, brass. One restrained palette. */
+:root{
+ color-scheme:light;
+ --bg:#F2EFE6; --panel:#FBF9F3; --panel2:#E8E5DA; --line:#D5D4C9; --line2:#A8B0A3;
+ --text:#202923; --muted:#69736A; --blue:#315746; --amber:#A77A3D; --green:#42684D; --red:#A64D40;
+ --mono:"IBM Plex Mono",monospace; --display:"Space Grotesk",sans-serif; --body:"Inter",sans-serif;
+ background:var(--bg); color:var(--text);
+}
+html{background:var(--bg)}
+body{background:var(--bg)!important;color:var(--text)!important}
+body:before{background-image:linear-gradient(rgba(41,61,48,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(41,61,48,.035) 1px,transparent 1px)!important;background-size:72px 72px!important;mask-image:linear-gradient(to bottom,black,transparent 72%)!important}
+body:after{display:none!important}
+::selection{background:#D9C8A5!important;color:#202923!important}
+a{color:inherit}
+.container{position:relative}
+.header,.header.scrolled{background:rgba(248,246,239,.96)!important;border-color:#D4D5CA!important;box-shadow:0 8px 28px rgba(32,41,35,.08)!important;backdrop-filter:blur(16px)!important}
+.brand-mark{border:1px solid #315746!important;border-radius:7px!important;background:#315746!important;color:#F2EFE6!important}
+.brand-mark .mark-trace,.footer-brand .mark-trace{stroke:#E7D5AE!important;stroke-width:2.1!important;stroke-dasharray:none!important;stroke-dashoffset:0!important}
+.brand-mark .mark-letter{stroke:#F2EFE6!important}
+.brand-name{color:#202923!important;letter-spacing:.14em!important}
+.nav a{color:#58645A!important}.nav a:hover{color:#315746!important}
+.header-cta,.button{background:#315746!important;border-color:#315746!important;color:#FBF9F3!important}
+.header-cta:hover,.button:hover{background:#244334!important;border-color:#244334!important;color:#fff!important}
+.button.secondary{background:transparent!important;border-color:#A8B0A3!important;color:#202923!important}
+.button.secondary:hover{background:#E7E8DE!important;border-color:#315746!important}
+.button.ghost{color:#69736A!important}.button.ghost:hover{background:#E8E5DA!important;color:#202923!important}
+.menu-toggle{border-color:#D5D4C9!important;color:#202923!important}
+.eyebrow,.section-index{color:#8A6532!important}
+.trace-rule{background:linear-gradient(90deg,#A77A3D,rgba(167,122,61,.12) 70%,transparent)!important}
+.trace-rule:before{background:#A77A3D!important;box-shadow:none!important}
+h1 em{color:#315746!important}
+.hero-desc{color:#58645A!important}
+.privacy-note{color:#69736A!important}.privacy-note:before{background:#42684D!important;box-shadow:none!important}
+.scene{background:transparent!important}
+.scene-grid{background-image:linear-gradient(rgba(49,87,70,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(49,87,70,.08) 1px,transparent 1px)!important}
+.scene-glow{display:none!important}
+.scene-path{stroke:rgba(49,87,70,.65)!important}.scene-path.broken{stroke:#A77A3D!important}
+.scene-node{fill:#F2EFE6!important;stroke:#315746!important}.scene-node.warn{stroke:#A77A3D!important}
+.document{background:#FBF9F3!important;border-color:#D5D4C9!important;box-shadow:0 16px 36px rgba(32,41,35,.10)!important;backdrop-filter:none!important}
+.document:hover{border-color:#A77A3D!important;box-shadow:0 16px 36px rgba(32,41,35,.14)!important}
+.doc-symbol{border-color:#D5D4C9!important;color:#315746!important}
+.doc-top,.doc-sub,.scene-label,.scene-coord{color:#69736A!important}
+.doc-line{background:#D5D4C9!important}.doc-data b{color:#202923!important}
+.doc-status{color:#42684D!important}.doc-status.warn{color:#A77A3D!important}
+.section{background:transparent!important}
+.section-title{color:#202923!important}
+.section-lead{color:#69736A!important}
+.signal-strip,.signal+.signal{border-color:#D5D4C9!important}
+.signal strong{color:#202923!important}.signal span{color:#69736A!important}
+.workbench{background:#EAE8DE!important;border-color:#D5D4C9!important}
+.workbench-shell,.builder{background:#FBF9F3!important;border-color:#D5D4C9!important;box-shadow:0 16px 42px rgba(32,41,35,.06)!important}
+.workbench-bar,.source-card,.metric,.method-card,.report,.report .report-block,.evidence-value{background:#F6F4ED!important;border-color:#D5D4C9!important}
+.workbench-title strong,.source-head strong,.results-head h3,.report-head h3,.method-card h3,.drawer-top h2,.drawer-section h3,.builder-head strong{color:#202923!important}
+.workbench-title span,.source-head small,.source-card p,.metric-label,.metric-note,.results-head p,.report-head p,.report-block p,.report-block li,.method-card p,.builder-head span{color:#69736A!important}
+.source-icon{border-color:#D5D4C9!important;color:#315746!important}
+.file-input{color:#69736A!important}
+.file-input::file-selector-button{background:#E8E5DA!important;border-color:#D5D4C9!important;color:#202923!important}
+.metric-value{color:#202923!important}.metric-value.amber{color:#8A6532!important}
+.filter-btn{border-color:#D5D4C9!important;color:#69736A!important}
+.filter-btn.active{border-color:#315746!important;color:#315746!important;background:#E4EAE2!important}
+.search{background:#FBF9F3!important;border-color:#D5D4C9!important;color:#202923!important}
+.table-wrap{border-color:#D5D4C9!important}
+th{background:#E8E5DA!important;color:#58645A!important}
+th,td{border-bottom-color:#E2E0D6!important}
+tbody tr:hover,tbody tr:focus{background:#EEF0E8!important}
+.cell-main{color:#202923!important}.cell-sub,.table-note{color:#69736A!important}
+.findings-cell{color:#58645A!important}
+.pill.exception{color:#8A6532!important;background:#F3EBDD!important}
+.pill.matched{color:#42684D!important;background:#E8EFE6!important}
+.pill.review{color:#A64D40!important;background:#F5E8E4!important}
+.report{background:#FBF9F3!important}
+.report-block{border-top-color:#D5D4C9!important}
+.drawer-backdrop{background:rgba(25,34,28,.36)!important}
+.drawer{background:#F7F5EE!important;border-left-color:#D5D4C9!important;box-shadow:-18px 0 50px rgba(32,41,35,.16)!important}
+.drawer-top,.drawer-section,.report-footer{border-color:#D5D4C9!important}
+.icon-button{border-color:#D5D4C9!important;color:#202923!important}
+.evidence-value span,.evidence-value strong{color:#69736A!important}
+.evidence-value strong{color:#202923!important}
+.finding-list li{color:#3D4940!important}
+.review-note,.review-state select{background:#FBF9F3!important;border-color:#D5D4C9!important;color:#202923!important}
+.review-state{color:#69736A!important}
+.methodology,.evaluation{border-color:#D5D4C9!important}
+.boundary{background:#F3EBDD!important;border-color:#D8C39D!important}
+.boundary strong{color:#202923!important}.boundary p{color:#69736A!important}
+.evaluation{background:#EAE8DE!important}
+.eval-copy p{color:#69736A!important}.eval-point{color:#465349!important}
+.builder-head{background:#F0EEE5!important;border-color:#D5D4C9!important}
+.builder-step+.builder-step{border-color:#D5D4C9!important}
+.step-label{color:#8A6532!important}
+.option{border-color:#D5D4C9!important;color:#58645A!important}
+.option:has(input:checked){border-color:#315746!important;background:#E4EAE2!important;color:#202923!important}
+.option input{accent-color:#315746!important}
+.footer,.site-footer{background:#202923!important;color:#F2EFE6!important}
+footer{background:#202923!important;color:#F2EFE6!important;border-color:#202923!important}
+footer a,.footer a,.footer-brand .brand-name{color:#E8E5DA!important}
+footer p,footer .muted,footer .small,.footer p,.footer .muted{color:#B8C0B5!important}
+footer .brand-mark,.footer .brand-mark{background:#315746!important;border-color:#557565!important}
+footer .trace-rule{background:linear-gradient(90deg,#A77A3D,rgba(167,122,61,.1) 70%,transparent)!important}
+.error{background:#F5E8E4!important;border-color:#D8AAA2!important;color:#8F382E!important}
+.toast{background:#202923!important;color:#FBF9F3!important}
+input,textarea,select{accent-color:#315746}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#A77A3D!important}
+@media(max-width:760px){
+ .header,.header.scrolled{background:rgba(248,246,239,.98)!important}
+ .nav{background:#FBF9F3!important;border-color:#D5D4C9!important}
+ .workbench-body{background:#FBF9F3!important}
+}
+@media(prefers-reduced-motion:reduce){.scene-path{animation:none!important}}
+
 </style>
 </head>
 <body>
 <header class="header" id="header">
   <a class="brand" href="#top" aria-label="LedgerTrace home">
-    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path class="mark-trace" d="M7 5V27H17" fill="none"/><path class="mark-letter" d="M14 6H27M20.5 6V26" fill="none"/></svg></span><span class="brand-name">LEDGERTRACE</span>
+    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" role="img" aria-hidden="true"><path class="mark-trace" d="M5.5 6.5H26.5M8 6.5V25.5H16M16 6.5V25.5" fill="none"/></svg></span><span class="brand-name">LEDGERTRACE</span>
   </a>
   <nav class="nav" id="nav" aria-label="Primary navigation"><a href="#product">Product</a><a href="#investigation">Investigation</a><a href="#methodology">Methodology</a><a href="#evaluation">Evaluation</a></nav>
   <a class="header-cta" href="#evaluation">Define a test <span aria-hidden="true">↗</span></a>
@@ -290,7 +400,7 @@ tbody tr:hover,tbody tr:focus{background:rgba(196,161,106,.07)}
       <div class="footer-column"><h3>Project &amp; scope</h3><a href="https://github.com/DT-09/LedgerTrace" target="_blank" rel="noopener noreferrer">Source repository ↗</a><p>Early-stage pilot. No account system, hosted data storage or production-grade controls are implied.</p></div>
     </div>
     <div class="footer-brand-row">
-      <a class="footer-brand" href="#top" aria-label="LedgerTrace back to top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path class="mark-trace" d="M7 5V27H17" fill="none"/><path class="mark-letter" d="M14 6H27M20.5 6V26" fill="none"/></svg></span><span class="footer-brand-name">LedgerTrace</span></a>
+      <a class="footer-brand" href="#top" aria-label="LedgerTrace back to top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" role="img" aria-hidden="true"><path class="mark-trace" d="M5.5 6.5H26.5M8 6.5V25.5H16M16 6.5V25.5" fill="none"/></svg></span><span class="footer-brand-name">LedgerTrace</span></a>
       <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> LedgerTrace. All rights reserved.</p><p>AP reconciliation evidence workbench · Sample data is illustrative · Findings require human verification.</p></div>
     </div>
   </div>
