@@ -27,13 +27,14 @@ Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_
 
 ## Current checks
 
-- Repeated invoice identifiers.
+- Potential duplicate invoice-line signatures (invoice ID, supplier, PO/item, quantity, unit price and line amount); repeated invoice IDs across distinct line items are not automatically treated as duplicates.
 - Missing PO references and missing matching PO lines.
 - Supplier mismatches between invoice and PO.
-- Invoiced quantity above ordered quantity.
+- Combined invoiced quantity above combined ordered quantity for the same PO/item matching key.
 - Unit-price differences greater than 0.01 in the input currency.
 - Invoice line amount inconsistent with quantity × unit price.
-- Missing goods receipt and invoiced quantity above total received quantity.
+- Missing goods receipt and combined invoiced quantity above total received quantity for the same PO/item matching key.
+- Multiple PO rows sharing a matching key are surfaced for review; mixed PO unit prices are not silently resolved.
 - PO lines without invoice matches and goods receipts without PO matches.
 
 ## Data handling
