@@ -598,5 +598,26 @@ body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgb
 .footer-scope{white-space:normal}
 @media(max-width:650px){.hero-actions .button{min-height:44px}.header-cta{font-size:10px!important}.hero-proofline{max-width:100%}}
 </style>
+
+<style id="ledgertrace-wordmark-hover-unity">
+/* Scale the monogram and wordmark together, without changing the header layout. */
+.brand,.footer-brand{
+  transform:scale(1);
+  transform-origin:left center;
+  transition:transform 180ms ease;
+}
+.brand:hover,.brand:focus-visible,.footer-brand:hover,.footer-brand:focus-visible{
+  transform:scale(1.025);
+}
+.brand:hover .brand-mark,.brand:focus-visible .brand-mark,
+.footer-brand:hover .brand-mark,.footer-brand:focus-visible .brand-mark{
+  transform:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .brand,.footer-brand{transition:none!important}
+  .brand:hover,.brand:focus-visible,.footer-brand:hover,.footer-brand:focus-visible{transform:none}
+}
+</style>
+
 </body>
 </html>
