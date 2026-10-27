@@ -278,7 +278,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   <a class="brand" href="#top" aria-label="LedgerTrace home">
     <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span><span class="brand-name">LEDGERTRACE</span>
   </a>
-  <nav class="nav" id="nav" aria-label="Primary navigation"><a href="#product">Product</a><a href="#investigation">Investigation</a><a href="#buyer-assurance">Buyer proof</a><a href="#methodology">Methodology</a><a href="#evaluation">Evaluation</a></nav>
+  <nav class="nav" id="nav" aria-label="Primary navigation"><a href="#product">Product</a><a href="#investigation">Investigation</a><a href="#buyer-assurance">Buyer proof</a><a href="#methodology">Methodology</a><a href="#faq">FAQ</a><a href="#evaluation">Evaluation</a></nav>
   <a class="header-cta" href="#evaluation">Request an evaluation <span aria-hidden="true">↗</span></a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 </header>
@@ -289,7 +289,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <h1>Find the discrepancy. <em>Follow the evidence.</em></h1>
     <p class="hero-desc">Compare supplier invoices with purchase orders and goods receipts. See which records disagree, which rule triggered, and the source values behind each finding—so your team can review exceptions with evidence instead of chasing spreadsheets.</p>
     <div class="hero-actions"><a class="button" href="#investigation">Explore the sample <span aria-hidden="true">↓</span></a><a class="button secondary" href="#methodology">How it works <span aria-hidden="true">↗</span></a></div>
-    <div class="privacy-note">ILLUSTRATIVE DATA · NO CUSTOMER FILES REQUIRED</div><p class="hero-proofline">Built for accounts-payable teams and finance service providers. Inspect the sample first; agree scope, expected results and commercial terms before any evaluation.</p>
+    <div class="privacy-note">SAMPLE WORKFLOW · READY TO EXPLORE</div><p class="hero-proofline">Start with a working reconciliation. Open a finding to inspect the source values, matching rule and evidence trail—then decide whether the workflow fits your review process.</p>
   </div>
   <div class="scene ledger-illustration" id="scene" aria-label="LedgerTrace product illustration: invoice, purchase order and goods receipt data flow through a reconciliation engine into matched records, traceable exceptions and a reviewable evidence package">
   <div class="ledger-art-top"><span>LEDGERTRACE / PRODUCT SYSTEM</span><span>FROM RAW RECORDS TO REVIEWABLE EVIDENCE</span></div>
@@ -368,7 +368,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <text x="484" y="561" fill="#ede9de" font-size="16" font-family="Georgia,serif">Source values · rule · finding</text>
     <text x="484" y="579" fill="#a5b0a5" font-size="10" font-family="monospace">Human review before action</text>
   </svg>
-  <div class="ledger-art-caption"><span>PRODUCT WORKFLOW · NOT A SINGLE DEMO CASE</span><span>TRACEABLE FINDINGS · HUMAN REVIEW</span></div>
+  <div class="ledger-art-caption"><span>ILLUSTRATIVE WORKFLOW · SAMPLE RECORDS</span><span>TRACEABLE FINDINGS · HUMAN REVIEW</span></div>
 </div>
   </div>
 </section>
@@ -380,9 +380,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <section class="section workbench" id="investigation">
   <div class="container">
-    <div class="section-top"><div class="section-index">02 / Investigation</div><div><h2 class="section-title">Follow the exception to its source.</h2><p class="section-lead">Run the included sample or load your own approved CSV exports. Select any result to inspect the source values, matching rule and evidence trail. This demonstration runs in your browser.</p></div></div>
+    <div class="section-top"><div class="section-index">02 / Working sample</div><div><h2 class="section-title">See the reconciliation, not just the promise.</h2><p class="section-lead">The sample run is ready below. Review matched lines and flagged exceptions, then select any row to inspect the underlying invoice, PO and receipt evidence. You can also load your own CSV exports for a separate run.</p></div></div>
     <div class="workbench-shell">
-      <div class="workbench-bar"><div class="workbench-title"><span class="live-dot"></span><div><strong>Reconciliation workbench</strong><span>LOCAL RUN / RULE-BASED / HUMAN REVIEW REQUIRED</span></div></div><div class="bar-actions"><button class="button secondary sm" id="sampleBtn">Load sample data</button><button class="button ghost sm" id="resetBtn">Reset sample ↺</button></div></div>
+      <div class="workbench-bar"><div class="workbench-title"><span class="live-dot"></span><div><strong>Reconciliation workbench</strong><span>SAMPLE RUN / SOURCE-LINKED FINDINGS / REVIEW WORKFLOW</span></div></div><div class="bar-actions"><button class="button secondary sm" id="sampleBtn">Reload sample</button><button class="button ghost sm" id="resetBtn">Reset sample ↺</button></div></div>
       <div class="workbench-body">
         <div class="input-grid">
           <div class="source-card"><div class="source-head"><span class="source-icon">01</span><div><strong>Supplier invoices</strong><small>SOURCE A / CSV</small></div></div><p>Invoice ID, supplier, PO reference, item, quantity and unit price.</p><input class="file-input" id="invoiceFile" type="file" accept=".csv,text/csv"><div class="file-meta" id="invoiceMeta">Sample data ready · 5 rows</div></div>
@@ -413,9 +413,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 <div class="audience-grid">
 <article class="audience-card"><span class="audience-num">A / THE PROBLEM</span><h3>Checks are scattered.</h3><p>Invoice, PO and receipt data often sit in separate exports. A status or total alone does not tell a reviewer which row disagrees or why.</p></article>
 <article class="audience-card"><span class="audience-num">B / THE OUTPUT</span><h3>One reviewable trail.</h3><p>Compare configured fields, see the triggered rule, inspect source-row references and export exceptions for human review.</p></article>
-<article class="audience-card"><span class="audience-num">C / THE BOUNDARY</span><h3>Assist review; do not replace it.</h3><p>This is an early-stage workbench, not an ERP, payment approval system, audit certification or promise that every exception will be detected.</p></article>
+<article class="audience-card"><span class="audience-num">C / THE REVIEW</span><h3>Keep the decision with your team.</h3><p>LedgerTrace organizes rule-triggered discrepancies and supporting records. Your reviewer determines whether a finding needs correction, explanation or no action.</p></article>
 </div>
-<div class="commercial-proof"><div><div class="eyebrow">Why consider a test?</div><h3>Choose it for inspectability—not for a claim we cannot yet prove.</h3></div><ul><li>Rules and compared values are visible.</li><li>Sample data can be reset explicitly.</li><li>Results and exceptions can be exported for review.</li><li>One workflow, clear boundaries, and a written acceptance checklist.</li></ul></div>
+<div class="commercial-proof"><div><div class="eyebrow">What you can inspect</div><h3>Every flagged result has something concrete to review.</h3></div><ul><li>Compared values from the supplied records.</li><li>The rule that triggered each finding.</li><li>Source-row references and related PO/receipt rows.</li><li>An exportable exception list for human review.</li></ul></div>
 </div><div class="go-to-market"><div class="go-to-market-copy"><div class="eyebrow">A bounded evaluation</div><h3>Start with one workflow. Validate every finding.</h3><p>Use approved anonymized CSV exports to test one invoice-to-purchase-order-to-receipt workflow. The evaluation compares tool output with a human-reviewed reference set and documents what was caught, missed, or incorrectly flagged.</p></div><ol><li><strong>Agree the workflow.</strong><span>Choose one AP process, supported CSV columns and the exception types that matter.</span></li><li><strong>Approve the boundaries.</strong><span>Confirm sample size, exclusions, data handling and acceptance criteria in writing.</span></li><li><strong>Run the evaluation.</strong><span>Process up to 500 combined rows after clean inputs and scope approval.</span></li><li><strong>Review the evidence.</strong><span>Receive an exception CSV, findings report and 30-minute handoff within five business days.</span></li></ol></div>
 <div class="payment-flow"><div class="eyebrow">A scoped paid evaluation · Terms agreed privately</div><div class="payment-steps"><div><span>01</span><strong>Scope</strong><p>One AP workflow, up to 500 combined CSV rows, and agreed checks.</p></div><div><span>02</span><strong>Agree terms</strong><p>Confirm the fee, timeline, deliverables and acceptance criteria with LedgerTrace before work begins.</p></div><div><span>03</span><strong>Payment</strong><p>Written scope and acceptance criteria first. Payment through an agreed, legitimate route before work begins.</p></div><div><span>04</span><strong>Evidence</strong><p>Exception CSV, findings report, false-positive review and a 30-minute handoff.</p></div></div><p class="small muted">The evaluation is scoped with each buyer before work begins. Use synthetic or client-approved anonymized data. LedgerTrace does not claim production-grade security, ERP integration or guaranteed detection. Fees, timeline, deliverables and acceptance criteria are agreed in writing; scope changes require written agreement.</p></div></section>
 <section class="section assurance" id="buyer-assurance">
@@ -437,7 +437,21 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
       <article class="method-card"><span class="number">02 / EXPLAIN</span><h3>Show the rule and values</h3><p>Flag configured conditions such as duplicate invoice IDs, supplier differences, price deltas, quantity excesses, missing receipts and unmatched source rows.</p></article>
       <article class="method-card"><span class="number">03 / REVIEW</span><h3>Keep the human decision</h3><p>Inspect the evidence, record review notes and export the worklist. A finding is not a payment instruction, and opening it does not resolve it.</p></article>
     </div>
-    <div class="boundary"><span aria-hidden="true" style="color:var(--amber);font-size:18px">!</span><div><strong>Current evaluation boundary</strong><p>This is a static browser-based pilot, not production accounting software. It has no server upload, user accounts, saved cloud history, ERP integrations, payment actions, currency conversion, tax/credit-note treatment or robust split-line matching. Use synthetic or approved anonymized data and validate outputs against original documents.</p></div></div>
+    
+  </div>
+</section>
+
+<section class="section methodology" id="faq">
+  <div class="container">
+    <div class="section-top"><div class="section-index">06 / Product details</div><div><h2 class="section-title">Clear answers before you evaluate.</h2><p class="section-lead">The important details about matching, inputs, evidence and review are spelled out before you decide whether to use LedgerTrace.</p></div></div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>Which records can I compare?</summary><p>Three CSV exports: supplier invoice lines, purchase-order lines and goods-receipt lines. Each file should include the relevant identifiers, item code and quantity; invoice and PO files should include unit price for price checks.</p></details>
+      <details class="faq-item"><summary>How are records matched?</summary><p>The current matching key is purchase-order number plus item code. LedgerTrace then checks configured conditions such as duplicate invoice identifiers, supplier differences, invoice-versus-PO price differences, quantity excesses, receipt gaps and unmatched PO lines. Confirm column mappings and edge cases before using a new data shape.</p></details>
+      <details class="faq-item"><summary>What can I inspect in a finding?</summary><p>Select a result to review its invoice row, related PO and receipt rows, compared values, triggered rule and explanation. The workbench supports review notes and CSV export so a person can investigate and record the next step.</p></details>
+      <details class="faq-item"><summary>Where is uploaded data processed?</summary><p>In the current version, selected CSV files are processed in your browser; they are not uploaded to a LedgerTrace application server. Use synthetic or approved anonymized data for evaluation, and do not provide confidential records until data handling has been agreed.</p></details>
+      <details class="faq-item"><summary>What needs separate validation?</summary><p>Currency conversion, tax and credit-note treatment, split or merged invoice lines, and complex supplier-resolution cases are not covered as general capabilities. A “matched” status means no configured rule triggered; it is not a certification that the invoice is correct or approval to pay.</p></details>
+      <details class="faq-item"><summary>How do I know the results are useful?</summary><p>Use a human-reviewed reference set with expected outcomes. Compare findings against that set, record both missed exceptions and false positives, and agree the scope and acceptance criteria before a paid evaluation. Illustrative sample records demonstrate the workflow; they are not customer results.</p></details>
+    </div>
   </div>
 </section>
 
@@ -546,7 +560,7 @@ async function loadFile(type,file){if(!file)return;hideError();try{const records
 $('sampleBtn').addEventListener('click',()=>{loadSamples();toast('Illustrative sample data loaded.')});$('resetBtn').addEventListener('click',resetAll);$('reportReset').addEventListener('click',resetAll);$('clearBtn').addEventListener('click',()=>{state.invoices=[];state.pos=[];state.receipts=[];state.results=[];state.runAt=null;state.review.clear();['invoiceFile','poFile','receiptFile'].forEach(k=>$(k).value='');['invoiceMeta','poMeta','receiptMeta'].forEach(k=>setMeta(k,'No file selected'));$('results').classList.add('hidden');hideError();setMeta('runHint','Files cleared. Load sample data or choose all three CSV sources.');});$('runBtn').addEventListener('click',reconcile);$('exportBtn').addEventListener('click',exportCSV);$('reportExport').addEventListener('click',exportCSV);$('search').addEventListener('input',drawRows);$('filters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;state.filter=b.dataset.filter;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active',x===b));drawRows()});$('rows').addEventListener('click',e=>{const tr=e.target.closest('tr[data-row]');if(tr)openDrawer(Number(tr.dataset.row),tr)});$('rows').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('tr[data-row]')){e.preventDefault();openDrawer(Number(e.target.dataset.row),e.target)}});$('closeDrawer').addEventListener('click',closeDrawer);$('closeDrawer2').addEventListener('click',closeDrawer);$('drawerBackdrop').addEventListener('click',closeDrawer);$('saveReview').addEventListener('click',()=>{if(state.selected===null)return;state.review.set(state.selected,{status:$('reviewStatus').value,note:$('reviewNote').value});$('reviewFeedback').textContent='Review state saved in memory for this page session only.';toast('Local review note saved.')});$('sourceOptions').addEventListener('change',updateScope);$('checkOptions').addEventListener('change',updateScope);$('generateBrief').addEventListener('click',()=>{updateScope();openContact();$('contactDescription').value='I would like to discuss a paid evaluation using the selected sources and check topics.\n\n'+state.scopeBrief;toast('Scope brief prepared for review.')});$('contactFromBuilder').addEventListener('click',openContact);$('footerContact').addEventListener('click',e=>{e.preventDefault();openContact()});$('closeContact').addEventListener('click',closeContact);$('contactBackdrop').addEventListener('click',closeContact);$('contactForm').addEventListener('submit',handleContactSubmit);$('copyBrief').addEventListener('click',()=>copyText(fullBrief()));$('menuToggle').addEventListener('click',()=>{const open=$('nav').classList.toggle('open');$('menuToggle').setAttribute('aria-expanded',String(open));$('menuToggle').setAttribute('aria-label',open?'Close navigation':'Open navigation')});$('nav').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{$('nav').classList.remove('open');$('menuToggle').setAttribute('aria-expanded','false')}));document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeContact();$('nav').classList.remove('open');$('menuToggle').setAttribute('aria-expanded','false')}});window.addEventListener('scroll',()=>{$('header').classList.toggle('scrolled',window.scrollY>35)},{passive:true});
 const scene=$('scene');if(scene&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(pointer:fine)').matches){scene.addEventListener('pointermove',e=>{const r=scene.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;scene.style.setProperty('--gx',(x*-9)+'px');scene.style.setProperty('--gy',(y*-9)+'px');scene.style.setProperty('--lx',(x*16)+'px');scene.style.setProperty('--ly',(y*16)+'px');scene.querySelectorAll('[data-depth]').forEach(el=>{const d=Number(el.dataset.depth);el.style.setProperty('--px',(x*d*9)+'px');el.style.setProperty('--py',(y*d*9)+'px')})});scene.addEventListener('pointerleave',()=>{scene.style.setProperty('--gx','0px');scene.style.setProperty('--gy','0px');scene.style.setProperty('--lx','0px');scene.style.setProperty('--ly','0px');scene.querySelectorAll('[data-depth]').forEach(el=>{el.style.setProperty('--px','0px');el.style.setProperty('--py','0px')})})}
 const copyrightYear=$('copyrightYear');if(copyrightYear)copyrightYear.textContent=String(new Date().getFullYear());
-state.usingSample=true;loadSamples();updateScope();
+state.usingSample=true;loadSamples();updateScope();reconcile();
 })();
 </script>
 
@@ -557,6 +571,14 @@ state.usingSample=true;loadSamples();updateScope();
 .ledgertrace-logo{display:block;width:100%;height:100%}
 .brand-name{letter-spacing:.16em!important}
 .assurance-grid .method-card{min-height:210px}
+.faq-list{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line);padding:0}
+.faq-item summary{list-style:none;cursor:pointer;position:relative;padding:20px 44px 20px 0;font:500 16px var(--display);color:var(--text)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:after{content:"+";position:absolute;right:5px;top:17px;color:var(--blue);font:22px var(--body)}
+.faq-item[open] summary:after{content:"−"}
+.faq-item p{max-width:850px;padding:0 40px 20px 0;margin:0;color:var(--muted);font-size:13px;line-height:1.85}
+.faq-item summary:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
 .assurance-boundary{margin-top:22px}
 .eval-copy strong{color:#EDE9DE}
 @media(max-width:760px){.header{background:rgba(23,34,31,.84)!important}.brand-mark{width:34px!important;height:34px!important}.assurance-grid .method-card{min-height:0}}
