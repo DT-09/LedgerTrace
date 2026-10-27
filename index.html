@@ -542,5 +542,44 @@ state.usingSample=true;loadSamples();updateScope();
 .ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#A5B0A5!important;stroke:none!important}
 </style>
 
+
+<style id="ledgertrace-palette-final">
+/* Final palette: obsidian green, forest slate, warm ivory, muted sage and antique brass. */
+:root{
+ color-scheme:dark!important;
+ --bg:#111918!important;
+ --panel:#1B2724!important;
+ --panel2:#24332E!important;
+ --line:#35443D!important;
+ --line2:#59685D!important;
+ --text:#EDE9DE!important;
+ --muted:#A5B0A5!important;
+ --blue:#C5A675!important;
+ --amber:#D0A66E!important;
+ --green:#A5B58A!important;
+ --red:#D98272!important;
+}
+body{background:var(--bg)!important;color:var(--text)!important}
+body:before{background-image:linear-gradient(rgba(165,181,138,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(165,181,138,.035) 1px,transparent 1px)!important}
+body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(165,181,138,.075),transparent 34%)!important}
+.header,.header.scrolled{background:rgba(23,34,31,.76)!important;border-color:rgba(237,233,222,.13)!important}
+.header-cta,.button{background:var(--blue)!important;border-color:var(--blue)!important;color:#172019!important}
+.header .header-cta{background:rgba(165,181,138,.11)!important;border-color:rgba(165,181,138,.4)!important;color:var(--text)!important}
+.header .header-cta:hover{background:rgba(165,181,138,.2)!important;border-color:var(--blue)!important}
+.button:hover,.header-cta:hover{background:#D4B989!important;border-color:#D4B989!important;color:#172019!important}
+.button.secondary{background:transparent!important;border-color:var(--line2)!important;color:var(--text)!important}
+.button.secondary:hover{border-color:var(--blue)!important;background:rgba(197,166,117,.09)!important}
+.button.ghost:hover,.filter-btn.active,tbody tr:hover,tbody tr:focus{background:rgba(165,181,138,.07)!important}
+.hero h1 em,.eyebrow,.section-index,.step-label,.number{color:var(--blue)!important}
+.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#A5B0A5!important}
+.scene-glow,.evaluation{background:radial-gradient(ellipse at 70% 45%,rgba(165,181,138,.065),transparent 42%)!important}
+.scene-path{stroke:rgba(197,166,117,.55)!important}
+.scene-path.broken{stroke:var(--amber)!important}
+.scene-node{stroke:var(--blue)!important}
+.source-icon{border-color:rgba(197,166,117,.24)!important;color:var(--blue)!important}
+.file-input::file-selector-button{background:#24332E!important}
+@media(prefers-reduced-transparency:reduce){.header,.header.scrolled{background:#17221F!important}}
+</style>
+
 </body>
 </html>
