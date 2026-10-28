@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const html = fs.readFileSync('index.html', 'utf8');
-const inlineScripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(match => !/\bsrc\s*=/.test(match[1]));
+const inlineScripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(match => !/\bsrc\s*=/.test(match[1]) && !/\btype\s*=\s*["']application\/ld\+json["']/i.test(match[1]));
 if (inlineScripts.length < 2) throw new Error('Expected both primary and recovery inline script blocks');
 inlineScripts.forEach((match, index) => {
   const id = (match[1].match(/\bid="([^"]+)"/) || [])[1] || 'primary-inline-script';
