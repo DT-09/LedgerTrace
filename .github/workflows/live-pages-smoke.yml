@@ -19,8 +19,8 @@ jobs:
           set -euo pipefail
           url="https://ledgertrace.pages.dev/"
           html=""
-          for attempt in $(seq 1 60); do
-            if html="$(curl --connect-timeout 10 --max-time 20 -fsSL "$url" 2>/dev/null)"; then
+          for attempt in $(seq 1 30); do
+            if html="$(curl --connect-timeout 3 --max-time 5 -fsSL "$url" 2>/dev/null)"; then
               if printf '%s' "$html" | grep -Fq 'Fees are negotiated privately according to the agreed requirements' &&
                  printf '%s' "$html" | grep -Fq 'Sample invoices · 8 rows' &&
                  printf '%s' "$html" | grep -Fq 'Sample POs · 6 rows' &&
@@ -29,7 +29,7 @@ jobs:
               fi
             fi
             html=""
-            echo "Production copy not updated yet (attempt $attempt/60); retrying in 5 seconds."
+            echo "Production copy not updated yet (attempt $attempt/30); retrying in 5 seconds."
             sleep 5
           done
           test -n "$html" || { echo "::error::Production page did not serve the expected LedgerTrace copy after 5 minutes."; exit 1; }
