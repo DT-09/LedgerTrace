@@ -1,51 +1,70 @@
-# LedgerTrace
+# LedgerTrace Recovery
 
-LedgerTrace is a browser-based accounts-payable reconciliation workbench. It compares invoice lines with purchase-order lines and goods-receipt quantities, explains rule-triggered exceptions, and exports a review worklist.
+**Supplier-payment audit and recovery workbench for industrial distributors.**
 
-## Try the working sample
+LedgerTrace helps finance teams investigate possible supplier overcharges using invoice, purchase-order, goods-receipt, payment, credit-note and PO-amendment CSVs. It produces a source-row-linked worklist, a calculation basis, and a case record for human review and supplier resolution.
 
-1. Open the site and select **Load sample & run analysis**.
-2. Inspect duplicate invoice IDs, a unit-price difference, a receipt shortfall, an invoice quantity above the PO quantity, a missing PO reference, and a missing goods receipt.
-3. Select any result to inspect compared values, triggered rules, and source CSV row references.
-4. Export the exception CSV or use **Print / save evidence PDF** to open a print-ready report and choose **Save as PDF** in the browser's print dialog.
+It separates three different things:
 
-The sample is illustrative and does not represent customer results.
+- **Potential invoice excess:** the supplied invoice amount exceeds the reconstructed net expected amount.
+- **Payment excess candidate:** invoice-linked payments exceed the reconstructed net expected amount.
+- **Verified recovery outcome:** a human-entered credit, refund, invoice correction or rejected claim with a supporting reference.
 
-## Run it locally
+A calculated candidate is not proof of a loss, supplier liability or recovered cash.
 
-Deploy this repository to Cloudflare Pages with the repository root as the project directory, no build command, and the output directory set to `/`. It is static HTML/CSS/JavaScript; no package install or build step is required. You can also open `index.html` directly in a modern browser.
+## Try it
 
-## CSV inputs
+1. Open the deployed site or open `index.html` in a modern browser.
+2. Select **Run realistic sample** to load illustrative records across invoices, POs, receipts, payments and a supplier credit.
+3. Inspect the investigation worklist and select a case.
+4. Review the calculation, findings and source row references.
+5. Record a case status, corrective action, reviewer notes and outcome reference.
+6. Export the worklist CSV, one case as JSON, or the investigation package JSON.
 
-Use one row per document line. Header names are normalized, so spaces, hyphens, and capitalization are tolerated.
+The built-in sample is synthetic and does not represent customer outcomes. Files are parsed in the browser. The page does not send selected CSV contents to a LedgerTrace backend. Case notes are held only in the current tab session and can be included in exports; clearing or closing the tab loses unexported work.
 
-- **Invoices:** `invoice_number`, `supplier`, `po_number`, `item_code`, `quantity`, `unit_price`; optional `line_amount`, `invoice_date`, `currency`.
-- **Purchase orders:** `po_number`, `supplier`, `item_code`, `quantity`, `unit_price`.
-- **Goods receipts:** `receipt_number`, `po_number`, `item_code`, `quantity`, `receipt_date`.
+## CSV schemas
 
-Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_order_number`, and `grn` are accepted. Quantities and unit prices must be numeric. Use consistent currency and units across all three files.
+Use one row per document line and consistent identifiers/currency. Header aliases are supported for common terms such as `vendor`, `sku`, `qty`, `price`, `invoice_no`, `purchase_order_number` and `grn`.
 
-## Current checks
+| Source | Core columns |
+|---|---|
+| Invoices (required) | `invoice_number,supplier,po_number,item_code,quantity,unit_price,line_amount` |
+| Purchase orders | `po_number,supplier,item_code,quantity,unit_price` |
+| Goods receipts | `receipt_number,po_number,supplier,item_code,quantity` |
+| Payments | `payment_id,invoice_number,supplier,paid_amount` |
+| Credits | `credit_note_number,invoice_number,supplier,credit_amount` |
+| PO amendments | `amendment_id,po_number,supplier,item_code,amended_quantity,amended_unit_price,effective_date` |
 
-- Repeated invoice identifiers.
-- Missing PO references and missing matching PO lines.
-- Supplier mismatches between invoice and PO.
-- Invoiced quantity above ordered quantity.
-- Unit-price differences greater than 0.01 in the input currency.
-- Invoice line amount inconsistent with quantity × unit price.
-- Missing goods receipt and invoiced quantity above total received quantity.
-- PO lines without invoice matches and goods receipts without PO matches.
+Optional fields include dates, currency and change-order references. The app uses invoice references and supplier names to associate payment and credit rows. Payment/credit totals linked to a multi-line invoice are allocated to lines in proportion to billed line value. That allocation is a practical estimate, not a substitute for remittance-level accounting.
 
-## Data handling
+## Current analysis
 
-The current app reads selected CSV files through browser file APIs and processes them in the browser tab. The app code does not upload those CSV contents to a LedgerTrace server. Review notes are held in page memory for the current session. The page loads web fonts from Google, so this is not a claim that the browser makes no network requests. For initial evaluation, use synthetic or client-approved anonymized records.
+- Matches invoice lines to compatible PO/item records and aggregates matching receipt quantities.
+- Applies a supplied PO amendment with an effective date on or before the invoice date.
+- Estimates expected net line value using the quantity supported by both the PO and goods receipt and the selected PO unit price.
+- Compares supplied invoice amounts, invoice-linked payment records and invoice-linked credits.
+- Avoids quantification when supplier attribution or PO unit price is ambiguous.
+- Preserves CSV source row references in the case inspector and exported records.
+- Records review state and outcome details for the current browser session.
 
-## Paid evaluation
+## Important limitations
 
-**Five business days · one AP workflow · up to 500 combined CSV rows · fixed fee quoted in writing before kickoff.** The five-business-day period starts after clean input files and written scope approval.
+This is a CSV-based investigation MVP, not a production accounting system or automated recovery service. It does not authenticate source documents or independently verify bank activity, supplier acceptance, issued credits or refunds. It does not fully model tax, freight, currency conversion, tolerance rules, retainage, complex split/merged lines, payment allocation by remittance advice, supplier master-data resolution, or every credit-note scenario. PO amendments require reviewer confirmation. The output is not an accounting journal, legal conclusion or supplier demand. Human review is required before taking action.
 
-Deliverables: an exception CSV, concise findings report, comparison against an agreed human-reviewed reference set, false-positive and missed-case summary, and a 30-minute review handoff. Acceptance criteria are agreed before work starts: agreed test cases are processed; findings include the rule and source-row references where available; and the report records observed misses and false positives against the reference set.
+The app's browser-local processing claim applies to the selected CSV contents; the static page may still load external resources depending on deployment. Use synthetic or client-approved anonymized data for evaluation.
 
-This is a bounded evaluation service, not a production multi-tenant SaaS. It does not automatically resolve exceptions or authorize payments. The current matching key is purchase-order number + item code. It does not yet perform robust supplier master-data resolution, currency conversion, tax treatment, credit-note netting, tolerance profiles, split/merged line matching, partial-payment accounting, or ERP integrations. Indicative flagged line value is not verified loss or recoverable amount. A line with no findings means only that the current configured rules did not trigger.
+## Tests
 
-Confirm scope, exclusions, data handling, acceptance criteria, and payment terms in writing before work starts.
+With Node.js 20 or later:
+
+```sh
+node --check recovery-core.js
+node tests/recovery-core.test.js
+```
+
+GitHub Actions runs these checks on pushes to `rebuild/**` and pull requests targeting `main`.
+
+## Commercial evaluation
+
+The proposed first paid engagement is a bounded, five-business-day supplier-payment review using an agreed reference set and a limited CSV sample. Before kickoff, agree the fee, allowed data, supported columns, test cases, acceptance criteria, exclusions and payment terms in writing. Deliverables should include the ranked worklist, source-linked evidence, human-reviewed false-positive/missed-case summary and a resolution tracker. Do not promise savings or recovery before reviewing a buyer's actual records and verifying outcomes.
