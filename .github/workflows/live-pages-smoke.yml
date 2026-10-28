@@ -37,8 +37,8 @@ jobs:
             echo "::error::Production page contains a public fixed fee or $100 price."
             exit 1
           fi
-          printf '%s' "$html" | grep -Fq 'mailto:dhairytopia@gmail.com' || { echo "::error::Email inquiry route is missing."; exit 1; }
-          printf '%s' "$html" | grep -Fq 'wa.me/919133404350' || { echo "::error::WhatsApp inquiry route is missing."; exit 1; }
+          printf '%s' "$html" | grep -Fq "CONTACT_EMAIL='dhairytopia@gmail.com'" || { echo "::error::Email inquiry configuration is missing."; exit 1; }
+          printf '%s' "$html" | grep -Fq "WHATSAPP_NUMBER='+91 9133404350'" || { echo "::error::WhatsApp inquiry configuration is missing."; exit 1; }
           echo "Production HTML checks passed."
 
       - name: Verify the live recovery engine is reachable
