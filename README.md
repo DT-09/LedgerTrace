@@ -46,7 +46,7 @@ The current app reads selected CSV files through browser file APIs and processes
 
 Deliverables: an exception CSV, concise findings report, comparison against an agreed human-reviewed reference set, false-positive and missed-case summary, and a 30-minute review handoff. Acceptance criteria are agreed before work starts: agreed test cases are processed; findings include the rule and source-row references where available; and the report records observed misses and false positives against the reference set.
 
-This is a bounded evaluation service, not a production multi-tenant SaaS. It does not automatically resolve exceptions or authorize payments. The current matching key is purchase-order number + item code. It does not yet perform robust supplier master-data resolution, currency conversion, tax treatment, credit-note netting, tolerance profiles, split/merged line matching, partial-payment accounting, or ERP integrations. Indicative flagged line value is not verified loss or recoverable amount. A line with no findings means only that the current configured rules did not trigger.
+This is a bounded evaluation service, not a production multi-tenant SaaS. It does not automatically resolve exceptions or authorize payments. The primary PO/receipt relationship key is purchase-order number + item code. Where a supplier is supplied, receipt rows from a conflicting named supplier are excluded from quantity support, and a supplier conflict is surfaced for review. Conflicting currencies across the invoice, matched PO, payment or credit records block amount-based recovery calculations. The product does not perform currency conversion, tax treatment, robust supplier master-data resolution, tolerance profiles, split/merged line matching, complete partial-payment accounting, or ERP integrations. Indicative flagged line value is not verified loss or recoverable amount. A line with no findings means only that the current configured rules did not trigger.
 
 Confirm scope, exclusions, data handling, acceptance criteria, and payment terms in writing before work starts.
 
@@ -63,7 +63,7 @@ The recovery section accepts six CSV sources:
 - **Credits:** `credit_note_number,invoice_number,supplier,credit_amount,currency,credit_date`
 - **PO amendments:** `amendment_id,po_number,supplier,item_code,amended_quantity,amended_unit_price,effective_date`
 
-Load the illustrative recovery sample explicitly to test the additional workflow. It is synthetic and not a customer outcome. The recovery engine keeps source-row references, distinguishes invoice excess candidates from payment excess candidates, supports case review status and notes, and exports worklist CSV, case JSON, and an investigation package. Case notes live only in the browser session until exported.
+Load the illustrative recovery sample explicitly to test the additional workflow. It is synthetic and not a customer outcome. The recovery engine keeps source-row references, distinguishes invoice excess candidates from payment excess candidates, supports case review status and notes, and exports worklist CSV, case JSON, and an investigation package. Payment excess is explicitly a candidate, not a confirmed recovery. Conflicting known currencies block amount-based calculations, and named supplier conflicts on receipt rows cannot support the invoice's received quantity. Case notes live only in the browser session until exported.
 
 ### Calculation and review boundary
 
@@ -79,4 +79,4 @@ node tests/recovery-core.test.js
 node tests/check-inline-scripts.js
 ```
 
-The GitHub Actions workflow checks the recovery calculations, inline JavaScript syntax and presence of the original engineered UI workflows.
+The regression suite covers quoted CSV parsing, price and payment-excess candidates, credits, supplier conflicts, source-row traceability, currency-conflict guards and multi-line payment allocation. The GitHub Actions workflow also checks inline JavaScript syntax and the presence of the reconciliation, evidence inspector, report, review and recovery workflows. Passing these checks is necessary but not a substitute for validation against a buyer's human-reviewed reference set.
