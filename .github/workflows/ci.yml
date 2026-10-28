@@ -1,0 +1,27 @@
+name: LedgerTrace checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check recovery engine syntax
+        run: node --check recovery-core.js
+      - name: Run reconciliation regression tests
+        run: node tests/recovery-core.test.js
+      - name: Check inline scripts and evidence guards
+        run: node tests/check-inline-scripts.js
