@@ -66,9 +66,10 @@
       if(invoiceLines.length>1)findings.push({code:'invoice_multi_line',label:'Invoice has multiple lines',detail:'This invoice reference appears on '+invoiceLines.length+' lines. This is not, by itself, a duplicate.'});
       const paymentRows=payments.filter(p=>Boolean(p.invoice)&&key(p.invoice)===key(inv.invoice)&&(!p.supplier||!inv.supplier||key(p.supplier)===key(inv.supplier)));
       const creditRows=credits.filter(c=>Boolean(c.invoice)&&key(c.invoice)===key(inv.invoice)&&(!c.supplier||!inv.supplier||key(c.supplier)===key(inv.supplier)));
-      const knownCurrencies=[inv.currency,...poRows.map(p=>p.currency),...paymentRows.map(p=>p.currency),...creditRows.map(c=>c.currency)].map(v=>String(v||'').trim()).filter(Boolean);
-      const currencyConflict=new Set(knownCurrencies.map(v=>key(v))).size>1;
-      if(currencyConflict)findings.push({code:'currency_mismatch',label:'Currency mismatch blocks amount calculation',detail:'Invoice, matched PO, payment or credit records contain different currencies. Amount-based findings are withheld until the records are normalized to one currency.'});
+      const monetaryRows=[inv,...poRows,...paymentRows,...creditRows];
+      const knownCurrencies=monetaryRows.map(r=>String(r.currency||'').trim()).filter(Boolean);
+      const currencyConflict=new Set(knownCurrencies.map(v=>key(v))).size>1||monetaryRows.some(r=>!String(r.currency||'').trim());
+      if(currencyConflict)findings.push({code:'currency_mismatch',label:'Currency evidence missing or inconsistent',detail:'Invoice, matched PO, payment and credit records must supply one consistent currency. Amount-based findings are withheld when currency is missing or inconsistent.'});
       const billedForShare=r=>Number.isFinite(r.amount)?r.amount:(Number.isFinite(r.qty)&&Number.isFinite(r.price)?r.qty*r.price:0);
       const invoiceTotal=(invoiceMap.get(key(inv.supplier,inv.invoice))||[]).reduce((s,r)=>s+billedForShare(r),0);
       const share=invoiceTotal>0?billedForShare(inv)/invoiceTotal:0;
