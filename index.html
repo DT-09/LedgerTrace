@@ -1,90 +1,1000 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0d0d0c">
-<meta name="description" content="Supplier-payment recovery investigations for industrial distributors. Trace invoice excess to purchase orders, receipts, payments, credits and amendments.">
-<title>LedgerTrace Recovery — Supplier payment investigations</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111918">
+<meta name="description" content="Investigate accounts-payable mismatches across invoice, purchase-order and goods-receipt CSVs. Trace rule-triggered exceptions to source rows and review evidence before acting.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LedgerTrace — Trace the discrepancy to its source">
+<meta property="og:description" content="A browser-side AP reconciliation workbench for invoice, purchase-order and goods-receipt exceptions. Inspect the sample before discussing a scoped evaluation.">
+<meta property="og:url" content="https://ledgertrace.pages.dev/">
+<title>LedgerTrace — Find the discrepancy. Follow the evidence.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#0d0d0c;--panel:#151513;--panel2:#1c1c19;--line:#343430;--muted:#aaa99f;--text:#e9e7df;--brass:#d8c39a;--blue:#9ab7c2;--green:#a8bca5;--amber:#d8a66c;--red:#d68f86;font:14px/1.55 Inter,ui-sans-serif,system-ui,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text)}a{color:var(--blue)}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--brass);outline-offset:3px}.wrap{width:min(1200px,calc(100% - 36px));margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}.brand{font:600 13px ui-monospace,monospace;letter-spacing:.17em}.brand span{color:var(--brass)}.nav{display:flex;gap:22px;flex-wrap:wrap}.nav a{font:10px ui-monospace,monospace;letter-spacing:.08em;color:var(--muted);text-decoration:none}.nav a:hover{color:var(--text)}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:72px 0 55px}.eyebrow{font:10px ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}h1,h2,h3{font-weight:500;letter-spacing:-.05em;line-height:1.06;margin:0}h1{font-size:clamp(44px,6.2vw,78px);margin:20px 0}h1 em{font-style:normal;color:var(--brass)}.lead{font-size:15px;color:#c5c3b9;line-height:1.85;max-width:600px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}.btn{border:1px solid var(--brass);border-radius:5px;background:var(--brass);color:#161612;padding:11px 15px;font-size:11px;font-weight:650}.btn:hover{filter:brightness(1.08)}.btn.secondary{background:transparent;color:var(--text);border-color:#56564e}.btn.danger{border-color:#68413d;background:transparent;color:#e5aaa3}.micro{font:10px ui-monospace,monospace;color:var(--muted);line-height:1.7}.diagram{border:1px solid var(--line);background:linear-gradient(145deg,#171714,#10100f);padding:24px;border-radius:8px;position:relative}.diagram:before{content:"CASE  /  LT-RECOVERY";font:9px ui-monospace,monospace;letter-spacing:.12em;color:var(--muted)}.flow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:22px}.node{border:1px solid #41413a;padding:15px;background:#151512;min-height:82px}.node small{display:block;font:9px ui-monospace,monospace;color:var(--muted);text-transform:uppercase}.node b{display:block;font-size:13px;margin-top:8px;font-weight:550}.node.alert{border-color:#8c6a3e}.node.final{grid-column:1/-1;border-color:#6a6a56}.section{padding:48px 0 70px;border-top:1px solid var(--line);scroll-margin-top:16px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:24px}.section h2{font-size:clamp(28px,4vw,43px)}.section-head p{max-width:570px;color:var(--muted);font-size:12px;line-height:1.8;margin:10px 0 0}.upload-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.upload{padding:17px;border:1px solid var(--line);background:var(--panel);border-radius:6px;min-width:0}.upload label{display:block;font-size:13px;font-weight:600;margin-bottom:5px}.upload p{font-size:11px;color:var(--muted);min-height:34px;margin:0 0 13px}.upload input{width:100%;font-size:10px;color:var(--muted)}.upload input::file-selector-button{background:#282822;color:var(--text);border:1px solid #4b4b42;border-radius:4px;padding:8px;margin-right:8px}.file-state{font:9px ui-monospace,monospace;color:var(--green);margin-top:10px;overflow-wrap:anywhere}.runbar{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;padding:16px;margin-top:13px;border:1px solid var(--line);background:#121210}.runbar .actions{margin:0}.alertbox{border:1px solid #68413d;background:#231715;color:#f0b7af;padding:13px;margin-top:14px;font-size:12px}.hidden{display:none!important}.results{margin-top:30px}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:16px 0}.metric{padding:15px;border:1px solid var(--line);background:var(--panel)}.metric span{display:block;color:var(--muted);font:9px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}.metric strong{display:block;font-size:25px;font-weight:500;margin-top:9px;letter-spacing:-.04em}.metric small{display:block;color:var(--muted);font-size:10px;margin-top:5px}.toolbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 10px}.toolbar input{min-width:220px;background:#151513;color:var(--text);border:1px solid var(--line);padding:10px;border-radius:4px}.tabs{display:flex;gap:6px;flex-wrap:wrap}.tab{background:transparent;color:var(--muted);border:1px solid var(--line);padding:8px 10px;font-size:10px;border-radius:4px}.tab.active{border-color:var(--brass);color:var(--text)}.table-wrap{overflow:auto;border:1px solid var(--line)}table{border-collapse:collapse;width:100%;min-width:900px;font-size:11px}th{font:9px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:left;background:#1c1c19}td,th{padding:13px;border-bottom:1px solid #2b2b27;vertical-align:top}tbody tr{cursor:pointer}tbody tr:hover,tbody tr:focus{background:#20201b;outline:none}.pill{display:inline-block;font:9px ui-monospace,monospace;border:1px solid #59594f;padding:4px 6px;border-radius:3px;white-space:nowrap}.pill.red{color:var(--amber);border-color:#795d38}.pill.green{color:var(--green);border-color:#435844}.pill.grey{color:var(--muted)}.cell-sub{font:9px ui-monospace,monospace;color:var(--muted);margin-top:4px}.empty{padding:28px;color:var(--muted);text-align:center}.case-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}.panel{border:1px solid var(--line);background:var(--panel);padding:20px;min-width:0}.panel h3{font-size:20px;margin-bottom:15px}.kv{display:grid;grid-template-columns:1fr 1fr;gap:8px}.kv div{border:1px solid #343430;padding:11px;min-width:0}.kv span{display:block;color:var(--muted);font:9px ui-monospace,monospace;text-transform:uppercase}.kv b{display:block;font:13px ui-monospace,monospace;margin-top:7px;overflow-wrap:anywhere}.findings{padding-left:18px;margin:0}.findings li{margin:9px 0;color:#c9c7bd;font-size:11px;line-height:1.7}.form-label{display:block;color:var(--muted);font:9px ui-monospace,monospace;text-transform:uppercase;margin:14px 0 6px}.control{width:100%;background:#10100f;border:1px solid #4a4a43;color:var(--text);padding:10px;border-radius:4px}.control textarea,textarea.control{min-height:86px;resize:vertical}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.method-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.method{border-top:1px solid var(--brass);padding:15px 12px 0}.method b{display:block;font-size:12px;margin:9px 0}.method p{font-size:10px;color:var(--muted);line-height:1.8}.footnote{font-size:10px;color:var(--muted);line-height:1.8;margin-top:17px}.footer{padding:22px 0 35px;border-top:1px solid var(--line);color:var(--muted);font:9px ui-monospace,monospace;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.toast{position:fixed;bottom:18px;right:18px;background:#e8e5da;color:#151512;padding:12px 16px;border-radius:4px;font-size:11px;box-shadow:0 10px 35px #0008;z-index:10}.outcome-note{font-size:10px;color:var(--muted);line-height:1.7;margin-top:9px}
-@media(max-width:850px){.hero{grid-template-columns:1fr;gap:28px;padding-top:50px}.upload-grid{grid-template-columns:repeat(2,1fr)}.method-grid{grid-template-columns:repeat(2,1fr)}.case-layout{grid-template-columns:1fr}.nav{gap:12px}.metric-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.wrap{width:calc(100% - 24px)}.top{align-items:flex-start;flex-direction:column}.nav{gap:14px}.hero{padding:40px 0}.upload-grid{grid-template-columns:1fr}.upload p{min-height:0}.section{padding:35px 0 50px}.section-head{align-items:flex-start;flex-direction:column}.flow{gap:6px}.node{padding:11px;min-height:75px}.node b{font-size:11px}.metric strong{font-size:22px}.method-grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}.kv{grid-template-columns:1fr 1fr}.panel{padding:14px}}
+:root{color-scheme:dark;--bg:#111918;--panel:#1B2724;--panel2:#24332E;--line:#35443D;--line2:#59685D;--text:#EDE9DE;--muted:#A5B0A5;--blue:#C5A675;--amber:#D0A66E;--green:#A5B58A;--red:#d98272;--mono:"IBM Plex Mono",monospace;--display:"Space Grotesk",sans-serif;--body:"Inter",sans-serif;--max:1320px;font:15px/1.6 var(--body);scroll-behavior:smooth}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background-image:linear-gradient(rgba(145,161,177,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(145,161,177,.045) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,black,transparent 85%)}body:after{content:"";position:fixed;inset:-20%;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(165,181,138,.10),transparent 34%);opacity:.75}
+a{color:inherit}button,input,textarea,select{font:inherit}button,a{touch-action:manipulation}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:4px}::selection{background:rgba(165,181,138,.35);color:#f0ede4}
+.container{width:min(var(--max),calc(100% - 64px));margin-inline:auto}.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.status,.metric-label{font-family:var(--mono);letter-spacing:.04em}.eyebrow,.section-index{font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.13em}.muted{color:var(--muted)}.small{font-size:12px}.trace-rule{height:1px;background:linear-gradient(90deg,var(--blue),rgba(165,181,138,.1) 70%,transparent);position:relative}.trace-rule:before{content:"";position:absolute;left:0;top:-2px;width:5px;height:5px;background:var(--blue);border-radius:50%;box-shadow:0 0 14px rgba(165,181,138,.75)}
+.header{position:fixed;z-index:50;top:18px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 36px));height:68px;padding:0 22px;display:flex;align-items:center;gap:26px;border:1px solid rgba(145,161,177,.22);border-radius:18px;background:rgba(23,34,31,.72);backdrop-filter:blur(18px) saturate(135%);-webkit-backdrop-filter:blur(18px) saturate(135%);box-shadow:0 12px 50px rgba(0,0,0,.18);transition:height .25s ease,background .25s ease,border-color .25s ease}.header.scrolled{height:56px;background:rgba(23,34,31,.82);border-color:rgba(143,169,160,.28)}
+.brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}.brand-mark{width:31px;height:31px;display:grid;place-items:center;border:0;border-radius:10px;color:var(--text);font:600 13px var(--display);position:relative;overflow:hidden}.brand-mark svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.brand-mark .mark-trace{stroke:var(--blue);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:44;stroke-dashoffset:0;transition:stroke-dashoffset .55s ease}.brand-mark .mark-letter{stroke:currentColor;stroke-opacity:.8;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.brand:hover .mark-trace,.footer-brand:hover .mark-trace{stroke-dashoffset:0}.footer-brand .mark-trace{stroke-dashoffset:0}.footer-brand:hover .mark-trace{stroke-dashoffset:0}.brand-name{font:700 12px var(--display);letter-spacing:.17em}.nav{display:flex;align-items:center;gap:25px;margin-left:auto}.nav a{font-size:10px;color:#A5B0A5;text-decoration:none;transition:color .2s}.nav a:hover{color:var(--text)}.header-cta,.button{display:inline-flex;align-items:center;justify-content:center;gap:12px;border:1px solid var(--blue);background:var(--blue);color:#04111a;padding:12px 16px;border-radius:8px;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:.02em;transition:transform .2s,background .2s,border-color .2s}.header-cta{padding:10px 13px;white-space:nowrap}.button:hover,.header-cta:hover{transform:translateY(-2px);background:#D4B989}.button.secondary{background:transparent;border-color:var(--line2);color:var(--text)}.button.secondary:hover{border-color:var(--blue);background:rgba(165,181,138,.08)}.button.ghost{background:transparent;border-color:transparent;color:var(--muted)}.button.ghost:hover{color:var(--text);background:rgba(145,161,177,.08)}.menu-toggle{display:none;background:transparent;border:1px solid var(--line);border-radius:8px;color:var(--text);padding:8px}
+.hero{min-height:680px;padding:126px 0 72px;position:relative;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:44px;align-items:center}.hero-copy{position:relative;z-index:2}.hero .eyebrow{display:flex;align-items:center;gap:10px}.hero .eyebrow:before{content:"";width:24px;height:1px;background:var(--blue)}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:var(--display)}h1{font-size:clamp(50px,6.3vw,88px);line-height:.98;letter-spacing:-.075em;font-weight:600;margin:25px 0 24px;max-width:680px}h1 em{font-style:normal;color:var(--blue)}.hero-desc{max-width:540px;font-size:16px;color:#C8CEC5;line-height:1.8}.hero-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:29px}.privacy-note{display:flex;align-items:center;gap:8px;margin-top:23px;color:var(--muted);font:10px var(--mono);letter-spacing:.05em}.privacy-note:before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 10px rgba(99,214,160,.5)}
+.scene{min-height:480px;position:relative;perspective:1000px;isolation:isolate}.scene-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(145,161,177,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(145,161,177,.09) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse,black 15%,transparent 72%);transform:translate3d(var(--gx,0),var(--gy,0),-30px)}.scene-glow{position:absolute;width:70%;height:65%;left:16%;top:14%;background:radial-gradient(ellipse,rgba(165,181,138,.15),transparent 68%);filter:blur(22px);transform:translate3d(var(--lx,0),var(--ly,0),-60px)}.scene-svg{position:absolute;inset:4% 0;width:100%;height:92%;overflow:visible}.scene-path{fill:none;stroke:rgba(165,181,138,.6);stroke-width:1.2;stroke-dasharray:5 6;animation:traceDash 12s linear infinite}.scene-path.broken{stroke:var(--amber);stroke-dasharray:3 8}.scene-node{fill:var(--bg);stroke:var(--blue);stroke-width:1.4}.scene-node.warn{stroke:var(--amber)}.document{position:absolute;width:205px;min-height:142px;padding:15px 15px 13px;background:linear-gradient(145deg,rgba(21,31,42,.97),rgba(12,18,25,.94));border:1px solid rgba(145,161,177,.35);border-radius:11px;box-shadow:0 22px 65px rgba(0,0,0,.25);transition:transform .35s,border-color .25s,box-shadow .25s;transform:translate3d(var(--px,0),var(--py,0),0) rotate(var(--rot,0deg));backdrop-filter:blur(12px)}.document:hover{border-color:var(--blue);box-shadow:0 0 0 1px rgba(165,181,138,.1),0 22px 70px rgba(0,0,0,.4)}.doc-invoice{left:3%;top:9%;--rot:-4deg}.doc-po{right:1%;top:26%;--rot:3deg}.doc-receipt{left:19%;bottom:5%;--rot:2deg}.doc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;font:9px var(--mono);color:var(--muted);letter-spacing:.07em}.doc-symbol{width:23px;height:27px;border:1px solid var(--line2);border-radius:4px;display:grid;place-items:center;color:var(--blue);font:11px var(--mono)}.doc-title{font:600 15px var(--display);margin:13px 0 3px}.doc-sub{font:10px var(--mono);color:var(--muted)}.doc-line{height:1px;background:var(--line);margin:12px 0 9px}.doc-data{display:flex;justify-content:space-between;font:10px var(--mono);gap:8px}.doc-data b{font-weight:500;color:var(--text)}.doc-status{display:inline-flex;align-items:center;gap:6px;color:var(--green);font:9px var(--mono);margin-top:10px}.doc-status.warn{color:var(--amber)}.doc-status:before{content:"";width:5px;height:5px;background:currentColor;border-radius:50%}.scene-label{position:absolute;font:9px var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}.label-a{left:1%;bottom:1%}.label-b{right:2%;top:7%}.scene-coord{position:absolute;right:3%;bottom:0;font:9px var(--mono);color:#566777}.scene-caption{position:absolute;right:1%;bottom:-22px;color:var(--muted);font:9px var(--mono);letter-spacing:.04em}
+.section{position:relative;padding:108px 0;scroll-margin-top:105px}.section-top{display:grid;grid-template-columns:.7fr 1.3fr;gap:30px;align-items:start;margin-bottom:42px}.section-index{padding-top:8px}.section-title{font-size:clamp(36px,4.7vw,61px);line-height:1.03;letter-spacing:-.065em;font-weight:500;margin:0;max-width:800px}.section-lead{color:var(--muted);max-width:640px;margin:17px 0 0;font-size:14px;line-height:1.8}.signal-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.signal{padding:22px 26px 22px 0;position:relative}.signal+.signal{padding-left:26px;border-left:1px solid var(--line)}.signal strong{display:block;font:500 13px var(--display);margin-bottom:6px}.signal span{display:block;color:var(--muted);font-size:12px;line-height:1.7}
+.workbench{background:linear-gradient(180deg,rgba(17,25,35,.35),transparent 86%);border-top:1px solid var(--line)}.workbench-shell{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:rgba(11,16,23,.85);box-shadow:0 28px 90px rgba(0,0,0,.2)}.workbench-bar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 20px;border-bottom:1px solid var(--line);background:rgba(17,25,35,.65)}.workbench-title{display:flex;align-items:center;gap:12px}.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(99,214,160,.45)}.workbench-title strong{font:600 12px var(--display)}.workbench-title span{display:block;color:var(--muted);font:9px var(--mono);margin-top:3px}.bar-actions{display:flex;gap:8px;flex-wrap:wrap}.button.sm{padding:9px 11px;font-size:10px}.workbench-body{padding:22px}.input-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.source-card{padding:17px;border:1px solid var(--line);border-radius:10px;background:rgba(17,25,35,.7);min-width:0}.source-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.source-icon{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(165,181,138,.28);border-radius:9px;color:var(--blue)}.source-head strong{font:600 13px var(--display);display:block}.source-head small{font:9px var(--mono);color:var(--muted)}.source-card p{font-size:11px;color:var(--muted);line-height:1.65;min-height:38px;margin-bottom:14px}.file-input{display:block;width:100%;font-size:10px;color:var(--muted)}.file-input::file-selector-button{padding:8px 9px;background:#24332E;border:1px solid var(--line2);border-radius:6px;color:var(--text);font:10px var(--body);margin-right:8px;cursor:pointer}.file-meta{margin-top:9px;color:var(--green);font:9px var(--mono);overflow-wrap:anywhere}.work-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:16px}.error{margin-top:14px;padding:12px 14px;background:rgba(255,143,136,.08);border:1px solid rgba(255,143,136,.4);border-radius:8px;color:#ffc0bb;font-size:12px}.hidden{display:none!important}
+.results{margin-top:28px}.results-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:17px}.results-head h3{font-size:25px;letter-spacing:-.04em;margin:8px 0 0}.results-head p{font-size:11px;color:var(--muted);margin:5px 0 0}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{padding:17px;border:1px solid var(--line);border-radius:10px;background:rgba(17,25,35,.75)}.metric-label{font-size:9px;color:var(--muted);text-transform:uppercase}.metric-value{font:500 29px/1.2 var(--display);margin-top:10px;letter-spacing:-.04em;font-variant-numeric:tabular-nums}.metric-value.amber{color:var(--amber)}.metric-note{font-size:10px;color:var(--muted);margin-top:5px}.results-toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:23px 0 12px}.filters{display:flex;gap:6px;flex-wrap:wrap}.filter-btn{border:1px solid var(--line);border-radius:7px;background:transparent;color:var(--muted);font-size:10px;padding:8px 11px}.filter-btn.active{border-color:var(--blue);color:var(--text);background:rgba(165,181,138,.1)}.search{width:min(300px,100%);padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#111918;color:var(--text);font-size:11px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{border-collapse:collapse;width:100%;min-width:850px;font-size:11px}th{background:#1B2724;color:var(--muted);font:9px var(--mono);text-align:left;text-transform:uppercase;letter-spacing:.07em}th,td{padding:13px 14px;border-bottom:1px solid rgba(39,52,66,.8);vertical-align:top}tbody tr{cursor:pointer;transition:background .18s}tbody tr:hover,tbody tr:focus{background:rgba(165,181,138,.07);outline:none}tbody tr:last-child td{border-bottom:0}.cell-main{font-weight:600;color:var(--text)}.cell-sub{color:var(--muted);font:9px var(--mono);margin-top:4px}.pill{display:inline-flex;align-items:center;gap:6px;border-radius:5px;padding:4px 7px;font:9px var(--mono);white-space:nowrap}.pill:before{content:"";width:5px;height:5px;background:currentColor;border-radius:50%}.pill.exception{color:var(--amber);background:rgba(255,180,94,.09)}.pill.matched{color:var(--green);background:rgba(99,214,160,.09)}.pill.review{color:var(--red);background:rgba(255,143,136,.09)}.findings-cell{max-width:360px;color:#C8CEC5;line-height:1.65}.empty{padding:30px;text-align:center;color:var(--muted);font-size:12px}.table-note{font-size:10px;color:var(--muted);margin-top:12px;line-height:1.7}
+.report{margin-top:28px;padding:25px;border:1px solid var(--line);border-radius:13px;background:linear-gradient(145deg,rgba(17,25,35,.9),rgba(10,14,19,.85))}.report-head{display:flex;align-items:start;justify-content:space-between;gap:18px}.report-head h3{font-size:25px;letter-spacing:-.05em;margin:7px 0}.report-head p{font-size:11px;color:var(--muted);margin:0}.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:25px}.report-block{border-top:1px solid var(--line);padding-top:15px}.report-block h4{font:500 12px var(--display);margin:0 0 10px}.report-block p,.report-block li{font-size:11px;color:var(--muted);line-height:1.8}.report-block ul{padding-left:17px;margin:0}.report-block li+li{margin-top:4px}.report-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:21px;padding-top:17px;border-top:1px solid var(--line)}
+.drawer-backdrop{position:fixed;inset:0;z-index:80;background:rgba(2,5,8,.66);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}.drawer-backdrop.open{opacity:1;visibility:visible}.drawer{position:fixed;z-index:81;top:0;right:0;width:min(520px,100%);height:100dvh;overflow-y:auto;background:#111918;border-left:1px solid var(--line2);padding:27px;transform:translateX(102%);transition:transform .3s cubic-bezier(.2,.7,.2,1);box-shadow:-25px 0 90px rgba(0,0,0,.35)}.drawer.open{transform:translateX(0)}.drawer-top{display:flex;justify-content:space-between;align-items:start;gap:15px;padding-bottom:20px;border-bottom:1px solid var(--line)}.drawer-top h2{font-size:27px;letter-spacing:-.05em;margin:7px 0}.icon-button{width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line2);border-radius:9px;background:transparent;color:var(--text);font-size:18px}.drawer-status{margin-top:20px}.drawer-section{padding:21px 0;border-bottom:1px solid var(--line)}.drawer-section h3{font-size:14px;margin:0 0 13px}.evidence-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}.evidence-value{padding:12px;border:1px solid var(--line);border-radius:8px;background:rgba(17,25,35,.75);min-width:0}.evidence-value span{display:block;color:var(--muted);font:9px var(--mono);text-transform:uppercase}.evidence-value strong{display:block;font:500 13px var(--mono);margin-top:8px;overflow-wrap:anywhere}.finding-list{padding-left:18px;margin:0}.finding-list li{font-size:12px;color:#C8CEC5;line-height:1.8;margin:7px 0}.drawer-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.review-note{width:100%;min-height:90px;background:#17221F;border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:12px;font-size:12px;resize:vertical}.review-state{display:flex;align-items:center;gap:9px;margin:12px 0;color:var(--muted);font-size:11px}.review-state select{background:#17221F;color:var(--text);border:1px solid var(--line2);border-radius:7px;padding:8px}
+.methodology{border-top:1px solid var(--line)}.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.method-card{border:1px solid var(--line);border-radius:12px;padding:22px;background:rgba(17,25,35,.5)}.method-card .number{font:11px var(--mono);color:var(--blue)}.method-card h3{font-size:18px;letter-spacing:-.03em;margin:17px 0 9px}.method-card p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}.boundary{margin-top:15px;padding:18px 20px;border:1px solid rgba(255,180,94,.3);border-radius:10px;background:rgba(255,180,94,.045);display:flex;gap:14px;align-items:start}.boundary strong{display:block;font:500 12px var(--display);margin-bottom:4px}.boundary p{font-size:11px;color:var(--muted);margin:0;line-height:1.8}
+.evaluation{border-top:1px solid var(--line);background:radial-gradient(ellipse at 70% 45%,rgba(165,181,138,.07),transparent 42%)}.eval-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:48px;align-items:start}.eval-copy h2{font-size:clamp(38px,4.8vw,60px);line-height:1.02;letter-spacing:-.07em;margin:17px 0}.eval-copy p{color:var(--muted);font-size:13px;line-height:1.9}.eval-points{display:grid;gap:10px;margin-top:24px}.eval-point{display:flex;gap:10px;color:#C8CEC5;font-size:11px;align-items:start}.eval-point:before{content:"✓";color:var(--green);font-family:var(--mono)}.builder{border:1px solid var(--line2);border-radius:14px;background:rgba(12,18,25,.88);overflow:hidden}.builder-head{padding:19px 21px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:15px}.builder-head strong{font:600 13px var(--display)}.builder-head span{font:9px var(--mono);color:var(--muted)}.builder-body{padding:21px}.builder-step+.builder-step{margin-top:23px;padding-top:22px;border-top:1px solid var(--line)}.step-label{font:10px var(--mono);text-transform:uppercase;color:var(--blue);letter-spacing:.09em;margin-bottom:13px}.option-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.option{position:relative;display:flex;align-items:center;gap:8px;padding:11px 10px;border:1px solid var(--line);border-radius:8px;color:#C8CEC5;font-size:11px;cursor:pointer;transition:border-color .2s,background .2s}.option:has(input:checked){border-color:var(--blue);background:rgba(165,181,138,.08);color:var(--text)}.option input{accent-color:var(--blue);margin:0}.option.disabled-option{opacity:.45;cursor:not-allowed}.option.disabled-option input{cursor:not-allowed}.builder-summary{margin-top:22px;border:1px solid var(--line);border-radius:10px;background:#101821;padding:16px}.summary-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.summary-heading strong{font:500 12px var(--display)}.summary-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}.summary-item span{display:block;font:9px var(--mono);color:var(--muted);text-transform:uppercase}.summary-item strong{display:block;font-size:11px;font-weight:500;margin-top:5px}.builder-disclaimer{font-size:10px;color:var(--muted);line-height:1.7;margin:13px 0 0}.builder-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.contact-panel-backdrop{position:fixed;inset:0;z-index:90;background:rgba(2,5,8,.72);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}.contact-panel-backdrop.open{opacity:1;visibility:visible}.contact-panel{position:fixed;z-index:91;right:0;top:0;width:min(500px,100%);height:100dvh;overflow-y:auto;padding:30px;background:#111918;border-left:1px solid var(--line2);transform:translateX(102%);transition:transform .3s cubic-bezier(.2,.7,.2,1)}.contact-panel.open{transform:translateX(0)}.contact-panel h2{font-size:36px;line-height:1.05;letter-spacing:-.06em;margin:15px 0}.contact-panel p{color:var(--muted);font-size:12px;line-height:1.8}.form-label{display:block;font:10px var(--mono);color:#c2cdd7;text-transform:uppercase;letter-spacing:.07em;margin:17px 0 7px}.form-control{width:100%;padding:12px;border:1px solid var(--line2);border-radius:8px;background:#17221F;color:var(--text);font-size:12px}.form-control::placeholder{color:#687b8c}.contact-panel textarea{min-height:120px;resize:vertical}.contact-note{font-size:10px!important}.contact-generated{margin-top:17px;padding:14px;border:1px solid var(--line);border-radius:9px;background:#17221F}.contact-generated strong{display:block;font:500 11px var(--display);margin-bottom:6px}.contact-generated p{font-size:11px;margin:0}.contact-channel{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.footer{padding:95px 0 28px;overflow:hidden;position:relative}.footer-top{display:flex;align-items:end;justify-content:space-between;gap:25px;padding-bottom:35px}.footer-top h2{font-size:clamp(28px,4vw,48px);line-height:1.05;letter-spacing:-.06em;max-width:650px;margin:12px 0 0}.footer-links{display:flex;gap:18px;flex-wrap:wrap}.footer-links a{font:10px var(--mono);text-decoration:none;color:var(--muted)}.footer-links a:hover{color:var(--blue)}.wordmark-wrap{position:relative;margin:10px 0 26px;isolation:isolate}.wordmark{font:700 clamp(52px,13.9vw,190px)/.82 var(--display);letter-spacing:-.105em;white-space:nowrap;color:#eaf1f7;position:relative;z-index:1;user-select:none}.wordmark-trace{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;opacity:.75}.wordmark-trace path{stroke:var(--blue);stroke-width:1.1;fill:none;stroke-dasharray:6 10;stroke-dashoffset:0;mask-image:linear-gradient(90deg,transparent,black 18%,black 82%,transparent)}.footer-bottom{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:17px;color:var(--muted);font:9px var(--mono);text-transform:uppercase;letter-spacing:.04em}.footer-bottom strong{color:#cbd5df;font-weight:500}
+.footer{padding:76px 0 24px;overflow:hidden;position:relative;border-top:1px solid var(--line)}
+.footer-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;padding-bottom:35px;border-bottom:1px solid var(--line)}
+.footer-heading h2{font-size:clamp(30px,4vw,49px);line-height:1.02;letter-spacing:-.055em;font-weight:500;max-width:650px;margin:13px 0 0}
+.footer-intro{font-size:12px;line-height:1.8;color:var(--muted);max-width:570px;margin:14px 0 0}
+.footer-scope{white-space:nowrap;flex-shrink:0}
+.footer-directory{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:42px;padding:32px 0 38px}
+.footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
+.footer-column h3{font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text);margin:0 0 5px}
+.footer-column a{font-size:12px;color:var(--muted);text-decoration:none;transition:color .18s}
+.footer-column a:hover{color:var(--text)}
+.footer-column p{font-size:11px;line-height:1.75;color:var(--muted);max-width:290px;margin:0}
+.footer-brand-row{display:flex;align-items:center;justify-content:space-between;gap:22px;border-top:1px solid var(--line);padding-top:22px}
+.footer-brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--text);flex-shrink:0}
+.footer-brand .brand-mark{width:32px;height:32px}
+.footer-brand-name{font:500 21px var(--display);letter-spacing:-.045em}
+.footer-legal{text-align:right}
+.footer-legal p{font:9px var(--mono);line-height:1.7;letter-spacing:.025em;color:var(--muted);margin:0}
+.footer-legal p+p{margin-top:3px}
+@media(max-width:760px){.footer{padding-top:56px}.footer-heading{align-items:flex-start;flex-direction:column}.footer-scope{white-space:normal}.footer-directory{grid-template-columns:1fr 1fr;gap:30px 22px}.footer-column:last-child{grid-column:1/-1}.footer-brand-row{align-items:flex-start;flex-direction:column}.footer-legal{text-align:left}}
+@media(max-width:430px){.footer-directory{grid-template-columns:1fr;gap:25px}.footer-column:last-child{grid-column:auto}.footer-heading h2{font-size:34px}.footer-brand-name{font-size:19px}}
+@keyframes traceDash{to{stroke-dashoffset:-132}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media(max-width:1000px){.container{width:calc(100% - 44px)}.header{gap:16px;padding:0 17px}.nav{gap:15px}.nav a{font-size:9px}.hero{grid-template-columns:1fr;gap:22px;padding-top:150px}.hero-copy{max-width:760px}.scene{max-width:760px;width:100%;margin:0 auto;min-height:450px}.section-top{grid-template-columns:1fr;gap:13px}.eval-grid{grid-template-columns:1fr;gap:30px}.eval-copy{max-width:750px}.footer-top{align-items:start;flex-direction:column}.footer-links{margin-top:5px}}
+@media(max-width:650px){.container{width:calc(100% - 30px)}.header{top:10px;width:calc(100% - 20px);height:58px;padding:0 12px;border-radius:14px;gap:10px}.header.scrolled{height:52px}.brand-name{font-size:10px}.brand-mark{width:28px;height:28px}.nav{display:none;position:absolute;top:calc(100% + 9px);left:0;right:0;margin:0;padding:15px;border:1px solid var(--line2);border-radius:12px;background:rgba(10,14,19,.97);backdrop-filter:blur(20px);flex-direction:column;align-items:stretch;gap:0}.nav.open{display:flex}.nav a{padding:12px 8px;font-size:11px}.header-cta{margin-left:auto;padding:9px 10px;font-size:10px}.menu-toggle{display:inline-grid;place-items:center;width:36px;height:36px}.hero{padding:130px 0 58px;min-height:auto}.hero h1{font-size:clamp(48px,13.2vw,75px);margin:21px 0}.hero-desc{font-size:14px}.hero-actions .button{flex:1}.scene{min-height:410px;transform:scale(.96);transform-origin:center}.document{width:174px;min-height:132px;padding:12px}.doc-invoice{left:0;top:9%}.doc-po{right:0;top:31%}.doc-receipt{left:13%;bottom:3%}.doc-title{font-size:13px}.doc-data{font-size:9px}.scene-caption{right:0;font-size:8px}.signal-strip{grid-template-columns:1fr}.signal,.signal+.signal{padding:17px 0;border-left:0;border-bottom:1px solid var(--line)}.signal:last-child{border-bottom:0}.section{padding:72px 0;scroll-margin-top:82px}.section-title{font-size:clamp(34px,10vw,49px)}.section-top{margin-bottom:28px}.workbench-bar{align-items:start;flex-direction:column;padding:14px}.bar-actions{width:100%}.bar-actions .button{flex:1}.workbench-body{padding:12px}.input-grid{grid-template-columns:1fr}.source-card p{min-height:0}.metrics{grid-template-columns:repeat(2,1fr);gap:7px}.metric{padding:13px}.metric-value{font-size:25px}.results-head{align-items:start;flex-direction:column}.results-head .button{width:100%}.results-toolbar{align-items:stretch}.search{width:100%}.report{padding:16px}.report-head{flex-direction:column}.report-grid{grid-template-columns:1fr;gap:17px}.drawer,.contact-panel{padding:20px}.evidence-pair{grid-template-columns:1fr 1fr}.method-grid{grid-template-columns:1fr}.boundary{padding:14px}.option-grid{grid-template-columns:1fr 1fr}.option{padding:10px 8px;font-size:10px}.builder-body{padding:14px}.builder-head{padding:15px}.summary-list{grid-template-columns:1fr 1fr}.footer{padding-top:65px}.footer-top h2{font-size:32px}.wordmark{font-size:14vw}.footer-bottom{flex-direction:column;gap:8px}.footer-links{gap:13px}.contact-panel h2{font-size:32px}}
+@media(max-width:380px){.brand-name{letter-spacing:.1em}.header-cta{font-size:9px;padding:8px}.scene{min-height:365px}.document{width:155px}.doc-title{font-size:12px}.doc-data{font-size:8px}.option-grid{grid-template-columns:1fr}.wordmark{font-size:13.2vw}}
+
+:root{--bg:#0d0d0c;--panel:#151513;--panel2:#1b1b18;--line:#343430;--line2:#4a4a43;--text:#e9e7df;--muted:#aaa99f;--blue:#9ab7c2;--amber:#d8a66c;--green:#a8bca5;--red:#d68f86;--max:1260px}
+body{background:var(--bg)}
+body:before{background-image:linear-gradient(rgba(205,201,187,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(205,201,187,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,black,transparent 76%)}
+body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(154,183,194,.045),transparent 34%)}
+.header{height:62px;top:16px;border-radius:999px;background:rgba(16,16,15,.7);border-color:rgba(205,201,187,.2);padding:0 21px}
+.header.scrolled{height:52px;background:rgba(16,16,15,.94);border-color:rgba(205,201,187,.25)}
+.brand-mark{width:28px;height:28px;border:0;border-radius:0;font:500 12px var(--mono)}.brand-name{font:500 11px var(--mono);letter-spacing:.14em;color:#deddd5}
+.nav a{color:#b4b2a8}.nav a:hover{color:#f0ede4}
+.header-cta,.button{background:#d7d5cc;border-color:#d7d5cc;color:#171714;font-weight:600;border-radius:999px}
+.header-cta:hover,.button:hover{background:#f0eee5;border-color:#f0eee5}
+.button.secondary{background:transparent;border-color:#4a4a43;color:var(--text)}.button.secondary:hover{border-color:#aaa99f;background:rgba(233,231,223,.045)}
+.eyebrow,.section-index{color:#b9b6aa}.hero .eyebrow:before{background:#9ab7c2}
+h1{font-weight:500}h1 em{color:#b5c7cb}.hero-desc{color:#c2c0b6}
+.scene-glow{background:radial-gradient(ellipse,rgba(154,183,194,.065),transparent 68%)}
+.scene-grid{background-image:linear-gradient(rgba(205,201,187,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(205,201,187,.065) 1px,transparent 1px)}
+.scene-path{stroke:rgba(177,194,195,.48)}.scene-path.broken{stroke:var(--amber)}.scene-node{stroke:#b1c2c3}.scene-node.warn{stroke:var(--amber)}
+.document{background:linear-gradient(145deg,rgba(31,31,27,.97),rgba(18,18,16,.96));border-color:rgba(205,201,187,.23)}
+.document:hover{border-color:#b1c2c3;box-shadow:0 0 0 1px rgba(177,194,195,.08),0 22px 70px rgba(0,0,0,.4)}
+.doc-symbol,.source-icon{color:#b1c2c3}.doc-status{color:var(--green)}
+.trace-rule{background:linear-gradient(90deg,#9ab7c2,rgba(154,183,194,.08) 70%,transparent)}.trace-rule:before{background:#9ab7c2;box-shadow:0 0 10px rgba(154,183,194,.35)}
+.section{padding:100px 0}.section-title{font-weight:450}
+.workbench-shell,.source-card,.metric,.method-card,.builder,.report{background:rgba(21,21,19,.76);border-color:var(--line)}
+.workbench-bar{background:rgba(28,28,25,.7)}.source-icon{border-color:rgba(177,194,195,.2)}
+.filter-btn.active{border-color:#9ab7c2;background:rgba(154,183,194,.07)}tbody tr:hover,tbody tr:focus{background:rgba(177,194,195,.045)}
+.pill.exception{color:var(--amber);background:rgba(216,166,108,.09)}.pill.matched{color:var(--green);background:rgba(168,188,165,.08)}
+.option:has(input:checked){border-color:#9ab7c2;background:rgba(154,183,194,.055)}
+.evaluation{background:radial-gradient(ellipse at 70% 45%,rgba(154,183,194,.035),transparent 42%)}
+.footer{padding:86px 0 25px;border-top:1px solid var(--line);overflow:hidden}
+.footer-top{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;margin-bottom:40px}
+.footer-top h2{max-width:570px;font-size:clamp(27px,3vw,42px);line-height:1.1;font-weight:450;letter-spacing:-.055em;margin:14px 0 0;color:#deddd5}
+.footer-links{display:grid;grid-template-columns:repeat(2,minmax(110px,1fr));gap:13px 24px}
+.footer-links a{font:10px var(--mono);color:#b4b2a8;text-decoration:none;white-space:nowrap}.footer-links a:hover{color:#f0ede4}
+.wordmark-wrap{margin:44px 0 24px;min-height:clamp(100px,17vw,210px)}
+.wordmark{font-size:clamp(76px,15.7vw,218px);font-weight:400;color:rgba(233,231,223,.10);-webkit-text-stroke:1px rgba(233,231,223,.15)}
+.footer-glow{background:radial-gradient(ellipse at var(--fx,50%) var(--fy,50%),rgba(154,183,194,.17),transparent 26%)}
+.wordmark-trace path{stroke:rgba(154,183,194,.32)}
+.footer-bottom{color:#85857d}.footer-bottom strong{font-weight:500;color:#c5c3b9}
+.audience{border-top:1px solid var(--line)}.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.audience-card{padding:24px;border:1px solid var(--line);border-radius:12px;background:rgba(21,21,19,.55)}
+.audience-num{font:10px var(--mono);letter-spacing:.08em;color:#aaa99f}
+.audience-card h3{font-size:22px;font-weight:450;letter-spacing:-.04em;margin:25px 0 10px}
+.audience-card p{font-size:12px;color:var(--muted);line-height:1.85;margin:0}
+.commercial-proof{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:25px;border:1px solid var(--line);border-radius:12px}
+.commercial-proof h3{font-size:clamp(22px,3vw,32px);line-height:1.15;font-weight:450;letter-spacing:-.05em;margin:12px 0 0;max-width:470px}
+.commercial-proof ul{margin:0;padding-left:18px;color:var(--muted);font-size:12px;line-height:1.9}
+@media(max-width:800px){.footer-top{grid-template-columns:1fr;gap:25px}.footer-links{max-width:300px}.audience-grid,.commercial-proof{grid-template-columns:1fr}.wordmark{font-size:clamp(67px,14.5vw,120px)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.go-to-market{margin-top:14px;padding:25px;border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;background:rgba(21,21,19,.35)}.go-to-market h3{font-size:clamp(22px,3vw,31px);font-weight:450;line-height:1.15;letter-spacing:-.05em;margin:12px 0}.go-to-market p{font-size:12px;color:var(--muted);line-height:1.85}.go-to-market ol{padding:0;margin:0;list-style:none;counter-reset:route}.go-to-market li{counter-increment:route;display:grid;grid-template-columns:28px 1fr;column-gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.go-to-market li:last-child{border-bottom:0}.go-to-market li:before{content:counter(route,decimal-leading-zero);font:10px var(--mono);color:#9ab7c2;padding-top:3px}.go-to-market li strong{font-size:12px;font-weight:500}.go-to-market li span{grid-column:2;color:var(--muted);font-size:11px;line-height:1.7;margin-top:3px}.payment-flow{margin-top:14px;padding:25px;border:1px solid var(--line);border-radius:12px}.payment-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:20px 0}.payment-steps>div{border-top:1px solid var(--line2);padding-top:12px}.payment-steps span{display:block;font:10px var(--mono);color:#9ab7c2;margin-bottom:12px}.payment-steps strong{font:500 13px var(--display)}.payment-steps p{font-size:11px;color:var(--muted);line-height:1.7;margin:8px 0 0}.brand-mark svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.brand-mark{position:relative;width:26px;height:28px;display:block}@media(max-width:800px){.go-to-market{grid-template-columns:1fr}.payment-steps{grid-template-columns:repeat(2,1fr)}}
+
+
+/* LedgerTrace visual system: graphite, warm ivory, mineral sage, antique brass. */
+:root{
+ color-scheme:dark!important;
+ --bg:#1b1d19!important;--panel:#242721!important;--panel2:#2c3029!important;
+ --line:#393e35!important;--line2:#4b5146!important;--text:#f0ede4!important;
+ --muted:#b0b4a8!important;--blue:#9bb4a0!important;--amber:#c5a36a!important;
+ --green:#a4c1a6!important;--red:#d99488!important;
+}
+html{background:#1b1d19!important}
+body{background:#1b1d19!important;color:#f0ede4!important}
+body:before{background-image:linear-gradient(rgba(185,190,170,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(185,190,170,.035) 1px,transparent 1px)!important;background-size:68px 68px!important;opacity:.65!important}
+body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(155,180,160,.055),transparent 36%)!important;opacity:.8!important}
+::selection{background:rgba(155,180,160,.28)!important;color:#f0ede4!important}
+.header,.header.scrolled{background:rgba(27,29,25,.95)!important;border-color:#41473e!important;box-shadow:0 12px 34px rgba(0,0,0,.18)!important}
+.brand-mark,.footer-brand .brand-mark{width:36px!important;height:36px!important;display:grid!important;place-items:center!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important;transform:scale(1);transform-origin:center;transition:transform .18s ease!important}
+.brand:hover .brand-mark,.brand:focus-visible .brand-mark,.footer-brand:hover .brand-mark,.footer-brand:focus-visible .brand-mark{transform:scale(1.09)!important}
+.brand-mark .ledgertrace-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;overflow:visible!important}.ledgertrace-logo .logo-blue{fill:#159fe3!important;stroke:none!important}.ledgertrace-logo .logo-gray{fill:#737578!important;stroke:none!important}
+
+
+
+.brand-name{color:#f0ede4!important;letter-spacing:.15em!important}
+.nav a{color:#b0b4a8!important}.nav a:hover{color:#f0ede4!important}
+.header-cta,.button{background:#9bb4a0!important;border-color:#9bb4a0!important;color:#20251f!important}
+.header-cta:hover,.button:hover{background:#b0c5b0!important;border-color:#b0c5b0!important;color:#20251f!important}
+.button.secondary{background:#242721!important;border-color:#596052!important;color:#f0ede4!important}
+.button.secondary:hover{background:#2c3029!important;border-color:#9bb4a0!important}
+.menu-toggle{background:#2a2e28!important;border-color:#596052!important;color:#f0ede4!important}
+.eyebrow,.section-index,.step-label{color:#c5a36a!important}
+.trace-rule{background:linear-gradient(90deg,#c5a36a,rgba(197,163,106,.12) 70%,transparent)!important}
+.trace-rule:before{background:#c5a36a!important;box-shadow:0 0 10px rgba(197,163,106,.22)!important}
+h1,h2,h3,.section-title{color:#f0ede4!important}
+h1 em{color:#9bb4a0!important}
+.hero-desc,.section-lead{color:#b0b4a8!important}
+.privacy-note{color:#b0b4a8!important}
+.scene-grid{background-image:linear-gradient(rgba(155,180,160,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(155,180,160,.055) 1px,transparent 1px)!important}
+.scene-path{stroke:rgba(155,180,160,.55)!important}.scene-path.broken{stroke:#c5a36a!important}
+.scene-node{fill:#222521!important;stroke:#9bb4a0!important}.scene-node.warn{stroke:#c5a36a!important}
+.document{background:linear-gradient(145deg,#2a2e28,#252923)!important;border-color:#41473e!important;box-shadow:0 20px 50px rgba(0,0,0,.2)!important}
+.document:hover{border-color:#9bb4a0!important;box-shadow:0 0 0 1px rgba(155,180,160,.07),0 20px 50px rgba(0,0,0,.24)!important}
+.doc-symbol{border-color:#596052!important;color:#9bb4a0!important}
+.doc-top,.doc-sub,.scene-label,.scene-coord{color:#b0b4a8!important}
+.doc-line{background:#41473e!important}.doc-data b{color:#f0ede4!important}
+.doc-status{color:#a4c1a6!important}.doc-status.warn{color:#c5a36a!important}
+.section{background:transparent!important}
+.signal-strip,.signal+.signal{border-color:#41473e!important}
+.signal strong{color:#f0ede4!important}.signal span{color:#b0b4a8!important}
+.workbench{background:#20231e!important;border-color:#41473e!important}
+.workbench-shell,.builder{background:#2a2e28!important;border-color:#41473e!important;box-shadow:0 24px 70px rgba(0,0,0,.18)!important}
+.workbench-bar,.source-card,.metric,.method-card,.report,.report .report-block,.evidence-value,.builder-head{background:#2a2e28!important;border-color:#41473e!important}
+.workbench-title strong,.source-head strong,.results-head h3,.report-head h3,.method-card h3,.drawer-top h2,.drawer-section h3,.builder-head strong{color:#f0ede4!important}
+.workbench-title span,.source-head small,.source-card p,.metric-label,.metric-note,.results-head p,.report-head p,.report-block p,.report-block li,.method-card p,.builder-head span{color:#b0b4a8!important}
+.source-icon{border-color:#41473e!important;color:#9bb4a0!important}
+.file-input{color:#b0b4a8!important}
+.file-input::file-selector-button{background:#32372f!important;border-color:#596052!important;color:#f0ede4!important}
+.metric-value{color:#f0ede4!important}.metric-value.amber{color:#c5a36a!important}
+.filter-btn{border-color:#41473e!important;color:#b0b4a8!important}
+.filter-btn.active{border-color:#9bb4a0!important;color:#e1e8dc!important;background:rgba(155,180,160,.09)!important}
+.search{background:#252923!important;border-color:#41473e!important;color:#f0ede4!important}
+.table-wrap{border-color:#41473e!important}
+th{background:#32372f!important;color:#b0b4a8!important}
+th,td{border-bottom-color:#41473e!important}
+tbody tr:hover,tbody tr:focus{background:rgba(155,180,160,.055)!important}
+.cell-main{color:#f0ede4!important}.cell-sub,.table-note{color:#b0b4a8!important}
+.findings-cell{color:#d6d6cc!important}
+.pill.exception{color:#d3b47f!important;background:rgba(197,163,106,.11)!important}
+.pill.matched{color:#a4c1a6!important;background:rgba(164,193,166,.1)!important}
+.pill.review{color:#d99488!important;background:rgba(217,148,136,.1)!important}
+.report-block{border-top-color:#41473e!important}
+.drawer-backdrop{background:rgba(2,5,3,.72)!important}
+.drawer{background:#2a2e28!important;border-left-color:#41473e!important;box-shadow:-22px 0 70px rgba(0,0,0,.3)!important}
+.drawer-top,.drawer-section,.report-footer{border-color:#41473e!important}
+.icon-button{background:#2a2e28!important;border-color:#596052!important;color:#f0ede4!important}
+.evidence-value span{color:#b0b4a8!important}.evidence-value strong{color:#f0ede4!important}
+.finding-list li{color:#d6d6cc!important}
+.review-note,.review-state select,input,textarea,select{background:#252923!important;border-color:#41473e!important;color:#f0ede4!important}
+.review-state{color:#b0b4a8!important}
+.methodology,.evaluation{border-color:#41473e!important}
+.boundary{background:rgba(197,163,106,.06)!important;border-color:rgba(197,163,106,.25)!important}
+.boundary strong{color:#f0ede4!important}.boundary p{color:#b0b4a8!important}
+.evaluation{background:linear-gradient(180deg,#252923,#222521)!important}
+.eval-copy p{color:#b0b4a8!important}.eval-point{color:#d6d6cc!important}
+.builder-step+.builder-step{border-color:#41473e!important}
+.option{border-color:#41473e!important;color:#b0b4a8!important}
+.option:has(input:checked){border-color:#9bb4a0!important;background:rgba(155,180,160,.09)!important;color:#f0ede4!important}
+.option input{accent-color:#9bb4a0!important}
+.footer{background:#181a16!important;color:#f0ede4!important;border-top:1px solid #41473e!important}
+.footer-heading{border-color:#41473e!important}
+.footer-heading h2{max-width:720px!important}
+.footer-directory{grid-template-columns:1fr 1fr 1.15fr!important;gap:clamp(24px,4vw,54px)!important}
+.footer-column h3{color:#c5a36a!important}
+.footer-column a{color:#b0b4a8!important}.footer-column a:hover{color:#f0ede4!important}
+.go-to-market,.payment-flow{background:#2a2e28!important;border-color:#41473e!important;color:#f0ede4!important}
+.go-to-market li,.payment-steps>div{border-color:#41473e!important}
+.go-to-market li:before,.payment-steps span{color:#c5a36a!important}
+.go-to-market p,.go-to-market li span,.payment-steps p{color:#b0b4a8!important}
+.footer-brand-row{border-color:#41473e!important;padding-top:25px!important}
+.footer-brand{gap:12px!important}
+.footer-brand-name{font-size:22px!important;letter-spacing:-.045em!important;color:#f0ede4!important}
+.footer-legal p{color:#b0b4a8!important}
+.footer .brand-mark{width:36px!important;height:36px!important}
+.error{background:rgba(217,148,136,.09)!important;border-color:rgba(217,148,136,.4)!important;color:#d99488!important}
+.toast{background:#f0ede4!important;color:#222521!important}
+input,textarea,select{accent-color:#9bb4a0!important}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#c5a36a!important}
+@media(max-width:760px){
+ .header,.header.scrolled{background:rgba(27,29,25,.97)!important}
+ .nav{background:#2a2e28!important;border-color:#41473e!important}
+ .footer-directory{grid-template-columns:1fr 1fr!important;gap:28px 22px!important}
+ .footer-column:last-child{grid-column:1/-1!important}
+ .footer-brand-row{align-items:flex-start!important;flex-direction:column!important}
+ .footer-legal{text-align:left!important}
+}
+@media(max-width:430px){.footer-directory{grid-template-columns:1fr!important}.footer-column:last-child{grid-column:auto!important}}
+@media(prefers-reduced-motion:reduce){.brand-mark,.footer-brand .brand-mark{transition:none!important}}
+</style>
+
+<style id="ledgertrace-final-theme">
+:root{
+ color-scheme:dark;
+ --bg:#17221F;
+ --panel:#223034;
+ --panel2:#282321;
+ --line:#35464A;
+ --line2:#53625F;
+ --text:#EDE9DE;
+ --muted:#B8BDB4;
+ --blue:#8FA9A0;
+ --amber:#BDA16C;
+ --green:#A6B9A4;
+ --red:#D68F86;
+}
+html{background:#17221F!important}
+body{background:var(--bg)!important;color:var(--text)!important}
+.header,.header.scrolled{background:rgba(23,34,31,.94)!important;border-color:#35464A!important}
+.nav{background:#282321!important;border-color:#46504C!important}
+.nav a,.footer-column a{color:#B8BDB4!important}
+.nav a:hover,.footer-column a:hover{color:#EDE9DE!important}
+.hero,.section,.footer{color:var(--text)!important}
+h1,h2,h3,.brand-name,.footer-brand-name{color:#EDE9DE!important}
+h1 em,.eyebrow,.section-index,.record-id,.micro,.metric-label{color:#BDA16C!important}
+p,.hero-desc,.section-intro,.muted{color:#B8BDB4}
+.button{background:#8FA9A0!important;border-color:#8FA9A0!important;color:#17221F!important}
+.button:hover{background:#A8BDB4!important;border-color:#A8BDB4!important}
+.button.secondary,.header-cta{background:transparent!important;border-color:#53625F!important;color:#EDE9DE!important}
+.button.secondary:hover,.header-cta:hover{border-color:#BDA16C!important;color:#EDE9DE!important}
+.document,.builder,.report-card,.metric-card,.evidence-card,.method-card,.finding-card,.panel,.card{background:#223034!important;border-color:#35464A!important}
+.document .doc-status,.status,.tag{border-color:#53625F!important}
+.go-to-market,.payment-flow{background:#282321!important;border-color:#46504C!important;color:#EDE9DE!important}
+.go-to-market li:before,.payment-steps span{color:#BDA16C!important}
+.go-to-market p,.go-to-market li span,.payment-steps p,.footer-legal p{color:#B8BDB4!important}
+.footer{background:#17221F!important;border-color:#35464A!important}
+.footer-column h3{color:#BDA16C!important}
+.footer-brand-row{border-color:#46504C!important}
+.footer-brand-name{color:#EDE9DE!important}
+.contact-panel{background:#17221F!important;border-color:#53625F!important}
+.form-control,input,textarea,select{background:#282321!important;border-color:#46504C!important;color:#EDE9DE!important;accent-color:#8FA9A0!important}
+.form-control::placeholder,input::placeholder,textarea::placeholder{color:#A7AEA5!important}
+.toast{background:#EDE9DE!important;color:#17221F!important}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline-color:#BDA16C!important}
+.scene-svg text{fill:#BDA16C!important}
+.scene-svg path[stroke="#ffb45e"]{stroke:#BDA16C!important}
+.scene-node.warn{fill:#BDA16C!important;stroke:#BDA16C!important}
+@media(max-width:760px){.header,.header.scrolled{background:rgba(23,34,31,.98)!important}.nav{background:#282321!important;border-color:#46504C!important}}
+</style>
+
+<style id="ledgertrace-commercial-finish">
+.privacy-architecture{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;margin:22px 0 4px;padding:24px;border:1px solid rgba(197,166,117,.32);border-radius:12px;background:linear-gradient(130deg,rgba(197,166,117,.07),rgba(27,39,36,.5))}
+.privacy-mark{display:grid;place-items:center;width:58px;height:58px;border:1px solid rgba(197,166,117,.4);border-radius:10px;color:var(--blue);font:600 10px var(--mono);letter-spacing:.06em}
+.privacy-architecture h3{font:600 19px var(--display);margin:5px 0 8px;letter-spacing:-.03em}
+.privacy-architecture p{font-size:12px;line-height:1.8;color:var(--muted);margin:0;max-width:900px}
+#results .results-head>.bar-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+#sampleBtn{white-space:nowrap}
+@media(max-width:650px){.privacy-architecture{grid-template-columns:1fr;padding:18px}.privacy-mark{width:48px;height:42px}#results .results-head{align-items:flex-start;flex-direction:column}#results .results-head>.bar-actions{justify-content:flex-start}}
 </style>
 </head>
 <body>
-<header class="wrap top"><a class="brand" href="#" style="color:inherit;text-decoration:none">LEDGER<span>TRACE</span> / RECOVERY</a><nav class="nav"><a href="#investigate">INVESTIGATION</a><a href="#cases">CASE WORKFLOW</a><a href="#method">METHOD</a></nav></header>
-<main class="wrap">
-<section class="hero">
-<div><div class="eyebrow">SUPPLIER PAYMENT AUDIT / INDUSTRIAL DISTRIBUTION</div><h1>Find what was paid wrong. <em>Prove what to do next.</em></h1><p class="lead">A supplier-payment investigation workbench for finance teams. Reconstruct invoice expectations from purchase orders, receipts, amendments and credits; compare payment records; assemble an evidence-backed case for human review.</p><div class="actions"><a class="btn" href="#investigate">Start an investigation ↓</a><button class="btn secondary" id="sampleTop">Run realistic sample</button></div><p class="micro" style="margin-top:18px">LOCAL FILE PROCESSING · HUMAN-REVIEWED CASES · NO AUTOMATIC SUPPLIER CONTACT OR PAYMENT ACTION</p></div>
-<div class="diagram"><div class="flow"><div class="node"><small>01 / Source</small><b>Supplier invoice</b></div><div class="node"><small>02 / Contract</small><b>PO + amendments</b></div><div class="node"><small>03 / Fulfilment</small><b>Goods receipts</b></div><div class="node alert"><small>04 / Cash</small><b>Payments + credits</b></div><div class="node final"><small>05 / Decision</small><b>Evidence → review → supplier resolution → verified outcome</b></div></div></div>
-</section>
-<section class="section" id="investigate"><div class="section-head"><div><div class="eyebrow">01 / Investigate</div><h2>Bring the source records.</h2></div><p>Load the available CSVs. Invoice data is required; other sources are optional but missing evidence lowers confidence and may prevent financial quantification. Use consistent currency and matching references.</p></div>
-<div class="upload-grid" id="uploads">
-<div class="upload"><label for="invoices">Supplier invoices <span style="color:var(--brass)">*</span></label><p>Invoice number, supplier, PO, item, quantity, unit price, line amount, currency, date.</p><input type="file" id="invoices" accept=".csv,text/csv"><div class="file-state" id="state-invoices">Not loaded</div></div>
-<div class="upload"><label for="pos">Purchase orders</label><p>Approved order quantity and unit price, matched by PO and item.</p><input type="file" id="pos" accept=".csv,text/csv"><div class="file-state" id="state-pos">Optional source</div></div>
-<div class="upload"><label for="receipts">Goods receipts</label><p>Received quantities supporting what the supplier was entitled to bill.</p><input type="file" id="receipts" accept=".csv,text/csv"><div class="file-state" id="state-receipts">Optional source</div></div>
-<div class="upload"><label for="payments">Payment history</label><p>Invoice-linked payment amounts. Without it, paid overpayment cannot be established.</p><input type="file" id="payments" accept=".csv,text/csv"><div class="file-state" id="state-payments">Optional source</div></div>
-<div class="upload"><label for="credits">Supplier credits</label><p>Credit-note amount, invoice reference and supplier; credited value is netted in the estimate.</p><input type="file" id="credits" accept=".csv,text/csv"><div class="file-state" id="state-credits">Optional source</div></div>
-<div class="upload"><label for="amendments">PO amendments</label><p>PO/item, amended quantity or price, effective date, change-order reference.</p><input type="file" id="amendments" accept=".csv,text/csv"><div class="file-state" id="state-amendments">Optional source</div></div>
+<header class="header" id="header">
+  <a class="brand" href="#top" aria-label="LedgerTrace home">
+    <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span><span class="brand-name">LEDGERTRACE</span>
+  </a>
+  <nav class="nav" id="nav" aria-label="Primary navigation"><a href="#product">Product</a><a href="#investigation">Investigation</a><a href="#buyer-assurance">Buyer proof</a><a href="#methodology">Methodology</a><a href="#faq">FAQ</a><a href="#evaluation">Evaluation</a></nav>
+  <a class="header-cta" href="#evaluation">Request an evaluation <span aria-hidden="true">↗</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+</header>
+<main>
+<section class="hero container" id="top">
+  <div class="hero-copy" id="product">
+    <div class="eyebrow">Accounts payable / Evidence-led reconciliation</div>
+    <h1>Find the discrepancy. <em>Follow the evidence.</em></h1>
+    <p class="hero-desc">Compare supplier invoices with purchase orders and goods receipts. See which records disagree, which rule triggered, and the source values behind each finding—so your team can review exceptions with evidence instead of chasing spreadsheets.</p>
+    <div class="hero-actions"><a class="button" href="#investigation" id="heroSampleBtn">Run the sample <span aria-hidden="true">↗</span></a><a class="button secondary" href="#methodology">How it works <span aria-hidden="true">↗</span></a></div>
+    <div class="privacy-note">SAMPLE WORKFLOW · READY TO EXPLORE</div><p class="hero-proofline">Start with a working reconciliation. Open a finding to inspect the source values, matching rule and evidence trail—then decide whether the workflow fits your review process.</p>
+  </div>
+  <div class="scene ledger-illustration" id="scene" aria-label="LedgerTrace product illustration: invoice, purchase order and goods receipt data flow through a reconciliation engine into matched records, traceable exceptions and a reviewable evidence package">
+  <div class="ledger-art-top"><span>LEDGERTRACE / PRODUCT SYSTEM</span><span>FROM RAW RECORDS TO REVIEWABLE EVIDENCE</span></div>
+  <svg class="ledger-art-svg" viewBox="0 0 900 620" role="img" aria-labelledby="ledgerArtTitle ledgerArtDesc">
+    <title id="ledgerArtTitle">How LedgerTrace works</title>
+    <desc id="ledgerArtDesc">Three accounts-payable data sources enter a reconciliation engine. The engine normalizes fields, matches records and applies comparison rules. Results become matched records or traceable exceptions with source evidence for human review.</desc>
+    <defs>
+      <linearGradient id="ltCanvas" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d2a24"/><stop offset="1" stop-color="#121a17"/></linearGradient>
+      <linearGradient id="ltCore" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a3a31"/><stop offset="1" stop-color="#1b2822"/></linearGradient>
+      <linearGradient id="ltGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c5a675" stop-opacity=".04"/><stop offset="1" stop-color="#c5a675" stop-opacity=".2"/></linearGradient>
+    </defs>
+    <rect x="1" y="1" width="898" height="618" rx="12" fill="url(#ltCanvas)" stroke="#45564b"/>
+    <path d="M1 48H899" stroke="#45564b"/>
+    <circle cx="24" cy="24" r="4" fill="#c5a675"/><circle cx="39" cy="24" r="4" fill="#64766a"/><circle cx="54" cy="24" r="4" fill="#64766a"/>
+    <text x="77" y="28" fill="#a5b0a5" font-size="11" letter-spacing="2" font-family="monospace">ACCOUNTS PAYABLE / RECONCILIATION WORKFLOW</text>
+    <text x="34" y="81" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">01 — INPUTS</text>
+    <text x="34" y="103" fill="#ede9de" font-size="19" font-family="Georgia,serif">Bring records together</text>
+    <text x="866" y="90" fill="#a5b0a5" text-anchor="end" font-size="10" letter-spacing="1.5" font-family="monospace">CSV FILES · LOCAL WORKFLOW</text>
+    <g>
+      <rect x="34" y="125" width="258" height="116" rx="7" fill="#202e27" stroke="#526457"/>
+      <rect x="34" y="125" width="4" height="116" rx="2" fill="#a5b58a"/>
+      <rect x="54" y="145" width="31" height="39" rx="3" fill="#a5b58a" fill-opacity=".12" stroke="#a5b58a" stroke-opacity=".8"/>
+      <path d="M61 155H77M61 163H77M61 171H73" stroke="#a5b58a" stroke-width="1.5"/>
+      <text x="101" y="154" fill="#a5b58a" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE A</text>
+      <text x="101" y="176" fill="#ede9de" font-size="17" font-family="Georgia,serif">Supplier invoices</text>
+      <text x="54" y="215" fill="#a5b0a5" font-size="10" font-family="monospace">Line items · quantities · prices</text>
+      <rect x="321" y="125" width="258" height="116" rx="7" fill="#202e27" stroke="#526457"/>
+      <rect x="321" y="125" width="4" height="116" rx="2" fill="#c5a675"/>
+      <rect x="341" y="145" width="31" height="39" rx="3" fill="#c5a675" fill-opacity=".12" stroke="#c5a675" stroke-opacity=".8"/>
+      <path d="M348 155H364M348 163H364M348 171H360" stroke="#c5a675" stroke-width="1.5"/>
+      <text x="388" y="154" fill="#c5a675" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE B</text>
+      <text x="388" y="176" fill="#ede9de" font-size="17" font-family="Georgia,serif">Purchase orders</text>
+      <text x="341" y="215" fill="#a5b0a5" font-size="10" font-family="monospace">Authorised items · agreed terms</text>
+      <rect x="608" y="125" width="258" height="116" rx="7" fill="#202e27" stroke="#526457"/>
+      <rect x="608" y="125" width="4" height="116" rx="2" fill="#8ea9a0"/>
+      <rect x="628" y="145" width="31" height="39" rx="3" fill="#8ea9a0" fill-opacity=".12" stroke="#8ea9a0" stroke-opacity=".8"/>
+      <path d="M635 155H651M635 163H651M635 171H647" stroke="#8ea9a0" stroke-width="1.5"/>
+      <text x="675" y="154" fill="#8ea9a0" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE C</text>
+      <text x="675" y="176" fill="#ede9de" font-size="17" font-family="Georgia,serif">Goods receipts</text>
+      <text x="628" y="215" fill="#a5b0a5" font-size="10" font-family="monospace">Delivered quantities · receipt status</text>
+    </g>
+    <g fill="none" stroke="#748578" stroke-width="1.5">
+      <path d="M163 241V265H450V287"/>
+      <path d="M450 241V287"/>
+      <path d="M737 241V265H450"/>
+    </g>
+    <circle cx="163" cy="265" r="3" fill="#a5b58a"/><circle cx="450" cy="265" r="3" fill="#c5a675"/><circle cx="737" cy="265" r="3" fill="#8ea9a0"/>
+    <text x="34" y="304" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">02 — RECONCILIATION ENGINE</text>
+    <rect x="34" y="322" width="832" height="132" rx="8" fill="url(#ltCore)" stroke="#657568" stroke-opacity=".8"/>
+    <text x="58" y="353" fill="#ede9de" font-size="22" font-family="Georgia,serif">One traceable comparison process</text>
+    <text x="58" y="376" fill="#a5b0a5" font-size="11" font-family="monospace">Normalize fields → match related records → test comparison rules</text>
+    <path d="M58 395H842" stroke="#526457"/>
+    <g>
+      <rect x="58" y="407" width="224" height="30" rx="4" fill="#111a16" stroke="#506156"/>
+      <circle cx="73" cy="422" r="4" fill="#a5b58a"/><text x="86" y="426" fill="#ede9de" font-size="10" font-family="monospace">FIELD NORMALIZATION</text>
+      <rect x="338" y="407" width="224" height="30" rx="4" fill="#111a16" stroke="#506156"/>
+      <circle cx="353" cy="422" r="4" fill="#c5a675"/><text x="366" y="426" fill="#ede9de" font-size="10" font-family="monospace">RECORD MATCHING</text>
+      <rect x="618" y="407" width="224" height="30" rx="4" fill="#111a16" stroke="#506156"/>
+      <circle cx="633" cy="422" r="4" fill="#8ea9a0"/><text x="646" y="426" fill="#ede9de" font-size="10" font-family="monospace">RULE VALIDATION</text>
+    </g>
+    <path d="M450 454V477H245V497M450 477H655V497" fill="none" stroke="#748578" stroke-width="1.5"/>
+    <circle cx="450" cy="477" r="4" fill="#c5a675"/>
+    <text x="34" y="488" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">03 — REVIEWABLE OUTPUTS</text>
+    <rect x="34" y="504" width="404" height="88" rx="7" fill="#1c2922" stroke="#526457"/>
+    <rect x="34" y="504" width="4" height="88" rx="2" fill="#a5b58a"/>
+    <circle cx="61" cy="531" r="8" fill="#a5b58a" fill-opacity=".16" stroke="#a5b58a"/>
+    <path d="M57 531L60 534L66 527" fill="none" stroke="#a5b58a" stroke-width="1.5"/>
+    <text x="82" y="535" fill="#a5b58a" font-size="10" letter-spacing="1.5" font-family="monospace">MATCHED RECORDS</text>
+    <text x="56" y="561" fill="#ede9de" font-size="16" font-family="Georgia,serif">Consistent lines identified</text>
+    <text x="56" y="579" fill="#a5b0a5" font-size="10" font-family="monospace">Keep the comparison result</text>
+    <rect x="462" y="504" width="404" height="88" rx="7" fill="url(#ltGold)" stroke="#c5a675" stroke-opacity=".75"/>
+    <rect x="462" y="504" width="4" height="88" rx="2" fill="#c5a675"/>
+    <circle cx="489" cy="531" r="8" fill="#c5a675" fill-opacity=".16" stroke="#c5a675"/>
+    <path d="M489 526V532M489 536V537" stroke="#c5a675" stroke-width="1.5"/>
+    <text x="510" y="535" fill="#c5a675" font-size="10" letter-spacing="1.5" font-family="monospace">EXCEPTIONS + EVIDENCE</text>
+    <text x="484" y="561" fill="#ede9de" font-size="16" font-family="Georgia,serif">Source values · rule · finding</text>
+    <text x="484" y="579" fill="#a5b0a5" font-size="10" font-family="monospace">Human review before action</text>
+  </svg>
+  <div class="ledger-art-caption"><span>ILLUSTRATIVE WORKFLOW · SAMPLE RECORDS</span><span>TRACEABLE FINDINGS · HUMAN REVIEW</span></div>
 </div>
-<div class="runbar"><div><strong style="font-size:12px">Analysis stays in this browser tab.</strong><div class="micro">Files are read client-side. No customer data is sent to a LedgerTrace backend by this page.</div></div><div class="actions"><button class="btn" id="run">Run investigation</button><button class="btn secondary" id="clear">Clear files & session</button></div></div>
-<div class="alertbox hidden" id="error" role="alert"></div>
-<div class="results hidden" id="results"><div class="section-head"><div><div class="eyebrow">02 / Triage</div><h2>Investigation worklist</h2></div><p id="runmeta">Results from the currently loaded source files.</p></div>
-<div class="metric-grid"><div class="metric"><span>Invoice lines</span><strong id="m-lines">0</strong><small>Input lines reviewed</small></div><div class="metric"><span>Exception candidates</span><strong id="m-flagged">0</strong><small>Human review required</small></div><div class="metric"><span>Invoice excess estimate</span><strong id="m-invoice">$0</strong><small>Not verified loss</small></div><div class="metric"><span>Payment excess candidates</span><strong id="m-paid">$0</strong><small>Not confirmed recovery</small></div></div>
-<div class="toolbar"><div class="tabs"><button class="tab active" data-filter="all">All lines</button><button class="tab" data-filter="action">Action candidates</button><button class="tab" data-filter="payment">Payment candidates</button><button class="tab" data-filter="review">Needs evidence</button></div><input id="search" type="search" placeholder="Search invoice, supplier, PO, item…"></div>
-<div class="table-wrap"><table><thead><tr><th>Case / invoice</th><th>Supplier</th><th>PO / item</th><th>Expected net*</th><th>Paid allocated*</th><th>Potential invoice excess*</th><th>Payment excess candidate*</th><th>State</th></tr></thead><tbody id="rows"></tbody></table><div class="empty hidden" id="empty">No lines match this view.</div></div>
-<p class="footnote">* These are source-dependent estimates, not accounting determinations. Invoice-level payments and credits are allocated to lines in proportion to line value when a matching invoice reference is available. Taxes, freight, currency conversion, tolerances, retainage, partial-payment allocation rules and supplier-specific terms are not inferred. A payment excess candidate requires human verification.</p>
-<div class="case-layout" id="cases"><div class="panel"><div class="eyebrow">03 / Case evidence</div><h3 id="case-title" style="margin-top:9px">Select a worklist row</h3><p class="micro" id="case-sub">The inspector will show source row references and the calculation basis.</p><div class="kv" id="case-values"></div><h3 style="margin-top:22px">Findings</h3><ul class="findings" id="case-findings"><li>Select a row to inspect the available evidence.</li></ul><div class="footnote" id="source-refs"></div></div>
-<div class="panel"><div class="eyebrow">04 / Resolution record</div><h3 style="margin-top:9px">Move the case forward.</h3><p class="micro">Review state is held in this tab's session and included in exported case records. It is not saved to a server.</p><label class="form-label" for="case-state">Case status</label><select class="control" id="case-state"><option value="needs_review">Needs review</option><option value="evidence_requested">Evidence requested</option><option value="ready_to_contact">Ready for supplier contact</option><option value="submitted">Claim submitted</option><option value="credit_issued">Credit issued</option><option value="refund_received">Refund received</option><option value="invoice_corrected">Invoice corrected</option><option value="rejected">Claim rejected</option><option value="closed_no_recovery">Closed — no recovery</option></select>
-<div class="two"><div><label class="form-label" for="outcome-amount">Verified outcome amount</label><input class="control" id="outcome-amount" type="number" min="0" step=".01" placeholder="0.00"></div><div><label class="form-label" for="outcome-ref">Credit / refund reference</label><input class="control" id="outcome-ref" placeholder="Supplier reference"></div></div>
-<label class="form-label" for="case-action">Proposed corrective action</label><select class="control" id="case-action"><option>Request supplier statement and invoice review</option><option>Request credit note for supported price difference</option><option>Request credit for unsupported quantity</option><option>Confirm payment allocation with AP</option><option>Resolve PO amendment or receiving discrepancy</option><option>Close after no discrepancy is confirmed</option></select>
-<label class="form-label" for="case-note">Review notes / decision rationale</label><textarea class="control" id="case-note" placeholder="Record what was checked, unresolved assumptions, owner and next step."></textarea>
-<div class="actions"><button class="btn" id="save-case">Save case in session</button><button class="btn secondary" id="export-case">Export case evidence JSON</button></div><p class="outcome-note">Only mark credit, refund or correction when you have source evidence of the outcome. The recorded outcome is user-entered; LedgerTrace does not independently verify bank receipts or supplier acknowledgements.</p></div></div>
-<div class="actions" style="margin-top:16px"><button class="btn secondary" id="export-csv">Export worklist CSV</button><button class="btn secondary" id="export-all">Export investigation package JSON</button><button class="btn secondary" id="print">Print case report</button></div>
-</div></section>
-<section class="section" id="method"><div class="section-head"><div><div class="eyebrow">05 / Method</div><h2>Separate the signal from the claim.</h2></div><p>The tool organizes evidence and calculates candidates. A finance reviewer must confirm that source records are complete, comparable and authoritative before a supplier claim is made.</p></div><div class="method-grid"><div class="method"><div class="eyebrow">01</div><b>Find candidates</b><p>Match invoice lines to supplier, PO, item and receipt records. Missing or conflicting records stay visible.</p></div><div class="method"><div class="eyebrow">02</div><b>Reconstruct expected</b><p>Use the matched PO price and quantity supported by order and receipt records; consider supplied effective amendments and credits.</p></div><div class="method"><div class="eyebrow">03</div><b>Compare payment</b><p>Use invoice-linked payment records. Missing payment references do not count as proof of a paid overpayment.</p></div><div class="method"><div class="eyebrow">04</div><b>Build the case</b><p>Export the calculation, findings, source row numbers, proposed corrective action and reviewer notes.</p></div><div class="method"><div class="eyebrow">05</div><b>Verify outcome</b><p>Track a user-entered credit, refund, correction or rejection with a supporting reference. Cash recovery is never inferred.</p></div></div><div class="alertbox" style="background:#171713;border-color:#4b493e;color:#c8c5b9;margin-top:22px"><strong style="color:var(--text)">Current product boundary</strong><br>This is a local, CSV-based investigation MVP, not an ERP integration or autonomous recovery service. It does not yet reliably resolve split/merged lines, complex invoice-level tax and freight, currency conversion, tolerance policies, partial-payment allocation by remittance advice, or every credit-note scenario. Those cases require manual review; do not use the estimate as a journal entry or a supplier demand without validation.</div></section>
-<footer class="footer"><span>LEDGERTRACE RECOVERY / INVESTIGATION WORKBENCH</span><span>Evidence first. Human decision. Verified outcome.</span></footer>
+  </div>
+</section>
+<div class="container"><div class="trace-rule"></div><div class="signal-strip">
+  <div class="signal"><strong>Evidence, not a black-box score</strong><span>Each finding points to source fields and the rule that triggered it.</span></div>
+  <div class="signal"><strong>Designed for AP review</strong><span>Inspect exceptions, compare records and export a review worklist.</span></div>
+  <div class="signal"><strong>Browser-side sample</strong><span>Uploaded CSVs are processed locally in this version.</span></div>
+</div></div>
+
+<section class="section workbench" id="investigation">
+  <div class="container">
+    <div class="section-top"><div class="section-index">02 / Working sample</div><div><h2 class="section-title">See the reconciliation, not just the promise.</h2><p class="section-lead">Load the illustrative records or choose your own three CSV exports. Run reconciliation to generate matched lines and flagged exceptions, then select a result to inspect the invoice, PO and receipt evidence.</p></div></div>
+    <div class="workbench-shell">
+      <div class="workbench-bar"><div class="workbench-title"><span class="live-dot"></span><div><strong>Reconciliation workbench</strong><span>SAMPLE RUN / SOURCE-LINKED FINDINGS / REVIEW WORKFLOW</span></div></div><div class="bar-actions"><button class="button secondary sm" id="sampleBtn">Load sample &amp; run analysis ↗</button><button class="button ghost sm" id="resetBtn">Reset sample ↺</button></div></div>
+      <div class="workbench-body">
+        <div class="input-grid">
+          <div class="source-card"><div class="source-head"><span class="source-icon">01</span><div><strong>Supplier invoices</strong><small>SOURCE A / CSV</small></div></div><p>Invoice ID, supplier, PO reference, item, quantity and unit price.</p><input class="file-input" id="invoiceFile" type="file" accept=".csv,text/csv"><div class="file-meta" id="invoiceMeta">No file selected</div></div>
+          <div class="source-card"><div class="source-head"><span class="source-icon">02</span><div><strong>Purchase orders</strong><small>SOURCE B / CSV</small></div></div><p>PO line, supplier, item, ordered quantity and agreed unit price.</p><input class="file-input" id="poFile" type="file" accept=".csv,text/csv"><div class="file-meta" id="poMeta">No file selected</div></div>
+          <div class="source-card"><div class="source-head"><span class="source-icon">03</span><div><strong>Goods receipts</strong><small>SOURCE C / CSV</small></div></div><p>Receipt identifier, PO line, item and quantity received.</p><input class="file-input" id="receiptFile" type="file" accept=".csv,text/csv"><div class="file-meta" id="receiptMeta">No file selected</div></div>
+        </div>
+        <div id="error" class="error hidden" role="alert"></div>
+        <div class="work-actions"><button class="button" id="runBtn">Run reconciliation <span aria-hidden="true">↗</span></button><button class="button secondary" id="clearBtn">Clear files</button><span class="small muted" id="runHint">Choose all three CSV files, or load the sample, then run reconciliation.</span></div>
+      </div>
+    </div>
+    <div id="results" class="results hidden" aria-live="polite">
+      <div class="results-head"><div><div class="eyebrow">Run output / 02.1</div><h3>Exceptions and evidence</h3><p id="runMeta">Run summary</p></div><div class="bar-actions"><button class="button secondary sm" id="evidencePdfBtn">Print / save evidence PDF ↗</button><button class="button secondary sm" id="exportBtn">Download exception CSV ↓</button></div></div>
+      <div class="metrics"><div class="metric"><div class="metric-label">Invoice lines</div><div class="metric-value" id="mTotal">0</div><div class="metric-note">Input invoice rows</div></div><div class="metric"><div class="metric-label">Exceptions</div><div class="metric-value amber" id="mExceptions">0</div><div class="metric-note">Need human review</div></div><div class="metric"><div class="metric-label">Matched</div><div class="metric-value" id="mMatched">0</div><div class="metric-note">No configured rule triggered</div></div><div class="metric"><div class="metric-label">Flagged value</div><div class="metric-value" id="mValue">—</div><div class="metric-note">Indicative flagged line value</div></div></div>
+      <div class="results-toolbar"><div class="filters" id="filters"><button class="filter-btn active" data-filter="all">All results</button><button class="filter-btn" data-filter="exception">Exceptions</button><button class="filter-btn" data-filter="matched">Matched</button></div><input class="search" id="search" placeholder="Search invoice, supplier, PO, item…" aria-label="Search results"></div>
+      <div class="table-wrap"><table><thead><tr><th>Status</th><th>Invoice / row</th><th>Supplier</th><th>PO / item</th><th>Invoice qty</th><th>PO qty</th><th>Received</th><th>Finding</th></tr></thead><tbody id="rows"></tbody></table><div class="empty hidden" id="empty">No records match this view.</div></div>
+      <p class="table-note">Select a row to open its evidence inspector. A “matched” result means no currently configured rule triggered; it does not certify the invoice or authorize payment.</p>
+      <div class="report" id="report">
+        <div class="report-head"><div><div class="eyebrow">Evidence package / 02.2</div><h3>Run report</h3><p id="reportMeta">Generated from the current sample run.</p></div><button class="button secondary sm" id="reportExport">Export report CSV ↓</button></div>
+        <div class="report-grid"><div class="report-block"><h4>Run summary</h4><ul id="reportSummary"></ul></div><div class="report-block"><h4>Review notes</h4><p id="reportCaveat">Rule-based findings need to be checked against original documents. Review the flagged records and compare them with a human-verified reference set before using the results operationally.</p></div></div>
+        <div class="report-footer"><span class="small muted" id="reportBoundary">Illustrative sample data · no customer results implied</span><button class="button secondary sm" id="reportReset">Reset sample ↺</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section workbench" id="recovery-investigation">
+  <div class="container">
+    <div class="section-top"><div class="section-index">02.5 / Supplier payment recovery</div><div><h2 class="section-title">Go beyond the mismatch. Build the recovery case.</h2><p class="section-lead">Keep the existing reconciliation workbench. This additional investigation compares invoices with PO terms, received quantities, payments, supplier credits and amendments, then assembles the source-linked case a finance reviewer needs to decide what happens next.</p></div></div>
+    <div class="workbench-shell recovery-shell">
+      <div class="workbench-bar"><div class="workbench-title"><span class="live-dot"></span><div><strong>Supplier recovery investigation</strong><span>INVOICE → ENTITLEMENT → PAYMENT → EVIDENCE → OUTCOME</span></div></div><div class="bar-actions"><button class="button secondary sm" id="recSampleBtn">Load recovery sample ↗</button><button class="button ghost sm" id="recResetBtn">Clear recovery inputs ↺</button></div></div>
+      <div class="workbench-body">
+        <p class="small muted">Invoice, PO and receipt records are the basis for reconstructing the expected amount. Payment records are required to identify a payment excess candidate. Credit notes and amendments change the calculation and must be verified against source documents.</p>
+        <div class="recovery-input-grid">
+          <div class="source-card"><div class="source-head"><span class="source-icon">A</span><div><strong>Supplier invoices *</strong><small>INVOICE LINES / CSV</small></div></div><p>Invoice reference, supplier, PO, item, quantity, unit price, line amount and currency.</p><input class="file-input" id="recInvoices" type="file" accept=".csv,text/csv"><div class="file-meta" id="recInvoicesMeta">No file selected</div></div>
+          <div class="source-card"><div class="source-head"><span class="source-icon">B</span><div><strong>Purchase orders</strong><small>APPROVED TERMS / CSV</small></div></div><p>Supplier, PO, item, ordered quantity, approved price and currency.</p><input class="file-input" id="recPos" type="file" accept=".csv,text/csv"><div class="file-meta" id="recPosMeta">Optional source</div></div>
+          <div class="source-card"><div class="source-head"><span class="source-icon">C</span><div><strong>Goods receipts</strong><small>RECEIVED QUANTITY / CSV</small></div></div><p>Receipt reference, PO, item, supplier and quantity actually received.</p><input class="file-input" id="recReceipts" type="file" accept=".csv,text/csv"><div class="file-meta" id="recReceiptsMeta">Optional source</div></div>
+          <div class="source-card"><div class="source-head"><span class="source-icon">D</span><div><strong>Payment history</strong><small>CASH DISBURSEMENTS / CSV</small></div></div><p>Invoice-linked payment references, paid amounts, currency and date.</p><input class="file-input" id="recPayments" type="file" accept=".csv,text/csv"><div class="file-meta" id="recPaymentsMeta">Optional source</div></div>
+          <div class="source-card"><div class="source-head"><span class="source-icon">E</span><div><strong>Supplier credits</strong><small>CREDIT NOTES / CSV</small></div></div><p>Credit-note reference, invoice link, supplier, credited amount and currency.</p><input class="file-input" id="recCredits" type="file" accept=".csv,text/csv"><div class="file-meta" id="recCreditsMeta">Optional source</div></div>
+          <div class="source-card"><div class="source-head"><span class="source-icon">F</span><div><strong>PO amendments</strong><small>CHANGE ORDERS / CSV</small></div></div><p>Approved amended price/quantity, effective date and change-order reference.</p><input class="file-input" id="recAmendments" type="file" accept=".csv,text/csv"><div class="file-meta" id="recAmendmentsMeta">Optional source</div></div>
+        </div>
+        <div id="recError" class="error hidden" role="alert"></div>
+        <div class="work-actions"><button class="button" id="recRunBtn">Run recovery investigation ↗</button><span class="small muted" id="recHint">Load your approved source exports or the illustrative sample, then run the investigation.</span></div>
+      </div>
+    </div>
+    <div id="recResults" class="results hidden" aria-live="polite">
+      <div class="results-head"><div><div class="eyebrow">Recovery output / 02.6</div><h3>Financial exposure worklist</h3><p id="recRunMeta">Source-linked case candidates</p></div><div class="bar-actions"><button class="button secondary sm" id="recExportAll">Export investigation package ↓</button><button class="button secondary sm" id="recExportCsv">Export worklist CSV ↓</button><button class="button secondary sm" id="recPrint">Print case report ↗</button></div></div>
+      <div class="metrics recovery-metrics"><div class="metric"><div class="metric-label">Invoice lines</div><div class="metric-value" id="recMetricLines">0</div><div class="metric-note">Lines analyzed</div></div><div class="metric"><div class="metric-label">Review candidates</div><div class="metric-value amber" id="recMetricFlags">0</div><div class="metric-note">Require human review</div></div><div class="metric"><div class="metric-label">Invoice excess</div><div class="metric-value" id="recMetricInvoice">—</div><div class="metric-note">Candidate estimate, not loss</div></div><div class="metric"><div class="metric-label">Payment excess</div><div class="metric-value amber" id="recMetricPaid">—</div><div class="metric-note">Candidate estimate, not recovered cash</div></div></div>
+      <div class="results-toolbar"><div class="filters" id="recFilters"><button class="filter-btn active" data-rec-filter="all">All lines</button><button class="filter-btn" data-rec-filter="action">Action candidates</button><button class="filter-btn" data-rec-filter="payment">Payment candidates</button><button class="filter-btn" data-rec-filter="review">Needs evidence</button></div><input class="search" id="recSearch" placeholder="Search invoice, supplier, PO, item…" aria-label="Search recovery cases"></div>
+      <div class="table-wrap"><table><thead><tr><th>Case / invoice</th><th>Supplier</th><th>PO / item</th><th>Expected net</th><th>Paid allocation</th><th>Invoice excess</th><th>Payment excess</th><th>Review state</th></tr></thead><tbody id="recRows"></tbody></table><div class="empty hidden" id="recEmpty">No cases match this view.</div></div>
+      <p class="table-note">Estimates are source-dependent and are not verified loss. Invoice-level payment and credit amounts may be allocated proportionally across invoice lines. Taxes, freight, currency conversion, payment allocation rules, tolerances and supplier terms require review.</p>
+      <div class="recovery-case-grid">
+        <div class="report recovery-report">
+          <div class="report-head"><div><div class="eyebrow">Case evidence / 02.7</div><h3 id="recCaseTitle">Select a worklist row</h3><p id="recCaseSub">Calculation basis and source trace</p></div></div>
+          <div class="recovery-values" id="recCaseValues"></div>
+          <div class="report-block recovery-findings"><h4>Findings &amp; evidence gaps</h4><ul id="recCaseFindings"><li>Select a case to inspect source-linked findings.</li></ul><p class="small muted" id="recSourceRows"></p></div>
+        </div>
+        <div class="report recovery-report">
+          <div class="report-head"><div><div class="eyebrow">Resolution / 02.8</div><h3>Record the outcome</h3><p>Case notes stay in this browser session until exported.</p></div></div>
+          <label class="recovery-label" for="recCaseStatus">Case status</label><select class="search recovery-control" id="recCaseStatus"><option value="needs_review">Needs review</option><option value="evidence_requested">Evidence requested</option><option value="ready_to_contact">Ready for supplier contact</option><option value="submitted">Claim submitted</option><option value="credit_issued">Credit issued</option><option value="refund_received">Refund received</option><option value="invoice_corrected">Invoice corrected</option><option value="rejected">Claim rejected</option><option value="closed_no_recovery">Closed — no recovery</option></select>
+          <div class="recovery-two"><div><label class="recovery-label" for="recOutcomeAmount">Verified outcome amount</label><input class="search recovery-control" id="recOutcomeAmount" type="number" min="0" step=".01" placeholder="0.00"></div><div><label class="recovery-label" for="recOutcomeRef">Credit / refund reference</label><input class="search recovery-control" id="recOutcomeRef" placeholder="Source reference"></div></div>
+          <label class="recovery-label" for="recCorrective">Proposed corrective action</label><select class="search recovery-control" id="recCorrective"><option>Request supplier statement and invoice review</option><option>Request credit for supported price difference</option><option>Request credit for unsupported quantity</option><option>Confirm payment allocation with AP</option><option>Resolve PO amendment or receiving discrepancy</option><option>Close after no discrepancy is confirmed</option></select>
+          <label class="recovery-label" for="recReviewNote">Reviewer notes / next step</label><textarea class="search recovery-control" id="recReviewNote" rows="4" placeholder="What was checked, remaining assumptions, owner and next action…"></textarea>
+          <div class="bar-actions recovery-buttons"><button class="button" id="recSaveCase">Save case in session</button><button class="button secondary sm" id="recExportCase">Export selected case JSON ↓</button></div>
+          <p class="small muted">Only record a credit, refund or correction when supported by source evidence. LedgerTrace does not independently verify bank receipts or supplier acknowledgements.</p>
+        </div>
+      </div>
+      <div class="recovery-boundary"><strong>Calculation boundary</strong><p>This CSV investigation estimates candidates using the supplied records. It does not authenticate source documents or fully model tax, freight, currency conversion, tolerance profiles, retainage, split/merged lines, remittance-level partial payments or every credit-note scenario. A reviewer must validate each case before making a supplier claim or accounting entry.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section audience" id="who-for"><div class="container">
+<div class="section-top"><div class="section-index">03 / Who it serves</div><div><h2 class="section-title">For finance teams that need to explain a mismatch—not just flag one.</h2><p class="section-lead">Designed for accounts-payable leads, controllers, bookkeeping firms and finance service providers reviewing supplier invoices against purchase orders and goods receipts. Most relevant where spreadsheet checks recur and reviewers need a defensible trail back to source rows.</p></div></div>
+<div class="audience-grid">
+<article class="audience-card"><span class="audience-num">A / THE PROBLEM</span><h3>Checks are scattered.</h3><p>Invoice, PO and receipt data often sit in separate exports. A status or total alone does not tell a reviewer which row disagrees or why.</p></article>
+<article class="audience-card"><span class="audience-num">B / THE OUTPUT</span><h3>One reviewable trail.</h3><p>Compare configured fields, see the triggered rule, inspect source-row references and export exceptions for human review.</p></article>
+<article class="audience-card"><span class="audience-num">C / THE REVIEW</span><h3>Keep the decision with your team.</h3><p>LedgerTrace organizes rule-triggered discrepancies and supporting records. Your reviewer determines whether a finding needs correction, explanation or no action.</p></article>
+</div>
+<div class="commercial-proof"><div><div class="eyebrow">What you can inspect</div><h3>Every flagged result has something concrete to review.</h3></div><ul><li>Compared values from the supplied records.</li><li>The rule that triggered each finding.</li><li>Source-row references and related PO/receipt rows.</li><li>An exportable exception list for human review.</li></ul></div>
+  <div class="privacy-architecture"><div class="privacy-mark" aria-hidden="true">LOCAL</div><div><div class="eyebrow">Data handling / Current build</div><h3>CSV processing stays in this browser tab.</h3><p>The app reads selected CSV files with browser file APIs and runs its reconciliation logic locally. Its current code does not upload those CSV contents to a LedgerTrace server. Review notes are held in page memory for this session. The site loads web fonts from Google; this is not a claim that the entire browsing session makes no network requests. Use synthetic or approved anonymized records for first evaluation.</p></div></div>
+</div><div class="go-to-market"><div class="go-to-market-copy"><div class="eyebrow">A bounded evaluation</div><h3>Start with one workflow. Validate every finding.</h3><p>Use approved anonymized CSV exports to test one invoice-to-purchase-order-to-receipt workflow. The evaluation compares tool output with a human-reviewed reference set and documents what was caught, missed, or incorrectly flagged.</p></div><ol><li><strong>Agree the workflow.</strong><span>Choose one AP process, supported CSV columns and the exception types that matter.</span></li><li><strong>Approve the boundaries.</strong><span>Confirm sample size, exclusions, data handling and acceptance criteria in writing.</span></li><li><strong>Run the evaluation.</strong><span>Process up to 500 combined rows after clean inputs and scope approval.</span></li><li><strong>Review the evidence.</strong><span>Receive an exception CSV, findings report and 30-minute handoff within five business days.</span></li></ol></div>
+<div class="payment-flow"><div class="eyebrow">A scoped paid evaluation · Terms agreed privately</div><div class="payment-steps"><div><span>01</span><strong>Scope</strong><p>One AP workflow, up to 500 combined CSV rows, and agreed checks.</p></div><div><span>02</span><strong>Agree terms</strong><p>Confirm the fee, timeline, deliverables and acceptance criteria with LedgerTrace before work begins.</p></div><div><span>03</span><strong>Payment</strong><p>Written scope and acceptance criteria first. Payment through an agreed, legitimate route before work begins.</p></div><div><span>04</span><strong>Evidence</strong><p>Exception CSV, findings report, false-positive review and a 30-minute handoff.</p></div></div><p class="small muted">The evaluation is scoped with each buyer before work begins. Use synthetic or client-approved anonymized data. LedgerTrace does not claim production-grade security, ERP integration or guaranteed detection. Fees, timeline, deliverables and acceptance criteria are agreed in writing; scope changes require written agreement.</p></div></section>
+<section class="section assurance" id="buyer-assurance">
+  <div class="container">
+    <div class="section-top"><div class="section-index">04 / Buyer assurance</div><div><h2 class="section-title">Proof before promises.</h2><p class="section-lead">No inflated savings claims or black-box verdicts. Inspect the sample, define what a correct result looks like, and discuss a bounded paid evaluation with explicit deliverables and limitations.</p></div></div>
+    <div class="method-grid assurance-grid">
+      <article class="method-card"><span class="number">01 / INSPECT</span><h3>Try the browser demo first</h3><p>The included sample runs locally in your browser. Review the inputs, triggered rules and exported exceptions before sharing any business data. No account or upload is required to explore it.</p></article>
+      <article class="method-card"><span class="number">02 / AGREE</span><h3>Define the expected answer</h3><p>Before evaluation, agree the sample/reference cases, supported CSV columns, checks in scope and acceptance criteria. Ambiguous records stay reviewable; they are not silently treated as resolved.</p></article>
+      <article class="method-card"><span class="number">03 / MEASURE</span><h3>Report misses as well as catches</h3><p>The report should distinguish confirmed findings, false positives and missed exceptions against the agreed reference set. If no suitable reference set exists, we define it with you before making accuracy claims.</p></article>
+    </div>
+    <div class="boundary assurance-boundary"><span aria-hidden="true" style="color:var(--amber);font-size:18px">!</span><div><strong>Commercial honesty</strong><p>LedgerTrace is an early, static browser-based pilot—not a certified accounting system. There are no claimed customer results, accuracy rate, savings figure, security certification or production readiness. A paid evaluation covers the agreed assessment, not a guaranteed saving or positive finding. You receive the agreed outputs even if the tool misses cases or produces false positives.</p></div></div>
+  </div>
+</section>
+<section class="section methodology" id="methodology">
+  <div class="container">
+    <div class="section-top"><div class="section-index">05 / Methodology</div><div><h2 class="section-title">A finding should explain itself.</h2><p class="section-lead">LedgerTrace applies explicit comparisons to the records provided. It does not infer intent, decide whether an invoice is fraudulent, or replace an AP review process.</p></div></div>
+    <div class="method-grid">
+      <article class="method-card"><span class="number">01 / MATCH</span><h3>Connect the source rows</h3><p>Normalize identifiers and compare invoice lines with purchase-order and receipt rows using PO number and item code. Missing or ambiguous relationships must remain visible.</p></article>
+      <article class="method-card"><span class="number">02 / EXPLAIN</span><h3>Show the rule and values</h3><p>Flag configured conditions such as duplicate invoice IDs, supplier differences, price deltas, quantity excesses, missing receipts and unmatched source rows.</p></article>
+      <article class="method-card"><span class="number">03 / REVIEW</span><h3>Keep the human decision</h3><p>Inspect the evidence, record review notes and export the worklist. A finding is not a payment instruction, and opening it does not resolve it.</p></article>
+    </div>
+    
+  </div>
+</section>
+
+<section class="section methodology" id="faq">
+  <div class="container">
+    <div class="section-top"><div class="section-index">06 / Product details</div><div><h2 class="section-title">Clear answers before you evaluate.</h2><p class="section-lead">The important details about matching, inputs, evidence and review are spelled out before you decide whether to use LedgerTrace.</p></div></div>
+    <div class="faq-list">
+      <details class="faq-item"><summary>Which records can I compare?</summary><p>Three CSV exports: supplier invoice lines, purchase-order lines and goods-receipt lines. Each file should include the relevant identifiers, item code and quantity; invoice and PO files should include unit price for price checks.</p></details>
+      <details class="faq-item"><summary>How are records matched?</summary><p>The current matching key is purchase-order number plus item code. LedgerTrace then checks configured conditions such as duplicate invoice identifiers, supplier differences, invoice-versus-PO price differences, quantity excesses, receipt gaps and unmatched PO lines. Confirm column mappings and edge cases before using a new data shape.</p></details>
+      <details class="faq-item"><summary>What can I inspect in a finding?</summary><p>Select a result to review its invoice row, related PO and receipt rows, compared values, triggered rule and explanation. The workbench supports review notes and CSV export so a person can investigate and record the next step.</p></details>
+      <details class="faq-item"><summary>Where is uploaded data processed?</summary><p>In the current version, selected CSV files are processed in your browser; they are not uploaded to a LedgerTrace application server. Use synthetic or approved anonymized data for evaluation, and do not provide confidential records until data handling has been agreed.</p></details>
+      <details class="faq-item"><summary>What needs separate validation?</summary><p>Currency conversion, tax and credit-note treatment, split or merged invoice lines, and complex supplier-resolution cases are not covered as general capabilities. A “matched” status means no configured rule triggered; it is not a certification that the invoice is correct or approval to pay.</p></details>
+      <details class="faq-item"><summary>How do I know the results are useful?</summary><p>Use a human-reviewed reference set with expected outcomes. Compare findings against that set, record both missed exceptions and false positives, and agree the scope and acceptance criteria before a paid evaluation. Illustrative sample records demonstrate the workflow; they are not customer results.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section evaluation" id="evaluation">
+  <div class="container">
+    <div class="eval-grid">
+      <div class="eval-copy"><div class="section-index">06 / Paid evaluation</div><h2>Evaluate it against a known answer.</h2><p><strong>Five-business-day AP reconciliation evaluation.</strong> One invoice-to-PO-to-receipt workflow, up to 500 combined CSV rows, and a fixed fee quoted in writing before kickoff. The five-day clock starts when the agreed files and scope are ready. No payment or accounting action is automated.</p><p><strong>You receive:</strong> a source-linked exception CSV, a concise findings report, comparison against an agreed human-reviewed reference set, a false-positive and missed-case summary, and a 30-minute review handoff. Acceptance criteria are agreed before work starts: each agreed test case is processed, every reported finding includes its rule and source-row references where available, and the report records known misses and false positives against the reference set.</p><div class="eval-points"><div class="eval-point">Agreed reference set with human-reviewed expected outcomes</div><div class="eval-point">Results separated into matches, false positives and misses</div><div class="eval-point">A traceable report and agreed review criteria</div><div class="eval-point">Written scope, agreed exclusions and acceptance criteria</div></div></div>
+      <div class="builder">
+        <div class="builder-head"><strong>Evaluation scope builder</strong><span>TERMS AGREED PRIVATELY</span></div>
+        <div class="builder-body">
+          <div class="builder-step"><div class="step-label">Step 01 / Source records</div><div class="option-grid" id="sourceOptions">
+            <label class="option"><input type="checkbox" value="Invoices" checked>Invoices</label><label class="option"><input type="checkbox" value="Purchase orders" checked>Purchase orders</label><label class="option"><input type="checkbox" value="Goods receipts" checked>Goods receipts</label>
+          </div></div>
+          <div class="builder-step"><div class="step-label">Step 02 / Checks to discuss</div><div class="option-grid" id="checkOptions">
+            <label class="option"><input type="checkbox" value="Duplicate invoice IDs" checked>Duplicate invoice IDs</label><label class="option"><input type="checkbox" value="Missing PO references" checked>Missing PO references</label><label class="option"><input type="checkbox" value="Supplier mismatches" checked>Supplier mismatches</label><label class="option"><input type="checkbox" value="Price differences" checked>Price differences</label><label class="option"><input type="checkbox" value="Quantity differences" checked>Quantity differences</label><label class="option"><input type="checkbox" value="Receipt gaps" checked>Receipt gaps</label>
+          </div><p class="builder-disclaimer">These are scope topics, not a guarantee that every check is fully supported in every data shape. Confirm edge cases and acceptance criteria before quoting.</p></div>
+          <div class="builder-step"><div class="step-label">Step 03 / Review the brief</div><div class="builder-summary"><div class="summary-heading"><strong>Proposed evaluation brief</strong><span class="pill matched">Draft</span></div><div class="summary-list"><div class="summary-item"><span>Source types</span><strong id="summarySources">3 selected</strong></div><div class="summary-item"><span>Checks</span><strong id="summaryChecks">6 selected</strong></div><div class="summary-item"><span>Deliverables</span><strong>Findings report + CSV</strong></div><div class="summary-item"><span>Commercial terms</span><strong>Agreed together</strong></div></div></div>
+          <div class="builder-actions"><button class="button" id="generateBrief">Prepare evaluation brief ↗</button><button class="button secondary" id="contactFromBuilder">Request this scope</button></div><p class="builder-disclaimer">Scope, fee, timeline and acceptance criteria are agreed before work begins. Do not send confidential files before a written agreement.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="site-footer">
+  <div class="container">
+    <div class="footer-heading">
+      <div><div class="eyebrow">LedgerTrace / Site directory</div><h2>Trace the mismatch. Keep the evidence.</h2><p class="footer-intro">A browser-side AP reconciliation workbench for investigating invoice, purchase-order and goods-receipt differences. Human review remains required.</p></div>
+      <a class="button secondary footer-scope" href="#evaluation">Request a scoped evaluation ↗</a>
+    </div>
+    <div class="footer-directory">
+      <div class="footer-column"><h3>Explore</h3><a href="#product">Product overview</a><a href="#investigation">Sample investigation</a><a href="#who-for">Who it serves</a><a href="#methodology">Methodology &amp; limits</a><a href="#evaluation">Paid evaluation</a></div>
+      <div class="footer-column"><h3>Work with us</h3><a href="#" id="footerContact">Describe your workflow ↗</a><a href="mailto:dhairytopia@gmail.com">Mail ↗</a><a href="https://wa.me/919133404350" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div>
+      <div class="footer-column"><h3>Project &amp; scope</h3><a href="https://github.com/DT-09/LedgerTrace" target="_blank" rel="noopener noreferrer">Source repository ↗</a><p>Early-stage pilot. No account system, hosted data storage or production-grade controls are implied.</p></div>
+    </div>
+    <div class="footer-brand-row">
+      <a class="footer-brand" href="#top" aria-label="LedgerTrace home">
+        <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span>
+        <span class="footer-brand-name">LedgerTrace</span>
+      </a>
+      <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> LedgerTrace</p><p>Browser-side AP reconciliation · Illustrative data · Human review required</p></div>
+    </div>
+  </div>
+</footer>
 </main>
-<div class="toast hidden" id="toast" role="status"></div>
-<script src="./recovery-core.js"></script>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div><aside class="drawer" id="inspector" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
+  <div class="drawer-top"><div><div class="eyebrow">Evidence inspector / 02.3</div><h2 id="drawerTitle">Finding detail</h2><div class="small muted" id="drawerSub">Source record</div></div><button class="icon-button" id="closeDrawer" aria-label="Close evidence inspector">×</button></div>
+  <div id="drawerContent"></div>
+  <div class="drawer-section"><h3>Review status</h3><div class="review-state"><label for="reviewStatus">Local status</label><select id="reviewStatus"><option value="unreviewed">Unreviewed</option><option value="reviewing">Under review</option><option value="reviewed">Reviewed</option></select></div><label class="form-label" for="reviewNote">Review note</label><textarea class="review-note" id="reviewNote" placeholder="Record what a reviewer verified…"></textarea><div class="drawer-actions"><button class="button sm" id="saveReview">Save local review</button><button class="button secondary sm" id="closeDrawer2">Close inspector</button></div><p class="small muted" id="reviewFeedback">Review notes stay in this page session and are not uploaded or saved to an account.</p></div>
+</aside>
+
+<div class="contact-panel-backdrop" id="contactBackdrop"></div><aside class="contact-panel" id="contactPanel" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-hidden="true">
+  <div class="drawer-top"><div><div class="eyebrow">Commercial inquiry / Scope handoff</div><h2 id="contactTitle">Request a scoped evaluation.</h2></div><button class="icon-button" id="closeContact" aria-label="Close contact panel">×</button></div>
+  <p>Tell us what you reconcile, how often exceptions occur, and what a useful result would look like. We will agree scope, fee, timeline, data handling and acceptance criteria before work begins. Do not send confidential financial records in this form.</p>
+  <form id="contactForm"><label class="form-label" for="contactEmail">Your email</label><input class="form-control" id="contactEmail" type="email" placeholder="you@company.com" autocomplete="email" required><label class="form-label" for="contactDescription">What needs investigating?</label><textarea class="form-control" id="contactDescription" placeholder="For example: invoice, PO and receipt mismatches across monthly exports…" required></textarea><div class="contact-generated"><strong>Scope brief included</strong><p id="contactScopeSummary">A short description and any evaluation selections will be included in your inquiry brief.</p></div><div class="contact-channel"><button class="button" type="submit">Prepare paid-scope inquiry ↗</button><button class="button secondary" type="button" id="copyBrief">Copy scope brief</button></div><div class="contact-channel" id="configuredChannels"></div></form>
+  <p class="contact-note" id="contactStatus" role="status">Your inquiry opens in your email app with a prepared brief. Review it and send it; no message is sent automatically.</p>
+</aside>
+<div id="toast" role="status" aria-live="polite" style="position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:120;padding:11px 16px;background:#152432;border:1px solid #344656;border-radius:9px;color:#f3f7fc;font-size:11px;transition:opacity .2s,transform .2s;max-width:calc(100% - 30px)"></div>
+
 <script>
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
-const types=['invoices','pos','receipts','payments','credits','amendments'];
-const labels={needs_review:'Needs review',payment_excess_candidate:'Payment excess candidate',invoice_excess_unpaid_or_unverified:'Invoice excess · payment unverified',invoice_excess_unverified:'Invoice excess · payment allocation review',reviewed_no_excess:'No excess calculated',evidence_requested:'Evidence requested',ready_to_contact:'Ready for supplier contact',submitted:'Claim submitted',credit_issued:'Credit issued',refund_received:'Refund received',invoice_corrected:'Invoice corrected',rejected:'Claim rejected',closed_no_recovery:'Closed — no recovery'};
-const state={raw:{},files:{},results:[],summary:null,selected:null,filter:'all',cases:{},runAt:null};
+const state={invoices:[],pos:[],receipts:[],results:[],filter:'all',runAt:null,selected:null,review:new Map(),lastFocus:null,scopeBrief:''};
+const CONTACT_EMAIL='dhairytopia@gmail.com';
+const WHATSAPP_NUMBER='+91 9133404350';
 const samples={
-invoices:'invoice_number,supplier,po_number,item_code,quantity,unit_price,line_amount,currency,invoice_date\nINV-7001,Northstar Components,PO-5001,VALVE-A,10,28,280,USD,2026-09-02\nINV-7002,Northstar Components,PO-5002,FITTING-B,12,18.5,222,USD,2026-09-03\nINV-7003,Harbor Supply,PO-5003,PIPE-C,20,9,180,USD,2026-09-04\nINV-7004,Meridian Tools,PO-5004,DRILL-D,5,42,210,USD,2026-09-05\nINV-7005,Cedar Industrial,PO-5005,KIT-E,8,12,96,USD,2026-09-06',
-pos:'po_number,supplier,item_code,quantity,unit_price,currency\nPO-5001,Northstar Components,VALVE-A,10,25,USD\nPO-5002,Northstar Components,FITTING-B,12,18.5,USD\nPO-5003,Harbor Supply,PIPE-C,20,9,USD\nPO-5004,Meridian Tools,DRILL-D,5,42,USD\nPO-5005,Cedar Industrial,KIT-E,8,12,USD',
-receipts:'receipt_number,po_number,supplier,item_code,quantity,receipt_date\nGRN-1,PO-5001,Northstar Components,VALVE-A,10,2026-08-30\nGRN-2,PO-5002,Northstar Components,FITTING-B,12,2026-09-01\nGRN-3,PO-5003,Harbor Supply,PIPE-C,20,2026-09-02\nGRN-4,PO-5004,Meridian Tools,DRILL-D,5,2026-09-03\nGRN-5,PO-5005,Cedar Industrial,KIT-E,8,2026-09-04',
-payments:'payment_id,invoice_number,supplier,paid_amount,currency,payment_date\nPAY-901,INV-7001,Northstar Components,280,USD,2026-09-10\nPAY-902,INV-7002,Northstar Components,222,USD,2026-09-11\nPAY-903,INV-7003,Harbor Supply,180,USD,2026-09-12\nPAY-904,INV-7004,Meridian Tools,210,USD,2026-09-13\nPAY-905,INV-7005,Cedar Industrial,96,USD,2026-09-14',
-credits:'credit_note_number,invoice_number,supplier,credit_amount,currency,credit_date\nCN-501,INV-7004,Meridian Tools,10,USD,2026-09-20',
+invoices:'invoice_number,supplier,po_number,item_code,description,quantity,unit_price,invoice_date,line_amount\nINV-1001,Northstar Components,PO-5001,PART-A,Industrial valve,10,25.00,2026-10-02,250.00\nINV-1002,Northstar Components,PO-5002,PART-B,Steel fitting,12,18.50,2026-10-03,222.00\nINV-1002,Northstar Components,PO-5002,PART-B,Steel fitting duplicate,12,18.50,2026-10-03,222.00\nINV-1003,Harbor Supply,PO-5003,PART-C,Copper pipe,20,9.00,2026-10-04,180.00\nINV-1004,Meridian Tools,PO-5004,PART-D,Drill bit set,5,42.00,2026-10-05,210.00\nINV-1005,Cedar Industrial,PO-5005,PART-E,Fastener kit,8,12.00,2026-10-06,96.00\nINV-1006,Atlas Parts,,PART-F,Sensor cable,2,15.00,2026-10-07,30.00\nINV-1007,Cedar Industrial,PO-5006,PART-G,Drive belt,3,11.00,2026-10-08,33.00',
+pos:'po_number,supplier,item_code,description,quantity,unit_price,po_date\nPO-5001,Northstar Components,PART-A,Industrial valve,10,25.00,2026-09-20\nPO-5002,Northstar Components,PART-B,Steel fitting,12,18.50,2026-09-22\nPO-5003,Harbor Supply,PART-C,Copper pipe,20,8.50,2026-09-23\nPO-5004,Meridian Tools,PART-D,Drill bit set,5,42.00,2026-09-25\nPO-5005,Cedar Industrial,PART-E,Fastener kit,6,12.00,2026-09-26\nPO-5006,Cedar Industrial,PART-G,Drive belt,3,11.00,2026-09-27',
+receipts:'receipt_number,po_number,item_code,quantity,receipt_date\nGR-7001,PO-5001,PART-A,10,2026-09-28\nGR-7002,PO-5002,PART-B,12,2026-09-29\nGR-7003,PO-5003,PART-C,15,2026-10-01\nGR-7004,PO-5004,PART-D,5,2026-10-02\nGR-7005,PO-5005,PART-E,4,2026-10-03'
+};
+function norm(v){return String(v??'').toLowerCase().trim().replace(/[\s\-./]+/g,'_').replace(/[^a-z0-9_]/g,'').replace(/^_+|_+$/g,'')}
+function parseCSV(text){const rows=[];let row=[],field='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(quoted){if(c==='"'&&text[i+1]==='"'){field+='"';i++}else if(c==='"')quoted=false;else field+=c}else if(c==='"'&&field==='')quoted=true;else if(c===','){row.push(field);field=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;row.push(field);field='';if(row.some(v=>v.trim()!==''))rows.push(row);row=[]}else field+=c}if(quoted)throw Error('CSV has an unclosed quoted field.');if(field!==''||row.length){row.push(field);if(row.some(v=>v.trim()!==''))rows.push(row)}if(rows.length<2)throw Error('CSV needs a header row and at least one data row.');const headers=rows[0].map(norm);if(headers.some(h=>!h))throw Error('CSV contains an empty column name.');if(new Set(headers).size!==headers.length)throw Error('CSV has duplicate column names after normalization.');return rows.slice(1).map((r,i)=>{const o={_row:i+2};headers.forEach((h,j)=>o[h]=(r[j]??'').trim());return o})}
+function val(o,...keys){for(const k of keys){const v=o[norm(k)];if(v!==undefined&&v!=='')return String(v).trim()}return ''}
+function id(v){return String(v??'').trim().toUpperCase().replace(/\s+/g,'')}
+function num(v){if(v===undefined||v===null||String(v).trim()==='')return NaN;const n=Number(String(v).replace(/[$,£€₹\s]/g,''));return Number.isFinite(n)?n:NaN}
+function money(n){if(!Number.isFinite(n))return '—';return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}).format(n)}
+function readRecords(rows,type){return rows.map(r=>{const c={row:r._row,supplier:val(r,'supplier','vendor','supplier_name','vendor_name'),po:id(val(r,'po_number','purchase_order','purchase_order_number','po','po_ref')),item:id(val(r,'item_code','sku','product_code','item','part_number')),desc:val(r,'description','item_description'),qty:num(val(r,'quantity','qty','invoiced_quantity','ordered_quantity','received_quantity')),price:num(val(r,'unit_price','price','rate','unit_cost')),amount:num(val(r,'line_amount','amount','net_amount','total'))};if(!Number.isFinite(c.amount)&&Number.isFinite(c.qty)&&Number.isFinite(c.price))c.amount=c.qty*c.price;if(type==='invoice')return {...c,invoice:id(val(r,'invoice_number','invoice_no','invoice_id','bill_number','document_number')),date:val(r,'invoice_date','date','document_date'),currency:val(r,'currency')||'USD'};if(type==='po')return {...c,currency:val(r,'currency')||'USD'};return {...c,receipt:id(val(r,'receipt_number','goods_receipt','grn','receipt_id','document_number')),date:val(r,'receipt_date','date')}})}
+function validate(records,type){if(!records.length)throw Error('No '+type+' rows found.');const required=type==='invoice'?['invoice']:['po','item'];const missing=records.filter(r=>required.some(k=>!r[k]));if(missing.length)throw Error(type+' file is missing required identifiers on row(s): '+missing.slice(0,8).map(r=>r.row).join(', ')+(missing.length>8?'…':''));const bad=records.filter(r=>!Number.isFinite(r.qty)||r.qty<0);if(bad.length)throw Error(type+' file has missing, nonnumeric or negative quantities on row(s): '+bad.slice(0,8).map(r=>r.row).join(', ')+(bad.length>8?'…':''))}
+function group(items,fn){const m=new Map();items.forEach(x=>{const k=fn(x);if(!m.has(k))m.set(k,[]);m.get(k).push(x)});return m}
+function key(r){return id(r.po)+'|'+id(r.item)}
+function escapeHTML(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function showError(msg){$('error').textContent=msg;$('error').classList.remove('hidden')}function hideError(){$('error').classList.add('hidden');$('error').textContent=''}
+function setMeta(id,text){$(id).textContent=text}
+function loadSamples(){hideError();state.usingSample=true;state.invoices=readRecords(parseCSV(samples.invoices),'invoice');state.pos=readRecords(parseCSV(samples.pos),'po');state.receipts=readRecords(parseCSV(samples.receipts),'receipt');setMeta('invoiceMeta','Sample invoices · 5 rows');setMeta('poMeta','Sample POs · 4 rows');setMeta('receiptMeta','Sample receipts · 4 rows');['invoiceFile','poFile','receiptFile'].forEach(k=>$(k).value='');state.results=[];state.runAt=null;state.review.clear();$('results').classList.add('hidden');$('search').value='';state.filter='all';document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));setMeta('runHint','Sample records are ready. Run reconciliation to produce the report.');}
+function reconcile(){hideError();try{if(!state.invoices.length||!state.pos.length||!state.receipts.length)throw Error('Load sample data or select all three CSV files before running reconciliation.');validate(state.invoices,'invoice');validate(state.pos,'purchase order');validate(state.receipts,'goods receipt');const poGroups=group(state.pos,key),rcGroups=group(state.receipts,key),duplicates=group(state.invoices,r=>id(r.invoice));const dupIds=new Set([...duplicates].filter(([,a])=>a.length>1).map(([k])=>k));const results=state.invoices.map(inv=>{const findings=[],k=key(inv),pls=poGroups.get(k)||[],rls=rcGroups.get(k)||[],po=pls[0],received=rls.reduce((s,r)=>s+r.qty,0);if(dupIds.has(id(inv.invoice)))findings.push({code:'duplicate_invoice',label:'Duplicate invoice identifier',detail:'Invoice '+inv.invoice+' appears '+duplicates.get(id(inv.invoice)).length+' times in the input.'});if(!inv.po)findings.push({code:'missing_po_reference',label:'Missing PO reference',detail:'The invoice does not contain a purchase-order reference.'});if(!po)findings.push({code:'po_not_found',label:'No matching PO line',detail:'No PO line matches PO '+(inv.po||'(missing)')+' and item '+(inv.item||'(missing)')+'.'});if(po){if(inv.supplier&&po.supplier&&id(inv.supplier)!==id(po.supplier))findings.push({code:'supplier_mismatch',label:'Supplier mismatch',detail:'Invoice supplier '+inv.supplier+' differs from PO supplier '+po.supplier+'.'});if(Number.isFinite(inv.qty)&&Number.isFinite(po.qty)&&inv.qty>po.qty)findings.push({code:'quantity_over_ordered',label:'Invoice quantity exceeds ordered quantity',detail:'Invoiced '+inv.qty+' units; PO quantity is '+po.qty+'.'});if(Number.isFinite(inv.price)&&Number.isFinite(po.price)&&Math.abs(inv.price-po.price)>.0101)findings.push({code:'price_mismatch',label:'Unit price differs from PO',detail:'Invoice unit price '+money(inv.price)+'; PO unit price '+money(po.price)+'.'});if(Number.isFinite(inv.amount)&&Number.isFinite(inv.qty)&&Number.isFinite(inv.price)&&Math.abs(inv.amount-inv.qty*inv.price)>.02)findings.push({code:'line_amount_mismatch',label:'Invoice line amount inconsistency',detail:'Line amount does not equal quantity × unit price within $0.02.'})}if(!rls.length)findings.push({code:'receipt_missing',label:'No matching goods receipt',detail:'No receipt matches this PO and item.'});else if(Number.isFinite(inv.qty)&&inv.qty>received)findings.push({code:'quantity_over_received',label:'Invoice quantity exceeds received quantity',detail:'Invoiced '+inv.qty+' units; matched receipt quantity totals '+received+'.'});return {...inv,status:findings.length?'exception':'matched',findings,poQty:po?.qty,poPrice:po?.price,receiptQty:rls.length?received:NaN,poRows:pls.map(p=>p.row),receiptRows:rls.map(r=>r.row),risk:findings.length&&Number.isFinite(inv.amount)?inv.amount:0,source:'invoice'}});state.pos.forEach(p=>{if(!state.invoices.some(i=>key(i)===key(p)))results.push({invoice:'—',supplier:p.supplier,po:p.po,item:p.item,qty:NaN,price:NaN,amount:NaN,status:'review',findings:[{code:'po_without_invoice',label:'PO line has no invoice match',detail:'This PO line does not match an invoice line in the current input.'}],poQty:p.qty,poPrice:p.price,receiptQty:NaN,row:p.row,risk:0,source:'po'})});state.receipts.forEach(r=>{if(!state.pos.some(p=>key(p)===key(r)))results.push({invoice:'—',supplier:r.supplier,po:r.po,item:r.item,qty:NaN,price:NaN,amount:NaN,status:'review',findings:[{code:'receipt_without_po',label:'Receipt has no PO match',detail:'This receipt row does not match a PO line in the current input.'}],poQty:NaN,poPrice:NaN,receiptQty:r.qty,row:r.row,risk:0,source:'receipt'})});state.results=results;state.runAt=new Date();renderResults();$('results').classList.remove('hidden');setMeta('runHint','Run complete. Select a result to inspect its evidence.');$('results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}catch(e){showError(e.message)}}
+function renderResults(){const rs=state.results,invoiceRows=rs.filter(r=>r.source==='invoice'),exceptions=rs.filter(r=>r.status!=='matched');$('mTotal').textContent=invoiceRows.length;$('mExceptions').textContent=exceptions.length;$('mMatched').textContent=rs.filter(r=>r.status==='matched').length;$('mValue').textContent=money(exceptions.reduce((s,r)=>s+(r.risk||0),0));setMeta('runMeta','Completed '+state.runAt.toLocaleString()+' · '+state.invoices.length+' invoice rows · '+state.pos.length+' PO rows · '+state.receipts.length+' receipt rows');setMeta('reportMeta','Run at '+state.runAt.toLocaleString()+' · illustrative data unless your own files were loaded');$('reportSummary').innerHTML='<li>'+invoiceRows.length+' invoice rows reviewed by the configured rules.</li><li>'+exceptions.length+' total result rows require review, including unmatched PO/receipt rows.</li><li>'+rs.filter(r=>r.status==='matched').length+' invoice rows had no configured rule trigger.</li><li>Indicative flagged line value: '+escapeHTML(money(exceptions.reduce((s,r)=>s+(r.risk||0),0)))+'. This is not verified loss or recoverable value.</li>';$('reportBoundary').textContent='Input: '+(state.usingSample?'included illustrative sample':'user-selected CSV files')+' · Local browser run';drawRows()}
+function drawRows(){const query=$('search').value.toLowerCase().trim(),rows=state.results.filter(r=>(state.filter==='all'||(state.filter==='exception'?r.status!=='matched':r.status==='matched'))&&[r.invoice,r.supplier,r.po,r.item,r.findings.map(f=>f.label+' '+f.detail).join(' ')].join(' ').toLowerCase().includes(query));$('rows').innerHTML=rows.map(r=>'<tr tabindex="0" data-row="'+state.results.indexOf(r)+'"><td><span class="pill '+(r.status==='matched'?'matched':r.status==='exception'?'exception':'review')+'">'+(r.status==='matched'?'Matched':r.status==='exception'?'Exception':'Review')+'</span></td><td><div class="cell-main">'+escapeHTML(r.invoice||'—')+'</div><div class="cell-sub">CSV row '+escapeHTML(r.row??'—')+'</div></td><td>'+escapeHTML(r.supplier||'—')+'</td><td><div class="cell-main">'+escapeHTML(r.po||'—')+'</div><div class="cell-sub">'+escapeHTML(r.item||'—')+'</div></td><td>'+escapeHTML(Number.isFinite(r.qty)?String(r.qty)+' × '+money(r.price):'—')+'<div class="cell-sub">'+escapeHTML(money(r.amount))+'</div></td><td>'+escapeHTML(Number.isFinite(r.poQty)?String(r.poQty)+' × '+money(r.poPrice):'—')+'</td><td>'+escapeHTML(Number.isFinite(r.receiptQty)?String(r.receiptQty):'—')+'</td><td class="findings-cell">'+(r.findings.length?r.findings.map(f=>escapeHTML(f.label)).join('<br>'):'No configured rule triggered.')+'</td></tr>').join('');$('empty').classList.toggle('hidden',rows.length>0)}
+function csvCell(v){const s=String(v??'');return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
+function printEvidenceReport(){
+ if(!state.results.length){toast('Run reconciliation before exporting evidence.');return}
+ const w=window.open('','_blank');
+ if(!w){toast('Allow pop-ups to open the print-ready evidence report.');return}
+ const rows=state.results.map(r=>'<tr><td>'+escapeHTML(r.status.toUpperCase())+'</td><td>'+escapeHTML(r.invoice||'—')+'<br><small>Invoice CSV row '+escapeHTML(r.source==='invoice'?r.row:'—')+'</small></td><td>'+escapeHTML(r.supplier||'—')+'</td><td>'+escapeHTML((r.po||'—')+' / '+(r.item||'—'))+'</td><td>'+escapeHTML(Number.isFinite(r.qty)?r.qty:'—')+'</td><td>'+escapeHTML(Number.isFinite(r.poQty)?r.poQty:'—')+'</td><td>'+escapeHTML(Number.isFinite(r.receiptQty)?r.receiptQty:'—')+'</td><td>'+escapeHTML(r.findings.length?r.findings.map(f=>f.label+' — '+f.detail).join('; '):'No configured rule triggered')+'</td></tr>').join('');
+ const exceptions=state.results.filter(r=>r.status!=='matched').length;
+ const matched=state.results.filter(r=>r.status==='matched').length;
+ const total=state.results.filter(r=>r.source==='invoice').length;
+ const flagged=money(state.results.filter(r=>r.status!=='matched').reduce((sum,r)=>sum+(r.risk||0),0));
+ w.document.open();
+ w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>LedgerTrace evidence report</title><style>body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 8px}.meta{color:#5d675f;font-size:11px}.metrics{display:flex;gap:24px;margin:20px 0;padding:14px 0;border-top:1px solid #bbc3ba;border-bottom:1px solid #bbc3ba}.metrics b{display:block;font-size:20px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{text-align:left;vertical-align:top;padding:7px;border-bottom:1px solid #d6ddd5;overflow-wrap:anywhere}th{background:#edf1eb}small{color:#687168}.note{margin-top:20px;padding:12px;border:1px solid #c7d0c5;background:#f5f7f3}@media print{body{margin:12mm}tr{break-inside:avoid}h1,h2{break-after:avoid}.note{break-inside:avoid}}</style></head><body><h1>LedgerTrace — Reconciliation Evidence Report</h1><div class="meta">Generated '+escapeHTML(state.runAt?state.runAt.toLocaleString():'')+' · '+(state.usingSample?'Illustrative sample data':'User-supplied CSV data')+' · Browser-side run</div><div class="metrics"><div><b>'+total+'</b>Invoice rows</div><div><b>'+exceptions+'</b>Results needing review</div><div><b>'+matched+'</b>Invoice rows with no configured rule trigger</div><div><b>'+escapeHTML(flagged)+'</b>Indicative flagged line value</div></div><h2>Result worklist</h2><table><thead><tr><th>Status</th><th>Invoice / source row</th><th>Supplier</th><th>PO / item</th><th>Invoice qty</th><th>PO qty</th><th>Received</th><th>Finding and evidence</th></tr></thead><tbody>'+rows+'</tbody></table><div class="note"><strong>Interpretation:</strong> Rule-triggered findings require review against original source documents. A matched row means no configured rule triggered; it is not certification of correctness or authorization to pay. Indicative flagged line value is not verified loss or recoverable value. Matching currently uses normalized PO number + item code; edge cases and source completeness may affect results.</div><p class="meta">LedgerTrace · Illustrative output unless user-supplied CSVs were loaded · Human review required</p><script>window.onload=function(){window.focus();window.print()}<\/script>
+<style id="ledgertrace-recovery-extension-css">
+.recovery-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.recovery-input-grid .source-card{min-width:0}
+.recovery-shell{border-color:rgba(197,166,117,.28)}
+.recovery-metrics .metric:nth-child(3) .metric-value{color:var(--green)}
+.recovery-case-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.recovery-report{min-width:0;margin-top:0}
+.recovery-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:16px 0}
+.recovery-values>div{padding:12px;border:1px solid var(--line);background:rgba(237,233,222,.025);min-width:0}
+.recovery-values span{display:block;color:var(--muted);font:9px var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.recovery-values strong{display:block;margin-top:7px;font:500 13px var(--mono);overflow-wrap:anywhere}
+.recovery-findings ul{padding-left:18px}
+.recovery-findings li{margin:9px 0;font-size:12px;line-height:1.7;color:var(--muted)}
+.recovery-findings li strong{color:var(--text)}
+.recovery-label{display:block;margin:13px 0 6px;font:10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.recovery-control{width:100%;min-width:0;border-radius:6px;background:var(--bg);color:var(--text);border:1px solid var(--line2);padding:11px 12px;font:12px var(--body)}
+textarea.recovery-control{resize:vertical;min-height:100px}
+.recovery-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.recovery-buttons{margin-top:15px;flex-wrap:wrap}
+.recovery-boundary{margin-top:18px;padding:17px 19px;border:1px solid rgba(197,166,117,.25);background:rgba(197,166,117,.035);font-size:12px;line-height:1.8;color:var(--muted)}
+.recovery-boundary strong{color:var(--text)}
+.recovery-boundary p{margin:5px 0 0}
+#recRows tr{cursor:pointer}
+#recRows tr:focus{outline:2px solid var(--blue);outline-offset:-2px}
+#recRows tr.selected{background:rgba(197,166,117,.08)}
+@media(max-width:900px){.recovery-input-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.recovery-case-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.recovery-input-grid{grid-template-columns:1fr}.recovery-two{grid-template-columns:1fr}.recovery-values{grid-template-columns:1fr 1fr}.recovery-boundary{padding:13px}}
+@media print{#recovery-investigation .recovery-input-grid,#recovery-investigation .workbench-bar,#recovery-investigation .work-actions,#recovery-investigation .results-toolbar,#recovery-investigation .recovery-buttons{display:none!important}#recovery-investigation .recovery-case-grid{grid-template-columns:1fr 1fr;break-inside:avoid}#recovery-investigation .report{background:#fff!important;color:#111!important;border-color:#bbb!important}#recovery-investigation .recovery-values>div{background:#fff!important;border-color:#ccc!important}#recovery-investigation .recovery-values span,#recovery-investigation .recovery-findings li,#recovery-investigation .small{color:#444!important}#recovery-investigation .recovery-values strong{color:#111!important}}
+</style>
+
+
+<script src="./recovery-core.js"></script>
+<script id="ledgertrace-recovery-extension">
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+if(!window.LedgerTraceCore)return;
+const types=['invoices','pos','receipts','payments','credits','amendments'];
+const ids={invoices:'recInvoices',pos:'recPos',receipts:'recReceipts',payments:'recPayments',credits:'recCredits',amendments:'recAmendments'};
+const meta={invoices:'recInvoicesMeta',pos:'recPosMeta',receipts:'recReceiptsMeta',payments:'recPaymentsMeta',credits:'recCreditsMeta',amendments:'recAmendmentsMeta'};
+const state={raw:{},files:{},results:[],summary:null,filter:'all',selected:null,cases:{},runAt:null};
+const sample={
+invoices:'invoice_number,supplier,po_number,item_code,description,quantity,unit_price,line_amount,currency,invoice_date\nINV-1001,Northstar Components,PO-5001,PART-A,Industrial valve,10,25.00,250.00,USD,2026-10-02\nINV-1002,Northstar Components,PO-5002,PART-B,Steel fitting,12,18.50,222.00,USD,2026-10-03\nINV-1002,Northstar Components,PO-5002,PART-B,Steel fitting duplicate,12,18.50,222.00,USD,2026-10-03\nINV-1003,Harbor Supply,PO-5003,PART-C,Copper pipe,20,9.00,180.00,USD,2026-10-04\nINV-1004,Meridian Tools,PO-5004,PART-D,Drill bit set,5,42.00,210.00,USD,2026-10-05\nINV-1005,Cedar Industrial,PO-5005,PART-E,Fastener kit,8,12.00,96.00,USD,2026-10-06\nINV-1006,Atlas Parts,,PART-F,Sensor cable,2,15.00,30.00,USD,2026-10-07\nINV-1007,Cedar Industrial,PO-5006,PART-G,Drive belt,3,11.00,33.00,USD,2026-10-08',
+pos:'po_number,supplier,item_code,description,quantity,unit_price,currency,po_date\nPO-5001,Northstar Components,PART-A,Industrial valve,10,25.00,USD,2026-09-20\nPO-5002,Northstar Components,PART-B,Steel fitting,12,18.50,USD,2026-09-22\nPO-5003,Harbor Supply,PART-C,Copper pipe,20,8.50,USD,2026-09-23\nPO-5004,Meridian Tools,PART-D,Drill bit set,5,42.00,USD,2026-09-25\nPO-5005,Cedar Industrial,PART-E,Fastener kit,6,12.00,USD,2026-09-26\nPO-5006,Cedar Industrial,PART-G,Drive belt,3,11.00,USD,2026-09-27',
+receipts:'receipt_number,po_number,supplier,item_code,quantity,receipt_date\nGR-7001,PO-5001,Northstar Components,PART-A,10,2026-09-28\nGR-7002,PO-5002,Northstar Components,PART-B,12,2026-09-29\nGR-7003,PO-5003,Harbor Supply,PART-C,15,2026-10-01\nGR-7004,PO-5004,Meridian Tools,PART-D,5,2026-10-02\nGR-7005,PO-5005,Cedar Industrial,PART-E,4,2026-10-03',
+payments:'payment_id,invoice_number,supplier,paid_amount,currency,payment_date\nPAY-1001,INV-1001,Northstar Components,250,USD,2026-10-10\nPAY-1002,INV-1002,Northstar Components,444,USD,2026-10-11\nPAY-1003,INV-1003,Harbor Supply,180,USD,2026-10-12\nPAY-1004,INV-1004,Meridian Tools,210,USD,2026-10-13\nPAY-1005,INV-1005,Cedar Industrial,96,USD,2026-10-14\nPAY-1006,INV-1006,Atlas Parts,30,USD,2026-10-15\nPAY-1007,INV-1007,Cedar Industrial,33,USD,2026-10-16',
+credits:'credit_note_number,invoice_number,supplier,credit_amount,currency,credit_date\nCN-1004,INV-1004,Meridian Tools,10,USD,2026-10-20',
 amendments:'amendment_id,po_number,supplier,item_code,amended_quantity,amended_unit_price,effective_date\n'
 };
-function toast(msg){$('toast').textContent=msg;$('toast').classList.remove('hidden');setTimeout(()=> $('toast').classList.add('hidden'),2800)}
-function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function money(n,c=''){return Number.isFinite(n)?(c?c+' ':'')+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):'—'}
-async function loadFiles(files){for(const type of types){const file=files[type];if(!file)continue;const text=await file.text();state.raw[type]=LedgerTraceCore.parseCSV(text);state.files[type]=file.name;$('state-'+type).textContent=file.name+' · '+state.raw[type].length+' rows';}}
-types.forEach(type=>$(type).addEventListener('change',async e=>{try{const file=e.target.files[0];if(!file)return;state.raw[type]=LedgerTraceCore.parseCSV(await file.text());state.files[type]=file.name;$('state-'+type).textContent=file.name+' · '+state.raw[type].length+' rows';$('error').classList.add('hidden')}catch(err){showError('Could not read '+type+': '+err.message)}}));
-function showError(msg){$('error').textContent=msg;$('error').classList.remove('hidden')}
-function setSamples(){for(const type of types){state.raw[type]=LedgerTraceCore.parseCSV(samples[type]);state.files[type]='Built-in illustrative sample';$('state-'+type).textContent='Illustrative sample · '+state.raw[type].length+' rows';$(type).value='';}}
-function run(){try{if(!state.raw.invoices?.length)throw new Error('Choose an invoice CSV or run the illustrative sample.');const result=LedgerTraceCore.analyze(state.raw);state.results=result.results;state.summary=result.summary;state.runAt=new Date().toISOString();state.selected=null;state.filter='all';$('search').value='';document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));$('error').classList.add('hidden');$('results').classList.remove('hidden');render();$('results').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){showError(e.message)}}
-function caseData(r){return state.cases[r.id]||{status:r.status==='payment_excess_candidate'?'needs_review':'needs_review',action:'Request supplier statement and invoice review',note:'',outcomeAmount:'',outcomeRef:''}}
-function activeRows(){const q=$('search').value.trim().toLowerCase();return state.results.filter(r=>{const c=caseData(r);const match=state.filter==='all'||(state.filter==='action'&&(Number.isFinite(r.candidate)&&r.candidate>0||Number.isFinite(r.confirmedOverpayment)&&r.confirmedOverpayment>0))||(state.filter==='payment'&&Number.isFinite(r.confirmedOverpayment)&&r.confirmedOverpayment>0)||(state.filter==='review'&&(!Number.isFinite(r.expectedNet)||!Number.isFinite(r.paid)||r.findings.length));return match&&[r.id,r.invoice,r.supplier,r.po,r.item,r.findings.map(f=>f.label+' '+f.detail).join(' ')].join(' ').toLowerCase().includes(q)})}
-function statusLabel(r){const c=caseData(r);return labels[c.status]||labels[r.status]||c.status}
-function render(){const s=state.summary;$('m-lines').textContent=s.invoiceLines;$('m-flagged').textContent=s.flagged;$('m-invoice').textContent=money(s.invoiceExcess);$('m-paid').textContent=money(s.paymentExcess);$('runmeta').textContent='Run '+new Date(state.runAt).toLocaleString()+' · '+types.filter(t=>state.raw[t]?.length).length+' source types loaded. Review every candidate before supplier contact.';drawRows();if(state.selected){const r=state.results.find(x=>x.id===state.selected);if(r)showCase(r)}}
-function drawRows(){const rows=activeRows();$('rows').innerHTML=rows.map(r=>{const payment=Number.isFinite(r.confirmedOverpayment)&&r.confirmedOverpayment>0;const action=(Number.isFinite(r.candidate)&&r.candidate>0)||payment;return '<tr tabindex="0" data-id="'+esc(r.id)+'"><td><b>'+esc(r.id)+'</b><div class="cell-sub">'+esc(r.invoice)+'</div></td><td>'+esc(r.supplier)+'</td><td>'+esc(r.po)+'<div class="cell-sub">'+esc(r.item)+'</div></td><td>'+money(r.expectedNet,r.currency)+'</td><td>'+money(r.paid,r.currency)+'</td><td>'+money(r.candidate,r.currency)+'</td><td>'+money(r.confirmedOverpayment,r.currency)+'</td><td><span class="pill '+(payment?'red':action?'red':'grey')+'">'+esc(statusLabel(r))+'</span></td></tr>'}).join('');$('empty').classList.toggle('hidden',rows.length>0);$('rows').querySelectorAll('tr').forEach(tr=>{const open=()=>{state.selected=tr.dataset.id;showCase(state.results.find(r=>r.id===state.selected))};tr.addEventListener('click',open);tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}})})}
-function showCase(r){if(!r)return;const c=caseData(r);$('case-title').textContent=r.id+' / '+r.invoice;$('case-sub').textContent=r.supplier+' · PO '+r.po+' · item '+r.item+' · '+(r.invoiceDate||'invoice date not supplied');const vals=[['Invoice amount',money(r.invoiceAmount,r.currency)],['PO unit price',money(r.poPrice,r.currency)],['Ordered / received',String(Number.isFinite(r.qtyOrdered)?r.qtyOrdered:'—')+' / '+String(Number.isFinite(r.qtyReceived)?r.qtyReceived:'—')],['Expected net',money(r.expectedNet,r.currency)],['Paid allocation',money(r.paid,r.currency)],['Credits allocated',money(r.credits,r.currency)],['Invoice excess candidate',money(r.candidate,r.currency)],['Payment excess candidate',money(r.confirmedOverpayment,r.currency)]];$('case-values').innerHTML=vals.map(([a,b])=>'<div><span>'+esc(a)+'</span><b>'+esc(b)+'</b></div>').join('');$('case-findings').innerHTML=r.findings.length?r.findings.map(f=>'<li><b>'+esc(f.label)+':</b> '+esc(f.detail)+'</li>').join(''):'<li>No configured exception triggered. This is not a certification that the invoice is correct.</li>';$('source-refs').textContent='Source rows — invoice: '+(r.sourceRows.invoice??'—')+' · PO: '+(r.sourceRows.po.join(', ')||'none')+' · receipts: '+(r.sourceRows.receipts.join(', ')||'none')+' · payments: '+(r.sourceRows.payments.join(', ')||'none')+' · credits: '+(r.sourceRows.credits.join(', ')||'none')+' · amendments: '+(r.sourceRows.amendments.join(', ')||'none');$('case-state').value=c.status;$('case-action').value=c.action;$('case-note').value=c.note;$('outcome-amount').value=c.outcomeAmount;$('outcome-ref').value=c.outcomeRef}
-function saveCase(){if(!state.selected){toast('Select a worklist row first.');return}state.cases[state.selected]={status:$('case-state').value,action:$('case-action').value,note:$('case-note').value,outcomeAmount:$('outcome-amount').value,outcomeRef:$('outcome-ref').value,updatedAt:new Date().toISOString()};drawRows();const r=state.results.find(x=>x.id===state.selected);if(r)showCase(r);toast('Case updated in this browser session.')}
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function money(n,c=''){if(!Number.isFinite(n))return '—';return (c?c+' ':'')+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}
+function toastMsg(msg){const el=$('toast');if(el){el.textContent=msg;el.classList.remove('hidden');setTimeout(()=>el.classList.add('hidden'),2600)}else{const hint=$('recHint');if(hint)hint.textContent=msg}}
+function error(msg){$('recError').textContent=msg;$('recError').classList.remove('hidden')}
+function clearError(){$('recError').classList.add('hidden');$('recError').textContent=''}
+function loadSamples(){clearError();for(const t of types){state.raw[t]=LedgerTraceCore.parseCSV(sample[t]);state.files[t]='Illustrative sample';$(ids[t]).value='';$(meta[t]).textContent='Illustrative sample · '+state.raw[t].length+' rows'}state.results=[];state.summary=null;state.cases={};state.selected=null;state.filter='all';$('recResults').classList.add('hidden');$('recSearch').value='';document.querySelectorAll('[data-rec-filter]').forEach(b=>b.classList.toggle('active',b.dataset.recFilter==='all'));$('recHint').textContent='Illustrative records loaded. Run the investigation to calculate candidates.'}
+for(const t of types)$(ids[t]).addEventListener('change',async e=>{const file=e.target.files&&e.target.files[0];if(!file)return;try{const parsed=LedgerTraceCore.parseCSV(await file.text());if(!parsed.length)throw Error('CSV contains no data rows.');state.raw[t]=parsed;state.files[t]=file.name;$(meta[t]).textContent=file.name+' · '+parsed.length+' rows';clearError()}catch(err){error('Could not read '+file.name+': '+err.message)}});
+function run(){clearError();try{if(!state.raw.invoices||!state.raw.invoices.length)throw Error('Select an invoice CSV or load the illustrative recovery sample.');const out=LedgerTraceCore.analyze({invoices:state.raw.invoices,pos:state.raw.pos||[],receipts:state.raw.receipts||[],payments:state.raw.payments||[],credits:state.raw.credits||[],amendments:state.raw.amendments||[]});state.results=out.results;state.summary=out.summary;state.runAt=new Date();state.selected=null;state.filter='all';$('recSearch').value='';document.querySelectorAll('[data-rec-filter]').forEach(b=>b.classList.toggle('active',b.dataset.recFilter==='all'));$('recResults').classList.remove('hidden');render();$('recHint').textContent='Investigation complete. Select a row to inspect evidence and record a resolution.';$('recResults').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}catch(e){error(e.message)}}
+function getCase(r){return state.cases[r.id]||{status:'needs_review',action:'Request supplier statement and invoice review',note:'',outcomeAmount:'',outcomeRef:''}}
+function activeRows(){const q=$('recSearch').value.trim().toLowerCase();return state.results.filter(r=>{const payment=Number.isFinite(r.confirmedOverpayment)&&r.confirmedOverpayment>0;const candidate=(Number.isFinite(r.candidate)&&r.candidate>0)||payment;const f=state.filter==='all'||(state.filter==='action'&&candidate)||(state.filter==='payment'&&payment)||(state.filter==='review'&&(!Number.isFinite(r.expectedNet)||!Number.isFinite(r.paid)||r.findings.length>0));return f&&[r.id,r.invoice,r.supplier,r.po,r.item,r.findings.map(x=>x.label+' '+x.detail).join(' ')].join(' ').toLowerCase().includes(q)})}
+function stateLabel(r){const c=getCase(r);const labels={needs_review:'Needs review',evidence_requested:'Evidence requested',ready_to_contact:'Ready to contact',submitted:'Claim submitted',credit_issued:'Credit issued',refund_received:'Refund received',invoice_corrected:'Invoice corrected',rejected:'Claim rejected',closed_no_recovery:'Closed — no recovery'};return labels[c.status]||c.status}
+function render(){const s=state.summary;$('recMetricLines').textContent=s.invoiceLines;$('recMetricFlags').textContent=s.flagged;$('recMetricInvoice').textContent=money(s.invoiceExcess);$('recMetricPaid').textContent=money(s.paymentExcess);$('recRunMeta').textContent='Run '+state.runAt.toLocaleString()+' · '+types.filter(t=>state.raw[t]&&state.raw[t].length).length+' source types loaded · source rows remain linked to each finding';drawRows();if(state.selected){const r=state.results.find(x=>x.id===state.selected);if(r)showCase(r)}}
+function drawRows(){const rs=activeRows();$('recRows').innerHTML=rs.map(r=>{const payment=Number.isFinite(r.confirmedOverpayment)&&r.confirmedOverpayment>0;const candidate=(Number.isFinite(r.candidate)&&r.candidate>0)||payment;return '<tr tabindex="0" data-rec-id="'+esc(r.id)+'" class="'+(state.selected===r.id?'selected':'')+'"><td><strong>'+esc(r.id)+'</strong><div class="cell-sub">'+esc(r.invoice)+'</div></td><td>'+esc(r.supplier)+'</td><td>'+esc(r.po)+'<div class="cell-sub">'+esc(r.item)+'</div></td><td>'+money(r.expectedNet,r.currency)+'</td><td>'+money(r.paid,r.currency)+'</td><td>'+money(r.candidate,r.currency)+'</td><td>'+money(r.confirmedOverpayment,r.currency)+'</td><td><span class="pill '+(payment?'exception':candidate?'review':'matched')+'">'+esc(stateLabel(r))+'</span></td></tr>'}).join('');$('recEmpty').classList.toggle('hidden',rs.length>0);$('recRows').querySelectorAll('tr').forEach(tr=>{const select=()=>{state.selected=tr.dataset.recId;drawRows();showCase(state.results.find(r=>r.id===state.selected))};tr.addEventListener('click',select);tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}})})}
+function showCase(r){if(!r)return;const c=getCase(r);$('recCaseTitle').textContent=r.id+' / '+r.invoice;$('recCaseSub').textContent=r.supplier+' · PO '+r.po+' · item '+r.item+' · '+(r.invoiceDate||'invoice date not supplied');const vals=[['Invoice amount',money(r.invoiceAmount,r.currency)],['PO unit price',money(r.poPrice,r.currency)],['Ordered / received',String(Number.isFinite(r.qtyOrdered)?r.qtyOrdered:'—')+' / '+String(Number.isFinite(r.qtyReceived)?r.qtyReceived:'—')],['Expected net',money(r.expectedNet,r.currency)],['Paid allocation',money(r.paid,r.currency)],['Credits allocated',money(r.credits,r.currency)],['Invoice excess candidate',money(r.candidate,r.currency)],['Payment excess candidate',money(r.confirmedOverpayment,r.currency)]];$('recCaseValues').innerHTML=vals.map(([k,v])=>'<div><span>'+esc(k)+'</span><strong>'+esc(v)+'</strong></div>').join('');$('recCaseFindings').innerHTML=r.findings.length?r.findings.map(f=>'<li><strong>'+esc(f.label)+':</strong> '+esc(f.detail)+'</li>').join(''):'<li>No configured exception triggered. This does not certify the invoice as correct.</li>';$('recSourceRows').textContent='Source CSV rows — invoice: '+(r.sourceRows.invoice??'—')+' · PO: '+(r.sourceRows.po.join(', ')||'none')+' · receipts: '+(r.sourceRows.receipts.join(', ')||'none')+' · payments: '+(r.sourceRows.payments.join(', ')||'none')+' · credits: '+(r.sourceRows.credits.join(', ')||'none')+' · amendments: '+(r.sourceRows.amendments.join(', ')||'none');$('recCaseStatus').value=c.status;$('recCorrective').value=c.action;$('recReviewNote').value=c.note;$('recOutcomeAmount').value=c.outcomeAmount;$('recOutcomeRef').value=c.outcomeRef}
+function saveCase(){if(!state.selected){toastMsg('Select a worklist row first.');return}state.cases[state.selected]={status:$('recCaseStatus').value,action:$('recCorrective').value,note:$('recReviewNote').value,outcomeAmount:$('recOutcomeAmount').value,outcomeRef:$('recOutcomeRef').value,updatedAt:new Date().toISOString()};drawRows();showCase(state.results.find(r=>r.id===state.selected));toastMsg('Case recorded in this tab. Export it to retain the record.')}
 function csvCell(v){const s=String(v??'');return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
-function download(name,text,type='application/json'){const blob=new Blob([text],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
-function packageData(){return {product:'LedgerTrace Recovery',generatedAt:new Date().toISOString(),inputFiles:state.files,summary:state.summary,methodNotes:['CSV analysis only; source values are not independently authenticated.','Potential invoice excess is not confirmed loss.','Payment excess candidate is not verified recovery.','Payment and credit totals are allocated across lines proportionally to billed line value.','Tax, freight, currency conversion, tolerances and complex allocations require human review.'],cases:state.results.map(r=>({...r,caseRecord:caseData(r)}))}}
-function exportCSV(){const cols=['id','invoice','supplier','po','item','invoiceAmount','poPrice','qtyOrdered','qtyReceived','expectedNet','paid','credits','candidate','confirmedOverpayment','status','findings','sourceRows'];const lines=[cols.join(',')];for(const r of state.results){const c=caseData(r);const obj={...r,status:c.status,findings:r.findings.map(f=>f.label+': '+f.detail).join(' | '),sourceRows:JSON.stringify(r.sourceRows)};lines.push(cols.map(k=>csvCell(obj[k])).join(','))}download('ledgertrace-recovery-worklist.csv',lines.join('\r\n'),'text/csv')}
-function exportCase(){const r=state.results.find(x=>x.id===state.selected);if(!r){toast('Select a case first.');return}download('ledgertrace-'+r.id.toLowerCase()+'-case.json',JSON.stringify({...r,caseRecord:caseData(r),generatedAt:new Date().toISOString(),inputFiles:state.files},null,2))}
-function clearAll(){state.raw={};state.files={};state.results=[];state.summary=null;state.selected=null;state.filter='all';state.cases={};state.runAt=null;for(const t of types){$(t).value='';$('state-'+t).textContent='Optional source';} $('results').classList.add('hidden');$('error').classList.add('hidden');$('search').value='';toast('Files and in-tab case notes cleared.')}
-$('run').addEventListener('click',run);$('sampleTop').addEventListener('click',()=>{setSamples();run()});$('clear').addEventListener('click',clearAll);$('save-case').addEventListener('click',saveCase);$('export-case').addEventListener('click',exportCase);$('export-csv').addEventListener('click',exportCSV);$('export-all').addEventListener('click',()=>{if(!state.results.length){toast('Run an investigation first.');return}download('ledgertrace-investigation-package.json',JSON.stringify(packageData(),null,2))});$('print').addEventListener('click',()=>{if(!state.results.length){toast('Run an investigation first.');return}window.print()});$('search').addEventListener('input',drawRows);document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{state.filter=b.dataset.filter;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));drawRows()}));
-window.addEventListener('beforeprint',()=>{document.body.dataset.print='true'});
+function download(name,content,type){const blob=new Blob([content],{type:type||'application/json;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function pack(){return {product:'LedgerTrace Recovery',generatedAt:new Date().toISOString(),inputFiles:state.files,summary:state.summary,methodNotes:['Potential invoice excess is not verified loss.','Payment excess candidate requires finance review.','User-entered outcome is not independently verified by LedgerTrace.','Complex tax, freight, currency, tolerances and payment allocations need human review.'],cases:state.results.map(r=>({...r,caseRecord:getCase(r)}))}}
+function exportCsv(){const cols=['id','invoice','supplier','po','item','currency','invoiceAmount','poPrice','qtyOrdered','qtyReceived','expectedNet','paid','credits','candidate','confirmedOverpayment','status','findings','sourceRows'];const lines=[cols.join(',')];for(const r of state.results){const obj={...r,status:getCase(r).status,findings:r.findings.map(f=>f.label+': '+f.detail).join(' | '),sourceRows:JSON.stringify(r.sourceRows)};lines.push(cols.map(k=>csvCell(obj[k])).join(','))}download('ledgertrace-recovery-worklist.csv','\ufeff'+lines.join('\r\n'),'text/csv;charset=utf-8')}
+function exportCase(){const r=state.results.find(x=>x.id===state.selected);if(!r){toastMsg('Select a case first.');return}download('ledgertrace-'+r.id.toLowerCase()+'-case.json',JSON.stringify({...r,caseRecord:getCase(r),generatedAt:new Date().toISOString(),inputFiles:state.files},null,2))}
+function reset(){for(const t of types){$(ids[t]).value='';$(meta[t]).textContent=t==='invoices'?'No file selected':'Optional source'}state.raw={};state.files={};state.results=[];state.summary=null;state.cases={};state.selected=null;state.runAt=null;$('recResults').classList.add('hidden');$('recError').classList.add('hidden');$('recSearch').value='';$('recHint').textContent='Inputs cleared. Load approved CSVs or the illustrative sample.'}
+$('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEventListener('click',reset);$('recRunBtn').addEventListener('click',run);$('recSaveCase').addEventListener('click',saveCase);$('recExportCase').addEventListener('click',exportCase);$('recExportCsv').addEventListener('click',exportCsv);$('recExportAll').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}download('ledgertrace-recovery-investigation.json',JSON.stringify(pack(),null,2))});$('recPrint').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}window.print()});$('recSearch').addEventListener('input',drawRows);document.querySelectorAll('[data-rec-filter]').forEach(b=>b.addEventListener('click',()=>{state.filter=b.dataset.recFilter;document.querySelectorAll('[data-rec-filter]').forEach(x=>x.classList.toggle('active',x===b));drawRows()}));
 })();
 </script>
-<style>@media print{body{background:#fff;color:#111}.top,.hero,.upload-grid,.runbar,.toolbar,.actions,.nav,.footer{display:none!important}.wrap{width:100%}.section{border:0;padding:10px 0}.panel,.metric,.upload,.table-wrap,.diagram{background:#fff;border-color:#ccc;color:#111}.micro,.footnote,.section-head p,.metric span,.metric small{color:#444}table{min-width:0;font-size:8px}td,th{padding:5px;border-color:#ccc}th{background:#eee;color:#222}.case-layout{break-inside:avoid}.panel{break-inside:avoid}.metric strong{color:#111}.pill{color:#111!important;border-color:#777!important}}</style>
-</body></html>
+
+</body></html>');
+ w.document.close();
+}
+
+function exportCSV(){if(!state.results.length)return;const headers=['status','invoice_number','supplier','purchase_order','item_code','source_type','source_csv_row','invoice_quantity','invoice_unit_price','invoice_line_amount','po_quantity','po_unit_price','received_quantity','finding_codes','findings','indicative_flagged_line_value'];const lines=[headers.join(',')];state.results.forEach(r=>lines.push([r.status,r.invoice,r.supplier,r.po,r.item,r.source,r.row,r.qty,r.price,r.amount,r.poQty,r.poPrice,r.receiptQty,r.findings.map(f=>f.code).join('; '),r.findings.map(f=>f.label+': '+f.detail).join(' | '),r.risk].map(csvCell).join(',')));const blob=new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ledgertrace-exception-report-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function openDrawer(index,trigger){const r=state.results[index];if(!r)return;state.selected=index;state.lastFocus=trigger||document.activeElement;$('drawerTitle').textContent=r.findings.length?r.findings[0].label:'No configured rule triggered';$('drawerSub').textContent=(r.invoice&&r.invoice!=='—'?'Invoice '+r.invoice+' · ':'')+'PO '+(r.po||'—')+' · Item '+(r.item||'—')+' · CSV row '+(r.row??'—');const findings=r.findings.length?r.findings.map(f=>'<li><strong>'+escapeHTML(f.label)+':</strong> '+escapeHTML(f.detail)+'</li>').join(''):'<li>No currently configured rule triggered for this invoice line. This is not a certification of correctness.</li>';const inv=r.source==='invoice'?r:state.invoices.find(x=>x.row===r.row);const po=state.pos.filter(x=>key(x)===key(r));const rec=state.receipts.filter(x=>key(x)===key(r));$('drawerContent').innerHTML='<div class="drawer-status"><span class="pill '+(r.status==='matched'?'matched':r.status==='exception'?'exception':'review')+'">'+(r.status==='matched'?'Matched':r.status==='exception'?'Exception':'Review')+'</span></div><div class="drawer-section"><h3>Evidence / Compared values</h3><div class="evidence-pair"><div class="evidence-value"><span>Invoice quantity</span><strong>'+escapeHTML(Number.isFinite(r.qty)?r.qty:'—')+'</strong></div><div class="evidence-value"><span>PO quantity</span><strong>'+escapeHTML(Number.isFinite(r.poQty)?r.poQty:'—')+'</strong></div><div class="evidence-value"><span>Invoice unit price</span><strong>'+escapeHTML(money(r.price))+'</strong></div><div class="evidence-value"><span>PO unit price</span><strong>'+escapeHTML(money(r.poPrice))+'</strong></div><div class="evidence-value"><span>Received quantity</span><strong>'+escapeHTML(Number.isFinite(r.receiptQty)?r.receiptQty:'—')+'</strong></div><div class="evidence-value"><span>Invoice line amount</span><strong>'+escapeHTML(money(r.amount))+'</strong></div></div></div><div class="drawer-section"><h3>Rule result</h3><ul class="finding-list">'+findings+'</ul></div><div class="drawer-section"><h3>Source trace</h3><div class="evidence-pair"><div class="evidence-value"><span>Invoice CSV row</span><strong>'+escapeHTML(r.source==='invoice'?'Row '+r.row:'Not linked')+'</strong></div><div class="evidence-value"><span>PO source rows</span><strong>'+escapeHTML(po.length?po.map(x=>x.row).join(', '):'No match')+'</strong></div><div class="evidence-value"><span>Receipt source rows</span><strong>'+escapeHTML(rec.length?rec.map(x=>x.row).join(', '):'No match')+'</strong></div><div class="evidence-value"><span>Linkage key</span><strong>'+escapeHTML((r.po||'—')+' / '+(r.item||'—'))+'</strong></div></div><p class="small muted" style="margin:12px 0 0">Matching uses normalized PO number + item code. Multiple source rows may be aggregated for receipt quantity; split-line matching and ambiguous joins need separate validation.</p></div>';$('reviewStatus').value=(state.review.get(index)||{}).status||'unreviewed';$('reviewNote').value=(state.review.get(index)||{}).note||'';$('drawerBackdrop').classList.add('open');$('inspector').classList.add('open');$('inspector').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('closeDrawer').focus()}
+function closeDrawer(){if(!$('inspector').classList.contains('open'))return;$('drawerBackdrop').classList.remove('open');$('inspector').classList.remove('open');$('inspector').setAttribute('aria-hidden','true');document.body.style.overflow='';if(state.lastFocus&&state.lastFocus.focus)state.lastFocus.focus()}
+function scopeData(){const sources=[...$('sourceOptions').querySelectorAll('input:checked')].map(x=>x.value),checks=[...$('checkOptions').querySelectorAll('input:checked')].map(x=>x.value);return {sources,checks}}
+function scopeText(){const s=scopeData();return 'LedgerTrace scoped evaluation inquiry\n\nRecord sources: '+(s.sources.join(', ')||'Not selected')+'\nChecks to discuss: '+(s.checks.join(', ')||'Not selected')+'\nProposed deliverables: findings report, exception CSV, source-linked evidence and review of false positives/missed exceptions, subject to agreement.\nCommercial terms: scope, fee, timeline and acceptance criteria to be agreed before work begins.\nData: synthetic or approved anonymized data only for initial evaluation.'}
+function updateScope(){const s=scopeData();$('summarySources').textContent=s.sources.length+' selected';$('summaryChecks').textContent=s.checks.length+' selected';state.scopeBrief=scopeText();$('contactScopeSummary').textContent=s.sources.length+' source types, '+s.checks.length+' check topics, findings report and exception CSV. You can edit the brief before using it.';const c=$('configuredChannels');c.innerHTML='';if(CONTACT_EMAIL){const a=document.createElement('a');a.className='button secondary';a.href='mailto:'+CONTACT_EMAIL;a.textContent='Email a scoped inquiry ↗';c.appendChild(a)}if(WHATSAPP_NUMBER){const a=document.createElement('a');a.className='button secondary';a.href='https://wa.me/'+WHATSAPP_NUMBER.replace(/[^0-9]/g,'');a.target='_blank';a.rel='noopener noreferrer';a.textContent='WhatsApp LedgerTrace ↗';c.appendChild(a)}}
+function toast(msg){const t=$('toast');t.textContent=msg;t.style.opacity='1';t.style.transform='translate(-50%,0)';clearTimeout(toast.timer);toast.timer=setTimeout(()=>{t.style.opacity='0';t.style.transform='translate(-50%,20px)'},2600)}
+async function copyText(text){try{await navigator.clipboard.writeText(text);toast('Brief copied to clipboard.')}catch(e){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();toast(ok?'Brief copied to clipboard.':'Copy failed. Select and copy the brief manually.')}}
+function openContact(){state.lastFocus=document.activeElement;updateScope();$('contactBackdrop').classList.add('open');$('contactPanel').classList.add('open');$('contactPanel').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('contactEmail').focus()}
+function closeContact(){if(!$('contactPanel').classList.contains('open'))return;$('contactBackdrop').classList.remove('open');$('contactPanel').classList.remove('open');$('contactPanel').setAttribute('aria-hidden','true');document.body.style.overflow='';if(state.lastFocus&&state.lastFocus.focus)state.lastFocus.focus()}
+function fullBrief(){const email=$('contactEmail').value.trim(),description=$('contactDescription').value.trim();return scopeText()+'\n\nContact email: '+(email||'Not provided')+'\nProblem description: '+(description||'Not provided')}
+function handleContactSubmit(e){e.preventDefault();const email=$('contactEmail').value.trim(),description=$('contactDescription').value.trim();if(!email||!description){$('contactStatus').textContent='Enter an email and short description to prepare the brief.';return}const brief=fullBrief();copyText(brief);if(CONTACT_EMAIL){const url='mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent('LedgerTrace paid evaluation inquiry')+'&body='+encodeURIComponent(brief);window.location.href=url;$('contactStatus').textContent='Your email app should open with the inquiry brief. Review and send it there.'}else if(WHATSAPP_NUMBER){window.open('https://wa.me/'+WHATSAPP_NUMBER.replace(/[^0-9]/g,'')+'?text='+encodeURIComponent(brief),'_blank','noopener,noreferrer');$('contactStatus').textContent='WhatsApp should open with the inquiry brief. Review and send it there.'}else{$('contactStatus').textContent='The inquiry brief was prepared. No message was sent because a recipient email/WhatsApp destination has not been configured. The brief was copied where clipboard access is available.'}}
+function resetAll(){loadSamples();$('results').classList.add('hidden');closeDrawer();$('search').value='';$('runHint').textContent='Sample records restored. Run reconciliation to produce a fresh report.';toast('Sample restored.')}
+$('invoiceFile').addEventListener('change',e=>loadFile('invoice',e.target.files[0]));$('poFile').addEventListener('change',e=>loadFile('po',e.target.files[0]));$('receiptFile').addEventListener('change',e=>loadFile('receipt',e.target.files[0]));
+async function loadFile(type,file){if(!file)return;hideError();try{const records=readRecords(parseCSV(await file.text()),type);validate(records,type==='invoice'?'invoice':type==='po'?'purchase order':'goods receipt');if(state.usingSample){state.invoices=[];state.pos=[];state.receipts=[];setMeta('invoiceMeta','Select invoice CSV');setMeta('poMeta','Select PO CSV');setMeta('receiptMeta','Select receipt CSV');state.usingSample=false;}state[type==='invoice'?'invoices':type==='po'?'pos':'receipts']=records;state.usingSample=false;setMeta(type==='invoice'?'invoiceMeta':type==='po'?'poMeta':'receiptMeta',file.name+' · '+records.length+' rows');$('results').classList.add('hidden');setMeta('runHint','All three sources must be loaded before running. Files remain in this browser tab.')}catch(e){showError(file.name+': '+e.message)}}
+$('sampleBtn').addEventListener('click',()=>{loadSamples();reconcile();toast('Illustrative sample loaded and analysis complete.')});$('heroSampleBtn').addEventListener('click',e=>{e.preventDefault();loadSamples();reconcile();toast('Illustrative sample loaded and analysis complete.')});$('resetBtn').addEventListener('click',resetAll);$('reportReset').addEventListener('click',resetAll);$('clearBtn').addEventListener('click',()=>{state.invoices=[];state.pos=[];state.receipts=[];state.results=[];state.runAt=null;state.review.clear();['invoiceFile','poFile','receiptFile'].forEach(k=>$(k).value='');['invoiceMeta','poMeta','receiptMeta'].forEach(k=>setMeta(k,'No file selected'));$('results').classList.add('hidden');hideError();setMeta('runHint','Files cleared. Load sample data or choose all three CSV sources.');});$('runBtn').addEventListener('click',reconcile);$('exportBtn').addEventListener('click',exportCSV);$('reportExport').addEventListener('click',exportCSV);$('evidencePdfBtn').addEventListener('click',printEvidenceReport);$('search').addEventListener('input',drawRows);$('filters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;state.filter=b.dataset.filter;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active',x===b));drawRows()});$('rows').addEventListener('click',e=>{const tr=e.target.closest('tr[data-row]');if(tr)openDrawer(Number(tr.dataset.row),tr)});$('rows').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('tr[data-row]')){e.preventDefault();openDrawer(Number(e.target.dataset.row),e.target)}});$('closeDrawer').addEventListener('click',closeDrawer);$('closeDrawer2').addEventListener('click',closeDrawer);$('drawerBackdrop').addEventListener('click',closeDrawer);$('saveReview').addEventListener('click',()=>{if(state.selected===null)return;state.review.set(state.selected,{status:$('reviewStatus').value,note:$('reviewNote').value});$('reviewFeedback').textContent='Review state saved in memory for this page session only.';toast('Local review note saved.')});$('sourceOptions').addEventListener('change',updateScope);$('checkOptions').addEventListener('change',updateScope);$('generateBrief').addEventListener('click',()=>{updateScope();openContact();$('contactDescription').value='I would like to discuss a paid evaluation using the selected sources and check topics.\n\n'+state.scopeBrief;toast('Scope brief prepared for review.')});$('contactFromBuilder').addEventListener('click',openContact);$('footerContact').addEventListener('click',e=>{e.preventDefault();openContact()});$('closeContact').addEventListener('click',closeContact);$('contactBackdrop').addEventListener('click',closeContact);$('contactForm').addEventListener('submit',handleContactSubmit);$('copyBrief').addEventListener('click',()=>copyText(fullBrief()));$('menuToggle').addEventListener('click',()=>{const open=$('nav').classList.toggle('open');$('menuToggle').setAttribute('aria-expanded',String(open));$('menuToggle').setAttribute('aria-label',open?'Close navigation':'Open navigation')});$('nav').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{$('nav').classList.remove('open');$('menuToggle').setAttribute('aria-expanded','false')}));document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeContact();$('nav').classList.remove('open');$('menuToggle').setAttribute('aria-expanded','false')}});window.addEventListener('scroll',()=>{$('header').classList.toggle('scrolled',window.scrollY>35)},{passive:true});
+const scene=$('scene');if(scene&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(pointer:fine)').matches){scene.addEventListener('pointermove',e=>{const r=scene.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;scene.style.setProperty('--gx',(x*-9)+'px');scene.style.setProperty('--gy',(y*-9)+'px');scene.style.setProperty('--lx',(x*16)+'px');scene.style.setProperty('--ly',(y*16)+'px');scene.querySelectorAll('[data-depth]').forEach(el=>{const d=Number(el.dataset.depth);el.style.setProperty('--px',(x*d*9)+'px');el.style.setProperty('--py',(y*d*9)+'px')})});scene.addEventListener('pointerleave',()=>{scene.style.setProperty('--gx','0px');scene.style.setProperty('--gy','0px');scene.style.setProperty('--lx','0px');scene.style.setProperty('--ly','0px');scene.querySelectorAll('[data-depth]').forEach(el=>{el.style.setProperty('--px','0px');el.style.setProperty('--py','0px')})})}
+const copyrightYear=$('copyrightYear');if(copyrightYear)copyrightYear.textContent=String(new Date().getFullYear());
+state.usingSample=false;updateScope();setMeta('runHint','Choose all three CSV files, or load the sample, then run reconciliation.');
+})();
+</script>
+
+<style id="ledgertrace-trust-pass">
+.header{background:rgba(23,34,31,.70)!important;border-color:rgba(143,169,160,.24)!important;box-shadow:0 10px 38px rgba(0,0,0,.16)!important;backdrop-filter:blur(18px) saturate(140%)!important;-webkit-backdrop-filter:blur(18px) saturate(140%)!important}
+.header.scrolled{background:rgba(23,34,31,.84)!important}
+.brand-mark{width:38px!important;height:38px!important;border:0!important;background:transparent!important;box-shadow:none!important}
+.ledgertrace-logo{display:block;width:100%;height:100%}
+.brand-name{letter-spacing:.16em!important}
+.assurance-grid .method-card{min-height:210px}
+.faq-list{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line);padding:0}
+.faq-item summary{list-style:none;cursor:pointer;position:relative;padding:20px 44px 20px 0;font:500 16px var(--display);color:var(--text)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:after{content:"+";position:absolute;right:5px;top:17px;color:var(--blue);font:22px var(--body)}
+.faq-item[open] summary:after{content:"−"}
+.faq-item p{max-width:850px;padding:0 40px 20px 0;margin:0;color:var(--muted);font-size:13px;line-height:1.85}
+.faq-item summary:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.assurance-boundary{margin-top:22px}
+.eval-copy strong{color:#EDE9DE}
+@media(max-width:760px){.header{background:rgba(23,34,31,.84)!important}.brand-mark{width:34px!important;height:34px!important}.assurance-grid .method-card{min-height:0}}
+@media(prefers-reduced-transparency:reduce){.header,.header.scrolled{background:#17221F!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
+</style>
+
+<style id="ledgertrace-logo-nav-trust-final">
+/* Keep the original monogram geometry. Render it as one restrained silhouette. */
+.brand-mark,.footer-brand .brand-mark{width:36px!important;height:39px!important;flex:0 0 36px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;transform:none!important}
+.brand-mark .ledgertrace-logo,.footer-brand .ledgertrace-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;object-fit:contain;opacity:.72!important;filter:none!important;transition:opacity .2s ease!important}
+.brand:hover .ledgertrace-logo,.brand:focus-visible .ledgertrace-logo,.footer-brand:hover .ledgertrace-logo,.footer-brand:focus-visible .ledgertrace-logo{opacity:.9!important;filter:none!important}
+/* Both original paths share one muted sage tone: no bright blue/grey split. */
+.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#A5B0A5!important;stroke:none!important;opacity:1!important}
+.header{background:rgba(23,34,31,.68)!important;border-color:rgba(241,235,221,.15)!important;backdrop-filter:blur(22px) saturate(125%)!important;-webkit-backdrop-filter:blur(22px) saturate(125%)!important;box-shadow:0 12px 42px rgba(0,0,0,.19),inset 0 1px 0 rgba(241,235,221,.045)!important}
+.header.scrolled{background:rgba(23,34,31,.76)!important;border-color:rgba(143,169,160,.24)!important}
+.hero-proofline{max-width:440px;margin:16px 0 0;color:#A5B0A5;font-size:11px;line-height:1.75}
+.header-cta{background:rgba(143,169,160,.12)!important;border-color:rgba(143,169,160,.42)!important;color:#EDE9DE!important}
+.header-cta:hover{background:rgba(143,169,160,.22)!important;border-color:#8FA9A0!important}
+@media(max-width:760px){.header,.header.scrolled{background:rgba(23,34,31,.78)!important;backdrop-filter:blur(20px) saturate(125%)!important;-webkit-backdrop-filter:blur(20px) saturate(125%)!important}.brand-mark,.footer-brand .brand-mark{width:32px!important;height:35px!important;flex-basis:32px!important}.hero-proofline{font-size:10px}}
+@media(prefers-reduced-transparency:reduce){.header,.header.scrolled{background:#17221F!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
+</style>
+
+<style id="ledgertrace-launch-final">
+/* Launch pass: keep navigation labels directly on the translucent bar. */
+.header .nav a,
+.header .nav a:visited,
+.header .nav a:hover,
+.header .nav a:focus-visible,
+.header .nav a:active{
+  background:transparent!important;
+  box-shadow:none!important;
+  border:0!important;
+  border-radius:0!important;
+  text-decoration:none!important;
+}
+.header .nav a{padding:0!important;color:#A5B0A5!important;transition:color .2s ease!important}
+.header .nav a:hover,.header .nav a:focus-visible{color:#EDE9DE!important}
+@media(max-width:650px){
+  .header .nav a{padding:12px 8px!important;background:transparent!important}
+  .header .nav a:hover,.header .nav a:focus-visible{background:transparent!important}
+}
+.header .header-cta{
+  background:rgba(143,169,160,.10)!important;
+  border-color:rgba(143,169,160,.42)!important;
+  color:#EDE9DE!important;
+}
+.header .header-cta:hover{background:rgba(143,169,160,.18)!important;border-color:#bda16c!important}
+</style>
+
+
+<style id="ledgertrace-logo-silhouette-fix">
+.brand-mark .ledgertrace-logo,.footer-brand .ledgertrace-logo{opacity:.72!important;filter:none!important}
+.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#A5B0A5!important;stroke:none!important}
+</style>
+
+
+<style id="ledgertrace-palette-final">
+/* Final palette: obsidian green, forest slate, warm ivory, muted sage and antique brass. */
+:root{
+ color-scheme:dark!important;
+ --bg:#111918!important;
+ --panel:#1B2724!important;
+ --panel2:#24332E!important;
+ --line:#35443D!important;
+ --line2:#59685D!important;
+ --text:#EDE9DE!important;
+ --muted:#A5B0A5!important;
+ --blue:#C5A675!important;
+ --amber:#D0A66E!important;
+ --green:#A5B58A!important;
+ --red:#D98272!important;
+}
+body{background:var(--bg)!important;color:var(--text)!important}
+body:before{background-image:linear-gradient(rgba(165,181,138,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(165,181,138,.035) 1px,transparent 1px)!important}
+body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(165,181,138,.075),transparent 34%)!important}
+.header,.header.scrolled{background:rgba(23,34,31,.76)!important;border-color:rgba(237,233,222,.13)!important}
+.header-cta,.button{background:var(--blue)!important;border-color:var(--blue)!important;color:#172019!important}
+.header .header-cta{background:rgba(165,181,138,.11)!important;border-color:rgba(165,181,138,.4)!important;color:var(--text)!important}
+.header .header-cta:hover{background:rgba(165,181,138,.2)!important;border-color:var(--blue)!important}
+.button:hover,.header-cta:hover{background:#D4B989!important;border-color:#D4B989!important;color:#172019!important}
+.button.secondary{background:transparent!important;border-color:var(--line2)!important;color:var(--text)!important}
+.button.secondary:hover{border-color:var(--blue)!important;background:rgba(197,166,117,.09)!important}
+.button.ghost:hover,.filter-btn.active,tbody tr:hover,tbody tr:focus{background:rgba(165,181,138,.07)!important}
+.hero h1 em,.eyebrow,.section-index,.step-label,.number{color:var(--blue)!important}
+.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#A5B0A5!important}
+.scene-glow,.evaluation{background:radial-gradient(ellipse at 70% 45%,rgba(165,181,138,.065),transparent 42%)!important}
+.scene-path{stroke:rgba(197,166,117,.55)!important}
+.scene-path.broken{stroke:var(--amber)!important}
+.scene-node{stroke:var(--blue)!important}
+.source-icon{border-color:rgba(197,166,117,.24)!important;color:var(--blue)!important}
+.file-input::file-selector-button{background:#24332E!important}
+@media(prefers-reduced-transparency:reduce){.header,.header.scrolled{background:#17221F!important}}
+</style>
+
+
+<style id="ledgertrace-conversion-polish">
+/* Sales clarity: preserve the editorial layout and use brass only for meaningful actions. */
+.ledgertrace-logo{opacity:.84!important}
+.brand:hover .ledgertrace-logo,.brand:focus-visible .ledgertrace-logo,.footer-brand:hover .ledgertrace-logo,.footer-brand:focus-visible .ledgertrace-logo{opacity:1!important}
+.hero-proofline{max-width:500px;color:#B8BDB4!important}
+.hero-actions .button:first-child{box-shadow:0 7px 24px rgba(197,166,117,.08)}
+.audience-card h3,.method-card h3{color:var(--text)}
+.payment-flow{border-color:rgba(197,166,117,.24)!important}
+.payment-flow .eyebrow{color:var(--blue)!important}
+.footer-scope{white-space:normal}
+@media(max-width:650px){.hero-actions .button{min-height:44px}.header-cta{font-size:10px!important}.hero-proofline{max-width:100%}}
+</style>
+
+<style id="ledgertrace-wordmark-hover-unity">
+/* Scale the monogram and wordmark together, without changing the header layout. */
+.brand,.footer-brand{
+  transform:scale(1);
+  transform-origin:left center;
+  transition:transform 180ms ease;
+}
+.brand:hover,.brand:focus-visible,.footer-brand:hover,.footer-brand:focus-visible{
+  transform:scale(1.025);
+}
+.brand:hover .brand-mark,.brand:focus-visible .brand-mark,
+.footer-brand:hover .brand-mark,.footer-brand:focus-visible .brand-mark{
+  transform:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .brand,.footer-brand{transition:none!important}
+  .brand:hover,.brand:focus-visible,.footer-brand:hover,.footer-brand:focus-visible{transform:none}
+}
+</style>
+
+
+<style id="ledgertrace-final-illustration-and-wordmark">
+/* Make the wordmark readable at a glance while preserving the restrained header. */
+.header .brand-name{
+  font-size:15px!important;
+  letter-spacing:.13em!important;
+  line-height:1.1!important;
+  font-weight:700!important;
+}
+.footer-brand .brand-name{font-size:13px!important;letter-spacing:.13em!important}
+.brand,.footer-brand{transition:transform 180ms ease,opacity 180ms ease}
+.brand:hover,.brand:focus-visible,.footer-brand:hover,.footer-brand:focus-visible{transform:scale(1.025)}
+/* A compact evidence card turns the abstract paths into a concrete, inspectable finding. */
+.ledgertrace-evidence-card{
+  position:absolute;z-index:5;right:2.5%;bottom:5%;width:205px;
+  padding:13px 14px 12px;border:1px solid rgba(197,166,117,.38);
+  border-radius:9px;background:rgba(20,30,27,.96);
+  box-shadow:0 16px 38px rgba(0,0,0,.36),inset 0 1px 0 rgba(237,233,222,.04);
+  transform:translate3d(var(--px,0),var(--py,0),0);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.evidence-card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font:8px var(--mono);letter-spacing:.09em;color:var(--muted)}
+.evidence-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 9px rgba(208,166,110,.35)}
+.evidence-card-title{font:600 15px var(--display);color:var(--text);margin:11px 0 9px}
+.evidence-values{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.evidence-values span{display:flex;flex-direction:column;gap:4px;padding:8px;background:rgba(237,233,222,.035);border:1px solid rgba(165,176,165,.13);border-radius:5px;font:8px var(--mono);color:var(--muted)}
+.evidence-values b{font:600 13px var(--mono);color:var(--text)}
+.evidence-card-rule{display:flex;flex-direction:column;gap:4px;padding:9px 0;border-bottom:1px solid rgba(165,176,165,.17)}
+.evidence-card-rule span,.evidence-card-foot span{font:8px var(--mono);letter-spacing:.08em;color:var(--muted)}
+.evidence-card-rule b{font:10px var(--mono);font-weight:500;color:var(--text)}
+.evidence-card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:9px}
+.evidence-card-foot strong{font:600 14px var(--mono);color:var(--amber)}
+@media(max-width:760px){
+ .header .brand-name{font-size:12px!important;letter-spacing:.1em!important}
+ .footer-brand .brand-name{font-size:12px!important}
+ .ledgertrace-evidence-card{right:2%;bottom:2%;width:176px;padding:10px}
+ .evidence-card-title{font-size:13px;margin:8px 0}
+ .evidence-card-rule{padding:7px 0}
+ .evidence-card-foot{padding-top:7px}
+}
+@media(max-width:430px){
+ .ledgertrace-evidence-card{right:1%;bottom:1%;width:158px;padding:8px}
+ .evidence-card-head{font-size:7px}
+ .evidence-card-title{font-size:12px}
+ .evidence-values{gap:4px}
+ .evidence-values span{padding:6px}
+ .evidence-values b{font-size:11px}
+ .evidence-card-rule b{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.brand,.footer-brand{transition:none!important}}
+@media(prefers-reduced-transparency:reduce){.ledgertrace-evidence-card{background:#17221F;backdrop-filter:none;-webkit-backdrop-filter:none}}
+</style>
+
+<style id="ledgertrace-final-scene-redesign">
+/* A coherent evidence composition: three source records, one explicit finding. */
+.scene{min-height:500px!important}
+.scene-grid{background-image:linear-gradient(rgba(165,176,165,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(165,176,165,.055) 1px,transparent 1px)!important;background-size:30px 30px!important}
+.scene-glow{width:76%;height:74%;left:12%;top:10%;background:radial-gradient(ellipse,rgba(165,181,138,.12),rgba(197,166,117,.035) 36%,transparent 70%)!important}
+.scene-svg{inset:0!important;height:100%!important}
+.scene-path{stroke:rgba(165,176,165,.48)!important;stroke-width:1.25!important;stroke-dasharray:4 7!important}
+.scene-path.broken{stroke:rgba(197,166,117,.9)!important;stroke-dasharray:3 5!important}
+.scene-node{fill:#17221F!important;stroke:#A5B58A!important;stroke-width:1.5!important}
+.scene-node.warn{stroke:#C5A675!important}
+.document{
+ width:194px!important;min-height:136px!important;padding:13px 14px 12px!important;
+ background:linear-gradient(145deg,rgba(31,44,39,.97),rgba(20,29,26,.97))!important;
+ border-color:rgba(165,176,165,.24)!important;border-radius:8px!important;
+ box-shadow:0 18px 44px rgba(0,0,0,.26),inset 0 1px 0 rgba(237,233,222,.035)!important;
+}
+.document:hover{border-color:rgba(197,166,117,.6)!important;box-shadow:0 0 0 1px rgba(197,166,117,.08),0 20px 50px rgba(0,0,0,.34)!important}
+.doc-invoice{left:1.5%!important;top:5%!important;--rot:-2deg!important}
+.doc-po{right:1%!important;top:25%!important;--rot:2deg!important}
+.doc-receipt{left:8%!important;bottom:4%!important;--rot:1deg!important}
+.doc-top{font-size:8px!important;letter-spacing:.08em!important}
+.doc-symbol{border-color:rgba(197,166,117,.34)!important;color:var(--blue)!important}
+.doc-title{font-size:16px!important;margin:10px 0 3px!important}
+.doc-sub{font-size:9px!important}
+.doc-line{background:rgba(165,176,165,.2)!important;margin:10px 0 8px!important}
+.doc-data{font-size:9px!important}
+.doc-status{font-size:8px!important;letter-spacing:.035em}
+.ledgertrace-evidence-card{
+ right:1%!important;bottom:3%!important;width:188px!important;padding:12px 13px 11px!important;
+ background:linear-gradient(150deg,rgba(30,43,37,.98),rgba(17,25,22,.99))!important;
+ border-color:rgba(197,166,117,.52)!important;border-radius:8px!important;
+ box-shadow:0 20px 48px rgba(0,0,0,.38),inset 0 1px 0 rgba(237,233,222,.055)!important;
+}
+.evidence-card-head{font-size:7px!important}
+.evidence-card-title{font-size:14px!important;margin:9px 0 8px!important}
+.evidence-values span{background:rgba(237,233,222,.035)!important;border-color:rgba(165,176,165,.15)!important}
+.evidence-card-rule b{font-size:9px!important}
+.evidence-card-foot strong{color:#D0B47D!important}
+.scene-label{font-size:8px!important;letter-spacing:.08em!important}
+.label-a{left:1%!important;bottom:0!important}
+.label-b{right:1%!important;top:2%!important}
+.scene-coord{display:none!important}
+.scene-caption{right:1%!important;bottom:-20px!important;font-size:8px!important}
+@media(max-width:1000px){
+ .scene{min-height:500px!important}
+}
+@media(max-width:650px){
+ .scene{min-height:450px!important;transform:none!important}
+ .document{width:158px!important;min-height:123px!important;padding:10px!important}
+ .doc-invoice{left:0!important;top:5%!important}
+ .doc-po{right:0!important;top:27%!important}
+ .doc-receipt{left:2%!important;bottom:4%!important}
+ .doc-title{font-size:13px!important}
+ .doc-top{font-size:7px!important}
+ .doc-data{font-size:8px!important}
+ .doc-status{font-size:7px!important}
+ .ledgertrace-evidence-card{right:0!important;bottom:2%!important;width:157px!important;padding:8px!important}
+ .evidence-card-head{font-size:6px!important}
+ .evidence-card-title{font-size:11px!important;margin:7px 0!important}
+ .evidence-values{gap:4px!important}
+ .evidence-values span{font-size:7px!important;padding:5px!important}
+ .evidence-values b{font-size:10px!important}
+ .evidence-card-rule{padding:6px 0!important}
+ .evidence-card-rule span,.evidence-card-foot span{font-size:6px!important}
+ .evidence-card-rule b{font-size:8px!important}
+ .evidence-card-foot{padding-top:6px!important}
+ .evidence-card-foot strong{font-size:11px!important}
+ .scene-label{font-size:6px!important}
+}
+@media(max-width:380px){
+ .scene{min-height:430px!important}
+ .document{width:145px!important}
+ .ledgertrace-evidence-card{width:145px!important}
+}
+@media(prefers-reduced-motion:reduce){.scene-path{animation:none!important}}
+</style>
+<style id="ledgertrace-editorial-art-css">
+/* Replace the scattered floating-card scene with one composed, legible evidence view. */
+.ledger-illustration{min-height:0!important;height:auto!important;max-width:900px;width:100%;margin:0 auto;perspective:none!important;isolation:isolate;overflow:visible;padding:0!important}
+.ledger-art-top,.ledger-art-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#a5b0a5;font:8px var(--mono);letter-spacing:.11em}
+.ledger-art-top{padding:0 3px 13px}
+.ledger-art-caption{padding:12px 3px 0;font-size:9px;letter-spacing:.07em}
+.ledger-art-svg{display:block;width:100%;height:auto;filter:drop-shadow(0 22px 42px rgba(0,0,0,.22))}
+.ledger-illustration .scene-grid,.ledger-illustration .scene-glow,.ledger-illustration .scene-path,.ledger-illustration .document,.ledger-illustration .ledgertrace-evidence-card,.ledger-illustration .scene-label,.ledger-illustration .scene-coord,.ledger-illustration .scene-caption{display:none!important}
+@media(max-width:650px){
+ .ledger-art-top{font-size:7px;letter-spacing:.07em}
+ .ledger-art-caption{align-items:flex-start;flex-direction:column;gap:5px;font-size:7px}
+ .ledger-art-svg{filter:drop-shadow(0 12px 24px rgba(0,0,0,.18))}
+}
+@media(prefers-reduced-motion:reduce){.ledger-art-svg{filter:none}}
+</style></body>
+</html>
