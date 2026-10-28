@@ -11,10 +11,11 @@ if (!html.includes('<script id="ledgertrace-recovery-extension">')) {
   throw new Error('Recovery extension script block is missing');
 }
 const primaryReconcile = html.slice(html.indexOf('function reconcile(){'), html.indexOf('function renderResults(){'));
-for (const required of ['po_ambiguous', 'receipt_supplier_mismatch', 'supplierConflict', 'supplier_missing']) {
+for (const required of ['po_ambiguous', 'receipt_supplier_mismatch', 'supplierConflict', 'supplier_missing', 'currency_mismatch']) {
   if (!primaryReconcile.includes(required)) throw new Error('Primary reconciliation safety guard missing: ' + required);
 }
 if (primaryReconcile.includes('po=pls[0]')) throw new Error('Primary reconciliation must not silently select the first ambiguous PO row');
+if (html.includes("style:'currency',currency:'USD'")) throw new Error('Primary workbench must not silently label input amounts as USD');
 const requiredExistingIds = [
   'heroSampleBtn', 'sampleBtn', 'resetBtn', 'invoiceFile', 'poFile',
   'receiptFile', 'runBtn', 'clearBtn', 'results', 'evidencePdfBtn',
