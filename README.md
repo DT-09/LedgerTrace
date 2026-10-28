@@ -42,7 +42,7 @@ The current app reads selected CSV files through browser file APIs and processes
 
 ## Paid evaluation
 
-**Five business days · one AP workflow · up to 500 combined CSV rows · fixed fee quoted in writing before kickoff.** The five-business-day period starts after clean input files and written scope approval.
+**A scoped paid evaluation:** one AP workflow, with row limits, checks and turnaround agreed for the data. Fees are negotiated privately according to the agreed requirements and confirmed in writing before kickoff. The target turnaround is five business days after the input files, human-reviewed reference outcomes and scope are ready; the actual timeline is confirmed in writing.
 
 Deliverables: an exception CSV, concise findings report, comparison against an agreed human-reviewed reference set, false-positive and missed-case summary, and a 30-minute review handoff. Acceptance criteria are agreed before work starts: agreed test cases are processed; findings include the rule and source-row references where available; and the report records observed misses and false positives against the reference set.
 
@@ -79,4 +79,4 @@ node tests/recovery-core.test.js
 node tests/check-inline-scripts.js
 ```
 
-The regression suite covers quoted CSV parsing, price and payment-excess candidates, credits, supplier conflicts, source-row traceability, currency-conflict guards and multi-line payment allocation. The GitHub Actions workflow runs on pushes to `main` and pull requests targeting `main`. It checks recovery-engine syntax, runs the regression suite, parses all inline scripts, and asserts the primary reconciliation safety guards. Passing these checks is necessary but not a substitute for validation against a buyer's human-reviewed reference set. Passing these checks is necessary but not a substitute for validation against a buyer's human-reviewed reference set.
+The regression suite covers quoted CSV parsing, price and payment-excess candidates, credits, supplier conflicts, source-row traceability, currency-conflict guards and multi-line payment allocation. The GitHub Actions workflow runs on pushes to `main` and pull requests targeting `main`. It checks recovery-engine syntax, runs the regression suite, parses all inline scripts, and asserts the primary reconciliation safety guards. Passing these checks is necessary but not a substitute for validation against a buyer's human-reviewed reference set.
