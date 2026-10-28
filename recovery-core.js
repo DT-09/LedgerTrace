@@ -78,7 +78,7 @@
         expectedBeforeCredits=supportedQty*poPrice;
         expectedNet=Math.max(0,expectedBeforeCredits-credited);
         const invoiceBilled=Number.isFinite(inv.amount)?inv.amount:(Number.isFinite(inv.qty)&&Number.isFinite(inv.price)?inv.qty*inv.price:NaN);
-        const overcharge=Number.isFinite(invoiceBilled)?Math.max(0,invoiceBilled-expectedBeforeCredits-credited):NaN;
+        const overcharge=Number.isFinite(invoiceBilled)?Math.max(0,invoiceBilled-expectedNet):NaN;
         candidate=overcharge;
         if(paymentRows.length>0&&Number.isFinite(inv.amount)){
           confirmedOverpayment=Math.max(0,paid-expectedNet);
