@@ -313,7 +313,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <rect x="1" y="1" width="898" height="618" rx="12" fill="url(#ltCanvas)" stroke="#45564b"/>
     <path d="M1 48H899" stroke="#45564b"/>
     <circle cx="24" cy="24" r="4" fill="#c5a675"/><circle cx="39" cy="24" r="4" fill="#64766a"/><circle cx="54" cy="24" r="4" fill="#64766a"/>
-    <text x="77" y="28" fill="#a5b0a5" font-size="11" letter-spacing="2" font-family="monospace">ACCOUNTS PAYABLE / RECONCILIATION WORKFLOW</text>
+    <text class="workflow-label" tabindex="0" x="77" y="28" fill="#a5b0a5" font-size="11" letter-spacing="2" font-family="monospace">ACCOUNTS PAYABLE / RECONCILIATION WORKFLOW</text>
     <text x="34" y="81" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">01 — INPUTS</text>
     <text x="34" y="103" fill="#ede9de" font-size="19" font-family="Georgia,serif">Bring records together</text>
     <text x="866" y="90" fill="#a5b0a5" text-anchor="end" font-size="10" letter-spacing="1.5" font-family="monospace">CSV FILES · LOCAL WORKFLOW</text>
@@ -517,16 +517,16 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <div class="eval-grid">
       <div class="eval-copy"><div class="section-index">06 / Paid evaluation</div><h2>Evaluate it against a known answer.</h2><p><strong>Five-business-day AP reconciliation evaluation.</strong> One invoice-to-PO-to-receipt workflow, up to 500 combined CSV rows, and a fixed fee quoted in writing before kickoff. The five-day clock starts when the agreed files and scope are ready. No payment or accounting action is automated.</p><p><strong>You receive:</strong> a source-linked exception CSV, a concise findings report, comparison against an agreed human-reviewed reference set, a false-positive and missed-case summary, and a 30-minute review handoff. Acceptance criteria are agreed before work starts: each agreed test case is processed, every reported finding includes its rule and source-row references where available, and the report records known misses and false positives against the reference set.</p><div class="eval-points"><div class="eval-point">Agreed reference set with human-reviewed expected outcomes</div><div class="eval-point">Results separated into matches, false positives and misses</div><div class="eval-point">A traceable report and agreed review criteria</div><div class="eval-point">Written scope, agreed exclusions and acceptance criteria</div></div></div>
       <div class="builder">
-        <div class="builder-head"><strong>Evaluation scope builder</strong><span>TERMS AGREED PRIVATELY</span></div>
+        <div class="builder-head"><div><strong>Build a paid evaluation</strong><p class="builder-head-sub">Define a bounded test around your actual reconciliation workflow.</p></div><span>SCOPE · FEE · ACCEPTANCE AGREED FIRST</span></div>
         <div class="builder-body">
-          <div class="builder-step"><div class="step-label">Step 01 / Source records</div><div class="option-grid" id="sourceOptions">
+          <div class="builder-step"><div class="step-label">01 / Select your source records</div><div class="option-grid" id="sourceOptions">
             <label class="option"><input type="checkbox" value="Invoices" checked>Invoices</label><label class="option"><input type="checkbox" value="Purchase orders" checked>Purchase orders</label><label class="option"><input type="checkbox" value="Goods receipts" checked>Goods receipts</label>
           </div></div>
-          <div class="builder-step"><div class="step-label">Step 02 / Checks to discuss</div><div class="option-grid" id="checkOptions">
+          <div class="builder-step"><div class="step-label">02 / Prioritize the discrepancies to test</div><div class="option-grid" id="checkOptions">
             <label class="option"><input type="checkbox" value="Duplicate invoice IDs" checked>Duplicate invoice IDs</label><label class="option"><input type="checkbox" value="Missing PO references" checked>Missing PO references</label><label class="option"><input type="checkbox" value="Supplier mismatches" checked>Supplier mismatches</label><label class="option"><input type="checkbox" value="Price differences" checked>Price differences</label><label class="option"><input type="checkbox" value="Quantity differences" checked>Quantity differences</label><label class="option"><input type="checkbox" value="Receipt gaps" checked>Receipt gaps</label>
-          </div><p class="builder-disclaimer">These are scope topics, not a guarantee that every check is fully supported in every data shape. Confirm edge cases and acceptance criteria before quoting.</p></div>
-          <div class="builder-step"><div class="step-label">Step 03 / Review the brief</div><div class="builder-summary"><div class="summary-heading"><strong>Proposed evaluation brief</strong><span class="pill matched">Draft</span></div><div class="summary-list"><div class="summary-item"><span>Source types</span><strong id="summarySources">3 selected</strong></div><div class="summary-item"><span>Checks</span><strong id="summaryChecks">6 selected</strong></div><div class="summary-item"><span>Deliverables</span><strong>Findings report + CSV</strong></div><div class="summary-item"><span>Commercial terms</span><strong>Agreed together</strong></div></div></div>
-          <div class="builder-actions"><button class="button" id="generateBrief">Prepare evaluation brief ↗</button><button class="button secondary" id="contactFromBuilder">Request this scope</button></div><p class="builder-disclaimer">Scope, fee, timeline and acceptance criteria are agreed before work begins. Do not send confidential files before a written agreement.</p></div>
+          </div><p class="builder-disclaimer">Select only checks relevant to your workflow. We confirm file structure, rule coverage and edge cases before quoting; unsupported checks stay out of the agreed acceptance criteria.</p></div>
+          <div class="builder-step"><div class="step-label">03 / Review the proposed engagement</div><div class="builder-summary"><div class="summary-heading"><strong>Paid-evaluation brief</strong><span class="pill matched">Draft</span></div><div class="summary-list"><div class="summary-item"><span>Source types</span><strong id="summarySources">3 selected</strong></div><div class="summary-item"><span>Checks</span><strong id="summaryChecks">6 selected</strong></div><div class="summary-item"><span>Deliverables</span><strong>Exception CSV + findings report</strong></div><div class="summary-item"><span>Acceptance</span><strong>Reference cases + agreed criteria</strong></div></div></div>
+          <div class="builder-actions"><button class="button" id="generateBrief">Prepare evaluation brief ↗</button><button class="button secondary" id="contactFromBuilder">Request this scope</button></div><p class="builder-disclaimer">This creates an inquiry, not an order or access grant. Work starts only after written scope, fee, timeline, data-handling terms and acceptance criteria are agreed. Use synthetic or approved anonymized data for the initial evaluation.</p></div>
         </div>
       </div>
     </div>
@@ -684,6 +684,58 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 })();
 </script>
 
+
+<style id="ledgertrace-requested-readability-pass">
+/* Scoped refinement: improve reading comfort without changing the existing layout or product behavior. */
+:root{font-size:16px}
+.hero-desc{font-size:17px!important}
+.section-lead{font-size:15px!important}
+.signal span,.method-card p,.eval-copy p,.eval-point,.privacy-architecture p,.faq-item p,.footer-intro,.footer-directory p{font-size:13px!important;line-height:1.8!important}
+.source-card p,.metric-note,.table-note,.report-block p,.report-block li,.finding-list li,.drawer-section p,.contact-panel p,.contact-generated p{font-size:12px!important;line-height:1.75!important}
+.nav a{font-size:11px!important}
+.eyebrow,.section-index{font-size:12px!important}
+.builder{border-color:rgba(197,166,117,.58)!important;background:linear-gradient(150deg,rgba(30,43,37,.98),rgba(17,25,22,.98))!important;box-shadow:0 24px 65px rgba(0,0,0,.24),inset 0 1px 0 rgba(237,233,222,.035)!important}
+.builder-head{align-items:flex-start!important;padding:22px 23px!important;background:linear-gradient(100deg,rgba(197,166,117,.12),rgba(165,181,138,.045))!important;border-bottom-color:rgba(197,166,117,.28)!important}
+.builder-head strong{display:block;font-size:18px!important;letter-spacing:-.025em!important;color:var(--text)!important}
+.builder-head>span{max-width:190px;text-align:right;color:var(--blue)!important;font-size:10px!important;line-height:1.6!important}
+.builder-head-sub{margin:7px 0 0!important;max-width:380px;color:var(--muted)!important;font-size:13px!important;line-height:1.65!important}
+.builder-body{padding:24px!important}
+.builder-step+.builder-step{margin-top:25px!important;padding-top:24px!important;border-top-color:rgba(165,181,138,.22)!important}
+.builder .step-label{font-size:12px!important;letter-spacing:.075em!important;color:#D7B982!important}
+.builder .option-grid{gap:9px!important}
+.builder .option{min-height:46px;padding:12px!important;border-color:rgba(165,176,165,.25)!important;background:rgba(237,233,222,.025)!important;color:#D6D9D0!important;font-size:13px!important;line-height:1.45!important}
+.builder .option:hover{border-color:rgba(197,166,117,.7)!important;background:rgba(197,166,117,.07)!important}
+.builder .option:has(input:checked){border-color:var(--blue)!important;background:linear-gradient(120deg,rgba(197,166,117,.15),rgba(165,181,138,.07))!important;color:var(--text)!important;box-shadow:inset 3px 0 0 var(--blue)!important}
+.builder .option input{width:15px;height:15px;flex:0 0 15px}
+.builder .builder-disclaimer{font-size:12px!important;line-height:1.75!important;color:#B8C0B6!important;margin-top:14px!important}
+.builder-summary{border-color:rgba(197,166,117,.28)!important;background:linear-gradient(145deg,rgba(36,51,46,.82),rgba(17,25,22,.92))!important;padding:19px!important}
+.summary-heading strong{font-size:15px!important}
+.summary-item span{font-size:10px!important;letter-spacing:.06em!important}
+.summary-item strong{font-size:13px!important;line-height:1.55!important}
+.builder-actions .button{font-size:12px!important;min-height:43px}
+.builder-actions .button:first-child{box-shadow:0 8px 24px rgba(197,166,117,.12)!important}
+.builder .pill.matched{color:#D6C18F!important;background:rgba(197,166,117,.13)!important}
+.ledger-art-svg text.workflow-label{cursor:default;transform-box:fill-box;transform-origin:left center;transition:transform 180ms ease,fill 180ms ease;outline:none}
+.ledger-art-svg text.workflow-label:hover,.ledger-art-svg text.workflow-label:focus-visible{transform:scale(1.075);fill:#EDE9DE!important}
+@media(max-width:760px){
+ .builder-head{gap:12px;padding:18px!important}
+ .builder-head>span{max-width:130px;font-size:9px!important}
+ .builder-body{padding:17px!important}
+ .builder .option-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .builder .option{font-size:12px!important;padding:10px!important}
+ .summary-item strong{font-size:12px!important}
+ .builder-actions .button{width:100%}
+}
+@media(max-width:420px){
+ .builder-head{flex-direction:column}
+ .builder-head>span{max-width:none;text-align:left}
+ .builder .option-grid{grid-template-columns:1fr!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .ledger-art-svg text.workflow-label{transition:none!important}
+ .ledger-art-svg text.workflow-label:hover,.ledger-art-svg text.workflow-label:focus-visible{transform:none}
+}
+</style>
 </body></html>');
  w.document.close();
 }
@@ -692,7 +744,7 @@ function exportCSV(){if(!state.results.length)return;const headers=['status','in
 function openDrawer(index,trigger){const r=state.results[index];if(!r)return;state.selected=index;state.lastFocus=trigger||document.activeElement;$('drawerTitle').textContent=r.findings.length?r.findings[0].label:'No configured rule triggered';$('drawerSub').textContent=(r.invoice&&r.invoice!=='—'?'Invoice '+r.invoice+' · ':'')+'PO '+(r.po||'—')+' · Item '+(r.item||'—')+' · CSV row '+(r.row??'—');const findings=r.findings.length?r.findings.map(f=>'<li><strong>'+escapeHTML(f.label)+':</strong> '+escapeHTML(f.detail)+'</li>').join(''):'<li>No currently configured rule triggered for this invoice line. This is not a certification of correctness.</li>';const inv=r.source==='invoice'?r:state.invoices.find(x=>x.row===r.row);const po=state.pos.filter(x=>key(x)===key(r));const rec=state.receipts.filter(x=>key(x)===key(r));$('drawerContent').innerHTML='<div class="drawer-status"><span class="pill '+(r.status==='matched'?'matched':r.status==='exception'?'exception':'review')+'">'+(r.status==='matched'?'Matched':r.status==='exception'?'Exception':'Review')+'</span></div><div class="drawer-section"><h3>Evidence / Compared values</h3><div class="evidence-pair"><div class="evidence-value"><span>Invoice quantity</span><strong>'+escapeHTML(Number.isFinite(r.qty)?r.qty:'—')+'</strong></div><div class="evidence-value"><span>PO quantity</span><strong>'+escapeHTML(Number.isFinite(r.poQty)?r.poQty:'—')+'</strong></div><div class="evidence-value"><span>Invoice unit price</span><strong>'+escapeHTML(money(r.price))+'</strong></div><div class="evidence-value"><span>PO unit price</span><strong>'+escapeHTML(money(r.poPrice))+'</strong></div><div class="evidence-value"><span>Received quantity</span><strong>'+escapeHTML(Number.isFinite(r.receiptQty)?r.receiptQty:'—')+'</strong></div><div class="evidence-value"><span>Invoice line amount</span><strong>'+escapeHTML(money(r.amount))+'</strong></div></div></div><div class="drawer-section"><h3>Rule result</h3><ul class="finding-list">'+findings+'</ul></div><div class="drawer-section"><h3>Source trace</h3><div class="evidence-pair"><div class="evidence-value"><span>Invoice CSV row</span><strong>'+escapeHTML(r.source==='invoice'?'Row '+r.row:'Not linked')+'</strong></div><div class="evidence-value"><span>PO source rows</span><strong>'+escapeHTML(po.length?po.map(x=>x.row).join(', '):'No match')+'</strong></div><div class="evidence-value"><span>Receipt source rows</span><strong>'+escapeHTML(rec.length?rec.map(x=>x.row).join(', '):'No match')+'</strong></div><div class="evidence-value"><span>Linkage key</span><strong>'+escapeHTML((r.po||'—')+' / '+(r.item||'—'))+'</strong></div></div><p class="small muted" style="margin:12px 0 0">Matching uses normalized PO number + item code. Multiple source rows may be aggregated for receipt quantity; split-line matching and ambiguous joins need separate validation.</p></div>';$('reviewStatus').value=(state.review.get(index)||{}).status||'unreviewed';$('reviewNote').value=(state.review.get(index)||{}).note||'';$('drawerBackdrop').classList.add('open');$('inspector').classList.add('open');$('inspector').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('closeDrawer').focus()}
 function closeDrawer(){if(!$('inspector').classList.contains('open'))return;$('drawerBackdrop').classList.remove('open');$('inspector').classList.remove('open');$('inspector').setAttribute('aria-hidden','true');document.body.style.overflow='';if(state.lastFocus&&state.lastFocus.focus)state.lastFocus.focus()}
 function scopeData(){const sources=[...$('sourceOptions').querySelectorAll('input:checked')].map(x=>x.value),checks=[...$('checkOptions').querySelectorAll('input:checked')].map(x=>x.value);return {sources,checks}}
-function scopeText(){const s=scopeData();return 'LedgerTrace scoped evaluation inquiry\n\nRecord sources: '+(s.sources.join(', ')||'Not selected')+'\nChecks to discuss: '+(s.checks.join(', ')||'Not selected')+'\nProposed deliverables: findings report, exception CSV, source-linked evidence and review of false positives/missed exceptions, subject to agreement.\nCommercial terms: scope, fee, timeline and acceptance criteria to be agreed before work begins.\nData: synthetic or approved anonymized data only for initial evaluation.'}
+function scopeText(){const s=scopeData();return 'LedgerTrace paid-evaluation inquiry\n\nRecord sources: '+(s.sources.join(', ')||'Not selected')+'\nPriority checks to test: '+(s.checks.join(', ')||'Not selected')+'\nProposed deliverables: source-linked exception CSV, findings report, and a false-positive/missed-case review against an agreed human-reviewed reference set, subject to scope.\nAcceptance: agree test cases, expected outcomes, supported data shapes and review criteria before kickoff.\nCommercial terms: written scope, fee, timeline and data-handling terms agreed before work begins.\nData: synthetic or approved anonymized data for the initial evaluation.'}
 function updateScope(){const s=scopeData();$('summarySources').textContent=s.sources.length+' selected';$('summaryChecks').textContent=s.checks.length+' selected';state.scopeBrief=scopeText();$('contactScopeSummary').textContent=s.sources.length+' source types, '+s.checks.length+' check topics, findings report and exception CSV. You can edit the brief before using it.';const c=$('configuredChannels');c.innerHTML='';if(CONTACT_EMAIL){const a=document.createElement('a');a.className='button secondary';a.href='mailto:'+CONTACT_EMAIL;a.textContent='Email a scoped inquiry ↗';c.appendChild(a)}if(WHATSAPP_NUMBER){const a=document.createElement('a');a.className='button secondary';a.href='https://wa.me/'+WHATSAPP_NUMBER.replace(/[^0-9]/g,'');a.target='_blank';a.rel='noopener noreferrer';a.textContent='WhatsApp LedgerTrace ↗';c.appendChild(a)}}
 function toast(msg){const t=$('toast');t.textContent=msg;t.style.opacity='1';t.style.transform='translate(-50%,0)';clearTimeout(toast.timer);toast.timer=setTimeout(()=>{t.style.opacity='0';t.style.transform='translate(-50%,20px)'},2600)}
 async function copyText(text){try{await navigator.clipboard.writeText(text);toast('Brief copied to clipboard.')}catch(e){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();toast(ok?'Brief copied to clipboard.':'Copy failed. Select and copy the brief manually.')}}
