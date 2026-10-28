@@ -1,7 +1,7 @@
 name: LedgerTrace Recovery tests
 on:
   push:
-    branches: [main, "rebuild/**"]
+    branches: [main, "rebuild/**", "fix/**"]
   pull_request:
     branches: [main]
 jobs:
@@ -16,3 +16,5 @@ jobs:
         run: node --check recovery-core.js
       - name: Run recovery regression tests
         run: node tests/recovery-core.test.js
+      - name: Verify original UI and recovery extension
+        run: node tests/check-inline-scripts.js
