@@ -1164,29 +1164,46 @@ td,
 }
 
 
-/* Overall readability pass: enlarge non-heading text and preserve side-headings. */
-body, p, li, label, input, textarea, select, button, th, td, small, summary,
-figcaption, .caption, .small, .micro, .muted, .meta, .tag, .status,
+/* Restrained readability correction: keep supporting text legible without enlarging the workbench UI. */
+body, p, li, label, input, textarea, select, button, th, td, small,
+figcaption, .caption, .small, .muted, .meta, .tag, .status,
 .metric-label, .record-id, .doc-data, .doc-status, .scene-caption,
 .hero-proofline, .evidence-card-head, .evidence-card-rule span,
-.evidence-card-foot span, .faq-item p, .footer-legal, .footer-column a,
-.form-hint, .field-hint, .builder-summary, .workbench-bar, .results-toolbar,
-.recovery-input-grid, .recovery-findings, .privacy-architecture p {
-  font-size: max(14px, 1.08em) !important;
-  line-height: 1.6;
+.evidence-card-foot span, .faq-item p, .footer-column a,
+.form-hint, .field-hint, .builder-summary, .workbench-bar,
+.results-toolbar, .privacy-architecture p {
+  font-size: max(13px, 1.02em) !important;
+  line-height: 1.55;
 }
+/* Keep the evidence inspector and dense demo controls compact. */
+.drawer, .drawer p, .drawer li, .drawer label, .drawer input,
+.drawer textarea, .drawer select, .drawer button, .drawer .small,
+.drawer .muted, .drawer .evidence-value span, .drawer .finding-list {
+  font-size: 12px !important;
+  line-height: 1.5;
+}
+.drawer h2 { font-size: 20px !important; }
+.drawer h3 { font-size: 13px !important; }
+.drawer .evidence-value strong { font-size: 13px !important; }
+.drawer .form-label, .drawer .review-state label { font-size: 12px !important; }
+.drawer .button { font-size: 12px !important; padding: 9px 11px; }
+#recovery-investigation .recovery-label { font-size: 10px !important; }
+#recovery-investigation .recovery-control { font-size: 12px !important; }
+#recovery-investigation .recovery-findings li { font-size: 12px !important; }
+.footer-legal p { font-size: 12px !important; line-height: 1.5 !important; }
 .header .nav a, .header .header-cta { font-size: 13px !important; }
 @media (max-width: 650px) {
   body, p, li, label, input, textarea, select, button, th, td, small,
-  .small, .micro, .muted, .meta, .tag, .status, .metric-label,
-  .footer-column a, .faq-item p {
-    font-size: max(14px, 1.04em) !important;
+  .small, .muted, .meta, .tag, .status, .metric-label, .footer-column a,
+  .faq-item p {
+    font-size: max(13px, 1em) !important;
+  }
+  .drawer, .drawer p, .drawer li, .drawer label, .drawer input,
+  .drawer textarea, .drawer select, .drawer button, .drawer .small,
+  .drawer .muted, .drawer .evidence-value span, .drawer .finding-list {
+    font-size: 12px !important;
   }
   .header .nav a { font-size: 14px !important; }
   .header .header-cta { font-size: 13px !important; }
+  .footer-legal p { font-size: 12px !important; }
 }
-
-</style>
-
-</body>
-</html>
