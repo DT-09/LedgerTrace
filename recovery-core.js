@@ -62,10 +62,13 @@
       if(Number.isFinite(inv.price)&&Number.isFinite(poPrice)&&Math.abs(inv.price-poPrice)>0.0101)findings.push({code:'price_over_po',label:inv.price>poPrice?'Invoice unit price above PO':'Invoice unit price below PO',detail:'Invoice unit price '+inv.price+'; reference PO price '+poPrice+'.'});
       const invoiceLines=invoiceMap.get(key(inv.supplier,inv.invoice))||[];
       if(invoiceLines.length>1)findings.push({code:'invoice_multi_line',label:'Invoice has multiple lines',detail:'This invoice reference appears on '+invoiceLines.length+' lines. This is not, by itself, a duplicate.'});
-      const paymentRows=payments.filter(p=>(!p.invoice||key(p.invoice)===key(inv.invoice))&&(!p.supplier||!inv.supplier||key(p.supplier)===key(inv.supplier)));
-      const creditRows=credits.filter(c=>(!c.invoice||key(c.invoice)===key(inv.invoice))&&(!c.supplier||!inv.supplier||key(c.supplier)===key(inv.supplier)));
-      const paid=paymentRows.reduce((s,p)=>s+(Number.isFinite(p.amount)?p.amount:0),0);
-      const credited=creditRows.reduce((s,c)=>s+(Number.isFinite(c.amount)?c.amount:0),0);
+      const paymentRows=payments.filter(p=>Boolean(p.invoice)&&key(p.invoice)===key(inv.invoice)&&(!p.supplier||!inv.supplier||key(p.supplier)===key(inv.supplier)));
+      const creditRows=credits.filter(c=>Boolean(c.invoice)&&key(c.invoice)===key(inv.invoice)&&(!c.supplier||!inv.supplier||key(c.supplier)===key(inv.supplier)));
+      const billedForShare=r=>Number.isFinite(r.amount)?r.amount:(Number.isFinite(r.qty)&&Number.isFinite(r.price)?r.qty*r.price:0);
+      const invoiceTotal=(invoiceMap.get(key(inv.supplier,inv.invoice))||[]).reduce((s,r)=>s+billedForShare(r),0);
+      const share=invoiceTotal>0?billedForShare(inv)/invoiceTotal:0;
+      const paid=paymentRows.reduce((s,p)=>s+(Number.isFinite(p.amount)?p.amount:0),0)*share;
+      const credited=creditRows.reduce((s,c)=>s+(Number.isFinite(c.amount)?c.amount:0),0)*share;
       const currency=inv.currency||paymentRows.find(p=>p.currency)?.currency||'';
       let supportedQty=NaN, expectedBeforeCredits=NaN, expectedNet=NaN, candidate=NaN, confirmedOverpayment=NaN, status='needs_review';
       const canPrice=poRows.length>0&&!supplierConflict&&!(poRows.length>1&&poPrices.length>1)&&Number.isFinite(poPrice);
