@@ -34,6 +34,7 @@ assert.ok(Number.isNaN(out.results[0].confirmedOverpayment), 'no payment evidenc
 out = analyze(inv, po, grn, 'payment_id,invoice_number,supplier,paid_amount,currency\nPAY-1,INV-1,Acme,120,USD', 'credit_note_number,invoice_number,supplier,credit_amount,currency\nCN-1,INV-1,Acme,10,USD');
 assert.equal(out.results[0].credits, 10);
 assert.equal(out.results[0].expectedNet, 90);
+assert.equal(out.results[0].candidate, 30);
 assert.equal(out.results[0].confirmedOverpayment, 30);
 
 const wrongSupplier = 'po_number,supplier,item_code,quantity,unit_price,currency\nPO-1,Other Co,SKU-1,10,10,USD';
