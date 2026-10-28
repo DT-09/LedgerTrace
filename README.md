@@ -80,3 +80,8 @@ node tests/check-inline-scripts.js
 ```
 
 The regression suite covers quoted CSV parsing, price and payment-excess candidates, credits, supplier conflicts, source-row traceability, currency-conflict guards and multi-line payment allocation. The GitHub Actions workflow runs on pushes to `main` and pull requests targeting `main`. It checks recovery-engine syntax, runs the regression suite, parses all inline scripts, and asserts the primary reconciliation safety guards. Passing these checks is necessary but not a substitute for validation against a buyer's human-reviewed reference set.
+
+
+## Commercial readiness
+
+See [`PILOT-OFFER.md`](PILOT-OFFER.md) for the buyer-facing evaluation scope, deliverables, acceptance criteria, payment sequence, data handling and limitations. The website explains that the fee is negotiated privately and work begins only after written scope and payment arrangements are confirmed. The contact form prepares an email or WhatsApp inquiry; it is **not** a payment checkout and does not itself collect funds. A real transaction still requires both sides to agree a usable payment method and confirm payment before kickoff.
