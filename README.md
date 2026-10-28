@@ -1,6 +1,6 @@
 # LedgerTrace
 
-LedgerTrace is a browser-based accounts-payable reconciliation workbench. It compares invoice lines with purchase-order lines and goods-receipt quantities, explains rule-triggered exceptions, and exports a review worklist.
+LedgerTrace is a browser-based supplier-overcharge review tool for industrial distributors. It compares supplier invoice lines with purchase orders and goods receipts, quantifies only supported price/quantity excess and exact repeated invoice-line candidates, links findings to source rows, and exports a review worklist. It does not claim that a flagged amount is a confirmed loss or recovered cash.
 
 ## Try the working sample
 
