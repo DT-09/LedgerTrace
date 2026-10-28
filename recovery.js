@@ -104,18 +104,6 @@
       summary.appendChild(li2);
     }
   };
-  const originalExportCSV=exportCSV;
-  window.exportCSV=function(){
-    if(!state.results.length)return;
-    const headers=['status','invoice_number','supplier','purchase_order','item_code','source_type','source_csv_row','invoice_quantity','invoice_unit_price','invoice_line_amount','po_quantity','po_unit_price','received_quantity','finding_codes','findings','potential_excess_exposure','exposure_quantified','exposure_basis'];
-    const lines=[headers.join(',')];
-    state.results.forEach(r=>lines.push([r.status,r.invoice,r.supplier,r.po,r.item,r.source,r.row,r.qty,r.price,r.amount,r.poQty,r.poPrice,r.receiptQty,r.findings.map(f=>f.code).join('; '),r.findings.map(f=>f.label+': '+f.detail).join(' | '),r.risk,r.exposureKnown?'yes':'no',(r.exposureBasis||[]).join(' | ')].map(csvCell).join(',')));
-    const blob=new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
-    a.href=url;a.download='ledgertrace-recovery-review-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
-  };
-  // Keep both report export controls bound to the recovery-specific evidence export.
-  $('exportBtn').addEventListener('click',()=>window.exportCSV());
-  $('reportExport').addEventListener('click',()=>window.exportCSV());
   const caveat=$('reportCaveat');
   if(caveat)caveat.textContent='Potential exposure is quantified only where the supplied PO, receipt and invoice fields support a calculation. Exact duplicate lines are candidates, not proof of duplicate payment. Confirm credits, amendments, tolerances, tax, currency and payment status with the finance team.';
   const metricLabels=[...document.querySelectorAll('.metric-label')];
