@@ -1,9 +1,21 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const html = fs.readFileSync('index.html', 'utf8');
-const match = html.match(/<script id="ledgertrace-recovery-extension">([\s\S]*?)<\/script>/);
-if (!match) throw new Error('Recovery extension script block is missing');
-new vm.Script(match[1], { filename: 'ledgertrace-recovery-extension.js' });
+const inlineScripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(match => !/\bsrc\s*=/.test(match[1]));
+if (inlineScripts.length < 2) throw new Error('Expected both primary and recovery inline script blocks');
+inlineScripts.forEach((match, index) => {
+  const id = (match[1].match(/\bid="([^"]+)"/) || [])[1] || 'primary-inline-script';
+  new vm.Script(match[2], { filename: id + '-' + index + '.js' });
+});
+if (!html.includes('<script id="ledgertrace-recovery-extension">')) {
+  throw new Error('Recovery extension script block is missing');
+}
+const primaryReconcile = html.slice(html.indexOf('function reconcile(){'), html.indexOf('function renderResults(){'));
+for (const required of ['po_ambiguous', 'receipt_supplier_mismatch', 'supplierConflict', 'supplier_missing', 'currency_mismatch']) {
+  if (!primaryReconcile.includes(required)) throw new Error('Primary reconciliation safety guard missing: ' + required);
+}
+if (primaryReconcile.includes('po=pls[0]')) throw new Error('Primary reconciliation must not silently select the first ambiguous PO row');
+if (html.includes("style:'currency',currency:'USD'")) throw new Error('Primary workbench must not silently label input amounts as USD');
 const requiredExistingIds = [
   'heroSampleBtn', 'sampleBtn', 'resetBtn', 'invoiceFile', 'poFile',
   'receiptFile', 'runBtn', 'clearBtn', 'results', 'evidencePdfBtn',
