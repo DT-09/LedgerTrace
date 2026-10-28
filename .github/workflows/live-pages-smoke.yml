@@ -1,0 +1,51 @@
+name: LedgerTrace live Pages smoke test
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Wait for the production site to serve the current commercial copy
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://ledgertrace.pages.dev/"
+          html=""
+          for attempt in $(seq 1 60); do
+            if html="$(curl --connect-timeout 10 --max-time 20 -fsSL "$url" 2>/dev/null)"; then
+              if printf '%s' "$html" | grep -Fq 'Fees are negotiated privately according to the agreed requirements' &&
+                 printf '%s' "$html" | grep -Fq 'Sample invoices · 8 rows' &&
+                 printf '%s' "$html" | grep -Fq 'Sample POs · 6 rows' &&
+                 printf '%s' "$html" | grep -Fq 'Sample receipts · 5 rows'; then
+                break
+              fi
+            fi
+            html=""
+            echo "Production copy not updated yet (attempt $attempt/60); retrying in 5 seconds."
+            sleep 5
+          done
+          test -n "$html" || { echo "::error::Production page did not serve the expected LedgerTrace copy after 5 minutes."; exit 1; }
+          if printf '%s' "$html" | grep -Eiq 'fixed fee|\$100'; then
+            echo "::error::Production page contains a public fixed fee or $100 price."
+            exit 1
+          fi
+          printf '%s' "$html" | grep -Fq 'mailto:dhairytopia@gmail.com' || { echo "::error::Email inquiry route is missing."; exit 1; }
+          printf '%s' "$html" | grep -Fq 'wa.me/919133404350' || { echo "::error::WhatsApp inquiry route is missing."; exit 1; }
+          echo "Production HTML checks passed."
+
+      - name: Verify the live recovery engine is reachable
+        shell: bash
+        run: |
+          set -euo pipefail
+          core="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/recovery-core.js')"
+          printf '%s' "$core" | grep -Fq 'Currency evidence missing or inconsistent'
+          printf '%s' "$core" | grep -Fq 'paymentExcessCandidate'
+          echo "Live recovery engine is reachable and includes the currency and payment-excess safeguards."
