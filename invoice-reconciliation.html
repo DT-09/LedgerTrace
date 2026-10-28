@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111918">
+<meta name="description" content="Investigate supplier invoice discrepancies across purchase orders and goods receipts. LedgerTrace gives distributor AP teams a source-linked exception worklist and a scoped paid evaluation.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://ledgertrace.pages.dev/invoice-reconciliation.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Invoice Reconciliation for Distributors | LedgerTrace">
+<meta property="og:description" content="Compare invoice, purchase-order and goods-receipt exports. Inspect source-linked discrepancy evidence and scope an AP reconciliation evaluation.">
+<meta property="og:url" content="https://ledgertrace.pages.dev/invoice-reconciliation.html">
+<title>Invoice Reconciliation for Distributors | LedgerTrace</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Invoice Reconciliation for Distributors","url":"https://ledgertrace.pages.dev/invoice-reconciliation.html","description":"A source-linked invoice-to-purchase-order and goods-receipt discrepancy investigation workflow for distributor accounts-payable teams.","about":{"@type":"Thing","name":"Accounts payable invoice reconciliation"},"mainEntity":{"@type":"SoftwareApplication","name":"LedgerTrace","url":"https://ledgertrace.pages.dev/","applicationCategory":"BusinessApplication","operatingSystem":"Any modern browser"}}
+</script>
+<style>
+:root{color-scheme:dark;--bg:#111918;--panel:#1b2724;--line:#35443d;--text:#ede9de;--muted:#a5b0a5;--accent:#c5a675;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;--display:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 85% 0%,#25362d 0,transparent 40%),var(--bg);color:var(--text);font:16px/1.75 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit}.wrap{width:min(1080px,calc(100% - 40px));margin:auto}.top{padding:24px 0;border-bottom:1px solid var(--line);font:12px var(--mono);letter-spacing:.12em}.top a{text-decoration:none}.hero{padding:88px 0 74px;max-width:850px}.eyebrow{font:11px var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}h1,h2,h3{font-family:var(--display);letter-spacing:-.055em;line-height:1.08}h1{font-size:clamp(42px,7vw,78px);font-weight:620;margin:22px 0}h1 em{font-style:normal;color:var(--accent)}h2{font-size:clamp(30px,4vw,46px);margin:0 0 18px}h3{font-size:23px;margin:0 0 10px}.lead{font-size:18px;color:#d3d7ce;max-width:760px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0}.btn{display:inline-block;padding:12px 16px;border:1px solid var(--accent);border-radius:7px;background:var(--accent);color:#111918;text-decoration:none;font-size:13px;font-weight:700}.btn.alt{background:transparent;color:var(--text);border-color:#68776b}.note{font:11px var(--mono);color:var(--muted)}section{padding:62px 0;border-top:1px solid var(--line)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}.card{padding:22px;border:1px solid var(--line);border-radius:10px;background:rgba(27,39,36,.7)}.tag{font:10px var(--mono);color:var(--accent);letter-spacing:.1em}.card p,.copy{color:#bdc7bc;font-size:14px}.steps{counter-reset:step;list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.steps li{counter-increment:step;padding:20px;border-top:1px solid var(--accent);background:rgba(27,39,36,.5)}.steps li:before{content:"0" counter(step);display:block;font:11px var(--mono);color:var(--accent);margin-bottom:10px}.steps strong{display:block;margin-bottom:6px}.cta{padding:34px;border:1px solid #68776b;border-radius:12px;background:linear-gradient(140deg,rgba(197,166,117,.09),rgba(27,39,36,.8))}.cta p{color:#bdc7bc}.faq details{border-bottom:1px solid var(--line);padding:17px 0}.faq summary{cursor:pointer;font-weight:650}.faq details p{color:#bdc7bc;font-size:14px}.footer{padding:30px 0 50px;color:var(--muted);font:11px var(--mono)}@media(max-width:720px){.grid,.steps{grid-template-columns:1fr}.hero{padding:60px 0}.cta{padding:22px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a href="/">LEDGERTRACE</a> / INVOICE RECONCILIATION</div></header>
+<main class="wrap">
+<section class="hero" style="border:0">
+<div class="eyebrow">For distributor finance teams and AP service providers</div>
+<h1>Invoice reconciliation with <em>evidence attached.</em></h1>
+<p class="lead">Supplier invoices, purchase orders and goods receipts rarely arrive as one clean record. LedgerTrace helps AP reviewers compare CSV exports, surface configured discrepancies and trace each finding back to the source rows that need checking.</p>
+<div class="actions"><a class="btn" href="/#investigation">Inspect the working sample ↗</a><a class="btn alt" href="/#evaluation">Scope a paid evaluation ↗</a></div>
+<p class="note">Illustrative sample only. No customer savings, recovery rate or accuracy claim is implied.</p>
+</section>
+<section>
+<div class="eyebrow">The workflow</div><h2>Where the records disagree, show the reviewer why.</h2>
+<div class="grid">
+<article class="card"><div class="tag">01 / DUPLICATES</div><h3>Repeated invoice identifiers</h3><p>Flag configured duplicate invoice IDs for a reviewer to confirm against supplier and document context.</p></article>
+<article class="card"><div class="tag">02 / PRICE</div><h3>Invoice vs. PO price</h3><p>Compare the invoice unit price with the matched purchase-order price and show the values that triggered a difference.</p></article>
+<article class="card"><div class="tag">03 / QUANTITY</div><h3>Invoice vs. receipt quantity</h3><p>Surface quantity excesses and missing receipt support where the supplied records allow a meaningful comparison.</p></article>
+</div>
+</section>
+<section>
+<div class="eyebrow">Evidence, not an unsupported promise</div><h2>What your team can inspect</h2>
+<div class="grid">
+<article class="card"><h3>Source-linked findings</h3><p>Review invoice, PO and receipt row references, compared values and the rule behind each flagged result.</p></article>
+<article class="card"><h3>Exportable worklist</h3><p>Receive an exception CSV and concise report organized for human review, not an automated payment decision.</p></article>
+<article class="card"><h3>Misses are reported too</h3><p>For a paid evaluation, compare results with a human-reviewed reference set and document agreed catches, false positives and missed cases.</p></article>
+</div>
+<p class="copy">Current limitations matter: this version uses CSV exports and browser-side processing. Column mappings, complex split/merged invoices, tax, currency conversion and other edge cases need explicit validation before being included in scope. Start with synthetic or approved anonymized records.</p>
+</section>
+<section>
+<div class="eyebrow">How a paid evaluation works</div><h2>Start with one workflow. Decide from evidence.</h2>
+<ol class="steps">
+<li><strong>Define the process</strong><span class="copy">Agree the invoice, purchase-order and receipt exports, supported columns and specific discrepancy checks.</span></li>
+<li><strong>Set the reference answer</strong><span class="copy">Your team reviews expected outcomes for the agreed cases before evaluation.</span></li>
+<li><strong>Run the scoped assessment</strong><span class="copy">Process agreed inputs and document what was caught, missed or incorrectly flagged.</span></li>
+<li><strong>Review the report</strong><span class="copy">Receive a source-linked exception CSV, findings summary and a review handoff. Fee, timeline and acceptance criteria are agreed in writing before kickoff.</span></li>
+</ol>
+</section>
+<section class="faq">
+<div class="eyebrow">Buyer questions</div><h2>Before you share a workflow</h2>
+<details><summary>Does LedgerTrace automatically recover money or block payments?</summary><p>No. It organizes candidate discrepancies and evidence for a human reviewer. It does not issue payment instructions or claim that a candidate is a confirmed loss or recovery.</p></details>
+<details><summary>Do you need confidential invoice data to start?</summary><p>No. Start with the public illustrative sample. Initial evaluations should use synthetic or approved anonymized records. Data handling must be agreed before any sensitive records are shared.</p></details>
+<details><summary>How much does the evaluation cost?</summary><p>The fee is negotiated privately based on agreed record volume, data quality, checks and review effort. Scope, timeline, fee and acceptance criteria are confirmed in writing before work begins.</p></details>
+<details><summary>What if our CSV format is different?</summary><p>Column mappings and sample compatibility are assessed during scoping. A check is included only when the required inputs and expected outcomes can be defined clearly.</p></details>
+</section>
+<section>
+<div class="cta"><div class="eyebrow">Next step / Scope review</div><h2>Bring one recurring reconciliation problem.</h2><p>Tell us which records you compare, how often the review runs, what discrepancy matters and what a useful output would be. Do not email confidential financial records in an initial inquiry.</p><div class="actions"><a class="btn" href="/#evaluation">Build an evaluation brief ↗</a><a class="btn alt" href="mailto:dhairytopia@gmail.com?subject=LedgerTrace%20reconciliation%20evaluation">Email LedgerTrace ↗</a><a class="btn alt" href="https://wa.me/919133404350?text=I%20would%20like%20to%20discuss%20a%20LedgerTrace%20reconciliation%20evaluation." target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div><p class="note">We agree scope, fee, timeline and acceptance criteria before work begins. No automatic message is sent from this page.</p></div>
+</section>
+</main>
+<footer class="footer"><div class="wrap">LEDGERTRACE · Browser-side AP reconciliation · Human review required · <a href="/">Main product and sample</a></div></footer>
+</body>
+</html>
