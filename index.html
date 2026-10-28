@@ -1163,6 +1163,29 @@ td,
   .header-cta { font-size: 12px !important; }
 }
 
+
+/* Overall readability pass: enlarge non-heading text and preserve side-headings. */
+body, p, li, label, input, textarea, select, button, th, td, small, summary,
+figcaption, .caption, .small, .micro, .muted, .meta, .tag, .status,
+.metric-label, .record-id, .doc-data, .doc-status, .scene-caption,
+.hero-proofline, .evidence-card-head, .evidence-card-rule span,
+.evidence-card-foot span, .faq-item p, .footer-legal, .footer-column a,
+.form-hint, .field-hint, .builder-summary, .workbench-bar, .results-toolbar,
+.recovery-input-grid, .recovery-findings, .privacy-architecture p {
+  font-size: max(14px, 1.08em) !important;
+  line-height: 1.6;
+}
+.header .nav a, .header .header-cta { font-size: 13px !important; }
+@media (max-width: 650px) {
+  body, p, li, label, input, textarea, select, button, th, td, small,
+  .small, .micro, .muted, .meta, .tag, .status, .metric-label,
+  .footer-column a, .faq-item p {
+    font-size: max(14px, 1.04em) !important;
+  }
+  .header .nav a { font-size: 14px !important; }
+  .header .header-cta { font-size: 13px !important; }
+}
+
 </style>
 
 </body>
