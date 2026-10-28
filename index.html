@@ -609,7 +609,84 @@ function printEvidenceReport(){
  const total=state.results.filter(r=>r.source==='invoice').length;
  const flagged=money(state.results.filter(r=>r.status!=='matched').reduce((sum,r)=>sum+(r.risk||0),0));
  w.document.open();
- w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>LedgerTrace evidence report</title><style>body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 8px}.meta{color:#5d675f;font-size:11px}.metrics{display:flex;gap:24px;margin:20px 0;padding:14px 0;border-top:1px solid #bbc3ba;border-bottom:1px solid #bbc3ba}.metrics b{display:block;font-size:20px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{text-align:left;vertical-align:top;padding:7px;border-bottom:1px solid #d6ddd5;overflow-wrap:anywhere}th{background:#edf1eb}small{color:#687168}.note{margin-top:20px;padding:12px;border:1px solid #c7d0c5;background:#f5f7f3}@media print{body{margin:12mm}tr{break-inside:avoid}h1,h2{break-after:avoid}.note{break-inside:avoid}}</style></head><body><h1>LedgerTrace — Reconciliation Evidence Report</h1><div class="meta">Generated '+escapeHTML(state.runAt?state.runAt.toLocaleString():'')+' · '+(state.usingSample?'Illustrative sample data':'User-supplied CSV data')+' · Browser-side run</div><div class="metrics"><div><b>'+total+'</b>Invoice rows</div><div><b>'+exceptions+'</b>Results needing review</div><div><b>'+matched+'</b>Invoice rows with no configured rule trigger</div><div><b>'+escapeHTML(flagged)+'</b>Indicative flagged line value</div></div><h2>Result worklist</h2><table><thead><tr><th>Status</th><th>Invoice / source row</th><th>Supplier</th><th>PO / item</th><th>Invoice qty</th><th>PO qty</th><th>Received</th><th>Finding and evidence</th></tr></thead><tbody>'+rows+'</tbody></table><div class="note"><strong>Interpretation:</strong> Rule-triggered findings require review against original source documents. A matched row means no configured rule triggered; it is not certification of correctness or authorization to pay. Indicative flagged line value is not verified loss or recoverable value. Matching currently uses normalized PO number + item code; edge cases and source completeness may affect results.</div><p class="meta">LedgerTrace · Illustrative output unless user-supplied CSVs were loaded · Human review required</p><script>window.onload=function(){window.focus();window.print()}<\/script></body></html>');
+ w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>LedgerTrace evidence report</title><style>body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 8px}.meta{color:#5d675f;font-size:11px}.metrics{display:flex;gap:24px;margin:20px 0;padding:14px 0;border-top:1px solid #bbc3ba;border-bottom:1px solid #bbc3ba}.metrics b{display:block;font-size:20px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{text-align:left;vertical-align:top;padding:7px;border-bottom:1px solid #d6ddd5;overflow-wrap:anywhere}th{background:#edf1eb}small{color:#687168}.note{margin-top:20px;padding:12px;border:1px solid #c7d0c5;background:#f5f7f3}@media print{body{margin:12mm}tr{break-inside:avoid}h1,h2{break-after:avoid}.note{break-inside:avoid}}</style></head><body><h1>LedgerTrace — Reconciliation Evidence Report</h1><div class="meta">Generated '+escapeHTML(state.runAt?state.runAt.toLocaleString():'')+' · '+(state.usingSample?'Illustrative sample data':'User-supplied CSV data')+' · Browser-side run</div><div class="metrics"><div><b>'+total+'</b>Invoice rows</div><div><b>'+exceptions+'</b>Results needing review</div><div><b>'+matched+'</b>Invoice rows with no configured rule trigger</div><div><b>'+escapeHTML(flagged)+'</b>Indicative flagged line value</div></div><h2>Result worklist</h2><table><thead><tr><th>Status</th><th>Invoice / source row</th><th>Supplier</th><th>PO / item</th><th>Invoice qty</th><th>PO qty</th><th>Received</th><th>Finding and evidence</th></tr></thead><tbody>'+rows+'</tbody></table><div class="note"><strong>Interpretation:</strong> Rule-triggered findings require review against original source documents. A matched row means no configured rule triggered; it is not certification of correctness or authorization to pay. Indicative flagged line value is not verified loss or recoverable value. Matching currently uses normalized PO number + item code; edge cases and source completeness may affect results.</div><p class="meta">LedgerTrace · Illustrative output unless user-supplied CSVs were loaded · Human review required</p><script>window.onload=function(){window.focus();window.print()}<\/script>
+<style id="ledgertrace-readability-refinement">
+/* Readability: enlarge explanatory paragraph copy without changing headings or controls. */
+main p,
+main .hero-desc,
+main .hero-proofline,
+main .section-lead,
+main .eval-copy,
+main .eval-copy p,
+main .builder-disclaimer,
+main .ledger-art-caption {
+  font-size: 15px !important;
+  line-height: 1.75 !important;
+}
+main .hero-desc { font-size: 18px !important; }
+main .hero-proofline { font-size: 13px !important; }
+main .section-lead { font-size: 16px !important; }
+main .builder-disclaimer { font-size: 13px !important; }
+main .ledger-art-caption { font-size: 12px !important; }
+
+/* Header: translucent teal glass, with slightly larger navigation text. */
+.header,
+.header.scrolled {
+  background: rgba(40, 59, 57, .68) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
+  backdrop-filter: blur(18px) saturate(140%) !important;
+  border-color: rgba(185, 150, 96, .32) !important;
+}
+.header .brand-name { font-size: 13px !important; }
+.header .nav a { font-size: 12px !important; }
+.header .header-cta { font-size: 12px !important; }
+
+/* Gentle hover enlargement for the main product illustration and diagram-like visuals. */
+.ledger-art,
+.ledger-art-svg,
+.ledger-art-wrap,
+.ledger-illustration,
+.workflow-visual,
+.evidence-visual,
+[class*="illustration"],
+[class*="diagram"] {
+  transition: transform .22s ease, filter .22s ease;
+  transform-origin: center center;
+}
+.ledger-art:hover,
+.ledger-art-svg:hover,
+.ledger-art-wrap:hover,
+.ledger-illustration:hover,
+.workflow-visual:hover,
+.evidence-visual:hover,
+[class*="illustration"]:hover,
+[class*="diagram"]:hover {
+  transform: scale(1.025);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .22));
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 760px) {
+  main p,
+  main .eval-copy,
+  main .eval-copy p { font-size: 14px !important; line-height: 1.7 !important; }
+  main .hero-desc { font-size: 16px !important; }
+  main .section-lead { font-size: 15px !important; }
+  .header .brand-name { font-size: 12px !important; }
+  .header .nav a, .header .header-cta { font-size: 12px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ledger-art, .ledger-art-svg, .ledger-art-wrap, .ledger-illustration,
+  .workflow-visual, .evidence-visual, [class*="illustration"], [class*="diagram"] {
+    transition: none !important;
+  }
+  .ledger-art:hover, .ledger-art-svg:hover, .ledger-art-wrap:hover,
+  .ledger-illustration:hover, .workflow-visual:hover, .evidence-visual:hover,
+  [class*="illustration"]:hover, [class*="diagram"]:hover { transform: none !important; }
+}
+</style>
+
+</body></html>');
   w.document.close();
 }
 
