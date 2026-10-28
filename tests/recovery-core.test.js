@@ -53,14 +53,14 @@ assert.equal(out.results.length, 2);
 assert.equal(out.results[0].paid + out.results[1].paid, 100, 'invoice-level payments should be allocated, not duplicated per line');
 
 
-const wrongReceiptSupplier = 'receipt_number,po_number,supplier,item_code,quantity\\nGRN-1,PO-1,Other Co,SKU-1,10';
-out = analyze(inv, po, wrongReceiptSupplier, 'payment_id,invoice_number,supplier,paid_amount,currency\\nPAY-1,INV-1,Acme,120,USD');
+const wrongReceiptSupplier = 'receipt_number,po_number,supplier,item_code,quantity\nGRN-1,PO-1,Other Co,SKU-1,10';
+out = analyze(inv, po, wrongReceiptSupplier, 'payment_id,invoice_number,supplier,paid_amount,currency\nPAY-1,INV-1,Acme,120,USD');
 assert.equal(out.results[0].qtyReceived, 0, 'receipt quantities from a different supplier must not support the invoice');
 assert.ok(out.results[0].findings.some(f => f.code === 'receipt_supplier_mismatch'));
 assert.ok(Number.isNaN(out.results[0].candidate), 'unmatched supplier receipts must block exposure calculation');
 
-const wrongCurrencyPO = 'po_number,supplier,item_code,quantity,unit_price,currency\\nPO-1,Acme,SKU-1,10,10,EUR';
-out = analyze(inv, wrongCurrencyPO, grn, 'payment_id,invoice_number,supplier,paid_amount,currency\\nPAY-1,INV-1,Acme,120,USD');
+const wrongCurrencyPO = 'po_number,supplier,item_code,quantity,unit_price,currency\nPO-1,Acme,SKU-1,10,10,EUR';
+out = analyze(inv, wrongCurrencyPO, grn, 'payment_id,invoice_number,supplier,paid_amount,currency\nPAY-1,INV-1,Acme,120,USD');
 assert.ok(out.results[0].findings.some(f => f.code === 'currency_mismatch'), 'currency conflicts must be explicit');
 assert.ok(Number.isNaN(out.results[0].candidate), 'currency conflicts must block amount calculations');
 assert.ok(Number.isNaN(out.results[0].paid), 'currency conflicts must block payment aggregation');
