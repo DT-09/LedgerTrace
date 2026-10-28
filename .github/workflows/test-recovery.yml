@@ -1,0 +1,18 @@
+name: LedgerTrace Recovery tests
+on:
+  push:
+    branches: [main, "rebuild/**"]
+  pull_request:
+    branches: [main]
+jobs:
+  recovery-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check recovery core syntax
+        run: node --check recovery-core.js
+      - name: Run recovery regression tests
+        run: node tests/recovery-core.test.js
