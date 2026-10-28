@@ -21,7 +21,7 @@ jobs:
           html=""
           for attempt in $(seq 1 30); do
             if html="$(curl --connect-timeout 3 --max-time 5 -fsSL "$url" 2>/dev/null)"; then
-              if printf '%s' "$html" | grep -Fq 'Fees are negotiated privately according to the agreed requirements' &&
+              if printf '%s' "$html" | grep -Fq 'For distributors and finance teams reconciling supplier invoices against purchase orders and goods receipts' &&
                  printf '%s' "$html" | grep -Fq 'Sample invoices · 8 rows' &&
                  printf '%s' "$html" | grep -Fq 'Sample POs · 6 rows' &&
                  printf '%s' "$html" | grep -Fq 'Sample receipts · 5 rows'; then
