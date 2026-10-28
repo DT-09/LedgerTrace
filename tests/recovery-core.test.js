@@ -65,4 +65,10 @@ assert.ok(out.results[0].findings.some(f => f.code === 'currency_mismatch'), 'cu
 assert.ok(Number.isNaN(out.results[0].candidate), 'currency conflicts must block amount calculations');
 assert.ok(Number.isNaN(out.results[0].paid), 'currency conflicts must block payment aggregation');
 
+
+const missingPaymentCurrency = 'payment_id,invoice_number,supplier,paid_amount\\nPAY-1,INV-1,Acme,120';
+out = analyze(inv, po, grn, missingPaymentCurrency);
+assert.ok(out.results[0].findings.some(f => f.code === 'currency_mismatch'), 'missing payment currency must be explicit');
+assert.ok(Number.isNaN(out.results[0].candidate), 'missing currency evidence must block amount-based calculations');
+
 console.log('LedgerTrace Recovery tests passed (CSV quoting, source trace, price excess, payment evidence, credits, supplier conflicts, currency guards, multi-line allocation).');
