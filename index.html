@@ -313,11 +313,12 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <rect x="1" y="1" width="898" height="618" rx="12" fill="url(#ltCanvas)" stroke="#45564b"/>
     <path d="M1 48H899" stroke="#45564b"/>
     <circle cx="24" cy="24" r="4" fill="#c5a675"/><circle cx="39" cy="24" r="4" fill="#64766a"/><circle cx="54" cy="24" r="4" fill="#64766a"/>
-    <text x="77" y="28" fill="#a5b0a5" font-size="11" letter-spacing="2" font-family="monospace">ACCOUNTS PAYABLE / RECONCILIATION WORKFLOW</text>
+    <text class="ledger-art-heading" x="77" y="29" fill="#f0ede4" font-size="13" font-weight="600" letter-spacing="1.35" font-family="monospace">ACCOUNTS PAYABLE / RECONCILIATION WORKFLOW</text>
     <text x="34" y="81" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">01 — INPUTS</text>
     <text x="34" y="103" fill="#ede9de" font-size="19" font-family="Georgia,serif">Bring records together</text>
     <text x="866" y="90" fill="#a5b0a5" text-anchor="end" font-size="10" letter-spacing="1.5" font-family="monospace">CSV FILES · LOCAL WORKFLOW</text>
     <g>
+      <g class="ledger-art-item" tabindex="0" role="group" aria-label="Source A: supplier invoices">
       <rect x="34" y="125" width="258" height="116" rx="7" fill="#202e27" stroke="#526457"/>
       <rect x="34" y="125" width="4" height="116" rx="2" fill="#a5b58a"/>
       <rect x="54" y="145" width="31" height="39" rx="3" fill="#a5b58a" fill-opacity=".12" stroke="#a5b58a" stroke-opacity=".8"/>
@@ -325,6 +326,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
       <text x="101" y="154" fill="#a5b58a" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE A</text>
       <text x="101" y="176" fill="#ede9de" font-size="17" font-family="Georgia,serif">Supplier invoices</text>
       <text x="54" y="215" fill="#a5b0a5" font-size="10" font-family="monospace">Line items · quantities · prices</text>
+      </g>
+      <g class="ledger-art-item" tabindex="0" role="group" aria-label="Source B: purchase orders">
       <rect x="321" y="125" width="258" height="116" rx="7" fill="#202e27" stroke="#526457"/>
       <rect x="321" y="125" width="4" height="116" rx="2" fill="#c5a675"/>
       <rect x="341" y="145" width="31" height="39" rx="3" fill="#c5a675" fill-opacity=".12" stroke="#c5a675" stroke-opacity=".8"/>
@@ -332,6 +335,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
       <text x="388" y="154" fill="#c5a675" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE B</text>
       <text x="388" y="176" fill="#ede9de" font-size="17" font-family="Georgia,serif">Purchase orders</text>
       <text x="341" y="215" fill="#a5b0a5" font-size="10" font-family="monospace">Authorised items · agreed terms</text>
+      </g>
+      <g class="ledger-art-item" tabindex="0" role="group" aria-label="Source C: goods receipts">
       <rect x="608" y="125" width="258" height="116" rx="7" fill="#202e27" stroke="#526457"/>
       <rect x="608" y="125" width="4" height="116" rx="2" fill="#8ea9a0"/>
       <rect x="628" y="145" width="31" height="39" rx="3" fill="#8ea9a0" fill-opacity=".12" stroke="#8ea9a0" stroke-opacity=".8"/>
@@ -339,6 +344,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
       <text x="675" y="154" fill="#8ea9a0" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE C</text>
       <text x="675" y="176" fill="#ede9de" font-size="17" font-family="Georgia,serif">Goods receipts</text>
       <text x="628" y="215" fill="#a5b0a5" font-size="10" font-family="monospace">Delivered quantities · receipt status</text>
+      </g>
     </g>
     <g fill="none" stroke="#748578" stroke-width="1.5">
       <path d="M163 241V265H450V287"/>
@@ -347,6 +353,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     </g>
     <circle cx="163" cy="265" r="3" fill="#a5b58a"/><circle cx="450" cy="265" r="3" fill="#c5a675"/><circle cx="737" cy="265" r="3" fill="#8ea9a0"/>
     <text x="34" y="304" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">02 — RECONCILIATION ENGINE</text>
+    <g class="ledger-art-item" tabindex="0" role="group" aria-label="Reconciliation engine">
     <rect x="34" y="322" width="832" height="132" rx="8" fill="url(#ltCore)" stroke="#657568" stroke-opacity=".8"/>
     <text x="58" y="353" fill="#ede9de" font-size="22" font-family="Georgia,serif">One traceable comparison process</text>
     <text x="58" y="376" fill="#a5b0a5" font-size="11" font-family="monospace">Normalize fields → match related records → test comparison rules</text>
@@ -359,9 +366,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
       <rect x="618" y="407" width="224" height="30" rx="4" fill="#111a16" stroke="#506156"/>
       <circle cx="633" cy="422" r="4" fill="#8ea9a0"/><text x="646" y="426" fill="#ede9de" font-size="10" font-family="monospace">RULE VALIDATION</text>
     </g>
+    </g>
     <path d="M450 454V477H245V497M450 477H655V497" fill="none" stroke="#748578" stroke-width="1.5"/>
     <circle cx="450" cy="477" r="4" fill="#c5a675"/>
     <text x="34" y="488" fill="#c5a675" font-size="10" letter-spacing="2" font-family="monospace">03 — REVIEWABLE OUTPUTS</text>
+    <g class="ledger-art-item" tabindex="0" role="group" aria-label="Matched records output">
     <rect x="34" y="504" width="404" height="88" rx="7" fill="#1c2922" stroke="#526457"/>
     <rect x="34" y="504" width="4" height="88" rx="2" fill="#a5b58a"/>
     <circle cx="61" cy="531" r="8" fill="#a5b58a" fill-opacity=".16" stroke="#a5b58a"/>
@@ -369,13 +378,16 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <text x="82" y="535" fill="#a5b58a" font-size="10" letter-spacing="1.5" font-family="monospace">MATCHED RECORDS</text>
     <text x="56" y="561" fill="#ede9de" font-size="16" font-family="Georgia,serif">Consistent lines identified</text>
     <text x="56" y="579" fill="#a5b0a5" font-size="10" font-family="monospace">Keep the comparison result</text>
-    <rect x="462" y="504" width="404" height="88" rx="7" fill="url(#ltGold)" stroke="#c5a675" stroke-opacity=".75"/>
-    <rect x="462" y="504" width="4" height="88" rx="2" fill="#c5a675"/>
-    <circle cx="489" cy="531" r="8" fill="#c5a675" fill-opacity=".16" stroke="#c5a675"/>
-    <path d="M489 526V532M489 536V537" stroke="#c5a675" stroke-width="1.5"/>
-    <text x="510" y="535" fill="#c5a675" font-size="10" letter-spacing="1.5" font-family="monospace">EXCEPTIONS + EVIDENCE</text>
-    <text x="484" y="561" fill="#ede9de" font-size="16" font-family="Georgia,serif">Source values · rule · finding</text>
-    <text x="484" y="579" fill="#a5b0a5" font-size="10" font-family="monospace">Human review before action</text>
+    </g>
+    <g class="ledger-art-item ledger-art-exceptions" tabindex="0" role="group" aria-label="Exceptions and supporting evidence">
+    <rect x="462" y="504" width="404" height="88" rx="7" fill="#c5a36a" stroke="#d9bd8b" stroke-opacity="1"/>
+    <rect x="462" y="504" width="4" height="88" rx="2" fill="#5b4524"/>
+    <circle cx="489" cy="531" r="8" fill="#6a5029" fill-opacity=".12" stroke="#5b4524"/>
+    <path d="M489 526V532M489 536V537" stroke="#3a2b17" stroke-width="1.5"/>
+    <text x="510" y="535" fill="#3a2b17" font-size="10" font-weight="700" letter-spacing="1.35" font-family="monospace">EXCEPTIONS + EVIDENCE</text>
+    <text x="484" y="561" fill="#241d12" font-size="16" font-weight="600" font-family="Georgia,serif">Source values · rule · finding</text>
+    <text x="484" y="579" fill="#3a2b17" font-size="10" font-weight="600" font-family="monospace">Human review before action</text>
+    </g>
   </svg>
   <div class="ledger-art-caption"><span>ILLUSTRATIVE WORKFLOW · SAMPLE RECORDS</span><span>TRACEABLE FINDINGS · HUMAN REVIEW</span></div>
 </div>
@@ -1286,4 +1298,17 @@ figcaption, .caption, .small, .muted, .meta, .tag, .status,
     filter: none !important;
   }
 }
+
+/* Legibility and direct pointer response for each diagram module. */
+.ledger-illustration .ledger-art-svg{transform:scale(1.025)!important;transform-origin:50% 50%;overflow:visible}
+.ledger-art-heading{fill:#f0ede4!important;font-size:13px!important;font-weight:600!important;letter-spacing:1.35px!important}
+.ledger-art-item{transform-box:fill-box;transform-origin:center;transition:transform 220ms cubic-bezier(.2,.7,.2,1),filter 220ms ease;cursor:default;outline:none}
+.ledger-art-item:focus-visible{filter:drop-shadow(0 0 5px rgba(240,237,228,.55))}
+@media(hover:hover) and (pointer:fine){
+ .ledger-art-item:hover,.ledger-art-item:focus-visible{transform:scale(1.035);filter:drop-shadow(0 5px 8px rgba(0,0,0,.24))}
+ .ledger-illustration:hover .ledger-art-svg{transform:scale(1.04)!important;filter:drop-shadow(0 26px 48px rgba(0,0,0,.28))}
+}
+@media(max-width:650px){.ledger-illustration .ledger-art-svg{transform:scale(1.005)!important}.ledger-art-heading{font-size:12px!important;letter-spacing:1px!important}}
+@media(prefers-reduced-motion:reduce){.ledger-art-item,.ledger-illustration .ledger-art-svg{transition:none!important}.ledger-art-item:hover,.ledger-art-item:focus-visible,.ledger-illustration:hover .ledger-art-svg{transform:none!important;filter:none!important}}
+
 </style>
