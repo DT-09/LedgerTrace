@@ -16,6 +16,12 @@ for (const required of ['po_ambiguous', 'receipt_supplier_mismatch', 'supplierCo
 }
 if (primaryReconcile.includes('po=pls[0]')) throw new Error('Primary reconciliation must not silently select the first ambiguous PO row');
 if (html.includes("style:'currency',currency:'USD'")) throw new Error('Primary workbench must not silently label input amounts as USD');
+if (html.includes("fixed fee")) throw new Error('Public evaluation copy must not imply a fixed fee');
+if (/\$100/.test(html)) throw new Error('Public evaluation copy must not publish the private minimum fee');
+if (!html.includes('Fees are negotiated privately according to the agreed requirements')) throw new Error('Negotiated commercial terms must be stated clearly');
+for (const sampleCount of ['Sample invoices · 8 rows', 'Sample POs · 6 rows', 'Sample receipts · 5 rows']) {
+  if (!html.includes(sampleCount)) throw new Error('Sample row count label is missing or incorrect: ' + sampleCount);
+}
 const requiredExistingIds = [
   'heroSampleBtn', 'sampleBtn', 'resetBtn', 'invoiceFile', 'poFile',
   'receiptFile', 'runBtn', 'clearBtn', 'results', 'evidencePdfBtn',
