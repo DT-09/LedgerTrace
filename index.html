@@ -1164,7 +1164,7 @@ td,
 }
 
 
-/* Restrained readability correction: keep supporting text legible without enlarging the workbench UI. */
+/* Fine typography adjustment: modest site-wide increase, compact demo controls, original-scale footer. */
 body, p, li, label, input, textarea, select, button, th, td, small,
 figcaption, .caption, .small, .muted, .meta, .tag, .status,
 .metric-label, .record-id, .doc-data, .doc-status, .scene-caption,
@@ -1172,39 +1172,87 @@ figcaption, .caption, .small, .muted, .meta, .tag, .status,
 .evidence-card-foot span, .faq-item p, .footer-column a,
 .form-hint, .field-hint, .builder-summary, .workbench-bar,
 .results-toolbar, .privacy-architecture p {
-  font-size: max(13px, 1.02em) !important;
-  line-height: 1.55;
-}
-/* Keep the evidence inspector and dense demo controls compact. */
-.drawer, .drawer p, .drawer li, .drawer label, .drawer input,
-.drawer textarea, .drawer select, .drawer button, .drawer .small,
-.drawer .muted, .drawer .evidence-value span, .drawer .finding-list {
-  font-size: 12px !important;
+  font-size: max(13px, 1em) !important;
   line-height: 1.5;
 }
-.drawer h2 { font-size: 20px !important; }
-.drawer h3 { font-size: 13px !important; }
-.drawer .evidence-value strong { font-size: 13px !important; }
-.drawer .form-label, .drawer .review-state label { font-size: 12px !important; }
-.drawer .button { font-size: 12px !important; padding: 9px 11px; }
-#recovery-investigation .recovery-label { font-size: 10px !important; }
-#recovery-investigation .recovery-control { font-size: 12px !important; }
-#recovery-investigation .recovery-findings li { font-size: 12px !important; }
-.footer-legal p { font-size: 12px !important; line-height: 1.5 !important; }
-.header .nav a, .header .header-cta { font-size: 13px !important; }
+/* Inspector: target its actual ID and existing selectors to override the original 27px title. */
+#inspector .drawer-top h2 { font-size: 22px !important; line-height: 1.2 !important; }
+#inspector .drawer-section h3 { font-size: 13px !important; line-height: 1.4 !important; }
+#inspector .drawer-section p,
+#inspector .drawer-section li,
+#inspector .drawer-section label,
+#inspector .drawer-section input,
+#inspector .drawer-section textarea,
+#inspector .drawer-section select,
+#inspector .drawer-section button,
+#inspector .drawer-sub,
+#inspector .small,
+#inspector .muted,
+#inspector .evidence-value span,
+#inspector .finding-list {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+#inspector .evidence-value strong { font-size: 13px !important; }
+#inspector .button { font-size: 12px !important; padding: 8px 10px !important; }
+/* Keep both demo workbenches dense and usable; preserve their section headings. */
+#investigation .workbench-bar .workbench-title span,
+#investigation .workbench-bar .bar-actions button,
+#investigation .work-actions .small,
+#investigation .source-card p,
+#investigation .source-card small,
+#investigation .file-meta,
+#recovery-investigation .workbench-bar .workbench-title span,
+#recovery-investigation .workbench-bar .bar-actions button,
+#recovery-investigation .workbench-body .small,
+#recovery-investigation .source-card p,
+#recovery-investigation .source-card small,
+#recovery-investigation .file-meta,
+#recovery-investigation .table-note,
+#recovery-investigation .recovery-label,
+#recovery-investigation .recovery-control,
+#recovery-investigation .recovery-findings li {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+#investigation .workbench-bar .button,
+#recovery-investigation .workbench-bar .button,
+#investigation .work-actions .button,
+#recovery-investigation .work-actions .button {
+  font-size: 12px !important;
+  padding: 8px 11px !important;
+}
+/* The footer disclosure was 9px originally; restore it with only a slight increase. */
+.footer-legal p { font-size: 10px !important; line-height: 1.55 !important; }
+.header .nav a { font-size: 13px !important; }
+.header .header-cta { font-size: 13px !important; }
 @media (max-width: 650px) {
   body, p, li, label, input, textarea, select, button, th, td, small,
   .small, .muted, .meta, .tag, .status, .metric-label, .footer-column a,
   .faq-item p {
     font-size: max(13px, 1em) !important;
   }
-  .drawer, .drawer p, .drawer li, .drawer label, .drawer input,
-  .drawer textarea, .drawer select, .drawer button, .drawer .small,
-  .drawer .muted, .drawer .evidence-value span, .drawer .finding-list {
+  #inspector .drawer-top h2 { font-size: 21px !important; }
+  #inspector .drawer-section h3 { font-size: 13px !important; }
+  #inspector .drawer-section p,
+  #inspector .drawer-section li,
+  #inspector .drawer-section label,
+  #inspector .drawer-section input,
+  #inspector .drawer-section textarea,
+  #inspector .drawer-section select,
+  #inspector .drawer-section button,
+  #inspector .small,
+  #inspector .muted,
+  #inspector .evidence-value span,
+  #inspector .finding-list {
     font-size: 12px !important;
   }
+  #investigation .workbench-bar .button,
+  #recovery-investigation .workbench-bar .button,
+  #investigation .work-actions .button,
+  #recovery-investigation .work-actions .button { font-size: 12px !important; }
+  .footer-legal p { font-size: 10px !important; }
   .header .nav a { font-size: 14px !important; }
   .header .header-cta { font-size: 13px !important; }
-  .footer-legal p { font-size: 12px !important; }
 }
 </style>
