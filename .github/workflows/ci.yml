@@ -25,3 +25,5 @@ jobs:
         run: node tests/recovery-core.test.js
       - name: Check inline scripts and evidence guards
         run: node tests/check-inline-scripts.js
+      - name: Check site navigation and buyer readiness
+        run: node tests/site-readiness.test.js
