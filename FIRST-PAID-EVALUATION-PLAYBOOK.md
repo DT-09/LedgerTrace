@@ -4,9 +4,11 @@ This is the internal operating plan for converting LedgerTrace from a working re
 
 ## The commercial objective
 
-Sell one bounded, paid invoice-reconciliation evaluation to a distributor AP team or to a partner that already serves distributor finance teams. Do not sell a vague “AI platform” or promise savings before validating the buyer's data.
+Sell a paid supplier reconciliation investigation—not a generic “AI platform.” Lead with a specific unresolved supplier balance, invoice discrepancy, or reconciliation backlog and the decision the buyer needs to make.
 
-**First transaction:** a fixed-scope review of one approved batch of invoice, purchase-order and goods-receipt exports. The fee is negotiated privately, with an internal target floor of USD 100 for a meaningful evaluation. If the work would take too long at that level, reduce the scope or decline; do not silently expand unpaid work.
+**Entry offer: free QuickCheck.** One supplier, up to 25 rows of synthetic or buyer-approved anonymized records, and one supported question. Deliver only a short fit summary: whether the required fields are present, one limited signal if supportable, what remains uncertain, and whether a deeper investigation is justified. Do not provide the full exception worklist or full investigation for free.
+
+**Paid offer: Evidence Review.** One bounded supplier/account/workflow, a defined batch of approved records, agreed checks and source-linked findings. The internal first-sale target is at least USD 100 for a meaningful scope; this is not a validated market price. If the work cannot be delivered responsibly at that level, narrow the scope or decline.
 
 ## Best first buyer
 
@@ -19,14 +21,16 @@ Prioritize teams that:
 
 Avoid teams that require production ERP integration, automated payment blocking, guaranteed recovery, full tax treatment, or enterprise security certification before a first evaluation. Those requirements exceed the current product boundary.
 
-## Offer and deliverables
+## Paid Evidence Review deliverables
 
-The buyer supplies one agreed batch and a human-reviewed reference set, where available. LedgerTrace returns:
-1. A source-linked exception worklist in CSV.
-2. A concise findings report with rule IDs, compared values and source-row references.
-3. A comparison against the agreed reference set, including observed false positives and missed cases.
-4. A limitations and unresolved-cases section.
-5. A 30-minute review handoff.
+After the free QuickCheck and written commercial agreement, the buyer supplies one agreed batch of approved records. LedgerTrace returns:
+1. A prioritized source-linked exception worklist in CSV, with comparison values where supported.
+2. A concise report describing each rule triggered and why the case needs review.
+3. A clear separation of observed facts, candidate discrepancies and unresolved cases.
+4. Limitations, unsupported cases, and false positives/misses where a human-reviewed reference set is available.
+5. A review handoff and, only if justified, a separately scoped repeat-review proposal.
+
+The paid scope does not imply confirmed loss or recovery. Before work starts, both parties approve inputs, row limits, checks, exclusions, data handling, acceptance criteria, timeline, fee and payment arrangement in writing.
 
 Before work starts, both parties approve in writing:
 - files, fields, row limits and checks;
@@ -99,12 +103,13 @@ Do not demo the advanced recovery workflow unless the buyer has payment and cred
 
 A prospect is not a deal until each gate is complete:
 
-- **Qualified:** named workflow, owner, volume and decision.
-- **Feasible:** source files and required fields can support the agreed checks.
-- **Scoped:** written inputs, exclusions, deliverables, acceptance criteria and timeline.
-- **Commercially agreed:** fee, payment method and terms confirmed in writing.
+- **Qualified:** named supplier issue/workflow, owner and intended decision.
+- **QuickCheck agreed:** one supplier, up to 25 rows, one supported question, and approved transfer method.
+- **QuickCheck delivered:** a short fit summary; no full audit or exhaustive free work.
+- **Paid scope accepted:** written inputs, exclusions, deliverables, acceptance criteria, timeline and fee.
+- **Commercially agreed:** payment method and terms confirmed in writing.
 - **Paid/authorized to start:** payment arrangement confirmed and data transfer approved.
-- **Delivered:** report includes evidence, reference comparison, misses, false positives and limitations.
+- **Delivered:** evidence-linked findings, limitations and unresolved cases delivered.
 - **Repeat decision:** buyer explicitly chooses a second review or declines.
 
 Do not count page views, friendly feedback, demo requests or verbal interest as revenue.
