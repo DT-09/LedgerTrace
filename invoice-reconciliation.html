@@ -290,6 +290,122 @@ body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;
 @media(max-width:650px){.header{gap:7px!important}.header>.header-cta{display:inline-flex!important;font-size:10px!important;padding:8px 9px!important;letter-spacing:0!important}.header>.header-cta span{display:none!important}.header>.menu-toggle{width:36px!important;min-width:36px!important;height:36px!important;min-height:36px!important}}
 @media(max-width:370px){.header>.header-cta{display:none!important}.header>.menu-toggle{margin-left:auto!important}}
 </style>
+
+<style id="ledgertrace-evidence-first-redesign-v1">
+.evidence-page{width:min(1240px,calc(100% - 48px))!important;padding-top:108px!important}
+.evidence-page section{border-top:0!important;padding:0!important}
+.ep-hero{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:44px;align-items:center;padding:46px 0 66px!important}
+.ep-eyebrow{display:flex;align-items:center;gap:9px;font:10px/1.5 var(--mono);letter-spacing:.14em;color:#c5a675}
+.ep-live-dot{width:7px;height:7px;border-radius:50%;background:#a5b58a;box-shadow:0 0 12px #a5b58a80}
+.ep-hero h1{font-size:clamp(43px,5.8vw,75px)!important;line-height:.99!important;letter-spacing:-.075em!important;margin:22px 0 21px!important;max-width:650px}
+.ep-hero h1 em{color:#c5a675!important}
+.ep-lead{max-width:570px;color:#c4cec4;font-size:16px;line-height:1.8}
+.ep-actions{display:flex;flex-wrap:wrap;gap:10px;margin:27px 0 26px}
+.ep-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:12px 15px;border-radius:7px;text-decoration:none!important;font-size:12px;font-weight:650;line-height:1.4;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.ep-btn:hover{transform:translateY(-2px)}
+.ep-btn-primary{background:#c5a675;color:#17221f!important;border:1px solid #c5a675}
+.ep-btn-secondary{background:rgba(255,255,255,.025);color:#ede9de!important;border:1px solid #53635a}
+.ep-trust-row{display:flex;flex-wrap:wrap;gap:10px 18px;color:#a5b0a5;font:9px var(--mono);letter-spacing:.025em}
+.ep-trust-row span{display:flex;gap:7px;align-items:center}.ep-trust-row i{font-style:normal;color:#c5a675}
+.ep-hero-visual{min-width:0;border:1px solid #42524a;border-radius:13px;background:linear-gradient(145deg,rgba(34,49,43,.98),rgba(19,29,26,.98));box-shadow:0 28px 70px #0003;overflow:hidden;position:relative}
+.ep-hero-visual:before{content:"";position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,#c5a675,transparent 65%)}
+.ep-window-top{height:45px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px;border-bottom:1px solid #35443d;color:#91a096;font:9px var(--mono);letter-spacing:.06em}
+.ep-window-dots{display:flex;gap:4px}.ep-window-dots b{width:6px;height:6px;border-radius:50%;background:#647267}.ep-window-dots b:first-child{background:#c5a675}
+.ep-demo-pill{font-size:8px;padding:4px 6px;border:1px solid #58664d;border-radius:4px;color:#c9d2bb;white-space:nowrap}
+.ep-mini-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:17px 15px}
+.ep-mini-summary>div{padding:12px 10px;border:1px solid #35443d;border-radius:7px;background:#ffffff04;min-width:0}
+.ep-metric-label,.ep-preview-heading,.ep-chain-heading,.ep-review-heading{display:block;font:8px var(--mono);letter-spacing:.08em;color:#a5b0a5}
+.ep-mini-summary strong{display:block;margin:7px 0 1px;font:500 24px/1.1 var(--display);letter-spacing:-.05em;color:#ede9de}
+.ep-mini-summary small{display:block;font-size:9px;color:#91a096;line-height:1.4}
+.ep-mini-summary .ep-status-review{font:600 13px var(--body);letter-spacing:0;color:#d8bd8d;margin-top:12px;margin-bottom:8px}
+.ep-preview-heading{padding:0 16px 9px;display:flex;justify-content:space-between;gap:10px}
+.ep-preview-heading span:last-child{color:#77877b;letter-spacing:0}
+.ep-preview-row{display:flex;align-items:center;gap:10px;padding:12px 16px;border-top:1px solid #35443d}
+.ep-preview-active{background:linear-gradient(90deg,#c5a67512,transparent)}
+.ep-severity{width:7px;height:7px;border-radius:50%;flex:0 0 7px}.ep-severity-amber{background:#d0a66e}.ep-severity-red{background:#d98272}.ep-severity-blue{background:#8bb8d0}
+.ep-preview-main{display:grid;gap:3px;min-width:0;flex:1}.ep-preview-main strong{font-size:11px;font-weight:600}.ep-preview-main small{font-size:9px;color:#93a096;white-space:normal;line-height:1.4}
+.ep-preview-value{font:9px var(--mono);color:#d8bd8d;white-space:nowrap}
+.ep-preview-foot{display:flex;gap:9px;align-items:center;padding:12px 16px;background:#111b18;border-top:1px solid #35443d;color:#a5b0a5;font-size:9px;line-height:1.5}
+.ep-check-mark{display:grid;place-items:center;width:20px;height:20px;border-radius:5px;border:1px solid #58664d;color:#c5a675;flex:0 0 20px}
+.ep-proof-strip{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px!important;background:#39483f;border:1px solid #39483f!important;border-radius:10px;overflow:hidden;margin:0 0 86px!important}
+.ep-proof-strip>div{display:flex;align-items:center;gap:14px;background:#1a2622;padding:20px 22px;min-width:0}
+.ep-strip-number{display:grid;place-items:center;width:33px;height:33px;flex:0 0 33px;border:1px solid #52624f;border-radius:8px;color:#c5a675;font:11px var(--mono)}
+.ep-proof-strip strong{display:block;font-size:12px;margin-bottom:3px}.ep-proof-strip small{display:block;color:#a5b0a5;font-size:10px;line-height:1.4}
+.ep-workspace-section,.ep-method-section,.ep-flow-section,.ep-limits-section,.ep-evaluation-section,.ep-faq-section{padding:0 0 86px!important}
+.ep-section-heading{display:grid;grid-template-columns:1.1fr .9fr;align-items:end;gap:35px;margin-bottom:26px}
+.ep-section-heading h2,.ep-limits-panel h2,.ep-evaluation-copy h2{font-size:clamp(30px,4vw,46px)!important;letter-spacing:-.065em!important;line-height:1.04!important;margin:12px 0 0!important}
+.ep-section-heading>p{max-width:490px;margin:0;color:#aebbb0;font-size:13px;line-height:1.75}
+.ep-workspace{display:grid;grid-template-columns:265px minmax(0,1fr);border:1px solid #42524a;border-radius:12px;overflow:hidden;background:#18231f;box-shadow:0 25px 65px #0002}
+.ep-case-list{border-right:1px solid #35443d;background:#151f1c;padding:14px;min-width:0}
+.ep-case-list-head{display:flex;align-items:center;justify-content:space-between;padding:6px 5px 13px;font:9px var(--mono);letter-spacing:.1em;color:#a5b0a5}
+.ep-queue-count{display:grid;place-items:center;width:23px;height:23px;border:1px solid #46574b;border-radius:6px;color:#ede9de}
+.ep-case-tab{width:100%;display:flex;align-items:flex-start;gap:10px;padding:13px 9px;margin:0 0 6px;border:1px solid transparent;border-radius:8px;background:transparent;color:#ede9de;text-align:left;cursor:pointer;font:inherit}
+.ep-case-tab:hover{background:#ffffff06;border-color:#34453b}
+.ep-case-tab.is-active{background:#c5a6750c;border-color:#776649}
+.ep-case-icon{display:grid;place-items:center;width:29px;height:29px;flex:0 0 29px;border-radius:7px;font-size:15px}
+.ep-icon-amber{color:#d8bd8d;background:#c5a67517}.ep-icon-red{color:#df9388;background:#d9827217}.ep-icon-blue{color:#9cc7d9;background:#8bb8d017}
+.ep-case-tab-copy{display:grid;gap:4px;min-width:0;flex:1}.ep-case-tab-copy strong{font-size:11px;font-weight:600}.ep-case-tab-copy small{font:9px var(--mono);color:#9aa89d;overflow-wrap:anywhere}.ep-case-tab-copy em{font-style:normal;font-size:9px;color:#d0b785}.ep-tab-arrow{font-size:12px;color:#89998d}
+.ep-case-list-note{display:flex;gap:8px;padding:13px 5px 4px;margin-top:9px;border-top:1px solid #35443d;color:#9aa89d}
+.ep-note-symbol{display:grid;place-items:center;flex:0 0 16px;width:16px;height:16px;border:1px solid #667362;border-radius:50%;font:10px var(--mono)}
+.ep-case-list-note p{margin:0;font-size:9px;line-height:1.6}
+.ep-case-detail{padding:24px;min-width:0}
+.ep-detail-top{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}
+.ep-detail-kicker{font:9px var(--mono);letter-spacing:.08em;color:#c5a675;margin-bottom:8px}
+.ep-detail-top h3{font-size:clamp(21px,2.5vw,29px)!important;letter-spacing:-.05em!important;margin:0!important}
+.ep-review-badge{font:8px var(--mono);letter-spacing:.05em;padding:6px 8px;border:1px solid #776649;border-radius:5px;color:#e0c79a;white-space:nowrap}
+.ep-detail-intro{font-size:12px;line-height:1.7;color:#aebbb0;margin:13px 0 18px;max-width:780px}
+.ep-comparison-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ep-value-card{padding:13px;border:1px solid #35443d;border-radius:8px;background:#ffffff03;min-width:0}
+.ep-value-card>span{display:block;font:8px/1.5 var(--mono);letter-spacing:.04em;color:#9aa89d}
+.ep-value-card strong{display:block;font:500 clamp(17px,2vw,24px)/1.2 var(--display);letter-spacing:-.05em;margin:10px 0 5px;overflow-wrap:anywhere}
+.ep-value-card small{display:block;color:#9aa89d;font-size:9px;line-height:1.5;overflow-wrap:anywhere}
+.ep-value-delta{border-color:#78664a;background:#c5a67508}.ep-value-delta strong{color:#d9bd8b}
+.ep-evidence-chain{margin-top:16px;border:1px solid #35443d;border-radius:8px;overflow:hidden}
+.ep-chain-heading{display:flex;justify-content:space-between;gap:10px;padding:11px 13px;background:#ffffff03;border-bottom:1px solid #35443d}
+.ep-chain-heading span:last-child{letter-spacing:0;color:#c5a675}
+.ep-chain-flow{padding:12px;display:grid;grid-template-columns:minmax(0,1fr) 90px minmax(0,1fr);align-items:center;gap:9px}
+.ep-source-node{display:flex;align-items:center;gap:9px;padding:10px;border:1px solid #3b4c42;border-radius:7px;min-width:0;background:#121c18}
+.ep-source-file{display:grid;place-items:center;width:31px;height:31px;flex:0 0 31px;border:1px solid #5a6b52;border-radius:6px;color:#c9d3ba;font:8px var(--mono)}
+.ep-source-file-po{border-color:#526779;color:#9cc7d9}
+.ep-source-node>div{display:grid;gap:3px;min-width:0;flex:1}.ep-source-node strong{font-size:10px;overflow-wrap:anywhere}.ep-source-node small{font:8px/1.5 var(--mono);color:#9aa89d;overflow-wrap:anywhere}.ep-source-check{color:#c5a675;font-size:12px}
+.ep-chain-connector{display:grid;justify-items:center;gap:4px;text-align:center;color:#9aa89d;font:7px/1.4 var(--mono)}.ep-chain-connector i{display:block;position:relative;width:100%;height:1px;background:#6c795d}.ep-chain-connector i:after{content:"›";position:absolute;right:-1px;top:-10px;color:#c5a675;font:17px var(--body)}
+.ep-rule-explain{display:flex;gap:12px;padding:14px;margin-top:13px;border:1px solid #35443d;border-radius:8px;background:#ffffff02}
+.ep-rule-icon{display:grid;place-items:center;width:29px;height:29px;flex:0 0 29px;border:1px solid #59674d;border-radius:7px;color:#c5a675;font:13px var(--mono)}
+.ep-rule-explain span{font:8px var(--mono);letter-spacing:.09em;color:#c5a675}.ep-rule-explain p{font-size:11px;line-height:1.7;color:#bdc7bc;margin:5px 0 0}
+.ep-review-questions{margin-top:14px;padding:14px;border-radius:8px;background:#101a16;border:1px solid #35443d}
+.ep-review-heading{display:flex;justify-content:space-between;gap:10px}.ep-review-heading span:last-child{letter-spacing:0;color:#9aa89d}
+.ep-review-questions ul{list-style:none;padding:0;margin:9px 0 0;display:grid;gap:7px}.ep-review-questions li{position:relative;padding-left:18px;color:#c1cabe;font-size:10px;line-height:1.55}.ep-review-questions li:before{content:"";position:absolute;left:1px;top:5px;width:8px;height:8px;border:1px solid #829078;border-radius:2px}
+.ep-workspace-caption{display:flex;align-items:center;gap:8px;margin:12px 0 0;color:#819087;font:8px var(--mono);letter-spacing:.08em}.ep-caption-dot{width:5px;height:5px;border-radius:50%;background:#c5a675}
+.ep-method-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ep-method-card{padding:20px;border:1px solid #35443d;border-radius:10px;background:linear-gradient(145deg,#202e28,#17221f);min-width:0}
+.ep-method-top{display:flex;justify-content:space-between;color:#c5a675;font:10px var(--mono)}.ep-method-mark{font-size:15px}
+.ep-method-illustration{height:150px;margin:14px 0 20px;border:1px solid #35443d;border-radius:7px;background:#111b18;padding:15px}
+.ep-illustration-values{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);align-items:center;gap:5px}
+.ep-illustration-values>div:not(.ep-value-compare){padding:10px 7px;border:1px solid #3b4c42;border-radius:5px;min-width:0}.ep-illustration-values small{display:block;font:7px var(--mono);color:#9aa89d}.ep-illustration-values strong{display:block;font:500 23px var(--display);margin:12px 0 5px;letter-spacing:-.06em}.ep-illustration-values span{font:7px var(--mono);color:#9aa89d;overflow-wrap:anywhere}.ep-value-compare{text-align:center;color:#d9bd8b}
+.ep-illustration-source{display:grid;align-content:center;gap:7px}.ep-file-row{display:grid;grid-template-columns:26px minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px;border:1px solid #35443d;border-radius:5px;font-size:8px;min-width:0}.ep-file-row>span{color:#c5a675;font:7px var(--mono)}.ep-file-row b{font-size:8px;overflow-wrap:anywhere}.ep-file-row small{font:7px var(--mono);color:#9aa89d}.ep-file-row-muted{opacity:.52}
+.ep-illustration-review{display:flex;flex-direction:column;justify-content:center}.ep-review-state{align-self:flex-start;border:1px solid #776649;border-radius:4px;padding:5px 7px;color:#dfc89e;font:7px var(--mono)}.ep-review-line{height:5px;width:90%;background:#34443a;border-radius:4px;margin-top:14px}.ep-review-line-short{width:58%;margin-top:7px}.ep-review-meta{display:flex;justify-content:space-between;gap:8px;margin-top:10px;font-size:8px;color:#9aa89d}.ep-review-meta span:last-child{color:#c5a675}
+.ep-method-card h3{font-size:20px!important;margin:0 0 8px!important}.ep-method-card p{font-size:12px;color:#aebbb0;line-height:1.75;margin:0}
+.ep-flow-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid #35443d;border-radius:10px;overflow:hidden}
+.ep-flow-step{display:flex;flex-direction:column;min-height:225px;padding:19px;border-right:1px solid #35443d;background:#1b2723}.ep-flow-step:last-child{border-right:0}.ep-flow-step>span{display:grid;place-items:center;width:30px;height:30px;border:1px solid #53634f;border-radius:7px;color:#c5a675;font:10px var(--mono);margin-bottom:20px}.ep-flow-step h3{font-size:17px!important;letter-spacing:-.04em!important;margin:0 0 9px!important}.ep-flow-step p{font-size:11px;line-height:1.7;color:#aebbb0;margin:0}.ep-flow-foot{margin-top:auto;padding-top:17px;font:8px var(--mono);letter-spacing:.06em;color:#c5a675}
+.ep-limits-panel{display:grid;grid-template-columns:54px minmax(0,1fr);gap:20px;padding:30px;border:1px solid #655a43;border-radius:12px;background:linear-gradient(125deg,#2a3027,#19231f)}
+.ep-limits-icon{display:grid;place-items:center;width:44px;height:44px;border:1px solid #a88c5e;border-radius:10px;color:#d6b77f;font:18px var(--mono)}
+.ep-limits-panel h2{font-size:clamp(27px,3.3vw,39px)!important;margin:12px 0!important}.ep-limits-panel p{max-width:880px;color:#bdc7bc;font-size:12px;line-height:1.8}
+.ep-limit-tags{display:flex;flex-wrap:wrap;gap:7px}.ep-limit-tags span{padding:6px 8px;border:1px solid #5c604e;border-radius:4px;color:#d0c3a5;font:8px var(--mono);letter-spacing:.03em}
+.ep-evaluation-card{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(290px,.85fr);border:1px solid #4c5a4c;border-radius:12px;overflow:hidden;background:#1b2723}
+.ep-evaluation-copy{padding:34px}.ep-evaluation-copy h2{margin:14px 0 17px!important}.ep-evaluation-copy>p{max-width:630px;color:#bdc7bc;font-size:13px;line-height:1.8}
+.ep-evaluation-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 15px;margin-top:24px}.ep-evaluation-points span{font-size:10px;color:#c4cec4;display:flex;gap:8px;align-items:flex-start}.ep-evaluation-points b{color:#c5a675}
+.ep-evaluation-action{padding:30px;border-left:1px solid #35443d;background:linear-gradient(150deg,#25332b,#17221f)}
+.ep-evaluation-stamp{display:inline-block;padding:6px 8px;border:1px solid #53634c;border-radius:4px;color:#d3c49f;font:8px var(--mono);letter-spacing:.08em}
+.ep-evaluation-action h3{font-size:24px!important;margin:19px 0 9px!important}.ep-evaluation-action>p{font-size:11px;line-height:1.75;color:#bdc7bc}.ep-evaluation-action .ep-btn{display:flex;width:100%;margin-top:10px}.ep-small-note{font:8px var(--mono)!important;color:#8f9b90!important;margin:12px 0 0!important}
+.ep-faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ep-faq-grid details{padding:18px;border:1px solid #35443d;border-radius:8px;background:#1b2723}
+.ep-faq-grid summary{cursor:pointer;list-style:none;font-size:12px;font-weight:650;display:flex;justify-content:space-between;gap:14px}.ep-faq-grid summary::-webkit-details-marker{display:none}.ep-faq-grid summary:after{content:"+";color:#c5a675;font:16px var(--mono)}.ep-faq-grid details[open] summary:after{content:"−"}
+.ep-faq-grid details p{font-size:11px;line-height:1.75;color:#aebbb0;margin:12px 0 0}
+@media(max-width:1000px){.ep-hero{grid-template-columns:1fr;gap:30px}.ep-hero-copy{max-width:780px}.ep-hero-visual{max-width:800px}.ep-workspace{grid-template-columns:225px minmax(0,1fr)}.ep-case-detail{padding:18px}.ep-chain-flow{grid-template-columns:minmax(0,1fr) 68px minmax(0,1fr);gap:6px}.ep-flow-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.ep-flow-step:nth-child(2){border-right:0}.ep-flow-step:nth-child(-n+2){border-bottom:1px solid #35443d}}
+@media(max-width:760px){.evidence-page{width:calc(100% - 30px)!important;padding-top:95px!important}.ep-hero{padding:28px 0 44px!important}.ep-proof-strip{grid-template-columns:1fr!important;margin-bottom:62px!important}.ep-proof-strip>div{padding:14px 16px}.ep-section-heading{grid-template-columns:1fr;gap:12px;margin-bottom:20px}.ep-workspace{grid-template-columns:1fr}.ep-case-list{border-right:0;border-bottom:1px solid #35443d;padding:12px}.ep-case-list-head{padding-bottom:8px}.ep-case-tab{display:inline-flex;width:calc(33.333% - 5px);vertical-align:top;min-height:105px;padding:9px 6px;gap:6px}.ep-case-icon{display:none}.ep-case-tab-copy strong{font-size:10px}.ep-case-tab-copy small{font-size:8px}.ep-tab-arrow{display:none}.ep-case-list-note{margin-top:5px}.ep-comparison-grid{grid-template-columns:1fr 1fr}.ep-value-delta{grid-column:1/-1}.ep-method-grid{grid-template-columns:1fr}.ep-method-card{display:grid;grid-template-columns:minmax(0,1fr);}.ep-method-illustration{height:135px}.ep-evaluation-card{grid-template-columns:1fr}.ep-evaluation-action{border-left:0;border-top:1px solid #35443d}.ep-evaluation-copy,.ep-evaluation-action{padding:24px}.ep-faq-grid{grid-template-columns:1fr}.ep-limits-panel{grid-template-columns:1fr;padding:22px;gap:13px}.ep-workspace-section,.ep-method-section,.ep-flow-section,.ep-limits-section,.ep-evaluation-section,.ep-faq-section{padding-bottom:62px!important}}
+@media(max-width:520px){.ep-hero h1{font-size:43px!important}.ep-actions{display:grid}.ep-btn{width:100%}.ep-mini-summary{padding:10px;gap:5px}.ep-mini-summary>div{padding:9px 7px}.ep-metric-label{font-size:7px}.ep-mini-summary strong{font-size:20px}.ep-mini-summary small{font-size:8px}.ep-window-top{padding:0 10px;font-size:8px}.ep-demo-pill{font-size:7px}.ep-preview-row{padding:11px 10px}.ep-preview-main strong{font-size:10px}.ep-preview-main small{font-size:8px}.ep-case-tab{width:100%;min-height:0;display:flex;align-items:center;padding:10px}.ep-case-icon{display:grid}.ep-case-tab-copy{grid-template-columns:1fr auto;align-items:center;gap:3px 6px}.ep-case-tab-copy small{grid-column:1}.ep-case-tab-copy em{grid-column:2;grid-row:1/3}.ep-detail-top{display:block}.ep-review-badge{display:inline-block;margin-top:10px}.ep-case-detail{padding:14px}.ep-chain-flow{grid-template-columns:1fr}.ep-chain-connector{padding:3px 0}.ep-chain-connector i{width:1px;height:17px}.ep-chain-connector i:after{content:"⌄";right:auto;top:4px;left:-5px}.ep-source-node{padding:9px}.ep-evaluation-points{grid-template-columns:1fr}.ep-flow-steps{grid-template-columns:1fr}.ep-flow-step{min-height:0;border-right:0!important;border-bottom:1px solid #35443d}.ep-flow-step:last-child{border-bottom:0}.ep-flow-step>span{margin-bottom:12px}.ep-flow-foot{padding-top:12px}.ep-illustration-values strong{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.ep-btn{transition:none}.ep-btn:hover{transform:none}}
+</style>
 </head>
 <body>
 <header class="header" id="header">
@@ -320,50 +436,96 @@ body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;
 })();
 </script>
 
-<main class="wrap">
-<section class="hero" style="border:0">
-<div class="eyebrow">For distributor finance teams and AP service providers</div>
-<h1>Invoice reconciliation with <em>evidence attached.</em></h1>
-<p class="lead">Supplier invoices, purchase orders and goods receipts rarely arrive as one clean record. LedgerTrace helps AP reviewers compare CSV exports, surface configured discrepancies and trace each finding back to the source rows that need checking.</p>
-<div class="actions"><a class="btn" href="/#investigation">Inspect the working sample ↗</a><a class="btn alt" href="/#evaluation">Scope a paid evaluation ↗</a></div>
-<p class="note">Illustrative sample only. No customer savings, recovery rate or accuracy claim is implied.</p>
-</section>
-<section>
-<div class="eyebrow">The workflow</div><h2>Where the records disagree, show the reviewer why.</h2>
-<div class="grid">
-<article class="card"><div class="tag">01 / DUPLICATES</div><h3>Repeated invoice identifiers</h3><p>Flag configured duplicate invoice IDs for a reviewer to confirm against supplier and document context.</p></article>
-<article class="card"><div class="tag">02 / PRICE</div><h3>Invoice vs. PO price</h3><p>Compare the invoice unit price with the matched purchase-order price and show the values that triggered a difference.</p></article>
-<article class="card"><div class="tag">03 / QUANTITY</div><h3>Invoice vs. receipt quantity</h3><p>Surface quantity excesses and missing receipt support where the supplied records allow a meaningful comparison.</p></article>
-</div>
-</section>
-<section>
-<div class="eyebrow">Evidence, not an unsupported promise</div><h2>What your team can inspect</h2>
-<div class="grid">
-<article class="card"><h3>Source-linked findings</h3><p>Review invoice, PO and receipt row references, compared values and the rule behind each flagged result.</p></article>
-<article class="card"><h3>Exportable worklist</h3><p>Receive an exception CSV and concise report organized for human review, not an automated payment decision.</p></article>
-<article class="card"><h3>Misses are reported too</h3><p>For a paid evaluation, compare results with a human-reviewed reference set and document agreed catches, false positives and missed cases.</p></article>
-</div>
-<p class="copy">Current limitations matter: this version uses CSV exports and browser-side processing. Column mappings, complex split/merged invoices, tax, currency conversion and other edge cases need explicit validation before being included in scope. Start with synthetic or approved anonymized records.</p>
-</section>
-<section>
-<div class="eyebrow">How a paid evaluation works</div><h2>Start with one workflow. Decide from evidence.</h2>
-<ol class="steps">
-<li><strong>Define the process</strong><span class="copy">Agree the invoice, purchase-order and receipt exports, supported columns and specific discrepancy checks.</span></li>
-<li><strong>Set the reference answer</strong><span class="copy">Your team reviews expected outcomes for the agreed cases before evaluation.</span></li>
-<li><strong>Run the scoped assessment</strong><span class="copy">Process agreed inputs and document what was caught, missed or incorrectly flagged.</span></li>
-<li><strong>Review the report</strong><span class="copy">Receive a source-linked exception CSV, findings summary and a review handoff. Fee, timeline and acceptance criteria are agreed in writing before kickoff.</span></li>
-</ol>
-</section>
-<section class="faq">
-<div class="eyebrow">Buyer questions</div><h2>Before you share a workflow</h2>
-<details><summary>Does LedgerTrace automatically recover money or block payments?</summary><p>No. It organizes candidate discrepancies and evidence for a human reviewer. It does not issue payment instructions or claim that a candidate is a confirmed loss or recovery.</p></details>
-<details><summary>Do you need confidential invoice data to start?</summary><p>No. Start with the public illustrative sample. Initial evaluations should use synthetic or approved anonymized records. Data handling must be agreed before any sensitive records are shared.</p></details>
-<details><summary>How much does the evaluation cost?</summary><p>The fee is negotiated privately based on agreed record volume, data quality, checks and review effort. Scope, timeline, fee and acceptance criteria are confirmed in writing before work begins.</p></details>
-<details><summary>What if our CSV format is different?</summary><p>Column mappings and sample compatibility are assessed during scoping. A check is included only when the required inputs and expected outcomes can be defined clearly.</p></details>
-</section>
-<section>
-<div class="cta"><div class="eyebrow">Next step / Scope review</div><h2>Bring one recurring reconciliation problem.</h2><p>Tell us which records you compare, how often the review runs, what discrepancy matters and what a useful output would be. Do not email confidential financial records in an initial inquiry.</p><div class="actions"><a class="btn" href="/#evaluation">Build an evaluation brief ↗</a><a class="btn alt" href="mailto:dhairytopia@gmail.com?subject=LedgerTrace%20reconciliation%20evaluation">Email LedgerTrace ↗</a><a class="btn alt" href="https://wa.me/919133404350?text=I%20would%20like%20to%20discuss%20a%20LedgerTrace%20reconciliation%20evaluation." target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div><p class="note">We agree scope, fee, timeline and acceptance criteria before work begins. No automatic message is sent from this page.</p></div>
-</section>
+<main class="wrap evidence-page" id="top">
+  <section class="ep-hero">
+    <div class="ep-hero-copy">
+      <div class="ep-eyebrow"><span class="ep-live-dot"></span> EVIDENCE-FIRST RECONCILIATION</div>
+      <h1>Every discrepancy should come with <em>proof.</em></h1>
+      <p class="ep-lead">A reconciliation result is only useful when a reviewer can see what was compared, where each value came from, why a rule fired, and what still needs a human decision.</p>
+      <div class="ep-actions"><a class="ep-btn ep-btn-primary" href="#evidence-workspace">Explore the evidence workspace <span>↘</span></a><a class="ep-btn ep-btn-secondary" href="/#evaluation">Scope an evaluation ↗</a></div>
+      <div class="ep-trust-row"><span><i>01</i> Source-row traceability</span><span><i>02</i> Explainable checks</span><span><i>03</i> Human review retained</span></div>
+    </div>
+    <div class="ep-hero-visual" aria-label="Illustrative evidence workspace preview">
+      <div class="ep-window-top"><span class="ep-window-dots"><b></b><b></b><b></b></span><span>LEDGERTRACE / CASE VIEW</span><span class="ep-demo-pill">SYNTHETIC DATA</span></div>
+      <div class="ep-mini-summary"><div><span class="ep-metric-label">CASES FLAGGED</span><strong>03</strong><small>illustrative sample</small></div><div><span class="ep-metric-label">EVIDENCE LINKS</span><strong>07</strong><small>source rows cited</small></div><div><span class="ep-metric-label">REVIEW STATUS</span><strong class="ep-status-review">Pending</strong><small>human decision required</small></div></div>
+      <div class="ep-preview-heading"><span>EXCEPTION WORKLIST</span><span>3 sample cases</span></div>
+      <div class="ep-preview-row ep-preview-active"><span class="ep-severity ep-severity-amber"></span><div class="ep-preview-main"><strong>Unit price variance</strong><small>INV-2048 · Northstar Industrial</small></div><span class="ep-preview-value">+12.5%</span></div>
+      <div class="ep-preview-row"><span class="ep-severity ep-severity-red"></span><div class="ep-preview-main"><strong>Possible duplicate</strong><small>INV-2031 · same supplier + number</small></div><span class="ep-preview-value">Review</span></div>
+      <div class="ep-preview-row"><span class="ep-severity ep-severity-blue"></span><div class="ep-preview-main"><strong>Receipt quantity gap</strong><small>INV-2052 · receipt support incomplete</small></div><span class="ep-preview-value">18 units</span></div>
+      <div class="ep-preview-foot"><span class="ep-check-mark">↗</span> Each result opens its comparison, source references and review questions.</div>
+    </div>
+  </section>
+
+  <section class="ep-proof-strip" aria-label="Platform principles">
+    <div><span class="ep-strip-number">A</span><div><strong>Show the values</strong><small>Not just a match / mismatch label</small></div></div>
+    <div><span class="ep-strip-number">B</span><div><strong>Show the origin</strong><small>File, source row and field</small></div></div>
+    <div><span class="ep-strip-number">C</span><div><strong>Show the uncertainty</strong><small>Missing evidence stays visible</small></div></div>
+  </section>
+
+  <section class="ep-workspace-section" id="evidence-workspace">
+    <div class="ep-section-heading"><div><div class="ep-eyebrow">01 / INSPECT A CASE</div><h2>From a flagged result to its source evidence.</h2></div><p>Choose a synthetic exception to see the values, rule and evidence a reviewer should inspect. These examples demonstrate the intended review format; they are not customer findings.</p></div>
+    <div class="ep-workspace">
+      <aside class="ep-case-list">
+        <div class="ep-case-list-head"><span>EXCEPTION QUEUE</span><span class="ep-queue-count">03</span></div>
+        <button class="ep-case-tab is-active" type="button" data-case="price" aria-pressed="true"><span class="ep-case-icon ep-icon-amber">↕</span><span class="ep-case-tab-copy"><strong>Unit price variance</strong><small>INV-2048 · PO-8821</small><em>Needs review</em></span><span class="ep-tab-arrow">↗</span></button>
+        <button class="ep-case-tab" type="button" data-case="duplicate" aria-pressed="false"><span class="ep-case-icon ep-icon-red">≋</span><span class="ep-case-tab-copy"><strong>Possible duplicate</strong><small>INV-2031 · INV-2031</small><em>Needs confirmation</em></span><span class="ep-tab-arrow">↗</span></button>
+        <button class="ep-case-tab" type="button" data-case="receipt" aria-pressed="false"><span class="ep-case-icon ep-icon-blue">▤</span><span class="ep-case-tab-copy"><strong>Receipt quantity gap</strong><small>INV-2052 · GRN-4407</small><em>Evidence incomplete</em></span><span class="ep-tab-arrow">↗</span></button>
+        <div class="ep-case-list-note"><span class="ep-note-symbol">i</span><p>Flags are review candidates, not confirmed losses, fraud or payment instructions.</p></div>
+      </aside>
+      <div class="ep-case-detail" aria-live="polite">
+        <div class="ep-detail-top"><div><div class="ep-detail-kicker" id="epCaseKicker">PRICE CHECK / CASE LT-SYN-001</div><h3 id="epCaseTitle">Invoice unit price differs from PO</h3></div><span class="ep-review-badge" id="epCaseBadge">HUMAN REVIEW</span></div>
+        <p class="ep-detail-intro" id="epCaseIntro">The invoice unit price is higher than the referenced purchase-order price. Verify the item, unit of measure, and any approved amendment before deciding whether this is a valid exception.</p>
+        <div class="ep-comparison-grid" id="epComparisonGrid">
+          <div class="ep-value-card"><span>INVOICE UNIT PRICE</span><strong id="epInvoiceValue">$45.00</strong><small>invoice.csv · row 18 · unit_price</small></div>
+          <div class="ep-value-card"><span>PURCHASE ORDER PRICE</span><strong id="epPoValue">$40.00</strong><small>purchase_orders.csv · row 42 · unit_price</small></div>
+          <div class="ep-value-card ep-value-delta"><span>OBSERVED DIFFERENCE</span><strong id="epDeltaValue">+$5.00 / +12.5%</strong><small id="epDeltaNote">Above configured 5% tolerance</small></div>
+        </div>
+        <div class="ep-evidence-chain">
+          <div class="ep-chain-heading"><span>PROVENANCE / EVIDENCE PATH</span><span>2 sources linked</span></div>
+          <div class="ep-chain-flow">
+            <div class="ep-source-node"><span class="ep-source-file">CSV</span><div><strong id="epSourceOne">invoice.csv</strong><small id="epSourceOneMeta">Row 18 · INV-2048 · SKU A-104</small></div><span class="ep-source-check">↗</span></div>
+            <div class="ep-chain-connector"><span>compared by</span><i></i><span>same invoice + item key</span></div>
+            <div class="ep-source-node"><span class="ep-source-file ep-source-file-po">CSV</span><div><strong id="epSourceTwo">purchase_orders.csv</strong><small id="epSourceTwoMeta">Row 42 · PO-8821 · SKU A-104</small></div><span class="ep-source-check">↗</span></div>
+          </div>
+        </div>
+        <div class="ep-rule-explain"><div class="ep-rule-icon">ƒ</div><div><span>WHY THIS WAS FLAGGED</span><p id="epRuleText">Match key: PO-8821 + SKU A-104. Rule: absolute unit-price difference exceeds 5% tolerance. The system reports the comparison; it does not determine whether the change was authorized.</p></div></div>
+        <div class="ep-review-questions"><div class="ep-review-heading"><span>HUMAN REVIEW CHECKLIST</span><span>Before resolution</span></div><ul id="epReviewList"><li>Confirm the invoice and PO refer to the same item and unit of measure.</li><li>Check for an approved price amendment or contract update.</li><li>Record the reviewer decision and reason before closing the case.</li></ul></div>
+      </div>
+    </div>
+    <p class="ep-workspace-caption"><span class="ep-caption-dot"></span> INTERACTIVE MOCK CASES · SYNTHETIC VALUES · NOT CONNECTED TO A CUSTOMER ERP</p>
+  </section>
+
+  <section class="ep-method-section">
+    <div class="ep-section-heading"><div><div class="ep-eyebrow">02 / WHAT A FINDING CONTAINS</div><h2>A result should be reproducible.</h2></div><p>Every flagged case should carry enough context for a second reviewer to reconstruct the comparison without trusting a black-box status.</p></div>
+    <div class="ep-method-grid">
+      <article class="ep-method-card ep-method-feature"><div class="ep-method-top"><span>01</span><span class="ep-method-mark">↗</span></div><div class="ep-method-illustration ep-illustration-values"><div><small>INVOICE</small><strong>45.00</strong><span>row 18 / unit_price</span></div><div class="ep-value-compare">≠</div><div><small>PURCHASE ORDER</small><strong>40.00</strong><span>row 42 / unit_price</span></div></div><h3>Compared values</h3><p>The actual values, units, tolerance and difference are visible together. No unexplained red badge.</p></article>
+      <article class="ep-method-card"><div class="ep-method-top"><span>02</span><span class="ep-method-mark">⌁</span></div><div class="ep-method-illustration ep-illustration-source"><div class="ep-file-row"><span>CSV</span><b>invoice.csv</b><small>row 18</small></div><div class="ep-file-row"><span>CSV</span><b>purchase_orders.csv</b><small>row 42</small></div><div class="ep-file-row ep-file-row-muted"><span>CSV</span><b>goods_receipts.csv</b><small>not required for this check</small></div></div><h3>Source provenance</h3><p>Trace each field to its originating file, row and column. Missing or unused sources are not silently implied.</p></article>
+      <article class="ep-method-card"><div class="ep-method-top"><span>03</span><span class="ep-method-mark">◎</span></div><div class="ep-method-illustration ep-illustration-review"><span class="ep-review-state">PENDING DECISION</span><div class="ep-review-line"></div><div class="ep-review-line ep-review-line-short"></div><div class="ep-review-meta"><span>Reviewer</span><span>Not assigned</span></div><div class="ep-review-meta"><span>Reason</span><span>Required to close</span></div></div><h3>Open questions</h3><p>Show what the records cannot establish, including approvals, split lines, unit conversions and incomplete receipt support.</p></article>
+    </div>
+  </section>
+
+  <section class="ep-flow-section">
+    <div class="ep-section-heading"><div><div class="ep-eyebrow">03 / REVIEW FLOW</div><h2>Keep automation inside its evidence boundary.</h2></div><p>LedgerTrace is designed to surface and organize discrepancies—not to make unsupported financial decisions on a team's behalf.</p></div>
+    <div class="ep-flow-steps">
+      <div class="ep-flow-step"><span>01</span><div><h3>Import approved exports</h3><p>Start with invoice, purchase-order and receipt CSVs. Map columns and validate required fields.</p></div><div class="ep-flow-foot">INPUTS / CSV</div></div>
+      <div class="ep-flow-step"><span>02</span><div><h3>Run explicit checks</h3><p>Compare defined keys and tolerances. Keep the rule, values and source references with each candidate.</p></div><div class="ep-flow-foot">PROCESS / RULES</div></div>
+      <div class="ep-flow-step"><span>03</span><div><h3>Review the evidence</h3><p>Resolve ambiguity, inspect missing support and record why an exception is accepted or dismissed.</p></div><div class="ep-flow-foot">DECISION / HUMAN</div></div>
+      <div class="ep-flow-step"><span>04</span><div><h3>Export the worklist</h3><p>Hand off source-linked exceptions and agreed review notes for downstream follow-up.</p></div><div class="ep-flow-foot">OUTPUT / CSV + REPORT</div></div>
+    </div>
+  </section>
+
+  <section class="ep-limits-section">
+    <div class="ep-limits-panel"><div class="ep-limits-icon">!</div><div><div class="ep-eyebrow">BOUNDARIES THAT MATTER</div><h2>Evidence is not the same as a verdict.</h2><p>A flagged difference can have a legitimate explanation. Column mapping, duplicate identifiers, partial receipts, split or merged invoice lines, taxes, currency conversion and approved amendments need explicit rules and human validation. A check should only be included in an evaluation when its inputs and expected outcomes can be defined and tested.</p><div class="ep-limit-tags"><span>NO AUTOMATIC PAYMENT ACTIONS</span><span>NO IMPLIED LOSS / RECOVERY CLAIMS</span><span>HUMAN REVIEW REQUIRED</span></div></div></div>
+  </section>
+
+  <section class="ep-evaluation-section" id="evaluation-brief">
+    <div class="ep-evaluation-card"><div class="ep-evaluation-copy"><div class="ep-eyebrow">04 / EVALUATE ON YOUR WORKFLOW</div><h2>Prove the checks against a reference set.</h2><p>Define the exports, supported columns, discrepancy rules and expected outcomes first. The evaluation then records what was caught, what was missed, false positives and what remains out of scope.</p><div class="ep-evaluation-points"><span><b>✓</b> Agreed scope and acceptance criteria</span><span><b>✓</b> Source-linked exception worklist</span><span><b>✓</b> Human-reviewed reference comparison</span><span><b>✓</b> Findings, limitations and handoff</span></div></div><div class="ep-evaluation-action"><div class="ep-evaluation-stamp">SCOPED / BEFORE KICKOFF</div><h3>One workflow. Clear evidence.</h3><p>Fee, timeline, data handling and acceptance criteria are agreed privately before work begins. Do not send confidential financial records in an initial inquiry.</p><a class="ep-btn ep-btn-primary" href="mailto:dhairytopia@gmail.com?subject=LedgerTrace%20evidence-first%20evaluation">Describe your workflow ↗</a><a class="ep-btn ep-btn-secondary" href="https://wa.me/919133404350?text=I%20would%20like%20to%20discuss%20an%20evidence-first%20LedgerTrace%20evaluation." target="_blank" rel="noopener noreferrer">Discuss an evaluation on WhatsApp ↗</a><p class="ep-small-note">No automatic message is sent from this page.</p></div></div>
+  </section>
+
+  <section class="ep-faq-section">
+    <div class="ep-section-heading"><div><div class="ep-eyebrow">05 / SCOPE &amp; TRUST</div><h2>Questions a careful buyer should ask.</h2></div><p>Specific limits are part of a credible reconciliation process.</p></div>
+    <div class="ep-faq-grid"><details><summary>Is this connected to our ERP or accounting system?</summary><p>No. The current experience is a browser-side workflow built around CSV exports. ERP integrations and production controls are not implied.</p></details><details><summary>Does a flagged variance prove an overpayment?</summary><p>No. It shows that a configured comparison found a difference in the supplied records. A reviewer must check context, approvals and source quality before deciding what it means.</p></details><details><summary>How is evaluation success measured?</summary><p>Against an agreed human-reviewed reference set: confirmed catches, false positives, missed cases, unsupported checks and unresolved edge cases. Metrics are reported only for the agreed scope.</p></details><details><summary>How are fees determined?</summary><p>The fee is negotiated according to record volume, data quality, rules, validation effort and deliverables. Scope, fee, timeline and acceptance criteria are confirmed in writing before kickoff.</p></details></div>
+  </section>
 </main>
 <footer class="footer" id="site-footer">
   <div class="container">
@@ -386,5 +548,19 @@ body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;
   </div>
 </footer>
 
+
+<script id="ledgertrace-evidence-demo-v1">
+(function(){
+ const cases={
+  price:{kicker:"PRICE CHECK / CASE LT-SYN-001",title:"Invoice unit price differs from PO",badge:"HUMAN REVIEW",intro:"The invoice unit price is higher than the referenced purchase-order price. Verify the item, unit of measure, and any approved amendment before deciding whether this is a valid exception.",invoice:"$45.00",po:"$40.00",delta:"+$5.00 / +12.5%",deltaNote:"Above configured 5% tolerance",source1:"invoice.csv",meta1:"Row 18 · INV-2048 · SKU A-104",source2:"purchase_orders.csv",meta2:"Row 42 · PO-8821 · SKU A-104",chain:"2 sources linked",rule:"Match key: PO-8821 + SKU A-104. Rule: absolute unit-price difference exceeds 5% tolerance. The system reports the comparison; it does not determine whether the change was authorized.",checks:["Confirm the invoice and PO refer to the same item and unit of measure.","Check for an approved price amendment or contract update.","Record the reviewer decision and reason before closing the case."]},
+  duplicate:{kicker:"DUPLICATE CHECK / CASE LT-SYN-002",title:"Invoice identifier appears more than once",badge:"CONFIRM IDENTITY",intro:"Two supplied rows share a supplier and invoice identifier. That can indicate a duplicate, a credit/rebill pattern, or a source-system export issue. Compare the full document context before classifying it.",invoice:"INV-2031",po:"INV-2031",delta:"2 rows found",deltaNote:"Same supplier + invoice number key",source1:"invoice.csv",meta1:"Row 11 · INV-2031 · Northstar Industrial",source2:"invoice.csv",meta2:"Row 27 · INV-2031 · Northstar Industrial",chain:"2 invoice rows linked",rule:"Match key: normalized supplier + invoice number. Rule: the configured duplicate key appears in more than one source row. This does not by itself prove duplicate payment or financial loss.",checks:["Compare invoice dates, totals, line items and document references.","Check whether one row is a credit, correction or repeated export.","Confirm payment status in the system of record before any conclusion."]},
+  receipt:{kicker:"RECEIPT CHECK / CASE LT-SYN-003",title:"Invoice quantity exceeds receipt support",badge:"EVIDENCE INCOMPLETE",intro:"The invoice quantity is greater than the quantity visible in the supplied goods-receipt record. A partial delivery, later receipt, unit conversion or missing export may explain the gap.",invoice:"120 units",po:"102 units received",delta:"18 units gap",deltaNote:"Receipt support incomplete",source1:"invoice.csv",meta1:"Row 33 · INV-2052 · SKU B-220",source2:"goods_receipts.csv",meta2:"Row 9 · GRN-4407 · SKU B-220",chain:"Invoice + receipt linked",rule:"Match key: PO reference + SKU B-220. Rule: invoiced quantity is greater than the received quantity in the supplied rows. The supplied export may be incomplete; verify later receipts and units of measure.",checks:["Search for later receipts, split deliveries or a missing receipt export.","Verify the invoice and receipt use the same unit of measure.","Keep the case open until missing support is resolved or documented."]}
+ };
+ const fields={kicker:"epCaseKicker",title:"epCaseTitle",badge:"epCaseBadge",intro:"epCaseIntro",invoice:"epInvoiceValue",po:"epPoValue",delta:"epDeltaValue",deltaNote:"epDeltaNote",source1:"epSourceOne",meta1:"epSourceOneMeta",source2:"epSourceTwo",meta2:"epSourceTwoMeta",chain:"epChainCount",rule:"epRuleText"};
+ function setText(id,value){const el=document.getElementById(id);if(el)el.textContent=value}
+ function render(key){const d=cases[key];if(!d)return;Object.keys(fields).forEach(k=>{if(k==="chain"){const el=document.querySelector(".ep-chain-heading span:last-child");if(el)el.textContent=d.chain}else setText(fields[k],d[k])});const list=document.getElementById("epReviewList");if(list){list.replaceChildren();d.checks.forEach(item=>{const li=document.createElement("li");li.textContent=item;list.appendChild(li)})}document.querySelectorAll(".ep-case-tab").forEach(btn=>{const active=btn.dataset.case===key;btn.classList.toggle("is-active",active);btn.setAttribute("aria-pressed",String(active))})}
+ document.querySelectorAll(".ep-case-tab").forEach(btn=>btn.addEventListener("click",()=>render(btn.dataset.case)));
+})();
+</script>
 </body>
 </html>
