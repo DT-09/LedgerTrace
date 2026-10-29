@@ -919,6 +919,33 @@ state.usingSample=false;updateScope();setMeta('runHint','Choose all three CSV fi
 })();
 </script>
 
+<script id="ledgertrace-quickcheck-route-fallback">
+(function(){
+  function openQuickCheckFromRoute(){
+    if(new URLSearchParams(window.location.search).get('request')!=='quickcheck') return;
+    var backdrop=document.getElementById('contactBackdrop');
+    var panel=document.getElementById('contactPanel');
+    var cadence=document.getElementById('contactCadence');
+    var description=document.getElementById('contactDescription');
+    var status=document.getElementById('contactStatus');
+    if(!backdrop||!panel) return;
+    backdrop.classList.add('open');
+    panel.classList.add('open');
+    panel.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    if(cadence) cadence.value='Free QuickCheck — limited sample';
+    if(description) description.value='I would like to request the free LedgerTrace QuickCheck for one supplier, up to 25 approved/anonymized rows, and one supported discrepancy question. Please confirm the appropriate safe transfer method before I share any data.';
+    var summary=document.getElementById('contactScopeSummary');
+    if(summary) summary.textContent='Free QuickCheck only: one supplier, up to 25 approved/anonymized rows, one supported question. No exhaustive exception list or full audit.';
+    var submit=document.querySelector('#contactForm button[type="submit"]');
+    if(submit) submit.textContent='Prepare QuickCheck inquiry ↗';
+    if(status) status.textContent='Complete the short inquiry, then send it through WhatsApp or email. No message is sent automatically.';
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',openQuickCheckFromRoute,{once:true});
+  else openQuickCheckFromRoute();
+})();
+</script>
+
 <style id="ledgertrace-recovery-extension-css">
 .recovery-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
 .recovery-input-grid .source-card{min-width:0}
