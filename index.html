@@ -9,7 +9,7 @@
 <meta property="og:title" content="LedgerTrace — Invoice reconciliation with source-linked evidence">
 <meta property="og:description" content="Compare supplier invoices, purchase orders and goods receipts. Inspect source-linked discrepancy evidence and scope a measured invoice-reconciliation assessment.">
 <meta property="og:url" content="https://ledgertrace.pages.dev/">
-<link rel="canonical" href="https://ledgertrace.pages.dev/">\n<title>Invoice Reconciliation for Distributors | LedgerTrace</title>
+<link rel="canonical" href="https://ledgertrace.pages.dev/"><title>Invoice Reconciliation for Distributors | LedgerTrace</title>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LedgerTrace","url":"https://ledgertrace.pages.dev/","applicationCategory":"BusinessApplication","operatingSystem":"Any modern browser","description":"Browser-side accounts-payable reconciliation workbench for comparing supplier invoices, purchase orders and goods receipts, with source-linked discrepancy evidence.","offers":{"@type":"Offer","url":"https://ledgertrace.pages.dev/#evaluation","description":"Scoped paid reconciliation evaluation; fee and acceptance criteria agreed privately before kickoff."}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -639,7 +639,69 @@ function printEvidenceReport(){
  const currencyUnresolved=currencies.length>0&&(new Set(currencies).size>1||rowsWithCurrency.some(r=>!r.currency));
  const flagged=currencyUnresolved?'Not aggregated — currency missing or mixed':money(state.results.filter(r=>r.status!=='matched').reduce((sum,r)=>sum+(r.risk||0),0));
  w.document.open();
- w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>LedgerTrace evidence report</title><style>body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 8px}.meta{color:#5d675f;font-size:11px}.metrics{display:flex;gap:24px;margin:20px 0;padding:14px 0;border-top:1px solid #bbc3ba;border-bottom:1px solid #bbc3ba}.metrics b{display:block;font-size:20px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{text-align:left;vertical-align:top;padding:7px;border-bottom:1px solid #d6ddd5;overflow-wrap:anywhere}th{background:#edf1eb}small{color:#687168}.note{margin-top:20px;padding:12px;border:1px solid #c7d0c5;background:#f5f7f3}@media print{body{margin:12mm}tr{break-inside:avoid}h1,h2{break-after:avoid}.note{break-inside:avoid}}</style></head><body><h1>LedgerTrace — Reconciliation Evidence Report</h1><div class="meta">Generated '+escapeHTML(state.runAt?state.runAt.toLocaleString():'')+' · '+(state.usingSample?'Illustrative sample data':'User-supplied CSV data')+' · Browser-side run</div><div class="metrics"><div><b>'+total+'</b>Invoice rows</div><div><b>'+exceptions+'</b>Results needing review</div><div><b>'+matched+'</b>Invoice rows with no configured rule trigger</div><div><b>'+escapeHTML(flagged)+'</b>Indicative flagged line value</div></div><h2>Result worklist</h2><table><thead><tr><th>Status</th><th>Invoice</th><th>Supplier</th><th>PO / item</th><th>Invoice qty</th><th>PO qty</th><th>Received</th><th>Source trace</th><th>Rule finding / interpretation</th></tr></thead><tbody>'+rows+'</tbody></table><div class="note"><strong>How to audit this report:</strong> Source CSV references are physical line numbers in the loaded files (the header is line 1). The initial linkage key is normalized purchase-order number plus item code; conflicting named suppliers are excluded. Multiple compatible PO rows are treated as ambiguous rather than arbitrarily selecting one. Receipt quantities may be aggregated across compatible receipt rows. Confirm each cited row against the original invoice, PO and receipt before posting or payment. A matched row means no configured rule triggered; it is not certification of correctness or authorization to pay. Indicative flagged line value is not verified loss or recoverable value.</div><p class="meta">LedgerTrace · Illustrative output unless user-supplied CSVs were loaded.</p><script>window.addEventListener("load",()=>window.print())<\/script></body></html>');
+ w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>LedgerTrace evidence report</title><style>body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 8px}.meta{color:#5d675f;font-size:11px}.metrics{display:flex;gap:24px;margin:20px 0;padding:14px 0;border-top:1px solid #bbc3ba;border-bottom:1px solid #bbc3ba}.metrics b{display:block;font-size:20px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{text-align:left;vertical-align:top;padding:7px;border-bottom:1px solid #d6ddd5;overflow-wrap:anywhere}th{background:#edf1eb}small{color:#687168}.note{margin-top:20px;padding:12px;border:1px solid #c7d0c5;background:#f5f7f3}@media print{body{margin:12mm}tr{break-inside:avoid}h1,h2{break-after:avoid}.note{break-inside:avoid}}</style>
+<style id="ledgertrace-layout-repair-2026-10">
+/* Layout repair: restore a clear grid, consistent alignment and controlled type scale. */
+.header {
+  display:flex !important;
+  align-items:center !important;
+  gap:clamp(12px,1.8vw,24px) !important;
+  padding-inline:clamp(14px,2vw,22px) !important;
+}
+.header > .brand { margin-right:auto !important; }
+.header > .header-cta { margin-left:auto !important; flex:0 0 auto !important; }
+.header > .menu-toggle { margin-left:0 !important; flex:0 0 auto !important; }
+.header .nav { margin-left:0 !important; }
+.hero {
+  grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr) !important;
+  gap:clamp(24px,3.2vw,42px) !important;
+  min-height:0 !important;
+  padding-top:clamp(112px,12vw,142px) !important;
+  padding-bottom:clamp(48px,6vw,72px) !important;
+}
+.hero-copy { min-width:0 !important; }
+.hero h1 {
+  max-width:570px !important;
+  font-size:clamp(39px,4.55vw,62px) !important;
+  line-height:1.035 !important;
+  letter-spacing:-.065em !important;
+  margin:20px 0 18px !important;
+  text-wrap:balance;
+}
+.hero .hero-desc { max-width:510px !important; font-size:15px !important; line-height:1.72 !important; }
+.hero-actions { gap:10px !important; margin-top:23px !important; }
+.hero .privacy-note { margin-top:17px !important; }
+.ledger-art-heading {
+  font-size:15px !important;
+  letter-spacing:1.05px !important;
+}
+.ledger-illustration { min-width:0 !important; }
+.ledger-illustration .ledger-art-svg { width:100% !important; max-width:100% !important; }
+.section-top { grid-template-columns:minmax(130px,.7fr) minmax(0,1.3fr) !important; gap:24px !important; }
+.section-title { text-wrap:balance; }
+@media (min-width:1100px) {
+  .hero h1 { font-size:clamp(48px,4.2vw,62px) !important; }
+}
+@media (max-width:900px) {
+  .hero { grid-template-columns:minmax(0,1fr) !important; gap:20px !important; }
+  .hero-copy { max-width:760px !important; }
+  .hero h1 { max-width:650px !important; font-size:clamp(42px,7vw,60px) !important; }
+  .scene,.ledger-illustration { width:100% !important; max-width:760px !important; margin-inline:auto !important; }
+}
+@media (max-width:650px) {
+  .header { gap:9px !important; padding-inline:12px !important; }
+  .header > .brand { margin-right:auto !important; }
+  .header > .header-cta { display:none !important; }
+  .header > .menu-toggle { margin-left:auto !important; }
+  .hero { padding-top:112px !important; padding-bottom:42px !important; }
+  .hero h1 { font-size:clamp(38px,10vw,50px) !important; line-height:1.04 !important; margin:17px 0 15px !important; }
+  .hero .hero-desc { font-size:14px !important; line-height:1.7 !important; }
+  .section-top { grid-template-columns:1fr !important; gap:10px !important; }
+  .ledger-art-heading { font-size:12px !important; letter-spacing:.65px !important; }
+}
+</style>
+
+</head><body><h1>LedgerTrace — Reconciliation Evidence Report</h1><div class="meta">Generated '+escapeHTML(state.runAt?state.runAt.toLocaleString():'')+' · '+(state.usingSample?'Illustrative sample data':'User-supplied CSV data')+' · Browser-side run</div><div class="metrics"><div><b>'+total+'</b>Invoice rows</div><div><b>'+exceptions+'</b>Results needing review</div><div><b>'+matched+'</b>Invoice rows with no configured rule trigger</div><div><b>'+escapeHTML(flagged)+'</b>Indicative flagged line value</div></div><h2>Result worklist</h2><table><thead><tr><th>Status</th><th>Invoice</th><th>Supplier</th><th>PO / item</th><th>Invoice qty</th><th>PO qty</th><th>Received</th><th>Source trace</th><th>Rule finding / interpretation</th></tr></thead><tbody>'+rows+'</tbody></table><div class="note"><strong>How to audit this report:</strong> Source CSV references are physical line numbers in the loaded files (the header is line 1). The initial linkage key is normalized purchase-order number plus item code; conflicting named suppliers are excluded. Multiple compatible PO rows are treated as ambiguous rather than arbitrarily selecting one. Receipt quantities may be aggregated across compatible receipt rows. Confirm each cited row against the original invoice, PO and receipt before posting or payment. A matched row means no configured rule triggered; it is not certification of correctness or authorization to pay. Indicative flagged line value is not verified loss or recoverable value.</div><p class="meta">LedgerTrace · Illustrative output unless user-supplied CSVs were loaded.</p><script>window.addEventListener("load",()=>window.print())<\/script></body></html>');
  w.document.close();
 }
 
