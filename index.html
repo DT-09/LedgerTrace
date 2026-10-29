@@ -304,6 +304,112 @@ body{font-size:15px!important;line-height:1.7!important}
 .header-cta:hover{background:#D4B989!important;border-color:#D4B989!important}
 </style>
 
+
+<style id="ledgertrace-layout-repair-2026-10">
+/* Layout repair: restore a clear grid, consistent alignment and controlled type scale. */
+.header {
+  display:flex !important;
+  align-items:center !important;
+  gap:clamp(12px,1.8vw,24px) !important;
+  padding-inline:clamp(14px,2vw,22px) !important;
+}
+.header > .brand { margin-right:auto !important; }
+.header > .header-cta { margin-left:auto !important; flex:0 0 auto !important; }
+.header > .menu-toggle { margin-left:0 !important; flex:0 0 auto !important; }
+.header .nav { margin-left:0 !important; }
+.hero {
+  grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr) !important;
+  gap:clamp(24px,3.2vw,42px) !important;
+  min-height:0 !important;
+  padding-top:clamp(112px,12vw,142px) !important;
+  padding-bottom:clamp(48px,6vw,72px) !important;
+}
+.hero-copy { min-width:0 !important; }
+.hero h1 {
+  max-width:570px !important;
+  font-size:clamp(39px,4.55vw,62px) !important;
+  line-height:1.035 !important;
+  letter-spacing:-.065em !important;
+  margin:20px 0 18px !important;
+  text-wrap:balance;
+}
+.hero .hero-desc { max-width:510px !important; font-size:15px !important; line-height:1.72 !important; }
+.hero-actions { gap:10px !important; margin-top:23px !important; }
+.hero .privacy-note { margin-top:17px !important; }
+.ledger-art-heading {
+  font-size:15px !important;
+  letter-spacing:1.05px !important;
+}
+.ledger-illustration { min-width:0 !important; }
+.ledger-illustration .ledger-art-svg { width:100% !important; max-width:100% !important; }
+.section-top { grid-template-columns:minmax(130px,.7fr) minmax(0,1.3fr) !important; gap:24px !important; }
+.section-title { text-wrap:balance; }
+@media (min-width:1100px) {
+  .hero h1 { font-size:clamp(48px,4.2vw,62px) !important; }
+}
+@media (max-width:900px) {
+  .hero { grid-template-columns:minmax(0,1fr) !important; gap:20px !important; }
+  .hero-copy { max-width:760px !important; }
+  .hero h1 { max-width:650px !important; font-size:clamp(42px,7vw,60px) !important; }
+  .scene,.ledger-illustration { width:100% !important; max-width:760px !important; margin-inline:auto !important; }
+}
+@media (max-width:650px) {
+  .header { gap:9px !important; padding-inline:12px !important; }
+  .header > .brand { margin-right:auto !important; }
+  .header > .header-cta { display:none !important; }
+  .header > .menu-toggle { margin-left:auto !important; }
+  .hero { padding-top:112px !important; padding-bottom:42px !important; }
+  .hero h1 { font-size:clamp(38px,10vw,50px) !important; line-height:1.04 !important; margin:17px 0 15px !important; }
+  .hero .hero-desc { font-size:14px !important; line-height:1.7 !important; }
+  .section-top { grid-template-columns:1fr !important; gap:10px !important; }
+  .ledger-art-heading { font-size:12px !important; letter-spacing:.65px !important; }
+}
+</style>
+<style id="ledgertrace-consistent-shell-v2">
+/* Shared shell and editorial hierarchy across LedgerTrace pages. */
+.header{display:flex!important;align-items:center!important;gap:clamp(10px,1.8vw,24px)!important;padding-inline:clamp(14px,2vw,22px)!important}
+.header>.brand{margin-right:auto!important;flex:0 0 auto!important}
+.header>.header-cta{margin-left:auto!important;flex:0 0 auto!important}
+.header>.menu-toggle{margin-left:0!important;flex:0 0 auto!important;position:relative!important;z-index:3!important}
+.header .nav{margin-left:0!important}
+.header .nav.open{display:flex!important}
+.header .menu-toggle{display:inline-grid!important;place-items:center!important;min-width:40px!important;min-height:40px!important}
+.hero h1,.wrap>.hero h1{font-size:clamp(38px,4.5vw,62px)!important;line-height:1.04!important;letter-spacing:-.065em!important;max-width:660px!important;text-wrap:balance;margin-block:18px 16px!important}
+.ledger-art-heading{font-size:16px!important;letter-spacing:1.15px!important;font-weight:600!important}
+.ledger-illustration .ledger-art-svg{transform-origin:50% 50%;transition:transform .35s ease,filter .35s ease}
+@media(hover:hover) and (pointer:fine){.ledger-illustration:hover .ledger-art-svg{transform:scale(1.035)!important;filter:drop-shadow(0 24px 38px rgba(0,0,0,.25))}}
+.footer-legal p:first-child{font-size:13px!important;line-height:1.6!important;letter-spacing:.015em}
+.footer-legal p{line-height:1.6!important}
+.evaluation{padding-block:clamp(64px,8vw,108px)!important}
+.evaluation .eval-grid{grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr)!important;gap:clamp(24px,4vw,54px)!important;align-items:start!important}
+.evaluation .eval-copy{position:sticky;top:96px!important}
+.evaluation .eval-copy h2{font-size:clamp(36px,4vw,52px)!important;line-height:1.04!important;letter-spacing:-.06em!important;text-wrap:balance}
+.evaluation .eval-copy p{font-size:13px!important;line-height:1.8!important}
+.evaluation .eval-points{display:grid!important;gap:11px!important;padding:17px!important;border:1px solid var(--line)!important;border-radius:12px!important;background:rgba(40,59,57,.22)!important}
+.evaluation .eval-point{font-size:12px!important;line-height:1.65!important}
+.evaluation .commercial-sequence>div{background:rgba(40,59,57,.34)!important;border-color:var(--line)!important;min-width:0}
+.evaluation .builder-disclaimer{font-size:12px!important;line-height:1.75!important}
+@media(max-width:760px){
+ .header{gap:9px!important}
+ .header>.header-cta{display:none!important}
+ .header>.menu-toggle{margin-left:auto!important}
+ .hero h1,.wrap>.hero h1{font-size:clamp(36px,9vw,48px)!important}
+ .ledger-art-heading{font-size:12px!important;letter-spacing:.65px!important}
+ .evaluation .eval-grid{grid-template-columns:1fr!important}
+ .evaluation .eval-copy{position:static!important}
+ .evaluation .commercial-sequence{grid-template-columns:1fr!important}
+}
+@media(prefers-reduced-motion:reduce){.ledger-illustration .ledger-art-svg{transition:none!important}.ledger-illustration:hover .ledger-art-svg{transform:none!important;filter:none!important}}
+</style>
+<style id="ledgertrace-final-brand-consistency-v2">
+/* Final shared typography and header CTA, intentionally loaded after page-specific styles. */
+:root{--body:"Inter",Arial,sans-serif;--display:"Space Grotesk","Inter",Arial,sans-serif;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;--ivory:#DCD3C2;--sage:#A9B9AD;--brass:#B99660}
+html,body{font-family:var(--body)!important}
+h1,h2,h3,h4,h5,h6,.brand-name,.brand-mark{font-family:var(--display)!important}
+code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.status,.metric-label,.note,.top,.footer,.site-footer-links a,.ep-eyebrow,.ep-detail-kicker,.ep-metric-label,.ep-preview-heading,.ep-chain-heading,.ep-review-heading,.ep-trust-row,.ep-source-node small,.ep-flow-foot,.ep-limit-tags span,.ep-evaluation-stamp,.ep-small-note{font-family:var(--mono)!important}
+.header .header-cta{background:rgba(169,185,173,.10)!important;border:1px solid rgba(169,185,173,.38)!important;color:var(--ivory)!important;font-family:var(--body)!important;font-weight:700!important;border-radius:8px!important}
+.header .header-cta:hover{background:rgba(169,185,173,.18)!important;border-color:var(--brass)!important;color:var(--ivory)!important}
+</style>
 </head>
 <body>
 <header class="header" id="header">
@@ -682,114 +788,12 @@ function printEvidenceReport(){
  const flagged=currencyUnresolved?'Not aggregated — currency missing or mixed':money(state.results.filter(r=>r.status!=='matched').reduce((sum,r)=>sum+(r.risk||0),0));
  w.document.open();
  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>LedgerTrace evidence report</title><style>body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 8px}.meta{color:#5d675f;font-size:11px}.metrics{display:flex;gap:24px;margin:20px 0;padding:14px 0;border-top:1px solid #bbc3ba;border-bottom:1px solid #bbc3ba}.metrics b{display:block;font-size:20px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{text-align:left;vertical-align:top;padding:7px;border-bottom:1px solid #d6ddd5;overflow-wrap:anywhere}th{background:#edf1eb}small{color:#687168}.note{margin-top:20px;padding:12px;border:1px solid #c7d0c5;background:#f5f7f3}@media print{body{margin:12mm}tr{break-inside:avoid}h1,h2{break-after:avoid}.note{break-inside:avoid}}</style>
-<style id="ledgertrace-layout-repair-2026-10">
-/* Layout repair: restore a clear grid, consistent alignment and controlled type scale. */
-.header {
-  display:flex !important;
-  align-items:center !important;
-  gap:clamp(12px,1.8vw,24px) !important;
-  padding-inline:clamp(14px,2vw,22px) !important;
-}
-.header > .brand { margin-right:auto !important; }
-.header > .header-cta { margin-left:auto !important; flex:0 0 auto !important; }
-.header > .menu-toggle { margin-left:0 !important; flex:0 0 auto !important; }
-.header .nav { margin-left:0 !important; }
-.hero {
-  grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr) !important;
-  gap:clamp(24px,3.2vw,42px) !important;
-  min-height:0 !important;
-  padding-top:clamp(112px,12vw,142px) !important;
-  padding-bottom:clamp(48px,6vw,72px) !important;
-}
-.hero-copy { min-width:0 !important; }
-.hero h1 {
-  max-width:570px !important;
-  font-size:clamp(39px,4.55vw,62px) !important;
-  line-height:1.035 !important;
-  letter-spacing:-.065em !important;
-  margin:20px 0 18px !important;
-  text-wrap:balance;
-}
-.hero .hero-desc { max-width:510px !important; font-size:15px !important; line-height:1.72 !important; }
-.hero-actions { gap:10px !important; margin-top:23px !important; }
-.hero .privacy-note { margin-top:17px !important; }
-.ledger-art-heading {
-  font-size:15px !important;
-  letter-spacing:1.05px !important;
-}
-.ledger-illustration { min-width:0 !important; }
-.ledger-illustration .ledger-art-svg { width:100% !important; max-width:100% !important; }
-.section-top { grid-template-columns:minmax(130px,.7fr) minmax(0,1.3fr) !important; gap:24px !important; }
-.section-title { text-wrap:balance; }
-@media (min-width:1100px) {
-  .hero h1 { font-size:clamp(48px,4.2vw,62px) !important; }
-}
-@media (max-width:900px) {
-  .hero { grid-template-columns:minmax(0,1fr) !important; gap:20px !important; }
-  .hero-copy { max-width:760px !important; }
-  .hero h1 { max-width:650px !important; font-size:clamp(42px,7vw,60px) !important; }
-  .scene,.ledger-illustration { width:100% !important; max-width:760px !important; margin-inline:auto !important; }
-}
-@media (max-width:650px) {
-  .header { gap:9px !important; padding-inline:12px !important; }
-  .header > .brand { margin-right:auto !important; }
-  .header > .header-cta { display:none !important; }
-  .header > .menu-toggle { margin-left:auto !important; }
-  .hero { padding-top:112px !important; padding-bottom:42px !important; }
-  .hero h1 { font-size:clamp(38px,10vw,50px) !important; line-height:1.04 !important; margin:17px 0 15px !important; }
-  .hero .hero-desc { font-size:14px !important; line-height:1.7 !important; }
-  .section-top { grid-template-columns:1fr !important; gap:10px !important; }
-  .ledger-art-heading { font-size:12px !important; letter-spacing:.65px !important; }
-}
-</style>
 
 
-<style id="ledgertrace-consistent-shell-v2">
-/* Shared shell and editorial hierarchy across LedgerTrace pages. */
-.header{display:flex!important;align-items:center!important;gap:clamp(10px,1.8vw,24px)!important;padding-inline:clamp(14px,2vw,22px)!important}
-.header>.brand{margin-right:auto!important;flex:0 0 auto!important}
-.header>.header-cta{margin-left:auto!important;flex:0 0 auto!important}
-.header>.menu-toggle{margin-left:0!important;flex:0 0 auto!important;position:relative!important;z-index:3!important}
-.header .nav{margin-left:0!important}
-.header .nav.open{display:flex!important}
-.header .menu-toggle{display:inline-grid!important;place-items:center!important;min-width:40px!important;min-height:40px!important}
-.hero h1,.wrap>.hero h1{font-size:clamp(38px,4.5vw,62px)!important;line-height:1.04!important;letter-spacing:-.065em!important;max-width:660px!important;text-wrap:balance;margin-block:18px 16px!important}
-.ledger-art-heading{font-size:16px!important;letter-spacing:1.15px!important;font-weight:600!important}
-.ledger-illustration .ledger-art-svg{transform-origin:50% 50%;transition:transform .35s ease,filter .35s ease}
-@media(hover:hover) and (pointer:fine){.ledger-illustration:hover .ledger-art-svg{transform:scale(1.035)!important;filter:drop-shadow(0 24px 38px rgba(0,0,0,.25))}}
-.footer-legal p:first-child{font-size:13px!important;line-height:1.6!important;letter-spacing:.015em}
-.footer-legal p{line-height:1.6!important}
-.evaluation{padding-block:clamp(64px,8vw,108px)!important}
-.evaluation .eval-grid{grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr)!important;gap:clamp(24px,4vw,54px)!important;align-items:start!important}
-.evaluation .eval-copy{position:sticky;top:96px!important}
-.evaluation .eval-copy h2{font-size:clamp(36px,4vw,52px)!important;line-height:1.04!important;letter-spacing:-.06em!important;text-wrap:balance}
-.evaluation .eval-copy p{font-size:13px!important;line-height:1.8!important}
-.evaluation .eval-points{display:grid!important;gap:11px!important;padding:17px!important;border:1px solid var(--line)!important;border-radius:12px!important;background:rgba(40,59,57,.22)!important}
-.evaluation .eval-point{font-size:12px!important;line-height:1.65!important}
-.evaluation .commercial-sequence>div{background:rgba(40,59,57,.34)!important;border-color:var(--line)!important;min-width:0}
-.evaluation .builder-disclaimer{font-size:12px!important;line-height:1.75!important}
-@media(max-width:760px){
- .header{gap:9px!important}
- .header>.header-cta{display:none!important}
- .header>.menu-toggle{margin-left:auto!important}
- .hero h1,.wrap>.hero h1{font-size:clamp(36px,9vw,48px)!important}
- .ledger-art-heading{font-size:12px!important;letter-spacing:.65px!important}
- .evaluation .eval-grid{grid-template-columns:1fr!important}
- .evaluation .eval-copy{position:static!important}
- .evaluation .commercial-sequence{grid-template-columns:1fr!important}
-}
-@media(prefers-reduced-motion:reduce){.ledger-illustration .ledger-art-svg{transition:none!important}.ledger-illustration:hover .ledger-art-svg{transform:none!important;filter:none!important}}
-</style>
+
+
 </head><body><h1>LedgerTrace — Reconciliation Evidence Report</h1><div class="meta">Generated '+escapeHTML(state.runAt?state.runAt.toLocaleString():'')+' · '+(state.usingSample?'Illustrative sample data':'User-supplied CSV data')+' · Browser-side run</div><div class="metrics"><div><b>'+total+'</b>Invoice rows</div><div><b>'+exceptions+'</b>Results needing review</div><div><b>'+matched+'</b>Invoice rows with no configured rule trigger</div><div><b>'+escapeHTML(flagged)+'</b>Indicative flagged line value</div></div><h2>Result worklist</h2><table><thead><tr><th>Status</th><th>Invoice</th><th>Supplier</th><th>PO / item</th><th>Invoice qty</th><th>PO qty</th><th>Received</th><th>Source trace</th><th>Rule finding / interpretation</th></tr></thead><tbody>'+rows+'</tbody></table><div class="note"><strong>How to audit this report:</strong> Source CSV references are physical line numbers in the loaded files (the header is line 1). The initial linkage key is normalized purchase-order number plus item code; conflicting named suppliers are excluded. Multiple compatible PO rows are treated as ambiguous rather than arbitrarily selecting one. Receipt quantities may be aggregated across compatible receipt rows. Confirm each cited row against the original invoice, PO and receipt before posting or payment. A matched row means no configured rule triggered; it is not certification of correctness or authorization to pay. Indicative flagged line value is not verified loss or recoverable value.</div><p class="meta">LedgerTrace · Illustrative output unless user-supplied CSVs were loaded.</p><script>window.addEventListener("load",()=>window.print())<\/script>
-<style id="ledgertrace-final-brand-consistency-v2">
-/* Final shared typography and header CTA, intentionally loaded after page-specific styles. */
-:root{--body:"Inter",Arial,sans-serif;--display:"Space Grotesk","Inter",Arial,sans-serif;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;--ivory:#DCD3C2;--sage:#A9B9AD;--brass:#B99660}
-html,body{font-family:var(--body)!important}
-h1,h2,h3,h4,h5,h6,.brand-name,.brand-mark{font-family:var(--display)!important}
-code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.status,.metric-label,.note,.top,.footer,.site-footer-links a,.ep-eyebrow,.ep-detail-kicker,.ep-metric-label,.ep-preview-heading,.ep-chain-heading,.ep-review-heading,.ep-trust-row,.ep-source-node small,.ep-flow-foot,.ep-limit-tags span,.ep-evaluation-stamp,.ep-small-note{font-family:var(--mono)!important}
-.header .header-cta{background:rgba(169,185,173,.10)!important;border:1px solid rgba(169,185,173,.38)!important;color:var(--ivory)!important;font-family:var(--body)!important;font-weight:700!important;border-radius:8px!important}
-.header .header-cta:hover{background:rgba(169,185,173,.18)!important;border-color:var(--brass)!important;color:var(--ivory)!important}
-</style>
+
 </body></html>');
  w.document.close();
 }
