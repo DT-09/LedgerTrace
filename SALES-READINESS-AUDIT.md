@@ -35,6 +35,12 @@ The examples are synthetic. There are no customer case studies, validated accura
 
 **Required:** run one tightly bounded, buyer-approved evaluation; define expected results with the buyer; record catches, false positives, misses, limitations and review time; obtain permission before publishing any result. Do not invent case studies or savings.
 
+## Market evidence: the problem exists, but the category is competitive
+
+Public supplier-statement/AP providers explicitly sell duplicate-invoice checks, supplier-statement reconciliation, missing-credit discovery and exception follow-up. For example, [ARDEM's vendor reconciliation service](https://ardem.com/vendor-statement-reconciliation-services/) describes recurring queues and backlogs; [Liberata's supplier statement service](https://liberata.com/introducing-our-statement-supplier-reconciliation-service/) describes time-consuming, sometimes irregular manual reconciliation; [MetaSource's AP partner page](https://www.metasource.com/partners/accounts-payable/) offers established invoice matching, exception resolution and referral/reseller routes.
+
+**Interpretation:** this supports category-level demand, not demand for LedgerTrace specifically. It also shows why a generic reconciliation tool is difficult to sell: incumbents have operational experience, customer proof, integrations and established delivery teams. LedgerTrace should not compete on broad automation or claim superior recovery. Its credible entry point is a tightly scoped, source-linked second-pass review that a smaller accounting/AP service provider can trial on approved, anonymized data—if the provider has a concrete use case and accepts the limitations. These organizations are research targets, not qualified buyers; no current need or willingness to pay has been confirmed.
+
 ## Commercial blockers
 
 ### 5. The ideal customer is still too broad
