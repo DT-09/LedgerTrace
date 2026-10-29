@@ -222,6 +222,35 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 }
 @media(max-width:430px){.footer-directory{grid-template-columns:1fr!important}.footer-column:last-child{grid-column:auto!important}}
 @media(prefers-reduced-motion:reduce){.brand-mark,.footer-brand .brand-mark{transition:none!important}}
+
+/* Paid evaluation: compact, scannable commercial overview */
+.eval-copy-compact{min-width:0}
+.eval-copy-compact .eval-intro{max-width:70ch;margin-bottom:18px}
+.eval-quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:18px 0}
+.eval-quick-card{display:flex;flex-direction:column;gap:6px;min-width:0;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(17,25,35,.34)}
+.eval-quick-card .step-label{font:500 10px var(--mono);letter-spacing:.08em;color:var(--accent)}
+.eval-quick-card strong{font:600 13px var(--display);line-height:1.35}
+.eval-quick-card>span:last-child{font-size:12px;line-height:1.5;color:var(--muted)}
+.eval-deliverables{margin:16px 0;padding:15px;border:1px solid var(--line);border-radius:10px;background:rgba(17,25,35,.24)}
+.eval-deliverables-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.eval-deliverables-heading strong{font:600 14px var(--display)}
+.eval-deliverables-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 18px;margin:13px 0 0;padding:0;list-style:none}
+.eval-deliverables-list li{position:relative;padding-left:17px;font-size:12px;line-height:1.55;color:var(--muted)}
+.eval-deliverables-list li:before{content:"✓";position:absolute;left:0;color:var(--accent)}
+.eval-details{margin:9px 0;border:1px solid var(--line);border-radius:9px;background:rgba(17,25,35,.2)}
+.eval-details summary{cursor:pointer;list-style:none;position:relative;padding:13px 38px 13px 14px;font-size:12px;font-weight:600;line-height:1.45}
+.eval-details summary::-webkit-details-marker{display:none}
+.eval-details summary:after{content:"+";position:absolute;right:15px;top:50%;transform:translateY(-50%);font:500 18px var(--mono);color:var(--accent)}
+.eval-details[open] summary:after{content:"−"}
+.eval-details-body{padding:0 14px 12px;border-top:1px solid var(--line)}
+.eval-details-body p{font-size:12px;line-height:1.65;color:var(--muted);margin:11px 0 0}
+.eval-sequence-compact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0 0;padding:0}
+.eval-sequence-compact>div{min-width:0;border:1px solid var(--line);border-radius:9px;padding:12px;background:rgba(17,25,35,.34)}
+.eval-sequence-compact strong{display:block;margin:7px 0;font:600 12px var(--display);line-height:1.4}
+.eval-sequence-compact p{font-size:11px;line-height:1.5;color:var(--muted);margin:0}
+@media(max-width:760px){.eval-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.eval-deliverables-list{grid-template-columns:1fr}.eval-sequence-compact{grid-template-columns:1fr}.eval-sequence-compact>div{padding:12px 14px}}
+@media(max-width:420px){.eval-quick-grid{grid-template-columns:1fr}.eval-deliverables-heading{align-items:flex-start;flex-direction:column}}
+
 </style>
 
 <style id="ledgertrace-final-theme">
@@ -662,13 +691,50 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 <section class="section evaluation" id="evaluation">
   <div class="container">
     <div class="eval-grid">
-      <div class="eval-copy"><div class="section-index">08 / PAID EVALUATION</div><h2>Evaluate it against a known answer.</h2><p><strong>For distributors and finance teams reconciling supplier invoices against purchase orders and goods receipts.</strong> LedgerTrace runs a bounded evaluation of one real workflow: we compare the agreed CSV exports, produce a source-linked exception worklist, and test the findings against outcomes your team has reviewed. The goal is not to promise savings before seeing your records; it is to establish which discrepancies the current checks catch, which they miss, and whether the evidence is useful to your team.</p><p>Fees are negotiated privately against record volume, data quality, checks and review effort, then confirmed in writing before kickoff. Work starts only after the scope, payment arrangement and data-handling terms are agreed. The target turnaround is five business days after approved files, human-reviewed reference outcomes and scope are ready; the actual timeline is confirmed before work starts. No payment or accounting action is automated.</p><p><strong>Designed to continue if the evidence proves useful:</strong> after the first evaluation, teams can discuss a recurring monthly or periodic exception review, updated checks, and a repeatable report. Any ongoing work is separately scoped and agreed; there is no automatic subscription.</p><p><strong>You receive:</strong> a source-linked exception CSV, a concise findings report, comparison against an agreed human-reviewed reference set, a false-positive and missed-case summary, and a 30-minute review handoff. Acceptance criteria are agreed before work starts: each agreed test case is processed, every reported finding includes its rule and source-row references where available, and the report records known misses and false positives against the reference set.</p><div class="commercial-sequence" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:24px 0;padding:0">
-<div style="border:1px solid var(--line);border-radius:10px;padding:15px;background:rgba(17,25,35,.48)"><div class="step-label">01 / Qualify</div><strong style="display:block;margin:8px 0;font:600 13px var(--display)">One real workflow</strong><p style="font-size:12px;color:var(--muted);margin:0;line-height:1.65">Confirm the recurring AP task, available exports, reviewer and decision the report must support.</p></div>
-<div style="border:1px solid var(--line);border-radius:10px;padding:15px;background:rgba(17,25,35,.48)"><div class="step-label">02 / Agree</div><strong style="display:block;margin:8px 0;font:600 13px var(--display)">Written scope first</strong><p style="font-size:12px;color:var(--muted);margin:0;line-height:1.65">Confirm fee, row limits, exclusions, data handling, delivery date and measurable acceptance criteria in writing.</p></div>
-<div style="border:1px solid var(--line);border-radius:10px;padding:15px;background:rgba(17,25,35,.48)"><div class="step-label">03 / Start</div><strong style="display:block;margin:8px 0;font:600 13px var(--display)">Payment before work</strong><p style="font-size:12px;color:var(--muted);margin:0;line-height:1.65">Issue an agreed invoice or payment request and begin only after the payment arrangement and approved data transfer are confirmed.</p></div>
-</div>
-<p class="builder-disclaimer"><strong>Commercial path:</strong> start with one bounded, paid evaluation; use the reviewed results to decide whether repeat exception reviews are valuable. The buyer receives a reviewed worklist and a measured account of catches, false positives and misses—not an unsupported savings promise. If the supplied records cannot support a defensible result, the scope must be narrowed or the evaluation declined.</p>
-<div class="eval-points"><div class="eval-point">Agreed reference set with human-reviewed expected outcomes</div><div class="eval-point">Results separated into matches, false positives and misses</div><div class="eval-point">A traceable report and agreed review criteria</div><div class="eval-point">Written scope, agreed exclusions and acceptance criteria</div></div><p class="builder-disclaimer"><strong>Best fit:</strong> a team already exporting invoice, PO and receipt data that can provide an approved test set and a reviewer who knows the expected outcomes. <strong>Not a fit:</strong> teams seeking plug-in ERP integration, automatic payment blocking, guaranteed recovery, or an unreviewed accuracy claim.</p><p class="builder-disclaimer"><strong>Potential next step:</strong> if the first evaluation shows repeatable value, discuss a separately scoped monthly exception review or periodic close review. No automatic renewal or subscription.</p><p class="builder-disclaimer"><strong>Potential next step:</strong> if the first evaluation shows repeatable value, discuss a separately scoped monthly exception review or periodic close review. No automatic renewal or subscription.</p></div>
+      <div class="eval-copy eval-copy-compact">
+        <div class="section-index">08 / PAID EVALUATION</div>
+        <h2>Evaluate it against a known answer.</h2>
+        <p class="eval-intro"><strong>For distributors and finance teams reconciling supplier invoices against purchase orders and goods receipts.</strong> Test one real workflow against human-reviewed outcomes. See which discrepancies the checks catch, which they miss, and whether the evidence is useful to your team.</p>
+
+        <div class="eval-quick-grid" aria-label="Evaluation at a glance">
+          <div class="eval-quick-card"><span class="step-label">01 / INPUT</span><strong>Approved CSV exports</strong><span>Invoices, POs and goods receipts, as available.</span></div>
+          <div class="eval-quick-card"><span class="step-label">02 / REVIEW</span><strong>Evidence-linked checks</strong><span>Findings compared with your reviewed reference set.</span></div>
+          <div class="eval-quick-card"><span class="step-label">03 / OUTPUT</span><strong>Report + exception CSV</strong><span>Findings, false positives and known misses.</span></div>
+          <div class="eval-quick-card"><span class="step-label">04 / TIMING</span><strong>Target: five business days</strong><span>Confirmed after data, reference outcomes and scope are ready.</span></div>
+        </div>
+
+        <div class="eval-deliverables">
+          <div class="eval-deliverables-heading"><strong>What the evaluation includes</strong><span class="step-label">SCOPE-DEFINED</span></div>
+          <ul class="eval-deliverables-list">
+            <li>Source-linked exception CSV and concise findings report</li>
+            <li>Comparison against agreed, human-reviewed expected outcomes</li>
+            <li>Summary of matches, false positives and missed cases</li>
+            <li>30-minute findings handoff and review</li>
+          </ul>
+        </div>
+
+        <details class="eval-details">
+          <summary>How scope, fees and acceptance are agreed</summary>
+          <div class="eval-details-body">
+            <p>Fees are negotiated privately based on record volume, data quality, selected checks and review effort. Before kickoff, both sides confirm the fee, row limits, exclusions, data handling, delivery date and measurable acceptance criteria in writing. Work starts only after the payment arrangement and approved data transfer are confirmed.</p>
+            <p>Each agreed test case is processed; reported findings include rule and source-row references where available; known false positives and misses are recorded against the agreed reference set. No payment or accounting action is automated.</p>
+          </div>
+        </details>
+        <details class="eval-details">
+          <summary>Fit, limitations and what happens next</summary>
+          <div class="eval-details-body">
+            <p><strong>Best fit:</strong> teams that can export invoice, PO and receipt data and provide a reviewer who knows the expected outcomes. If the data cannot support a defensible result, the scope is narrowed or the evaluation declined.</p>
+            <p><strong>Not included:</strong> plug-in ERP integration, automatic payment blocking, guaranteed recovery or an unreviewed accuracy claim.</p>
+            <p>If results show repeatable value, a monthly or periodic exception review can be scoped separately. There is no automatic renewal or subscription.</p>
+          </div>
+        </details>
+
+        <div class="commercial-sequence eval-sequence-compact">
+          <div><div class="step-label">01 / Qualify</div><strong>Choose one workflow</strong><p>Confirm the AP task, source exports and reviewer.</p></div>
+          <div><div class="step-label">02 / Agree</div><strong>Confirm terms in writing</strong><p>Set scope, fee, data handling and acceptance criteria.</p></div>
+          <div><div class="step-label">03 / Start</div><strong>Begin after agreement</strong><p>Confirm payment arrangements and approved data transfer.</p></div>
+        </div>
+      </div>
       <div class="builder">
         <div class="builder-head"><strong>Evaluation scope builder</strong><span>TERMS AGREED PRIVATELY</span></div>
         <div class="builder-body">
