@@ -1,49 +1,88 @@
-# LedgerTrace — paid evaluation brief
+# LedgerTrace — QuickCheck and Evidence Review
 
-## Buyer
-Accounts-payable managers, finance controllers, or AP service partners at distributors that reconcile supplier invoices against purchase orders and goods receipts from CSV exports.
+## Positioning
 
-## Buying problem
-A team spends recurring staff time checking supplier documents and may miss duplicate invoices, price differences, quantity mismatches, receipt gaps, or missing purchase-order links. LedgerTrace is intended to help prioritize exceptions with source-linked evidence. The evaluation does not assume a discrepancy is a confirmed loss.
+LedgerTrace is a bounded supplier-reconciliation investigation service for distributors and finance teams. The buyer is paying for a defensible review of a specific discrepancy or reconciliation backlog—not for an AI dashboard, a list of unverified anomalies, or a promise of recovered money.
 
-## Scope
-One agreed workflow, one agreed batch of approved CSV exports, a defined set of checks, and a human-reviewed reference set of expected outcomes. Before work begins, both sides agree the source fields, row limits, exclusions, acceptance criteria, timeline, fee, payment method, and data handling in writing.
+## Best-fit buyer
 
-## Deliverables
-1. Source-linked exception worklist (CSV).
-2. Concise findings report with rules triggered and source rows where available.
-3. Comparison against the buyer's human-reviewed reference set, including observed true positives, false positives, and missed cases.
-4. Limitations and unresolved cases, clearly labeled.
-5. 30-minute review handoff.
+An accounts-payable manager, finance controller, owner, or AP service provider at a distributor that:
+- has a specific unresolved supplier balance, invoice mismatch, or reconciliation backlog;
+- uses supplier invoices, purchase orders, receipts, and optionally payment or credit records;
+- can identify the person who owns the workflow and the decision the review should support;
+- can provide synthetic, anonymized, or explicitly approved data in an agreed transfer method;
+- can judge the findings and authorize a small, bounded engagement.
 
-## Acceptance criteria
-Acceptance criteria are specific to the agreed data and checks. At minimum:
-- All agreed input files are processed or rejected with an explicit reason.
-- Every reported finding includes the rule and source-row references where available.
-- Results are compared with the agreed human-reviewed reference set.
-- The report records observed false positives, misses, unsupported cases, and calculation limits.
-- Both sides know which findings require manual verification.
+## Step 1 — Free QuickCheck
+
+**Purpose:** establish whether one concrete question is supported by the available records and whether a deeper review is worth scoping.
+
+- One supplier.
+- Up to 25 rows in an approved/anonymized or synthetic sample.
+- One supported discrepancy question, such as a duplicate invoice identifier or price/quantity mismatch.
+- Short fit summary: required fields present/missing, one limited signal if supportable, important limitations, and a recommendation on whether a paid scope is justified.
+- No exhaustive audit, full exception worklist, supplier outreach, accounting action, or recovery guarantee.
+
+The QuickCheck is not a claim that a discrepancy is a confirmed loss. If the sample cannot support a defensible conclusion, say so. Do not expand the free scope informally. Do not accept confidential records through the public inquiry form or ordinary email; agree a suitable transfer method first.
+
+## Step 2 — Paid Evidence Review
+
+**Purpose:** complete a bounded, evidence-linked investigation of one supplier account, discrepancy, or defined reconciliation backlog.
+
+The exact fee is agreed privately before work begins. An internal first-sale target is at least USD 100 for a meaningful scope; reduce the scope or decline if the review cannot be delivered responsibly at that level. Do not advertise a fixed fee or begin unpaid custom work.
+
+### Scope agreed in writing
+
+- Supplier/account or workflow being investigated.
+- Source files, fields, row limit, currency assumptions, and checks.
+- Exclusions and unsupported cases.
+- Data-transfer and handling method.
+- Deliverables, delivery date, acceptance criteria, fee, and payment arrangement.
+- Named buyer/reviewer and intended business decision.
+
+### Deliverables
+
+1. Prioritized exception worklist in CSV, with source-row references and comparison values where supported.
+2. Concise evidence report describing each rule triggered and why the item needs review.
+3. Clear separation of observed facts, candidate discrepancies, confirmed outcomes entered by the buyer, and unresolved cases.
+4. Data-quality limitations, false positives/misses where a human-reviewed reference set exists, and manual verification still required.
+5. Review handoff and, if justified, a separately scoped repeat-review proposal.
+
+### Acceptance criteria
+
+Acceptance criteria are specific to the agreed inputs and checks. At minimum:
+- agreed input files are processed or rejected with an explicit reason;
+- each reported finding has the rule and source-row references where available;
+- unsupported calculations and unresolved cases are disclosed;
+- results are compared with a human-reviewed reference set when one is agreed and available;
+- the buyer can identify what needs verification and what decision remains theirs.
 
 ## Commercial sequence
-1. Buyer describes the workflow and intended decision.
-2. LedgerTrace checks data suitability and proposes a bounded scope.
-3. Both sides approve the written scope, fee, timeline, data handling, and acceptance criteria.
-4. An invoice or payment request is issued through an agreed payment method.
-5. Work starts after the payment arrangement and approved data transfer are confirmed.
-6. Findings are delivered and reviewed against the acceptance criteria.
 
-Fees are negotiated privately based on data volume, complexity, and review effort. No fixed fee is advertised. Do not begin unpaid custom work or treat an inquiry as a confirmed order.
+1. Buyer describes one current problem and the decision the review should support.
+2. LedgerTrace confirms whether the QuickCheck or a paid scope fits.
+3. For QuickCheck, agree a limited sample and safe transfer method.
+4. If further investigation is justified, agree written scope, fee, timeline, data handling, and acceptance criteria.
+5. Confirm the payment arrangement and approved data transfer before paid work starts.
+6. Deliver the evidence package and review it against the agreed criteria.
+7. Discuss repeat reviews only if the first result demonstrates useful, repeatable value.
 
-## Data handling
-The current website is a browser-side tool; selected CSV files are processed in the user's browser and are not uploaded to a LedgerTrace server by the app. Review notes remain in page memory unless exported. This does not mean the site makes no network requests. For an initial evaluation, use synthetic or client-approved anonymized records unless a separate, explicit data-handling arrangement has been agreed.
+An inquiry, sample finding, demo, or verbal expression of interest is not a sale. Count revenue only when payment is actually received.
 
-## Boundaries
+## Data handling and product boundary
+
+The current website is a browser-side tool: selected CSV files are processed in the user's browser and the app code does not upload those CSV contents to a LedgerTrace server. Review notes remain in page memory unless exported. The site still makes normal network requests such as loading web fonts; do not claim the entire session is offline or that the product is certified for sensitive data.
+
+For an initial QuickCheck, use synthetic or client-approved anonymized records. Do not promise production-grade security, ERP integration, automatic payment blocking, accounting entries, supplier contact, verified bank receipts, or complete treatment of tax, freight, currency conversion, supplier master-data resolution, partial payments, split/merged lines, or every credit-note scenario.
+
+## Claims and boundaries
+
 - A flagged amount is not verified loss or recoverable money.
-- Payment excess is a candidate until a human verifies the underlying invoice, payment, credits, currency, and allocation.
-- A no-finding result means only that the configured rules did not trigger.
-- The tool does not automatically block payments, post accounting entries, contact suppliers, or verify bank receipts.
-- It does not currently provide production ERP integrations, currency conversion, complete tax/freight treatment, robust supplier master-data resolution, all partial-payment scenarios, or every split/merged-line case.
-- Do not claim guaranteed savings, guaranteed recovery, or universal accuracy.
+- A payment-excess candidate requires human verification of invoices, payments, credits, currency, and allocation.
+- A no-finding result means only that configured rules did not trigger.
+- Do not promise guaranteed savings, guaranteed recovery, or universal accuracy.
+- If the records cannot support a defensible result, narrow the scope or decline it.
 
 ## Success criterion
-The buyer can judge whether the evidence is useful, how the checks performed against known outcomes, what manual review remains, and whether the workflow merits a repeat engagement. If the data cannot support a defensible evaluation, narrow or decline the scope rather than overstate the result.
+
+The buyer can decide whether the evidence is useful, what needs manual verification, and whether the work merits a paid full review or a repeat engagement. Commercial validation requires an actual paid engagement; website copy, traffic, and free QuickChecks alone do not validate demand.
