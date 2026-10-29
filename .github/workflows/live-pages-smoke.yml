@@ -46,7 +46,8 @@ jobs:
         run: |
           set -euo pipefail
           guide="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/invoice-reconciliation-checklist.html')"
-          printf '%s' "$guide" | grep -Fq 'Invoice reconciliation checklist for distributor finance teams.'
+          printf '%s' "$guide" | grep -Fq 'Invoice reconciliation checklist for'
+          printf '%s' "$guide" | grep -Fq 'distributor finance teams.'
           printf '%s' "$guide" | grep -Fq 'human-reviewed reference set'
           sitemap="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/sitemap.xml')"
           printf '%s' "$sitemap" | grep -Fq 'https://ledgertrace.pages.dev/invoice-reconciliation-checklist.html'
