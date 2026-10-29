@@ -8,11 +8,11 @@ const pages = [
 ];
 
 for (const [name, html] of pages) {
-  const ids = [...html.matchAll(/\\bid=["']([^"']+)["']/g)].map(match => match[1]);
+  const ids = [...html.matchAll(/\bid=["']([^"']+)["']/g)].map(match => match[1]);
   const duplicateIds = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
   assert.deepEqual(duplicateIds, [], name + ' must not contain duplicate IDs');
 
-  const anchors = [...html.matchAll(/\\bhref=["']#([^"']+)["']/g)].map(match => match[1]);
+  const anchors = [...html.matchAll(/\bhref=["']#([^"']+)["']/g)].map(match => match[1]);
   const missingAnchors = [...new Set(anchors.filter(anchor => !ids.includes(anchor)))];
   assert.deepEqual(missingAnchors, [], name + ' has broken same-page anchor links');
 }
@@ -26,7 +26,7 @@ assert.ok(home.includes("const CONTACT_EMAIL='dhairytopia@gmail.com'"), 'inquiry
 assert.ok(home.includes('function handleContactSubmit'), 'scope inquiry handler exists');
 assert.ok(home.includes('Your email app should open with the inquiry brief. Review and send it there.'), 'site must disclose that the buyer must send the email');
 assert.ok(home.includes('Fees are negotiated privately against record volume, data quality, checks and review effort'), 'pricing is negotiated rather than publicly fixed');
-assert.ok(!/\\$100/.test(home), 'public site must not expose a private minimum fee');
+assert.ok(!/\$100/.test(home), 'public site must not expose a private minimum fee');
 assert.ok(product.includes('href="/#product">Run the interactive sample'), 'product landing page must route buyers directly to the working demo');
 assert.ok(product.includes('href="/#evaluation">Scope a paid evaluation'), 'product landing page must provide a clear paid-evaluation route');
 assert.ok(product.includes('Synthetic values') || product.includes('SYNTHETIC DATA'), 'product examples must be labelled as synthetic');
