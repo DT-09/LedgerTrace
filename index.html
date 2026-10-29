@@ -285,11 +285,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 </head>
 <body>
 <header class="header" id="header">
-  <a class="brand" href="#top" aria-label="LedgerTrace home">
+  <a class="brand" href="/" aria-label="LedgerTrace home">
     <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span><span class="brand-name">LEDGERTRACE</span>
   </a>
-  <nav class="nav" id="nav" aria-label="Primary navigation"><a href="/invoice-reconciliation.html">For distributors</a><a href="#product">Product</a><a href="#investigation">Investigation</a><a href="#buyer-assurance">Buyer proof</a><a href="#methodology">Methodology</a><a href="#faq">FAQ</a><a href="#evaluation">Evaluation</a></nav>
-  <a class="header-cta" href="#evaluation">Request an evaluation <span aria-hidden="true">↗</span></a>
+  <nav class="nav" id="nav" aria-label="All site sections"><a href="/invoice-reconciliation.html">For distributors</a><a href="/#product">Product</a><a href="/#investigation">Investigation</a><a href="/#buyer-assurance">Buyer proof</a><a href="/#methodology">Methodology</a><a href="/#faq">FAQ</a><a href="/#evaluation">Paid evaluation</a><a href="/#who-for">Who it serves</a><a href="/#recovery-investigation">Recovery investigation</a><a href="/#site-footer">Contact &amp; site directory</a></nav>
+  <a class="header-cta" href="/#evaluation">Request an evaluation <span aria-hidden="true">↗</span></a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 </header>
 <main>
@@ -1317,5 +1317,17 @@ figcaption, .caption, .small, .muted, .meta, .tag, .status,
 }
 @media(max-width:650px){.ledger-illustration .ledger-art-svg{transform:scale(1.005)!important}.ledger-art-heading{font-size:12px!important;letter-spacing:1px!important}}
 @media(prefers-reduced-motion:reduce){.ledger-art-item,.ledger-illustration .ledger-art-svg{transition:none!important}.ledger-art-item:hover,.ledger-art-item:focus-visible,.ledger-illustration:hover .ledger-art-svg{transform:none!important;filter:none!important}}
+
+
+/* Navigation refinement: translucent glass header and one consistent all-section menu. */
+.header{background:rgba(23,34,31,.62)!important;border-color:rgba(205,214,201,.20)!important;backdrop-filter:blur(22px) saturate(135%)!important;-webkit-backdrop-filter:blur(22px) saturate(135%)!important;box-shadow:0 12px 42px rgba(0,0,0,.20)!important}
+.header.scrolled{background:rgba(23,34,31,.70)!important}
+.header .nav{display:none!important;position:absolute!important;top:calc(100% + 10px)!important;right:0!important;left:auto!important;width:min(370px,calc(100vw - 32px))!important;max-height:min(72vh,620px)!important;overflow-y:auto!important;margin:0!important;padding:10px!important;flex-direction:column!important;align-items:stretch!important;gap:3px!important;border:1px solid rgba(205,214,201,.24)!important;border-radius:15px!important;background:rgba(18,27,24,.88)!important;backdrop-filter:blur(24px) saturate(145%)!important;-webkit-backdrop-filter:blur(24px) saturate(145%)!important;box-shadow:0 24px 70px rgba(0,0,0,.34)!important}
+.header .nav.open{display:flex!important}
+.header .nav a{display:flex!important;align-items:center!important;min-height:42px!important;padding:10px 12px!important;border-radius:8px!important;font-size:12px!important;letter-spacing:.025em!important;color:#c2c9bf!important}
+.header .nav a:hover,.header .nav a:focus-visible{background:rgba(197,166,117,.10)!important;color:#f0ede4!important}
+.header .menu-toggle{display:inline-grid!important;place-items:center!important;flex-shrink:0!important;width:40px!important;height:40px!important;border:1px solid rgba(205,214,201,.26)!important;border-radius:10px!important;background:rgba(205,214,201,.055)!important;color:var(--text)!important;font-size:19px!important;line-height:1!important}
+.header .menu-toggle:hover{background:rgba(197,166,117,.12)!important;border-color:rgba(197,166,117,.45)!important}
+@media(max-width:650px){.header{gap:10px!important}.header .header-cta{display:none!important}.header .nav{width:min(370px,calc(100vw - 24px))!important}.header .menu-toggle{width:38px!important;height:38px!important}}
 
 </style>
