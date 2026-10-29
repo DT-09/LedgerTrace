@@ -47,7 +47,7 @@ The current app reads selected CSV files through browser file APIs and processes
 - `invoice-reconciliation-checklist.html` is an educational search-intent page for AP teams. It explains the review process without making unsupported savings or accuracy claims and links readers to the sample and evaluation offer.
 - `sitemap.xml` lists the public pages; `robots.txt` points crawlers to that sitemap.
 
-Search visibility takes time and is not guaranteed. The website can qualify and convert visitors, but it cannot guarantee traffic, inquiries or payments. The contact flow currently prepares an email or WhatsApp message; it is not a server-side lead inbox or payment checkout.
+Search visibility takes time and is not guaranteed. The website can qualify and convert visitors, but it cannot guarantee traffic, inquiries or payments. The QuickCheck CTAs route to a prefilled inquiry panel; submitting now prioritizes a WhatsApp message draft and keeps email as a fallback. The visitor must review and press Send. There is still no server-side lead inbox, CRM storage, payment checkout, or automated payment confirmation. The current conversion path must be tested interactively before it is described as fully verified. See [SALES-READINESS-AUDIT.md](./SALES-READINESS-AUDIT.md) for the documented blockers and acceptance gates.
 
 ## Commercial offer: free QuickCheck → paid Evidence Review
 
