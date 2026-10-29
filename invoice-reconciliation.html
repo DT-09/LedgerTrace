@@ -243,6 +243,43 @@ body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;
 @media(max-width:650px){.header{gap:10px!important}.header .header-cta{display:none!important}.header .nav{width:min(370px,calc(100vw - 24px))!important}.header .menu-toggle{width:38px!important;height:38px!important}}
 
 </style>
+
+<style id="ledgertrace-consistent-shell-v2">
+/* Shared shell and editorial hierarchy across LedgerTrace pages. */
+.header{display:flex!important;align-items:center!important;gap:clamp(10px,1.8vw,24px)!important;padding-inline:clamp(14px,2vw,22px)!important}
+.header>.brand{margin-right:auto!important;flex:0 0 auto!important}
+.header>.header-cta{margin-left:auto!important;flex:0 0 auto!important}
+.header>.menu-toggle{margin-left:0!important;flex:0 0 auto!important;position:relative!important;z-index:3!important}
+.header .nav{margin-left:0!important}
+.header .nav.open{display:flex!important}
+.header .menu-toggle{display:inline-grid!important;place-items:center!important;min-width:40px!important;min-height:40px!important}
+.hero h1,.wrap>.hero h1{font-size:clamp(38px,4.5vw,62px)!important;line-height:1.04!important;letter-spacing:-.065em!important;max-width:660px!important;text-wrap:balance;margin-block:18px 16px!important}
+.ledger-art-heading{font-size:16px!important;letter-spacing:1.15px!important;font-weight:600!important}
+.ledger-illustration .ledger-art-svg{transform-origin:50% 50%;transition:transform .35s ease,filter .35s ease}
+@media(hover:hover) and (pointer:fine){.ledger-illustration:hover .ledger-art-svg{transform:scale(1.035)!important;filter:drop-shadow(0 24px 38px rgba(0,0,0,.25))}}
+.footer-legal p:first-child{font-size:13px!important;line-height:1.6!important;letter-spacing:.015em}
+.footer-legal p{line-height:1.6!important}
+.evaluation{padding-block:clamp(64px,8vw,108px)!important}
+.evaluation .eval-grid{grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr)!important;gap:clamp(24px,4vw,54px)!important;align-items:start!important}
+.evaluation .eval-copy{position:sticky;top:96px!important}
+.evaluation .eval-copy h2{font-size:clamp(36px,4vw,52px)!important;line-height:1.04!important;letter-spacing:-.06em!important;text-wrap:balance}
+.evaluation .eval-copy p{font-size:13px!important;line-height:1.8!important}
+.evaluation .eval-points{display:grid!important;gap:11px!important;padding:17px!important;border:1px solid var(--line)!important;border-radius:12px!important;background:rgba(40,59,57,.22)!important}
+.evaluation .eval-point{font-size:12px!important;line-height:1.65!important}
+.evaluation .commercial-sequence>div{background:rgba(40,59,57,.34)!important;border-color:var(--line)!important;min-width:0}
+.evaluation .builder-disclaimer{font-size:12px!important;line-height:1.75!important}
+@media(max-width:760px){
+ .header{gap:9px!important}
+ .header>.header-cta{display:none!important}
+ .header>.menu-toggle{margin-left:auto!important}
+ .hero h1,.wrap>.hero h1{font-size:clamp(36px,9vw,48px)!important}
+ .ledger-art-heading{font-size:12px!important;letter-spacing:.65px!important}
+ .evaluation .eval-grid{grid-template-columns:1fr!important}
+ .evaluation .eval-copy{position:static!important}
+ .evaluation .commercial-sequence{grid-template-columns:1fr!important}
+}
+@media(prefers-reduced-motion:reduce){.ledger-illustration .ledger-art-svg{transition:none!important}.ledger-illustration:hover .ledger-art-svg{transform:none!important;filter:none!important}}
+</style>
 </head>
 <body>
 <header class="header" id="header">
@@ -253,6 +290,26 @@ body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;
   <a class="header-cta" href="/#evaluation">Request an evaluation <span aria-hidden="true">↗</span></a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 </header>
+<script id="ledgertrace-reliable-menu-v2">
+(function(){
+  function initMenu(){
+    const header=document.getElementById('header');
+    const toggle=document.getElementById('menuToggle');
+    const nav=document.getElementById('nav');
+    if(!header||!toggle||!nav||toggle.dataset.menuReady==='true')return;
+    toggle.dataset.menuReady='true';
+    const close=()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation');toggle.textContent='☰'};
+    const open=()=>{nav.classList.add('open');toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Close navigation');toggle.textContent='×'};
+    toggle.addEventListener('click',function(event){event.preventDefault();event.stopPropagation();nav.classList.contains('open')?close():open()});
+    nav.addEventListener('click',function(event){if(event.target.closest('a'))close()});
+    document.addEventListener('click',function(event){if(!header.contains(event.target))close()});
+    document.addEventListener('keydown',function(event){if(event.key==='Escape')close()});
+    window.addEventListener('resize',function(){if(window.innerWidth>900)close()});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initMenu,{once:true});else initMenu();
+})();
+</script>
+
 <main class="wrap">
 <section class="hero" style="border:0">
 <div class="eyebrow">For distributor finance teams and AP service providers</div>
@@ -318,18 +375,6 @@ body{font:12px/1.5 Arial,sans-serif;color:#202820;margin:32px}h1{font-size:25px;
     </div>
   </div>
 </footer>
-<script>
-(function(){
- const header=document.getElementById('header');
- const toggle=document.getElementById('menuToggle');
- const nav=document.getElementById('nav');
- if(!toggle||!nav)return;
- const close=()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation');toggle.textContent='☰'};
- toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');toggle.textContent=open?'×':'☰'});
- nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
- document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
- window.addEventListener('scroll',()=>header&&header.classList.toggle('scrolled',window.scrollY>35),{passive:true});
-})();
-</script>
+
 </body>
 </html>
