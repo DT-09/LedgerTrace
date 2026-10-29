@@ -40,6 +40,15 @@ Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_
 
 The current app reads selected CSV files through browser file APIs and processes them in the browser tab. The app code does not upload those CSV contents to a LedgerTrace server. Review notes are held in page memory for the current session. The page loads web fonts from Google, so this is not a claim that the browser makes no network requests. For initial evaluation, use synthetic or client-approved anonymized records.
 
+## Inbound marketing
+
+- The home page positions LedgerTrace for distributor AP teams, leads with source-linked evidence, and routes qualified visitors toward a scoped paid evaluation.
+- `invoice-reconciliation.html` is the focused distributor landing page.
+- `invoice-reconciliation-checklist.html` is an educational search-intent page for AP teams. It explains the review process without making unsupported savings or accuracy claims and links readers to the sample and evaluation offer.
+- `sitemap.xml` lists the public pages; `robots.txt` points crawlers to that sitemap.
+
+Search visibility takes time and is not guaranteed. The website can qualify and convert visitors, but it cannot guarantee traffic, inquiries or payments. The contact flow currently prepares an email or WhatsApp message; it is not a server-side lead inbox or payment checkout.
+
 ## Paid evaluation
 
 **A scoped paid evaluation:** one AP workflow, with row limits, checks and turnaround agreed for the data. Fees are negotiated privately according to the agreed requirements and confirmed in writing before kickoff. The target turnaround is five business days after the input files, human-reviewed reference outcomes and scope are ready; the actual timeline is confirmed in writing.
