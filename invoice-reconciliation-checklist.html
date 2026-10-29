@@ -135,5 +135,15 @@ body{font-size:15px!important;line-height:1.7!important}
 </section>
 <footer class="site-footer"><div class="site-footer-top"><a class="brand" href="/" aria-label="LedgerTrace home"><span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span><span class="brand-name">LEDGERTRACE</span></a><a class="footer-cta" href="/#evaluation">Request a scoped evaluation ↗</a></div><div class="site-footer-bottom"><p>© <span id="copyrightYear">2026</span> LedgerTrace</p><p>Browser-side AP reconciliation · Illustrative data · Human review required</p></div><div class="site-footer-links"><a href="/">Product</a><a href="/invoice-reconciliation.html">For distributors</a><a href="/invoice-reconciliation-checklist.html">Free AP checklist</a><a href="/#evaluation">Paid evaluation</a></div></footer>
 </div>
+
+<style id="ledgertrace-final-brand-consistency-v2">
+/* Final shared typography and header CTA, intentionally loaded after page-specific styles. */
+:root{--body:"Inter",Arial,sans-serif;--display:"Space Grotesk","Inter",Arial,sans-serif;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;--ivory:#DCD3C2;--sage:#A9B9AD;--brass:#B99660}
+html,body{font-family:var(--body)!important}
+h1,h2,h3,h4,h5,h6,.brand-name,.brand-mark{font-family:var(--display)!important}
+code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.status,.metric-label,.note,.top,.footer,.site-footer-links a,.ep-eyebrow,.ep-detail-kicker,.ep-metric-label,.ep-preview-heading,.ep-chain-heading,.ep-review-heading,.ep-trust-row,.ep-source-node small,.ep-flow-foot,.ep-limit-tags span,.ep-evaluation-stamp,.ep-small-note{font-family:var(--mono)!important}
+.header .header-cta{background:rgba(169,185,173,.10)!important;border:1px solid rgba(169,185,173,.38)!important;color:var(--ivory)!important;font-family:var(--body)!important;font-weight:700!important;border-radius:8px!important}
+.header .header-cta:hover{background:rgba(169,185,173,.18)!important;border-color:var(--brass)!important;color:var(--ivory)!important}
+</style>
 </body>
 </html>
