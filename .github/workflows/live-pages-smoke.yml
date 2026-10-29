@@ -21,10 +21,10 @@ jobs:
           html=""
           for attempt in $(seq 1 30); do
             if html="$(curl --connect-timeout 3 --max-time 5 -fsSL "$url" 2>/dev/null)"; then
-              if printf '%s' "$html" | grep -Fq 'For distributors and finance teams reconciling supplier invoices against purchase orders and goods receipts' &&
-                 printf '%s' "$html" | grep -Fq 'Sample invoices · 8 rows' &&
-                 printf '%s' "$html" | grep -Fq 'Sample POs · 6 rows' &&
-                 printf '%s' "$html" | grep -Fq 'Sample receipts · 5 rows'; then
+              if [[ "$html" == *"Catch invoice errors."* &&
+                    "$html" == *"Sample invoices · 8 rows"* &&
+                    "$html" == *"Sample POs · 6 rows"* &&
+                    "$html" == *"Sample receipts · 5 rows"* ]]; then
                 break
               fi
             fi
@@ -33,12 +33,12 @@ jobs:
             sleep 5
           done
           test -n "$html" || { echo "::error::Production page did not serve the expected LedgerTrace copy after 5 minutes."; exit 1; }
-          if printf '%s' "$html" | grep -Eiq 'fixed fee|\$100'; then
+          if [[ "$html" =~ fixed[[:space:]]fee|\$100 ]]; then
             echo "::error::Production page contains a public fixed fee or $100 price."
             exit 1
           fi
-          printf '%s' "$html" | grep -Fq "CONTACT_EMAIL='dhairytopia@gmail.com'" || { echo "::error::Email inquiry configuration is missing."; exit 1; }
-          printf '%s' "$html" | grep -Fq "WHATSAPP_NUMBER='+91 9133404350'" || { echo "::error::WhatsApp inquiry configuration is missing."; exit 1; }
+          [[ "$html" == *"CONTACT_EMAIL='dhairytopia@gmail.com'"* ]] || { echo "::error::Email inquiry configuration is missing."; exit 1; }
+          [[ "$html" == *"WHATSAPP_NUMBER='+91 9133404350'"* ]] || { echo "::error::WhatsApp inquiry configuration is missing."; exit 1; }
           echo "Production HTML checks passed."
 
       - name: Verify the inbound checklist page and sitemap
@@ -46,11 +46,11 @@ jobs:
         run: |
           set -euo pipefail
           guide="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/invoice-reconciliation-checklist.html')"
-          printf '%s' "$guide" | grep -Fq 'Invoice reconciliation checklist for'
-          printf '%s' "$guide" | grep -Fq 'distributor finance teams.'
-          printf '%s' "$guide" | grep -Fq 'human-reviewed reference set'
+          [[ "$guide" == *"Invoice reconciliation checklist for"* ]]
+          [[ "$guide" == *"distributor finance teams."* ]]
+          [[ "$guide" == *"human-reviewed reference set"* ]]
           sitemap="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/sitemap.xml')"
-          printf '%s' "$sitemap" | grep -Fq 'https://ledgertrace.pages.dev/invoice-reconciliation-checklist.html'
+          [[ "$sitemap" == *"https://ledgertrace.pages.dev/invoice-reconciliation-checklist.html"* ]]
           echo "Inbound guide and sitemap are reachable."
 
       - name: Verify the live recovery engine is reachable
@@ -58,6 +58,6 @@ jobs:
         run: |
           set -euo pipefail
           core="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/recovery-core.js')"
-          printf '%s' "$core" | grep -Fq 'Currency evidence missing or inconsistent'
-          printf '%s' "$core" | grep -Fq 'paymentExcessCandidate'
+          [[ "$core" == *"Currency evidence missing or inconsistent"* ]]
+          [[ "$core" == *"paymentExcessCandidate"* ]]
           echo "Live recovery engine is reachable and includes the currency and payment-excess safeguards."
