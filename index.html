@@ -282,6 +282,16 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 #sampleBtn{white-space:nowrap}
 @media(max-width:650px){.privacy-architecture{grid-template-columns:1fr;padding:18px}.privacy-mark{width:48px;height:42px}#results .results-head{align-items:flex-start;flex-direction:column}#results .results-head>.bar-actions{justify-content:flex-start}}
 </style>
+
+<style id="ledgertrace-header-corner-fix-v3">
+/* Keep the wordmark at the far left and the evaluation action directly beside the menu at the far right. */
+.header{justify-content:flex-start!important}
+.header>.brand{margin-right:auto!important;flex:0 0 auto!important}
+.header>.header-cta{margin-left:0!important;flex:0 0 auto!important;white-space:nowrap!important}
+.header>.menu-toggle{margin-left:0!important;flex:0 0 auto!important}
+@media(max-width:650px){.header{gap:7px!important}.header>.header-cta{display:inline-flex!important;font-size:10px!important;padding:8px 9px!important;letter-spacing:0!important}.header>.header-cta span{display:none!important}.header>.menu-toggle{width:36px!important;min-width:36px!important;height:36px!important;min-height:36px!important}}
+@media(max-width:370px){.header>.header-cta{display:none!important}.header>.menu-toggle{margin-left:auto!important}}
+</style>
 </head>
 <body>
 <header class="header" id="header">
