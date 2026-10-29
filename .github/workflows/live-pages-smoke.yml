@@ -41,6 +41,17 @@ jobs:
           printf '%s' "$html" | grep -Fq "WHATSAPP_NUMBER='+91 9133404350'" || { echo "::error::WhatsApp inquiry configuration is missing."; exit 1; }
           echo "Production HTML checks passed."
 
+      - name: Verify the inbound checklist page and sitemap
+        shell: bash
+        run: |
+          set -euo pipefail
+          guide="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/invoice-reconciliation-checklist.html')"
+          printf '%s' "$guide" | grep -Fq 'Invoice reconciliation checklist for distributor finance teams.'
+          printf '%s' "$guide" | grep -Fq 'human-reviewed reference set'
+          sitemap="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/sitemap.xml')"
+          printf '%s' "$sitemap" | grep -Fq 'https://ledgertrace.pages.dev/invoice-reconciliation-checklist.html'
+          echo "Inbound guide and sitemap are reachable."
+
       - name: Verify the live recovery engine is reachable
         shell: bash
         run: |
