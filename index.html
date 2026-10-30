@@ -463,7 +463,16 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 }
 </style>
 
-</head>
+<style id="ledgertrace-final-interaction-polish">
+#closeContact.contact-close{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;padding:0!important;flex:0 0 30px!important;border-radius:7px!important;font-size:16px!important;line-height:1!important;cursor:pointer!important;position:relative!important;z-index:3!important;pointer-events:auto!important}
+#closeContact.contact-close:hover{background:rgba(197,166,117,.12)!important;border-color:var(--blue)!important;color:var(--blue)!important}
+#contactPanel .drawer-top{position:relative;z-index:2}
+#contactPanel .drawer-top>div{min-width:0}
+#contactPanel .drawer-top h2{font-family:var(--display)!important;font-weight:600!important;letter-spacing:-.055em!important}
+h1,h2,h3,.section-title,.hero h1,.eval-copy h2{font-family:var(--display)!important}
+.hero h1{font-weight:600!important;letter-spacing:-.075em!important}
+#runBtn{position:relative;z-index:1;pointer-events:auto}
+</style></head>
 <body>
 <header class="header" id="header">
   <a class="brand" href="/" aria-label="LedgerTrace home">
@@ -613,7 +622,7 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
           <div class="source-card"><div class="source-head"><span class="source-icon">03</span><div><strong>Goods receipts</strong><small>SOURCE C / CSV</small></div></div><p>Receipt identifier, PO line, item and quantity received.</p><input class="file-input" id="receiptFile" type="file" accept=".csv,text/csv"><div class="file-meta" id="receiptMeta">No file selected</div></div>
         </div>
         <div id="error" class="error hidden" role="alert"></div>
-        <div class="work-actions"><button class="button" id="runBtn">Run reconciliation <span aria-hidden="true">↗</span></button><button class="button secondary" id="clearBtn">Clear files</button><span class="small muted" id="runHint">Choose all three CSV files, or load the sample, then run reconciliation.</span></div>
+        <div class="work-actions"><button class="button" id="runBtn" type="button" onclick="var ids=['invoiceFile','poFile','receiptFile'];var sample=['invoiceMeta','poMeta','receiptMeta'].every(function(id){var e=document.getElementById(id);return e&&e.textContent.indexOf('Sample')===0});var files=ids.every(function(id){var e=document.getElementById(id);return e&&e.files&&e.files.length>0});if(!sample&&!files){var e=document.getElementById('error');if(e){e.textContent='Load the illustrative sample or choose all three CSV files before running reconciliation.';e.classList.remove('hidden');e.scrollIntoView({behavior:'smooth',block:'center'});}var h=document.getElementById('runHint');if(h)h.textContent='Action required: load sample data or select all three CSV sources.';event.preventDefault();event.stopImmediatePropagation();}else{var e=document.getElementById('error');if(e)e.classList.add('hidden');}">Run reconciliation <span aria-hidden="true">↗</span></button><button class="button secondary" id="clearBtn">Clear files</button><span class="small muted" id="runHint">Choose all three CSV files, or load the sample, then run reconciliation.</span></div>
       </div>
     </div>
     <div id="results" class="results hidden" aria-live="polite">
@@ -841,7 +850,7 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 </aside>
 
 <div class="contact-panel-backdrop" id="contactBackdrop"></div><aside class="contact-panel" id="contactPanel" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-hidden="true">
-  <div class="drawer-top"><div><div class="eyebrow">Commercial inquiry / Scope handoff</div><h2 id="contactTitle">Request a QuickCheck or scoped review.</h2></div><button class="icon-button" id="closeContact" aria-label="Close contact panel">×</button></div>
+  <div class="drawer-top"><div><div class="eyebrow">Commercial inquiry / Scope handoff</div><h2 id="contactTitle">Request a QuickCheck or scoped review.</h2></div><button class="icon-button contact-close" id="closeContact" type="button" aria-label="Close contact panel" title="Close" onclick="var p=document.getElementById('contactPanel'),b=document.getElementById('contactBackdrop');if(p){p.classList.remove('open');p.setAttribute('aria-hidden','true')}if(b)b.classList.remove('open');document.body.style.overflow='';">×</button></div>
   <p>Describe one supplier discrepancy or reconciliation backlog and the decision you need to make. A free QuickCheck is limited to one supplier, up to 25 approved/anonymized rows and one supported question. A full Evidence Review is paid, with scope, fee, timeline, data handling and acceptance criteria agreed before work starts. Do not send confidential financial records in this form.</p>
   <form id="contactForm"><label class="form-label" for="contactEmail">Work email</label><input class="form-control" id="contactEmail" type="email" placeholder="you@company.com" autocomplete="email" required><label class="form-label" for="contactCompany">Company / team <span class="muted">(optional)</span></label><input class="form-control" id="contactCompany" type="text" placeholder="Company or finance team" autocomplete="organization"><label class="form-label" for="contactVolume">Approximate invoices reviewed per month <span class="muted">(optional)</span></label><select class="form-control" id="contactVolume"><option value="">Choose a range</option><option>Under 100</option><option>100–500</option><option>500–2,000</option><option>2,000+</option><option>Not sure</option></select><label class="form-label" for="contactCadence">What kind of engagement are you exploring? <span class="muted">(optional)</span></label><select class="form-control" id="contactCadence"><option value="">Choose an approach</option><option>Free QuickCheck — limited sample</option><option>Paid Evidence Review — one supplier/workflow</option><option>Repeat / monthly exception review</option><option>Not sure — recommend a scope</option></select><label class="form-label" for="contactDescription">What needs investigating?</label><textarea class="form-control" id="contactDescription" placeholder="For example: invoice, PO and receipt mismatches across monthly exports…" required></textarea><div class="contact-generated"><strong>Scope brief included</strong><p id="contactScopeSummary">A short description and any evaluation selections will be included in your inquiry brief.</p></div><div class="contact-channel"><button class="button" type="submit">Prepare inquiry brief ↗</button><button class="button secondary" type="button" id="copyBrief">Copy scope brief</button></div><div class="contact-channel" id="configuredChannels"></div></form>
   <p class="contact-note" id="contactStatus" role="status">Your inquiry opens in your email app with a prepared brief. Review it and send it; no message is sent automatically.</p>
