@@ -61,3 +61,15 @@ jobs:
           [[ "$core" == *"Currency evidence missing or inconsistent"* ]]
           [[ "$core" == *"paymentExcessCandidate"* ]]
           echo "Live recovery engine is reachable and includes the currency and payment-excess safeguards."
+
+      - name: Verify the inquiry endpoint rejects cross-origin submissions
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(curl --connect-timeout 10 --max-time 20 -sS -o /tmp/ledgertrace-inquiry-response.json -w '%{http_code}' \
+            -X POST 'https://ledgertrace.pages.dev/api/inquiries' \
+            -H 'Origin: https://untrusted.example' \
+            -H 'Content-Type: application/json' \
+            --data '{}')"
+          [[ "$status" == "403" ]] || { cat /tmp/ledgertrace-inquiry-response.json; echo "::error::Inquiry endpoint did not reject a cross-origin request (HTTP $status)."; exit 1; }
+          echo "Inquiry endpoint rejects cross-origin submissions."
