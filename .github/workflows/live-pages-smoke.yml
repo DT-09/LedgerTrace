@@ -60,6 +60,7 @@ jobs:
           core="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/recovery-core.js')"
           [[ "$core" == *"Currency evidence missing or inconsistent"* ]]
           [[ "$core" == *"paymentExcessCandidate"* ]]
+          [[ "$core" == *"currencyUnresolved"* ]]
           echo "Live recovery engine is reachable and includes the currency and payment-excess safeguards."
 
       - name: Verify the inquiry API is deployed and rejects cross-origin submissions
