@@ -27,3 +27,5 @@ jobs:
         run: node tests/check-inline-scripts.js
       - name: Check site navigation and buyer readiness
         run: node tests/site-readiness.test.js
+      - name: Test secure inquiry API
+        run: node tests/inquiries.test.mjs
