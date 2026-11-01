@@ -4,14 +4,22 @@
 
 LedgerTrace is a bounded supplier-reconciliation investigation service for distributors and finance teams. The buyer is paying for a defensible review of a specific discrepancy or reconciliation backlog—not for an AI dashboard, a list of unverified anomalies, or a promise of recovered money.
 
-## Best-fit buyer
+## Best-fit buyer and initial wedge
 
-An accounts-payable manager, finance controller, owner, or AP service provider at a distributor that:
-- has a specific unresolved supplier balance, invoice mismatch, or reconciliation backlog;
-- uses supplier invoices, purchase orders, receipts, and optionally payment or credit records;
-- can identify the person who owns the workflow and the decision the review should support;
-- can provide synthetic, anonymized, or explicitly approved data in an agreed transfer method;
-- can judge the findings and authorize a small, bounded engagement.
+**Primary route: an AP/accounting service provider** that already manages supplier reconciliation for business clients and has a specific exception backlog, an unresolved supplier account, or a client-requested second look. The provider may have a reason to pay for a bounded overflow investigation if its current team lacks time or specialist capacity and the evidence package fits its existing review process. That willingness to pay is a hypothesis to validate—not an established customer need.
+
+**Secondary route: a distributor finance team** with a named unresolved supplier balance, invoice mismatch, disputed charge, or deadline-driven reconciliation backlog. Do not target a generic AP department with no current trigger.
+
+A qualified buyer must:
+- name the supplier/workflow and the decision the investigation should support;
+- identify a responsible finance reviewer and a person who can approve the engagement;
+- have invoice, PO and receipt records, plus payment/credit records only where relevant;
+- confirm permission to share the selected records and agree a suitable transfer method;
+- accept a bounded scope, explicit exclusions, written acceptance criteria and a fee before work begins.
+
+### Why a provider might pay
+
+The proposed value is **additional investigation capacity without asking the provider to replace its accounting platform or change its client-facing process**. LedgerTrace supplies a structured second-pass comparison and source-linked worklist; the provider keeps the client relationship, validates the findings and decides what action to take. This is worth paying for only if the review saves meaningful staff time, surfaces evidence the provider was not already finding, or helps clear a commercially important backlog. Validate that with a real workflow before pitching it as proven value.
 
 ## Step 1 — Free QuickCheck
 
