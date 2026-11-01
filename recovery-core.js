@@ -12,6 +12,7 @@
   };
   function parseCSV(text) {
     const source=String(text??'').replace(/^\uFEFF/,'');
+    if(source.length>10*1024*1024)throw new Error('CSV exceeds the 10 MB file limit.');
     const rows=[]; let row=[],cell='',quoted=false,quoteClosed=false,line=1,rowStartLine=1;
     for(let i=0;i<source.length;i++){
       const c=source[i],next=source[i+1];
@@ -37,6 +38,7 @@
     row.push(cell);
     if(row.some(x=>x.trim()!==''))rows.push({cells:row,line:rowStartLine});
     if(!rows.length)return [];
+    if(rows.length>50001)throw new Error('CSV exceeds the 50,000 data-row limit.');
     const headers=rows.shift().cells.map(h=>norm(h));
     if(!headers.length||headers.some(h=>!h))throw new Error('CSV contains an empty column name.');
     if(new Set(headers).size!==headers.length)throw new Error('CSV contains duplicate column names after normalization.');
