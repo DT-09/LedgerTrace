@@ -27,7 +27,7 @@ const allowedPalette = new Set(['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD
 for (const [name, html] of pages) {
   assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261101-2"'), name + ' must load the shared palette');
   assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
-  const colors = [...new Set([...html.matchAll(/#[0-9a-fA-F]{6}\\b/g)].map(match => match[0].toUpperCase()))];
+  const colors = [...new Set([...html.matchAll(/#[0-9a-fA-F]{6}/g)].map(match => match[0].toUpperCase()))];
   assert.deepEqual(colors.filter(color => !allowedPalette.has(color)), [], name + ' contains colors outside the approved palette');
 }
 assert.ok(!home.includes('ont-size:12px}}'), 'homepage must not contain the previously leaked CSS tail');
