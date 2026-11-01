@@ -27,7 +27,7 @@ assert.ok(home.includes('function handleContactSubmit'), 'scope inquiry handler 
 assert.ok(home.includes("fetch('/api/inquiries'"), 'inquiry form must submit to the same-origin capture endpoint');
 assert.ok(home.includes('id="contactWebsite"'), 'inquiry form must include the spam honeypot');
 assert.ok(home.includes('The secure inbox is unavailable, so no inquiry was stored.'), 'manual fallback must not claim an inquiry was stored');
-assert.ok(home.includes('Fees are negotiated privately against record volume, data quality, checks and review effort'), 'pricing is negotiated rather than publicly fixed');
+assert.ok(home.includes('Fees are negotiated privately based on record volume, data quality, selected checks and review effort'), 'pricing is negotiated rather than publicly fixed');
 assert.ok(!/\$100/.test(home), 'public site must not expose a private minimum fee');
 assert.ok(product.includes('href="/#product">Run the interactive sample'), 'product landing page must route buyers directly to the working demo');
 assert.ok(product.includes('href="/#evaluation">Scope a paid evaluation'), 'product landing page must provide a clear paid-evaluation route');
