@@ -24,11 +24,13 @@ assert.ok(home.includes('id="evaluation"'), 'paid evaluation anchor exists');
 assert.ok(home.includes('id="contactForm"'), 'buyer inquiry workflow exists');
 assert.ok(home.includes("const CONTACT_EMAIL='dhairytopia@gmail.com'"), 'inquiry email destination is configured');
 assert.ok(home.includes('function handleContactSubmit'), 'scope inquiry handler exists');
-assert.ok(home.includes('Your email app should open with the inquiry brief. Review and send it there.'), 'site must disclose that the buyer must send the email');
-assert.ok(home.includes('Fees are negotiated privately against record volume, data quality, checks and review effort'), 'pricing is negotiated rather than publicly fixed');
+assert.ok(home.includes("fetch('/api/inquiries'"), 'inquiry form must submit to the same-origin capture endpoint');
+assert.ok(home.includes('id="contactWebsite"'), 'inquiry form must include the spam honeypot');
+assert.ok(home.includes('The secure inbox is unavailable, so no inquiry was stored.'), 'manual fallback must not claim an inquiry was stored');
+assert.ok(home.includes('Fees are negotiated privately based on record volume, data quality, selected checks and review effort'), 'pricing is negotiated rather than publicly fixed');
 assert.ok(!/\$100/.test(home), 'public site must not expose a private minimum fee');
-assert.ok(product.includes('href="/#product">Run the interactive sample'), 'product landing page must route buyers directly to the working demo');
-assert.ok(product.includes('href="/#evaluation">Scope a paid evaluation'), 'product landing page must provide a clear paid-evaluation route');
+assert.ok(product.includes('href="#evidence-workspace"') && product.includes('Inspect example evidence'), 'product landing page must route buyers to the example evidence workspace');
+assert.ok(product.includes('href="/#evaluation"') && product.includes('See the paid Evidence Review'), 'product landing page must provide a clear paid-evaluation route');
 assert.ok(product.includes('Synthetic values') || product.includes('SYNTHETIC DATA'), 'product examples must be labelled as synthetic');
 assert.ok(product.includes('No automatic message is sent from this page.'), 'product page must not imply an inquiry was sent automatically');
 

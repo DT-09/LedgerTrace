@@ -21,7 +21,7 @@ The highest-priority defects are conversion-path reliability and the absence of 
 **Verification boundary:** source commits are confirmed. A live interactive browser click-through has not yet been completed, so do not describe the end-to-end click path as browser-verified until it is tested in a real browser.
 
 ### 2. There is no server-side lead capture
-The static site does not save inquiries, create a CRM record, or notify an inbox. It cannot recover abandoned forms. The WhatsApp/email handoff only creates a message draft; the visitor must send it.
+The static frontend now includes a same-origin Pages Function and D1 schema for inquiry metadata, with origin checks, bounded fields, payload limits, a honeypot, and hashed-IP rate limiting. This code is not a live inbox until the D1 database is created, the migration is applied, and the DB binding is configured in Cloudflare Pages. Optional Resend notifications also require owner-configured secrets. Until that setup is verified, the form must use its clearly disclosed manual WhatsApp/email fallback and must not claim that an inquiry was stored.
 
 **Required before claiming automated lead capture:** connect a legitimate form/email service or a server-side endpoint with configured credentials, test a real submission, and verify that the owner receives it. Do not accept sensitive accounting records through a public form. The current version should continue to request only contact and scope information.
 
@@ -64,9 +64,9 @@ A polished website does not generate qualified visits by itself. SEO is a long-t
 | Gate | Status | Evidence required to pass |
 | --- | --- | --- |
 | Working demo | Demonstrable, not independently validated | Run it against a buyer-approved, human-reviewed reference set |
-| QuickCheck CTA | Code fallback committed; live interactive test pending | Click every CTA on desktop/mobile; confirm panel opens and is usable |
-| Inquiry handoff | WhatsApp-first draft plus email fallback committed | Send a test message to the configured business channel and confirm receipt |
-| Lead inbox / CRM | Not implemented | Test that every submitted inquiry is stored or delivered reliably |
+| QuickCheck CTA | Code fallback committed; browser interaction still pending | Click every CTA on desktop/mobile; confirm panel opens and is usable |
+| Inquiry handoff | D1-backed submission code plus manual fallback; live D1 setup unverified | Confirm D1 persistence and optional notification, then verify the manual fallback |
+| Lead inbox / CRM | D1 endpoint and schema implemented; Cloudflare binding unverified | Create D1, apply migration, bind DB, submit a real test inquiry, and confirm the row is visible; configure optional notification secrets if needed |
 | Paid offer | Defined as a bounded service | Buyer accepts written scope, criteria, timeline and fee |
 | Payment collection | Manual, not integrated | Confirm a lawful payment route for operator and buyer; test settlement |
 | Customer proof | None established | Complete a paid or explicitly approved evaluation and document results |
@@ -80,3 +80,18 @@ A polished website does not generate qualified visits by itself. SEO is a long-t
 4. Do not count an inquiry, sample result, meeting, or verbal interest as revenue.
 5. Do not claim the company is “fully ready” until the unresolved gates above are tested.
 6. The near-term goal is one qualified overseas buyer and one paid, bounded Evidence Review—not a general traffic target.
+
+
+## Engineering update — 1 November 2026
+
+A production-hardening branch now addresses defects found during source inspection:
+
+- The optional `heroSampleBtn` listener is guarded so a missing optional element cannot abort the rest of homepage initialization.
+- Primary duplicate detection now distinguishes exact duplicate invoice lines from legitimate multiple lines sharing one invoice number.
+- Primary amount aggregation requires explicit, consistent currency evidence.
+- Recovery CSV parsing rejects malformed quoting, duplicate/empty headers and excess row fields, and preserves physical source line numbers.
+- Recovery amount calculations are withheld when required supplier, PO, receipt, currency, payment or credit evidence is incomplete.
+- The inquiry form has a same-origin D1-backed endpoint, a schema migration, payload validation, a honeypot and rate limiting. It requires Cloudflare configuration before it is live.
+- CI includes recovery, inline-script, site-readiness and inquiry API tests. The live Pages smoke test still needs a successful post-deployment run.
+
+These changes improve technical controls; they do not establish customer accuracy, a buyer, legal contracting capacity, payment settlement, customer proof or repeatable acquisition. Do not describe LedgerTrace as a fully deployed multi-tenant SaaS. The intended launch scope remains a controlled, bounded Evidence Review service.
