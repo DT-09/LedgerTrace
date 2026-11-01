@@ -5,9 +5,15 @@ const source = fs.readFileSync("functions/api/inquiries.js", "utf8");
 const moduleUrl = "data:text/javascript;base64," + Buffer.from(source).toString("base64");
 const { onRequestGet, onRequestPost } = await import(moduleUrl);
 
-const health = await onRequestGet();
+const health = await onRequestGet({ env: {} });
 assert.equal(health.status, 200);
-assert.equal((await health.json()).service, "ledgertrace-inquiry-intake");
+const healthBody = await health.json();
+assert.equal(healthBody.service, "ledgertrace-inquiry-intake");
+assert.equal(healthBody.inboxConfigured, false);
+const configuredHealth = await onRequestGet({ env: { DB: makeDb(), RESEND_API_KEY: "test", RESEND_FROM_EMAIL: "sender@example.com", LEAD_NOTIFICATION_EMAIL: "inbox@example.com" } });
+const configuredBody = await configuredHealth.json();
+assert.equal(configuredBody.inboxConfigured, true);
+assert.equal(configuredBody.emailNotificationsConfigured, true);
 
 const validPayload = {
   email: "finance@example.com",
