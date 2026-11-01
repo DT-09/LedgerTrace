@@ -72,7 +72,7 @@ The recovery section accepts six CSV sources:
 - **Credits:** `credit_note_number,invoice_number,supplier,credit_amount,currency,credit_date`
 - **PO amendments:** `amendment_id,po_number,supplier,item_code,amended_quantity,amended_unit_price,effective_date`
 
-Load the illustrative recovery sample explicitly to test the additional workflow. It is synthetic and not a customer outcome. The recovery engine keeps source-row references, distinguishes invoice excess candidates from payment excess candidates, supports case review status and notes, and exports worklist CSV, case JSON, and an investigation package. Payment excess is explicitly a candidate, not a confirmed recovery. Missing or conflicting currency evidence blocks amount-based calculations, and named supplier conflicts on receipt rows cannot support the invoice's received quantity. Case notes live only in the browser session until exported.
+Load the illustrative recovery sample explicitly to test the additional workflow. It is synthetic and not a customer outcome. The recovery engine keeps source-row references, distinguishes invoice excess candidates from payment excess candidates, supports case review status and notes, and exports worklist CSV, case JSON, and an investigation package. Payment excess is explicitly a candidate, not a confirmed recovery. Missing or conflicting currency evidence blocks amount-based calculations, and named supplier conflicts on receipt rows cannot support the invoice's received quantity, and payment/credit rows with conflicting supplier identities block payment or net-amount calculations. Case notes live only in the browser session until exported.
 
 ### Calculation and review boundary
 
