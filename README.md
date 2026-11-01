@@ -23,11 +23,11 @@ Use one row per document line. Header names are normalized, so spaces, hyphens, 
 - **Purchase orders:** `po_number`, `supplier`, `item_code`, `quantity`, `unit_price`.
 - **Goods receipts:** `receipt_number`, `po_number`, `item_code`, `quantity`, `receipt_date`.
 
-Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_order_number`, and `grn` are accepted. Quantities and unit prices must be numeric. Use consistent currency and units across all three files.
+Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_order_number`, and `grn` are accepted. Quantities and unit prices must be numeric. Use consistent currency and units across all three files. Amount-based summaries are withheld when currency is missing or mixed.
 
 ## Current checks
 
-- Repeated invoice identifiers.
+- Exact duplicate invoice-line candidates (separate lines on one invoice are not automatically duplicates).
 - Missing PO references and missing matching PO lines.
 - Supplier mismatches between invoice and PO.
 - Invoiced quantity above ordered quantity.
@@ -47,7 +47,7 @@ The current app reads selected CSV files through browser file APIs and processes
 - `invoice-reconciliation-checklist.html` is an educational search-intent page for AP teams. It explains the review process without making unsupported savings or accuracy claims and links readers to the sample and evaluation offer.
 - `sitemap.xml` lists the public pages; `robots.txt` points crawlers to that sitemap.
 
-Search visibility takes time and is not guaranteed. The website can qualify and convert visitors, but it cannot guarantee traffic, inquiries or payments. The QuickCheck CTAs route to a prefilled inquiry panel; submitting now prioritizes a WhatsApp message draft and keeps email as a fallback. The visitor must review and press Send. There is still no server-side lead inbox, CRM storage, payment checkout, or automated payment confirmation. The current conversion path must be tested interactively before it is described as fully verified. See [SALES-READINESS-AUDIT.md](./SALES-READINESS-AUDIT.md) for the documented blockers and acceptance gates.
+Search visibility takes time and is not guaranteed. The website can qualify and convert visitors, but it cannot guarantee traffic, inquiries or payments. The inquiry panel now posts contact and scope metadata to a same-origin Pages Function. When the Cloudflare D1 binding is configured, the endpoint stores the inquiry and can send an optional Resend alert. If the binding is absent or unavailable, the form clearly reports that nothing was stored and offers prefilled WhatsApp/email handoff links. It never accepts accounting files. Configure the D1 binding and verify a real test submission before relying on the inbox. See [CLOUDFLARE-PRODUCTION-SETUP.md](./CLOUDFLARE-PRODUCTION-SETUP.md) and [SALES-READINESS-AUDIT.md](./SALES-READINESS-AUDIT.md).
 
 ## Commercial offer: free QuickCheck → paid Evidence Review
 
@@ -86,6 +86,8 @@ With Node.js 20 or later:
 node --check recovery-core.js
 node tests/recovery-core.test.js
 node tests/check-inline-scripts.js
+node tests/site-readiness.test.js
+node tests/inquiries.test.mjs
 ```
 
 The regression suite covers quoted CSV parsing, price and payment-excess candidates, credits, supplier conflicts, source-row traceability, currency-conflict guards and multi-line payment allocation. The GitHub Actions workflow runs on pushes to `main` and pull requests targeting `main`. It checks recovery-engine syntax, runs the regression suite, parses all inline scripts, and asserts the primary reconciliation safety guards. Passing these checks is necessary but not a substitute for validation against a buyer's human-reviewed reference set.
@@ -93,4 +95,4 @@ The regression suite covers quoted CSV parsing, price and payment-excess candida
 
 ## Commercial readiness
 
-See [`PILOT-OFFER.md`](PILOT-OFFER.md) for the buyer-facing evaluation scope, deliverables, acceptance criteria, payment sequence, data handling and limitations. The website explains that the fee is negotiated privately and work begins only after written scope and payment arrangements are confirmed. The contact form prepares an email or WhatsApp inquiry; it is **not** a payment checkout and does not itself collect funds. A real transaction still requires both sides to agree a usable payment method and confirm payment before kickoff.
+See [`PILOT-OFFER.md`](PILOT-OFFER.md) for the buyer-facing evaluation scope, deliverables, acceptance criteria, payment sequence, data handling and limitations. The website explains that the fee is negotiated privately and work begins only after written scope and payment arrangements are confirmed. The contact form can store inquiry metadata through the D1-backed Pages Function once the DB binding is configured; manual WhatsApp/email handoff remains the fallback. It is **not** a payment checkout and does not itself collect funds. A real transaction still requires both sides to agree a usable payment method and confirm payment before kickoff.
