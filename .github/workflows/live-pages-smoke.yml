@@ -21,7 +21,7 @@ jobs:
           html=""
           for attempt in $(seq 1 30); do
             if html="$(curl --connect-timeout 3 --max-time 5 -fsSL "$url" 2>/dev/null)"; then
-              if [[ "$html" == *"Catch invoice errors."* &&
+              if [[ "$html" == *"Find the discrepancy."* &&
                     "$html" == *"Sample invoices · 8 rows"* &&
                     "$html" == *"Sample POs · 6 rows"* &&
                     "$html" == *"Sample receipts · 5 rows"* ]]; then
