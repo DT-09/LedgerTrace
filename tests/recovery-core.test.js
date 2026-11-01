@@ -140,4 +140,15 @@ out = analyze(inv, po, grn, '', '', conflictingAmendments);
 assert.ok(Number.isNaN(out.results[0].candidate), 'conflicting amendments with the same effective date must block calculation');
 assert.ok(out.results[0].findings.some(f => f.code === 'amendment_conflict'));
 
+const multiCurrencyInvoices = 'invoice_number,supplier,po_number,item_code,quantity,unit_price,line_amount,currency\nINV-USD,Acme,PO-USD,SKU-USD,10,12,120,USD\nINV-EUR,Beta,PO-EUR,SKU-EUR,10,12,120,EUR';
+const multiCurrencyPOs = 'po_number,supplier,item_code,quantity,unit_price,currency\nPO-USD,Acme,SKU-USD,10,10,USD\nPO-EUR,Beta,SKU-EUR,10,10,EUR';
+const multiCurrencyReceipts = 'receipt_number,po_number,supplier,item_code,quantity\nGRN-USD,PO-USD,Acme,SKU-USD,10\nGRN-EUR,PO-EUR,Beta,SKU-EUR,10';
+out = analyze(multiCurrencyInvoices, multiCurrencyPOs, multiCurrencyReceipts);
+assert.equal(out.results.length, 2);
+assert.equal(out.results[0].candidate, 20);
+assert.equal(out.results[1].candidate, 20);
+assert.equal(out.summary.currencyUnresolved, true, 'summary must detect multiple currencies across otherwise valid invoice lines');
+assert.ok(Number.isNaN(out.summary.invoiceExcess), 'summary must not add USD and EUR candidate values');
+assert.ok(Number.isNaN(out.summary.paymentExcess), 'payment summary must also withhold mixed-currency totals');
+
 console.log('LedgerTrace Recovery tests passed (CSV quoting, source trace, price excess, payment evidence, credits, supplier conflicts, currency guards, multi-line allocation).');
