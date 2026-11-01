@@ -19,7 +19,7 @@ An accounts-payable manager, finance controller, owner, or AP service provider a
 
 - One supplier.
 - Up to 25 rows in an approved/anonymized or synthetic sample.
-- One supported discrepancy question, such as a duplicate invoice identifier or price/quantity mismatch.
+- One supported discrepancy question, such as a possible duplicate invoice line/reference or price/quantity mismatch.
 - Short fit summary: required fields present/missing, one limited signal if supportable, important limitations, and a recommendation on whether a paid scope is justified.
 - No exhaustive audit, full exception worklist, supplier outreach, accounting action, or recovery guarantee.
 
