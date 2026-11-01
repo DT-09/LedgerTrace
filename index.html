@@ -1058,6 +1058,13 @@ async function handleContactSubmit(e){
     $('contactStatus').textContent='Inquiry received and stored. Reference: '+(result.reference||'confirmed')+'. Only contact and scope details were submitted; no accounting files were uploaded.';
     return;
    }
+   if(response.status===503&&result.code==='INBOX_NOT_CONFIGURED'){
+    copyText(brief);
+    $('contactStatus').textContent='The secure inbox is not connected. Opening a prefilled email draft; review it and press Send. No inquiry has been stored.';
+    const emailLink=$('configuredChannels').querySelector('a[href^="mailto:"]');
+    if(emailLink)window.location.href=emailLink.href;
+    return;
+   }
    if(response.status===400||response.status===403||response.status===429||response.status===415){
     $('contactStatus').textContent=result.error||'The inquiry could not be accepted. Check the details and try again.';
     return;
