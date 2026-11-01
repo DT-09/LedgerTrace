@@ -17,7 +17,7 @@ Deploy this repository to Cloudflare Pages with the repository root as the proje
 
 ## CSV inputs
 
-Use one row per document line. Header names are normalized, so spaces, hyphens, and capitalization are tolerated.
+Use one row per document line. Header names are normalized, so spaces, hyphens, and capitalization are tolerated. Each file is limited to 10 MB and 50,000 data rows. Upload one coherent dataset at a time; replacing an illustrative recovery sample clears the remaining sample sources to prevent mixed sample/buyer analysis.
 
 - **Invoices:** `invoice_number`, `supplier`, `po_number`, `item_code`, `quantity`, `unit_price`; optional `line_amount`, `invoice_date`, `currency`.
 - **Purchase orders:** `po_number`, `supplier`, `item_code`, `quantity`, `unit_price`.
