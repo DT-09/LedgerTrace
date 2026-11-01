@@ -65,8 +65,8 @@ A polished website does not generate qualified visits by itself. SEO is a long-t
 | --- | --- | --- |
 | Working demo | Demonstrable, not independently validated | Run it against a buyer-approved, human-reviewed reference set |
 | QuickCheck CTA | Code fallback committed; browser interaction still pending | Click every CTA on desktop/mobile; confirm panel opens and is usable |
-| Inquiry handoff | D1-backed submission code plus manual fallback; live D1 setup unverified | Confirm D1 persistence and optional notification, then verify the manual fallback |
-| Lead inbox / CRM | D1 endpoint and schema implemented; Cloudflare binding unverified | Create D1, apply migration, bind DB, submit a real test inquiry, and confirm the row is visible; configure optional notification secrets if needed |
+| Inquiry handoff | Manual WhatsApp/email fallback tested; D1 storage is not configured | Bind D1 and verify a stored test inquiry before claiming server-side receipt |
+| Lead inbox / CRM | D1 endpoint deployed; live health reports `inboxConfigured: false` | Create D1, apply migration, bind DB, submit a real test inquiry, and confirm the row is visible; configure optional notification secrets if needed |
 | Paid offer | Defined as a bounded service | Buyer accepts written scope, criteria, timeline and fee |
 | Payment collection | Manual, not integrated | Confirm a lawful payment route for operator and buyer; test settlement |
 | Customer proof | None established | Complete a paid or explicitly approved evaluation and document results |
@@ -95,3 +95,17 @@ A production-hardening branch now addresses defects found during source inspecti
 - CI includes recovery, inline-script, site-readiness and inquiry API tests. The live Pages smoke test still needs a successful post-deployment run.
 
 These changes improve technical controls; they do not establish customer accuracy, a buyer, legal contracting capacity, payment settlement, customer proof or repeatable acquisition. Do not describe LedgerTrace as a fully deployed multi-tenant SaaS. The intended launch scope remains a controlled, bounded Evidence Review service.
+
+
+## Live acceptance results — 1 November 2026
+
+- Homepage illustrative reconciliation sample ran successfully; the embedded known-answer benchmark returned **7/7 PASS**.
+- The primary workbench now labels the illustrative flagged-line metric in USD. It is an exception-line value, not a confirmed overpayment or recovery.
+- Recovery sample loaded and ran: 8 invoice lines and 3 flagged candidates. The illustrative invoice-excess and payment-excess totals each display USD 110.50. They are potentially overlapping views and must not be added together.
+- Primary CSV and recovery CSV/JSON export actions initiated browser downloads. This pass confirmed download initiation, not independent downstream validation of every exported cell.
+- A QA-only review note was saved in the current page session. It is not server-persisted; export the worklist to retain it.
+- Commercial inquiry panel opened and closed. Prefilled email and WhatsApp links reflected the current test form details. No message was sent and no inquiry was submitted.
+- Live GET health check confirms the inquiry Pages Function is deployed. It currently reports `inboxConfigured: false` and `emailNotificationsConfigured: false`; the form therefore must use the manual handoff and must not claim that a lead was stored.
+- CI and live Pages smoke checks pass, including API health, cross-origin rejection and honeypot behavior.
+
+The browser checks used illustrative data only. They do not establish real-world reconciliation accuracy, buyer acceptance, recovered cash, customer references or secure handling of confidential buyer files.
