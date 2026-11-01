@@ -23,13 +23,20 @@ for (const sampleCount of ['Sample invoices · 8 rows', 'Sample POs · 6 rows', 
   if (!html.includes(sampleCount)) throw new Error('Sample row count label is missing or incorrect: ' + sampleCount);
 }
 const requiredExistingIds = [
-  'heroSampleBtn', 'sampleBtn', 'resetBtn', 'invoiceFile', 'poFile',
+  'sampleBtn', 'resetBtn', 'invoiceFile', 'poFile',
   'receiptFile', 'runBtn', 'clearBtn', 'results', 'evidencePdfBtn',
   'exportBtn', 'reportExport', 'inspector', 'reviewStatus', 'saveReview',
   'contactForm', 'generateBrief', 'contactFromBuilder'
 ];
 for (const id of requiredExistingIds) {
   if (!html.includes('id="' + id + '"')) throw new Error('Existing engineered feature missing: ' + id);
+}
+
+const documentIds = new Set([...html.matchAll(/\\bid=["']([^"']+)["']/g)].map(match => match[1]));
+for (const match of html.matchAll(/\\$\\(['"]([^'"]+)['"]\\)(\\?)?\\.addEventListener/g)) {
+  if (!documentIds.has(match[1]) && match[2] !== '?') {
+    throw new Error('Un guarded event binding targets a missing element: ' + match[1]);
+  }
 }
 const recoveryIds = [
   'recovery-investigation', 'recInvoices', 'recPos', 'recReceipts',
