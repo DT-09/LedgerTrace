@@ -113,4 +113,13 @@ assert.ok(invalidPaymentAmount.results[0].findings.some(f => f.code === 'payment
 const physicalRows = core.parseCSV('invoice_number,supplier\n\nINV-1,Acme\n');
 assert.equal(physicalRows[0].__row, 3, 'evidence row references must retain physical CSV line numbers after blank lines');
 
+const wrongSupplierPayment = 'payment_id,invoice_number,supplier,paid_amount,currency\nPAY-2,INV-1,Other Co,120,USD';
+out = analyze(inv, po, grn, wrongSupplierPayment);
+assert.ok(Number.isNaN(out.results[0].paymentExcessCandidate), 'a payment under a conflicting supplier identity must not support a payment-excess candidate');
+assert.ok(out.results[0].findings.some(f => f.code === 'payment_supplier_conflict' && f.detail.includes('source row')));
+const wrongSupplierCredit = 'credit_note_number,invoice_number,supplier,credit_amount,currency\nCN-2,INV-1,Other Co,10,USD';
+out = analyze(inv, po, grn, '', wrongSupplierCredit);
+assert.ok(Number.isNaN(out.results[0].candidate), 'a credit under a conflicting supplier identity must block the net expected amount');
+assert.ok(out.results[0].findings.some(f => f.code === 'credit_supplier_conflict' && f.detail.includes('source row')));
+
 console.log('LedgerTrace Recovery tests passed (CSV quoting, source trace, price excess, payment evidence, credits, supplier conflicts, currency guards, multi-line allocation).');
