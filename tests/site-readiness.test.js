@@ -24,7 +24,7 @@ const styleCloseCount = home.split('</style>').length - 1;
 assert.equal(styleOpenCount, styleCloseCount, 'homepage style tags must be balanced');
 assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS fragment into visible content');
 assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
-assert.ok(home.includes('href="/assets/ledgertrace-theme.css"'), 'authoritative palette stylesheet must load after inline legacy styles');
+assert.ok(home.includes('href="/assets/ledgertrace-theme.css?v=20261101-2"'), 'authoritative palette stylesheet must load after inline legacy styles');
 for (const color of ['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7']) {
   assert.ok(theme.toLowerCase().includes(color.toLowerCase()), 'authoritative theme is missing ' + color);
 }
