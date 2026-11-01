@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#1C120C">
-<meta name="description" content="Investigate duplicate supplier payments, missed supplier credits, invoice overcharges and quantity or price variances. Run a browser-based CSV check, inspect source-linked candidate findings and request a scoped paid investigation.">
+<meta name="description" content="Review parked supplier invoices against approved purchase orders and goods receipts. LedgerTrace produces source-linked three-way match exceptions for finance review, with optional payment evidence checks when supported.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LedgerTrace — Supplier Payment Investigation">
+<meta property="og:title" content="LedgerTrace — Parked Invoice & Three-Way Match Review">
 <meta property="og:description" content="Investigate duplicate supplier payments, missed supplier credits, invoice overcharges and quantity or price variances. Run a browser-based CSV check and request a scoped paid investigation.">
 <meta property="og:url" content="https://ledgertrace.pages.dev/">
-<link rel="canonical" href="https://ledgertrace.pages.dev/"><title>Supplier Payment Investigation &amp; Leakage Review | LedgerTrace</title>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LedgerTrace","url":"https://ledgertrace.pages.dev/","applicationCategory":"BusinessApplication","operatingSystem":"Any modern browser","description":"Browser-side accounts-payable reconciliation workbench for comparing supplier invoices, purchase orders and goods receipts, with source-linked discrepancy evidence.","offers":{"@type":"Offer","url":"https://ledgertrace.pages.dev/#evaluation","description":"Scoped paid reconciliation evaluation; fee and acceptance criteria agreed privately before kickoff."}}</script>
+<link rel="canonical" href="https://ledgertrace.pages.dev/"><title>Parked Invoice &amp; Three-Way Match Evidence Review | LedgerTrace</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LedgerTrace","url":"https://ledgertrace.pages.dev/","applicationCategory":"BusinessApplication","operatingSystem":"Any modern browser","description":"Browser-side AP workbench for reviewing parked supplier invoices against approved purchase orders and goods receipts, with source-linked three-way match exceptions.","offers":{"@type":"Offer","url":"https://ledgertrace.pages.dev/#evaluation","description":"Scoped paid reconciliation evaluation; fee and acceptance criteria agreed privately before kickoff."}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -600,11 +600,11 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 <main>
 <section class="hero container" id="top">
   <div class="hero-copy" id="product">
-    <div class="eyebrow">Supplier reconciliation investigation / Distributors &amp; AP teams</div>
-    <h1>Find the discrepancy. <em>Build the case.</em></h1>
-    <p class="hero-desc">A supplier balance does not explain itself. LedgerTrace compares the invoice, purchase-order, receipt, payment and credit records your files support—then shows the source rows, calculation and rule behind each candidate discrepancy. Your finance team decides what is valid.</p>
-    <div class="hero-actions"><a class="button" href="#recovery-investigation">Run the supplier-payment check <span aria-hidden="true">↘</span></a><a class="button secondary" href="#evaluation">Request a paid case review <span aria-hidden="true">↗</span></a></div>
-    <div class="privacy-note">LOCAL CSV ANALYSIS · FILES STAY IN THIS BROWSER TAB</div><p class="hero-proofline">Start with one supplier account, one disputed balance or one exception backlog. No ERP replacement. No automatic accounting decisions.</p>
+    <div class="eyebrow">PARKED INVOICE REVIEW / THREE-WAY MATCH / DISTRIBUTORS &amp; AP TEAMS</div>
+    <h1>Clear parked invoices. <em>Keep the evidence.</em></h1>
+    <p class="hero-desc">LedgerTrace reviews parked supplier invoice lines against approved purchase orders and goods receipts. It shows the source rows, compared values and rule behind each candidate exception. Ambiguous or incomplete records stay unresolved for your finance team to verify.</p>
+    <div class="hero-actions"><a class="button" href="#investigation">Run the three-way match check <span aria-hidden="true">↘</span></a><a class="button secondary" href="#evaluation">Request a paid case review <span aria-hidden="true">↗</span></a></div>
+    <div class="privacy-note">LOCAL CSV ANALYSIS · FILES STAY IN THIS BROWSER TAB</div><p class="hero-proofline">Start with one supplier or one defined parked-invoice queue. No ERP replacement. No automatic accounting decisions.</p>
   </div>
   <div class="scene ledger-illustration" id="scene" aria-label="LedgerTrace product illustration: invoice, purchase order and goods receipt data flow through a reconciliation engine into matched records, traceable exceptions and a reviewable evidence package">
   <div class="ledger-art-top"><span>LEDGERTRACE / PRODUCT SYSTEM</span><span>FROM RAW RECORDS TO REVIEWABLE EVIDENCE</span></div>
@@ -699,20 +699,20 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 </div>
   </div>
 </section>
-<section class="commercial-entry" aria-label="Paid supplier payment investigation">
+<section class="commercial-entry" aria-label="Paid parked invoice and three-way match evidence review">
   <div class="container commercial-entry-grid">
     <div class="commercial-entry-copy">
-      <div class="eyebrow">THE COMMERCIAL OFFER / ONE BOUNDED CASE</div>
-      <h2>Turn an unexplained supplier balance into an evidence file.</h2>
-      <p>LedgerTrace offers a scoped second-pass investigation for distributors and AP/accounting providers. We review the records available, separate supported discrepancies from unresolved questions, and hand back a review-ready case file.</p>
-      <a class="button" href="#evaluation">Scope a paid investigation <span aria-hidden="true">↗</span></a>
+      <div class="eyebrow">THE COMMERCIAL OFFER / ONE PARKED-INVOICE QUEUE</div>
+      <h2>Clear a parked-invoice queue with source-linked evidence.</h2>
+      <p>LedgerTrace offers a bounded second-pass review for distributors and AP/accounting providers. We compare invoice, approved PO and goods-receipt exports, then return the supported exceptions, source evidence and unresolved questions. Payment and credit checks are optional and separately scoped when the records support them.</p>
+      <a class="button" href="#evaluation">Scope a paid Evidence Review <span aria-hidden="true">↗</span></a>
     </div>
     <div class="commercial-entry-output">
       <div class="commercial-entry-label">THE HANDOFF</div>
-      <div><b>01</b><span>Exception register with source-row references</span></div>
-      <div><b>02</b><span>Reproducible comparisons and calculations</span></div>
-      <div><b>03</b><span>Unresolved evidence gaps and reviewer questions</span></div>
-      <div><b>04</b><span>Prioritized next actions for human verification</span></div>
+      <div><b>01</b><span>Parked-invoice exception register with invoice, PO and receipt row references</span></div>
+      <div><b>02</b><span>Reproducible price and quantity comparisons</span></div>
+      <div><b>03</b><span>Ambiguous matches, missing records and reviewer questions</span></div>
+      <div><b>04</b><span>Prioritized reviewer worklist for human verification</span></div>
       <p>Scope, fee, data handling and acceptance criteria are agreed before work starts. No recovery is guaranteed.</p>
     </div>
   </div>
@@ -725,7 +725,7 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 
 <section class="section workbench" id="investigation">
   <div class="container">
-    <div class="section-top"><div class="section-index">02 / Working sample</div><div><h2 class="section-title">See the reconciliation, not just the promise.</h2><p class="section-lead">Load the illustrative records or choose your own three CSV exports. Run reconciliation to generate matched lines and flagged exceptions, then select a result to inspect the invoice, PO and receipt evidence.</p></div></div>
+    <div class="section-top"><div class="section-index">02 / Working sample</div><div><h2 class="section-title">Review parked invoices against approved POs and goods receipts.</h2><p class="section-lead">Load the illustrative records or choose your own three CSV exports. Run the three-way match to generate matched lines and candidate exceptions, then inspect the invoice, PO and receipt evidence behind each result.</p></div></div>
     <div class="workbench-shell">
       <div class="workbench-bar"><div class="workbench-title"><span class="live-dot"></span><div><strong>Reconciliation workbench</strong><span>SAMPLE RUN / SOURCE-LINKED FINDINGS / REVIEW WORKFLOW</span></div></div><div class="bar-actions"><button class="button secondary sm" id="sampleBtn">Load sample &amp; run analysis ↗</button><button class="button ghost sm" id="resetBtn">Reset sample ↺</button></div></div>
       <div class="workbench-body">
@@ -876,39 +876,39 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
   <div class="container">
     <div class="eval-grid">
       <div class="eval-copy eval-copy-compact">
-        <div class="section-index">09 / PAID SUPPLIER-PAYMENT INVESTIGATION</div>
-        <h2>One supplier. One investigation. A case file your team can verify.</h2>
-        <p class="eval-intro"><strong>For distributors and AP/accounting providers with a specific unresolved supplier account or exception backlog.</strong> We agree one bounded investigation, review the available invoice/PO/receipt/payment/credit records, and deliver a source-linked exception register, reproducible calculations, evidence gaps and reviewer priorities. Candidate amounts are not presented as confirmed losses or recoverable money.</p><p class="small muted"><strong>Partner route:</strong> AP and accounting service providers can discuss a bounded second-pass review for one client-approved supplier case or exception backlog. The provider remains responsible for client permissions, the client relationship and final accounting decisions.</p>
+        <div class="section-index">09 / PAID PARKED-INVOICE &amp; THREE-WAY MATCH REVIEW</div>
+        <h2>One supplier queue. One reviewable evidence file.</h2>
+        <p class="eval-intro"><strong>For distributors and AP/accounting providers with a defined parked-invoice queue.</strong> The initial paid offer reviews one supplier or one queue for one accounting period, up to 500 invoice lines, 500 PO lines and 500 goods-receipt lines, subject to a file-fit check. You receive a source-linked exception register, reproducible price/quantity comparisons, unresolved evidence gaps and reviewer priorities. Payment and credit records are optional and only included when the agreed question and data support them.</p><p class="small muted"><strong>Partner route:</strong> AP and accounting service providers can discuss a bounded second-pass review for one client-approved supplier case or exception backlog. The provider remains responsible for client permissions, the client relationship and final accounting decisions.</p>
 
         <div class="eval-quick-grid" aria-label="Evaluation at a glance">
-          <div class="eval-quick-card"><span class="step-label">01 / INPUT</span><strong>Approved CSV exports</strong><span>Invoices, POs and goods receipts, as available.</span></div>
-          <div class="eval-quick-card"><span class="step-label">02 / REVIEW</span><strong>Evidence-linked checks</strong><span>Findings compared with your reviewed reference set.</span></div>
-          <div class="eval-quick-card"><span class="step-label">03 / OUTPUT</span><strong>Report + exception CSV</strong><span>Findings, false positives and known misses.</span></div>
+          <div class="eval-quick-card"><span class="step-label">01 / INPUT</span><strong>Three-way match exports</strong><span>Invoices, approved POs and goods receipts for one defined queue.</span></div>
+          <div class="eval-quick-card"><span class="step-label">02 / REVIEW</span><strong>Source-linked review</strong><span>Price, quantity, supplier, missing-reference and receipt checks where supported.</span></div>
+          <div class="eval-quick-card"><span class="step-label">03 / OUTPUT</span><strong>Evidence report + CSV</strong><span>Findings, source rows, limitations and unresolved cases.</span></div>
           <div class="eval-quick-card"><span class="step-label">04 / TIMING</span><strong>Target: five business days</strong><span>Confirmed after data, reference outcomes and scope are ready.</span></div>
         </div>
 
         <div class="eval-deliverables">
           <div class="eval-deliverables-heading"><strong>What the paid Evidence Review includes</strong><span class="step-label">SCOPE-DEFINED</span></div>
           <ul class="eval-deliverables-list">
-            <li>Prioritized exception worklist with source-row references and comparison values where supported</li>
-            <li>Clear separation of observed facts, candidate discrepancies and unresolved cases</li>
-            <li>Notes on potential next steps for human verification—not an automatic recovery claim</li>
-            <li>Findings handoff and a written scope for any repeat review</li>
+            <li>Prioritized parked-invoice worklist with invoice, PO and receipt source-row references</li>
+            <li>Reproducible price and quantity comparisons, with unsupported calculations withheld</li>
+            <li>Clear separation of observed facts, candidate exceptions and unresolved cases</li>
+            <li>Reviewer handoff and a record of processed, excluded and ambiguous rows</li>
           </ul>
         </div>
 
         <details class="eval-details">
           <summary>How scope, fees and acceptance are agreed</summary>
           <div class="eval-details-body">
-            <p>Fees are negotiated privately based on record volume, data quality, selected checks and review effort. Before kickoff, both sides confirm the fee, row limits, exclusions, data handling, delivery date and measurable acceptance criteria in writing. Work starts only after the payment arrangement and approved data transfer are confirmed.</p>
-            <p>Each agreed test case is processed; reported findings include rule and source-row references where available; known false positives and misses are recorded against the agreed reference set. No payment or accounting action is automated.</p>
+            <p>Fees are negotiated privately based on queue size, data quality, selected checks and review effort. Before kickoff, both sides confirm the fee, row limits, exclusions, data handling, delivery date and measurable acceptance criteria in writing. Work starts only after the payment arrangement and approved data transfer are confirmed.</p>
+            <p>Processed and excluded row counts are reconciled to the input files; each reported exception includes its rule and source-row references where available; ambiguous allocations and unsupported amounts are disclosed. False positives and misses are measured only against an agreed human-reviewed reference set. No payment or accounting action is automated.</p>
           </div>
         </details>
         <details class="eval-details">
           <summary>Fit, limitations and what happens next</summary>
           <div class="eval-details-body">
-            <p><strong>Best fit:</strong> teams that can export invoice, PO and receipt data and provide a reviewer who knows the expected outcomes. If the data cannot support a defensible result, the scope is narrowed or the evaluation declined.</p>
-            <p><strong>Not included:</strong> plug-in ERP integration, automatic payment blocking, guaranteed recovery or an unreviewed accuracy claim.</p>
+            <p><strong>Best fit:</strong> teams with a parked-invoice queue, compatible invoice/PO/receipt exports and a reviewer who can verify expected outcomes. The initial pilot is one supplier or one queue, one period, up to 500 rows per source, subject to file-fit review. If the data cannot support a defensible result, the scope is narrowed or declined.</p>
+            <p><strong>Not included:</strong> supplier-statement-to-ledger reconciliation, transaction-level duplicate-payment detection, ERP integration, automatic payment blocking, guaranteed recovery or an unreviewed accuracy claim.</p>
             <p>If results show repeatable value, a monthly or periodic exception review can be scoped separately. There is no automatic renewal or subscription.</p>
           </div>
         </details>
@@ -941,11 +941,11 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 <footer class="footer" id="site-footer">
   <div class="container">
     <div class="footer-heading">
-      <div><div class="eyebrow">LedgerTrace / Site directory</div><h2>Trace the mismatch. Keep the evidence.</h2><p class="footer-intro">A browser-side supplier-payment investigation workbench for identifying candidate discrepancies and preparing evidence for finance review. Human review remains required.</p></div>
+      <div><div class="eyebrow">LedgerTrace / Site directory</div><h2>Trace the mismatch. Keep the evidence.</h2><p class="footer-intro">A browser-side parked-invoice and three-way match workbench for preparing source-linked exceptions for AP review. Human verification remains required.</p></div>
       <a class="button secondary footer-scope" href="#evaluation">Discuss a paid Evidence Review ↗</a>
     </div>
     <div class="footer-directory">
-      <div class="footer-column"><h3>Explore</h3><a href="/invoice-reconciliation.html">Invoice reconciliation for distributors</a><a href="#product">Product overview</a><a href="#investigation">Sample investigation</a><a href="#who-for">Who it serves</a><a href="#methodology">Methodology &amp; limits</a><a href="/invoice-reconciliation-checklist.html">Free AP checklist</a><a href="/duplicate-supplier-payment-investigation.html">Duplicate payment investigation</a><a href="/missed-supplier-credit-detection.html">Missed supplier credits</a><a href="/supplier-invoice-overcharge-investigation.html">Invoice overcharge investigation</a><a href="/purchase-order-price-variance.html">PO price variance</a><a href="#evaluation">Paid Evidence Review</a></div>
+      <div class="footer-column"><h3>Explore</h3><a href="/invoice-reconciliation.html">Invoice reconciliation for distributors</a><a href="#product">Product overview</a><a href="#investigation">Sample investigation</a><a href="#who-for">Who it serves</a><a href="#methodology">Methodology &amp; limits</a><a href="/invoice-reconciliation-checklist.html">Free AP checklist</a><a href="/supplier-invoice-overcharge-investigation.html">Invoice overcharge investigation</a><a href="/purchase-order-price-variance.html">PO price variance</a><a href="#evaluation">Paid Evidence Review</a></div>
       <div class="footer-column"><h3>Work with us</h3><a href="#" id="footerContact">Describe your workflow ↗</a><a href="mailto:dhairytopia@gmail.com">Mail ↗</a><a href="https://wa.me/919133404350" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div>
       <div class="footer-column"><h3>Project &amp; scope</h3><a href="https://github.com/DT-09/LedgerTrace" target="_blank" rel="noopener noreferrer">Source repository ↗</a><p>Early-stage pilot. No account system, hosted data storage or production-grade controls are implied.</p></div>
     </div>
@@ -969,7 +969,7 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 <div class="contact-panel-backdrop" id="contactBackdrop"></div><aside class="contact-panel" id="contactPanel" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-hidden="true">
   <div class="drawer-top"><div><div class="eyebrow">Commercial inquiry / Scope handoff</div><h2 id="contactTitle">Request a paid Supplier Payment Investigation.</h2></div><button class="icon-button contact-close" id="closeContact" type="button" aria-label="Close contact panel" title="Close" onclick="var p=document.getElementById('contactPanel'),b=document.getElementById('contactBackdrop');if(p){p.classList.remove('open');p.setAttribute('aria-hidden','true')}if(b)b.classList.remove('open');document.body.style.overflow='';">×</button></div>
   <p>Describe the supplier account, discrepancy or exception backlog that needs investigation. This form collects contact and scope details only; it does not accept accounting files. The paid review scope, fee, data handling, delivery date and acceptance criteria are agreed in writing before any records are transferred.</p>
-  <form id="contactForm"><div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label for="contactWebsite">Leave this field blank</label><input id="contactWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div><label class="form-label" for="contactEmail">Work email</label><input class="form-control" id="contactEmail" type="email" placeholder="you@company.com" autocomplete="email" required><label class="form-label" for="contactCompany">Company / team <span class="muted">(optional)</span></label><input class="form-control" id="contactCompany" type="text" placeholder="Company or finance team" autocomplete="organization"><label class="form-label" for="contactVolume">Approximate invoices reviewed per month <span class="muted">(optional)</span></label><select class="form-control" id="contactVolume"><option value="">Choose a range</option><option>Under 100</option><option>100–500</option><option>500–2,000</option><option>2,000+</option><option>Not sure</option></select><label class="form-label" for="contactCadence">What kind of engagement are you exploring? <span class="muted">(optional)</span></label><select class="form-control" id="contactCadence"><option value="">Choose an approach</option><option>Paid Evidence Review — one supplier/workflow</option><option>Partner-led second-pass investigation</option><option>Repeat / monthly exception review</option><option>Not sure — recommend a scope</option></select><label class="form-label" for="contactDescription">What needs investigating?</label><textarea class="form-control" id="contactDescription" placeholder="For example: invoice, PO and receipt mismatches across monthly exports…" required></textarea><div class="contact-generated"><strong>Scope brief included</strong><p id="contactScopeSummary">A short description and any evaluation selections will be included in your inquiry brief.</p></div><div class="contact-channel"><button class="button" type="submit">Prepare inquiry brief ↗</button><button class="button secondary" type="button" id="copyBrief">Copy scope brief</button></div><div class="contact-channel" id="configuredChannels"></div></form>
+  <form id="contactForm"><div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label for="contactWebsite">Leave this field blank</label><input id="contactWebsite" name="website" type="text" tabindex="-1" autocomplete="off"></div><label class="form-label" for="contactEmail">Work email</label><input class="form-control" id="contactEmail" type="email" placeholder="you@company.com" autocomplete="email" required><label class="form-label" for="contactCompany">Company / team <span class="muted">(optional)</span></label><input class="form-control" id="contactCompany" type="text" placeholder="Company or finance team" autocomplete="organization"><label class="form-label" for="contactVolume">Approximate invoices reviewed per month <span class="muted">(optional)</span></label><select class="form-control" id="contactVolume"><option value="">Choose a range</option><option>Under 100</option><option>100–500</option><option>500–2,000</option><option>2,000+</option><option>Not sure</option></select><label class="form-label" for="contactCadence">What kind of engagement are you exploring? <span class="muted">(optional)</span></label><select class="form-control" id="contactCadence"><option value="">Choose an approach</option><option>Paid Parked Invoice &amp; Three-Way Match Review — one supplier/queue</option><option>Partner-led second-pass investigation</option><option>Repeat / monthly exception review</option><option>Not sure — recommend a scope</option></select><label class="form-label" for="contactDescription">What needs investigating?</label><textarea class="form-control" id="contactDescription" placeholder="For example: invoice, PO and receipt mismatches across monthly exports…" required></textarea><div class="contact-generated"><strong>Scope brief included</strong><p id="contactScopeSummary">A short description and any evaluation selections will be included in your inquiry brief.</p></div><div class="contact-channel"><button class="button" type="submit">Prepare inquiry brief ↗</button><button class="button secondary" type="button" id="copyBrief">Copy scope brief</button></div><div class="contact-channel" id="configuredChannels"></div></form>
   <p class="contact-note">The form collects contact and scope details only. When enabled, the secure inbox stores these details in Cloudflare D1; optional email alerts use the configured notification provider. Do not include invoice numbers, bank details, supplier statements or other confidential accounting records. No files are uploaded.</p>
   <p class="contact-note" id="contactStatus" role="status" aria-live="polite">Submit the inquiry to save contact and scope details when the secure inbox is connected. Otherwise, use the manual contact links below. Do not attach or send accounting files.</p>
 </aside>
