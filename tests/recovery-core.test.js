@@ -51,6 +51,7 @@ const grnMulti = 'receipt_number,po_number,supplier,item_code,quantity\nGRN-1,PO
 out = analyze(invMulti, poMulti, grnMulti, 'payment_id,invoice_number,supplier,paid_amount,currency\nPAY-2,INV-2,Acme,100,USD');
 assert.equal(out.results.length, 2);
 assert.equal(out.results[0].paid + out.results[1].paid, 100, 'invoice-level payments should be allocated, not duplicated per line');
+assert.ok(out.results[0].findings.some(f => f.code === 'invoice_amounts_allocated_pro_rata'), 'invoice-level payment allocation must disclose its pro-rata assumption');
 
 
 const wrongReceiptSupplier = 'receipt_number,po_number,supplier,item_code,quantity\nGRN-1,PO-1,Other Co,SKU-1,10';
@@ -153,7 +154,6 @@ assert.ok(Number.isNaN(out.summary.paymentExcess), 'payment summary must also wi
 assert.match(out.summary.interpretation, /Do not add them together/);
 
 
-assert.ok(out.results[0].findings.some(f => f.code === 'invoice_amounts_allocated_pro_rata'), 'invoice-level payment allocation must disclose its pro-rata assumption');
 
 const sharedPOInvoices = 'invoice_number,supplier,po_number,item_code,quantity,unit_price,line_amount,currency\\nINV-A,Acme,PO-1,SKU-1,7,12,84,USD\\nINV-B,Acme,PO-1,SKU-1,7,12,84,USD';
 out = analyze(sharedPOInvoices, po, grn);
