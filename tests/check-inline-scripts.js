@@ -49,4 +49,8 @@ for (const id of recoveryIds) {
 if (!html.includes('<script src="./recovery-core.js"></script>')) {
   throw new Error('Recovery analysis engine is not loaded by index.html');
 }
+
+if (!html.includes("clearIllustrativeInputs(t)")) throw new Error('Recovery uploads must not mix buyer files with illustrative sample records');
+if (!html.includes("duplicate_invoice_line")) throw new Error('Primary workbench must distinguish duplicate lines from multi-line invoices');
+if (!html.includes("File exceeds the 10 MB limit.")) throw new Error('Primary upload size guard is missing');
 console.log('HTML checks passed: recovery script parses; original workbench, evidence inspector, report, review workflow, contact builder and recovery workflow are present.');
