@@ -19,6 +19,10 @@ This is a better first offer because the current product already supports invoic
 - APQC explicitly treats duplicate or erroneous disbursements as a measurable AP control metric: https://www.apqc.org/resource-library/resource-listing/percentage-duplicate-disbursements-processed
 - Capgemini's World Payments Report 2025 describes manual workflows, non-standard invoices, data inaccuracies and reconciliation friction in automotive treasury operations. This is sector-specific evidence, not a universal rate: https://www.capgemini.com/wp-content/uploads/2024/09/WPR_2025_web.pdf
 
+### What the public benchmark means in one real operating context
+
+SBFM's vacancy states approximately 800 supplier invoices per month. Multiplying that volume by APQC's $6 cross-industry median gives an illustrative **$4,800 per month in total AP processing cost** if the benchmark definition is comparable. This is not SBFM's reported spend, not the cost of its exception queue, and not savings LedgerTrace can claim. It shows why invoice volume can make AP efficiency economically material; only the buyer's own exception counts, handling time, labour cost and confirmed corrections can establish the addressable value.
+
 ### What buyer-specific job descriptions establish
 
 - DDC Foods' purchase-ledger role describes invoice/credit/statement handling, pairing delivery paperwork with invoices, supplier-statement reconciliation, a credit-note spreadsheet, Excel and an accounting package. The accessible listing states 80+ staff and £18m annual turnover, but the listing is old and its current status must be checked: https://jobs.smartrecruiters.com/DDCFoodsLimited/743999709374592-purchase-ledger-accounts-assistant
