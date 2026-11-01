@@ -55,7 +55,7 @@ assert.equal(out.results[0].paid + out.results[1].paid, 100, 'invoice-level paym
 
 const wrongReceiptSupplier = 'receipt_number,po_number,supplier,item_code,quantity\nGRN-1,PO-1,Other Co,SKU-1,10';
 out = analyze(inv, po, wrongReceiptSupplier, 'payment_id,invoice_number,supplier,paid_amount,currency\nPAY-1,INV-1,Acme,120,USD');
-assert.equal(out.results[0].qtyReceived, 0, 'receipt quantities from a different supplier must not support the invoice');
+assert.ok(Number.isNaN(out.results[0].qtyReceived), 'receipt quantities from a different supplier must remain unavailable, not be represented as zero');
 assert.ok(out.results[0].findings.some(f => f.code === 'receipt_supplier_mismatch'));
 assert.ok(Number.isNaN(out.results[0].candidate), 'unmatched supplier receipts must block exposure calculation');
 
@@ -70,5 +70,47 @@ const missingPaymentCurrency = 'payment_id,invoice_number,supplier,paid_amount\n
 out = analyze(inv, po, grn, missingPaymentCurrency);
 assert.ok(out.results[0].findings.some(f => f.code === 'currency_mismatch'), 'missing payment currency must be explicit');
 assert.ok(Number.isNaN(out.results[0].candidate), 'missing currency evidence must block amount-based calculations');
+
+
+assert.throws(() => core.parseCSV('invoice_number,supplier\nINV-1,"Acme'), /unclosed quoted field/i);
+assert.throws(() => core.parseCSV('invoice_number,supplier\nINV-1,Ac"me'), /quote inside an unquoted field/i);
+assert.equal(core.normalize([{amount:'12,34'}], 'invoice')[0].amount, NaN, 'malformed thousands grouping must not be silently converted');
+assert.equal(core.normalize([{amount:'1,234.56'}], 'invoice')[0].amount, 1234.56, 'valid thousands grouping remains supported');
+const withBlankKeys = analyze(
+  'invoice_number,supplier,po_number,item_code,quantity,unit_price,line_amount,currency\nINV-B,Acme,,,10,12,120,USD',
+  'po_number,supplier,item_code,quantity,unit_price,currency\n,Acme,,10,10,USD',
+  'receipt_number,po_number,supplier,item_code,quantity\nGRN-B,,Acme,,10'
+);
+assert.ok(Number.isNaN(withBlankKeys.results[0].candidate), 'blank PO/item keys must never join blank source rows');
+assert.ok(withBlankKeys.results[0].findings.some(f => f.code === 'match_key_missing'));
+const missingSupplier = analyze(
+  'invoice_number,po_number,item_code,quantity,unit_price,line_amount,currency\nINV-MS,PO-1,SKU-1,10,12,120,USD',
+  po,
+  grn
+);
+assert.ok(Number.isNaN(missingSupplier.results[0].candidate), 'missing invoice supplier identity must block amount quantification');
+assert.ok(missingSupplier.results[0].findings.some(f => f.code === 'supplier_identity_incomplete'));
+const missingPOPrice = analyze(
+  inv,
+  'po_number,supplier,item_code,quantity,unit_price,currency\nPO-1,Acme,SKU-1,10,,USD',
+  grn
+);
+assert.ok(Number.isNaN(missingPOPrice.results[0].candidate), 'a missing PO price must block the reconstructed expected amount');
+assert.ok(missingPOPrice.results[0].findings.some(f => f.code === 'po_price_invalid'));
+const invalidReceiptQty = analyze(
+  inv,
+  po,
+  'receipt_number,po_number,supplier,item_code,quantity\nGRN-1,PO-1,Acme,SKU-1,not-a-number'
+);
+assert.ok(Number.isNaN(invalidReceiptQty.results[0].candidate), 'an invalid receipt quantity must not be treated as zero');
+assert.ok(invalidReceiptQty.results[0].findings.some(f => f.code === 'receipt_quantity_invalid'));
+const invalidPaymentAmount = analyze(
+  inv, po, grn,
+  'payment_id,invoice_number,supplier,paid_amount,currency\nPAY-1,INV-1,Acme,,USD'
+);
+assert.ok(Number.isNaN(invalidPaymentAmount.results[0].paymentExcessCandidate), 'an invalid payment amount must block payment-excess calculation');
+assert.ok(invalidPaymentAmount.results[0].findings.some(f => f.code === 'payment_amount_invalid'));
+const physicalRows = core.parseCSV('invoice_number,supplier\n\nINV-1,Acme\n');
+assert.equal(physicalRows[0].__row, 3, 'evidence row references must retain physical CSV line numbers after blank lines');
 
 console.log('LedgerTrace Recovery tests passed (CSV quoting, source trace, price excess, payment evidence, credits, supplier conflicts, currency guards, multi-line allocation).');
