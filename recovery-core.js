@@ -11,22 +11,44 @@
     amendment: { po:['po_number','purchase_order_number','po','purchase_order'], supplier:['supplier','vendor','vendor_name'], item:['item_code','sku','item','product_code'], qty:['quantity','qty','amended_quantity'], price:['unit_price','price','amended_unit_price'], effective:['effective_date','amendment_date','date'], amendment:['amendment_id','change_order','reference'], row:['__row'] }
   };
   function parseCSV(text) {
-    const rows=[]; let row=[], cell='', quoted=false;
-    text=String(text??'').replace(/^\uFEFF/,'');
-    for(let i=0;i<text.length;i++){ const c=text[i], n=text[i+1];
-      if(quoted){ if(c==='"'&&n==='"'){cell+='"';i++;} else if(c==='"') quoted=false; else cell+=c; }
-      else if(c==='"') quoted=true;
-      else if(c===','){row.push(cell);cell='';}
-      else if(c==='\n'){row.push(cell);if(row.some(x=>x.trim()!==''))rows.push(row);row=[];cell='';}
-      else if(c!=='\r')cell+=c;
+    const source=String(text??'').replace(/^\uFEFF/,'');
+    const rows=[]; let row=[],cell='',quoted=false,quoteClosed=false,line=1,rowStartLine=1;
+    for(let i=0;i<source.length;i++){
+      const c=source[i],next=source[i+1];
+      if(quoted){
+        if(c==='"'&&next==='"'){cell+='"';i++;}
+        else if(c==='"'){quoted=false;quoteClosed=true;}
+        else {cell+=c;if(c==='\n')line++;}
+      }else if(c==='"'){
+        if(cell!=='')throw new Error('CSV contains a quote inside an unquoted field near line '+line+'.');
+        quoted=true;quoteClosed=false;
+      }else if(c===','){
+        row.push(cell);cell='';quoteClosed=false;
+      }else if(c==='\r'||c==='\n'){
+        if(c==='\r'&&next==='\n')i++;
+        row.push(cell);
+        if(row.some(x=>x.trim()!==''))rows.push({cells:row,line:rowStartLine});
+        row=[];cell='';quoteClosed=false;line++;rowStartLine=line;
+      }else if(quoteClosed){
+        if(!/\s/.test(c))throw new Error('CSV contains unexpected text after a closing quote near line '+line+'.');
+      }else cell+=c;
     }
-    row.push(cell); if(row.some(x=>x.trim()!==''))rows.push(row);
-    if(!rows.length) return [];
-    const headers=rows.shift().map(h=>norm(h));
-    return rows.map((cells,i)=>{const out={__row:i+2};headers.forEach((h,j)=>out[h]=cells[j]??'');return out;});
+    if(quoted)throw new Error('CSV contains an unclosed quoted field near line '+rowStartLine+'.');
+    row.push(cell);
+    if(row.some(x=>x.trim()!==''))rows.push({cells:row,line:rowStartLine});
+    if(!rows.length)return [];
+    const headers=rows.shift().cells.map(h=>norm(h));
+    if(!headers.length||headers.some(h=>!h))throw new Error('CSV contains an empty column name.');
+    if(new Set(headers).size!==headers.length)throw new Error('CSV contains duplicate column names after normalization.');
+    return rows.map(record=>{
+      if(record.cells.length>headers.length)throw new Error('CSV row '+record.line+' contains more values than the header row.');
+      const out={__row:record.line};
+      headers.forEach((h,j)=>out[h]=record.cells[j]??'');
+      return out;
+    });
   }
   function field(row, names) { for(const n of names){ if(row[n]!==undefined && String(row[n]).trim()!=='') return row[n]; } return ''; }
-  function number(v){ if(v===null||v===undefined||String(v).trim()==='') return NaN; const n=Number(String(v).replace(/[$,£€₹\s]/g,'')); return Number.isFinite(n)?n:NaN; }
+  function number(v){ if(v===null||v===undefined||String(v).trim()==='') return NaN; const raw=String(v).trim().replace(/[$£€₹\s]/g,''); if(!/^[+-]?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/.test(raw)) return NaN; const n=Number(raw.replace(/,/g,'')); return Number.isFinite(n)?n:NaN; }
   function normalize(rows,type){ return rows.map(raw=>{const out={sourceRow:raw.__row}; for(const [k,names] of Object.entries(aliases[type])){if(k==='row')continue;out[k]=String(field(raw,names)).trim();} for(const k of ['qty','price','amount']) if(k in out) out[k]=number(out[k]); for(const k of ['invoice','supplier','po','item','receipt','payment','credit','currency','effective','date','amendment']) if(k in out) out[k]=String(out[k]??'').trim(); return out;});}
   const key = (...parts) => parts.map(v=>norm(v)).join('|');
   const money = (n,currency='') => Number.isFinite(n) ? (currency ? currency+' ' : '')+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}) : 'Not available';
@@ -38,21 +60,30 @@
     const invoiceMap=group(invoices,r=>key(r.supplier,r.invoice));
     const amendMap=group(amendments,r=>key(r.po,r.item));
     const results=invoices.map(inv=>{
-      const findings=[], k=key(inv.po,inv.item), pRows=poMap.get(k)||[], rawReceiptRows=recMap.get(k)||[], rRows=rawReceiptRows.filter(r=>!inv.supplier||!r.supplier||key(r.supplier)===key(inv.supplier));
+      const findings=[], k=key(inv.po,inv.item), hasMatchKey=Boolean(inv.po&&inv.item), pRows=hasMatchKey?(poMap.get(k)||[]):[], rawReceiptRows=hasMatchKey?(recMap.get(k)||[]):[], rRows=rawReceiptRows.filter(r=>Boolean(inv.supplier)&&Boolean(r.supplier)&&key(r.supplier)===key(inv.supplier));
       const receiptSupplierConflict=rawReceiptRows.length>0&&rRows.length===0&&Boolean(inv.supplier)&&rawReceiptRows.some(r=>Boolean(r.supplier));
-      const matchingPO=pRows.filter(p=>!inv.supplier||!p.supplier||key(p.supplier)===key(inv.supplier));
-      const supplierConflict=pRows.length>0&&matchingPO.length===0;
+      const receiptSupplierMissing=rawReceiptRows.some(r=>!r.supplier);
+      const matchingPO=pRows.filter(p=>Boolean(inv.supplier)&&Boolean(p.supplier)&&key(p.supplier)===key(inv.supplier));
+      const supplierConflict=pRows.length>0&&matchingPO.length===0&&Boolean(inv.supplier)&&pRows.some(p=>Boolean(p.supplier));
+      const supplierEvidenceMissing=!inv.supplier||pRows.some(p=>!p.supplier);
       const poRows=matchingPO;
-      let qtyOrdered=poRows.reduce((s,p)=>s+(Number.isFinite(p.qty)?p.qty:0),0);
+      let qtyOrdered=poRows.length&&poRows.every(p=>Number.isFinite(p.qty)&&p.qty>=0)?poRows.reduce((s,p)=>s+p.qty,0):NaN;
       let poPrices=[...new Set(poRows.filter(p=>Number.isFinite(p.price)).map(p=>p.price))];
-      let poPrice=poPrices.length===1?poPrices[0]:NaN;
+      let poPrice=poRows.length&&poRows.every(p=>Number.isFinite(p.price)&&p.price>=0)&&poPrices.length===1?poPrices[0]:NaN;
       const applicableAmendments=(amendMap.get(k)||[]).filter(a=>!a.supplier||!inv.supplier||key(a.supplier)===key(inv.supplier));
       if(applicableAmendments.length){
         const dated=applicableAmendments.filter(a=>!a.effective||!inv.date||a.effective<=inv.date).sort((a,b)=>String(a.effective).localeCompare(String(b.effective)));
         if(dated.length){const latest=dated[dated.length-1];if(Number.isFinite(latest.price))poPrice=latest.price;if(Number.isFinite(latest.qty))qtyOrdered=latest.qty;findings.push({code:'amendment_applied',label:'PO amendment considered',detail:'Amendment '+(latest.amendment||'at source row '+latest.sourceRow)+' applied by effective date; verify the change order is approved.'});}
       }
-      const received=rRows.reduce((s,r)=>s+(Number.isFinite(r.qty)?r.qty:0),0);
+      const received=rRows.length&&rRows.every(r=>Number.isFinite(r.qty)&&r.qty>=0)?rRows.reduce((s,r)=>s+r.qty,0):NaN;
       if(!inv.invoice)findings.push({code:'invoice_id_missing',label:'Invoice reference missing',detail:'Cannot reliably link payment and credit records without an invoice reference.'});
+      if(!hasMatchKey)findings.push({code:'match_key_missing',label:'PO or item reference missing',detail:'A complete PO number and item code are required before source rows can be linked.'});
+      if(supplierEvidenceMissing)findings.push({code:'supplier_identity_incomplete',label:'Supplier identity incomplete',detail:'The invoice and matched PO records must both identify the supplier before amounts are quantified.'});
+      if(!Number.isFinite(inv.qty)||inv.qty<0)findings.push({code:'invoice_quantity_invalid',label:'Invoice quantity unavailable or invalid',detail:'A non-negative numeric invoice quantity is required for quantity-based calculations.'});
+      if(poRows.some(p=>!Number.isFinite(p.qty)||p.qty<0))findings.push({code:'po_quantity_invalid',label:'PO quantity unavailable or invalid',detail:'At least one matched PO line has a missing, nonnumeric or negative quantity.'});
+      if(poRows.some(p=>!Number.isFinite(p.price)||p.price<0))findings.push({code:'po_price_invalid',label:'PO unit price unavailable or invalid',detail:'At least one matched PO line has a missing, nonnumeric or negative unit price.'});
+      if(rRows.some(r=>!Number.isFinite(r.qty)||r.qty<0))findings.push({code:'receipt_quantity_invalid',label:'Receipt quantity unavailable or invalid',detail:'At least one matched receipt has a missing, nonnumeric or negative quantity.'});
+      if(receiptSupplierMissing)findings.push({code:'receipt_supplier_incomplete',label:'Receipt supplier identity missing',detail:'Receipt rows without supplier identity were excluded from quantity support.'});
       if(supplierConflict)findings.push({code:'supplier_mismatch',label:'Supplier does not match PO',detail:'PO/item records exist, but none match the invoice supplier. Do not quantify until resolved.'});
       if(receiptSupplierConflict)findings.push({code:'receipt_supplier_mismatch',label:'Receipt supplier does not match invoice',detail:'PO/item receipt rows exist, but none match the invoice supplier. These receipts were excluded from quantity support.'});
       if(!poRows.length&&!supplierConflict)findings.push({code:'po_missing',label:'No matching purchase-order line',detail:'No PO/item line with a compatible supplier was found.'});
@@ -70,15 +101,23 @@
       const knownCurrencies=monetaryRows.map(r=>String(r.currency||'').trim()).filter(Boolean);
       const currencyConflict=new Set(knownCurrencies.map(v=>key(v))).size>1||monetaryRows.some(r=>!String(r.currency||'').trim());
       if(currencyConflict)findings.push({code:'currency_mismatch',label:'Currency evidence missing or inconsistent',detail:'Invoice, matched PO, payment and credit records must supply one consistent currency. Amount-based findings are withheld when currency is missing or inconsistent.'});
+      const paymentAmountsComplete=paymentRows.every(p=>Number.isFinite(p.amount));
+      const creditAmountsComplete=creditRows.every(c=>Number.isFinite(c.amount));
+      const paymentSupplierMissing=paymentRows.some(p=>!p.supplier);
+      const creditSupplierMissing=creditRows.some(c=>!c.supplier);
+      if(paymentRows.length&&!paymentAmountsComplete)findings.push({code:'payment_amount_invalid',label:'Payment amount unavailable or invalid',detail:'At least one linked payment row has no valid numeric amount; payment excess is withheld.'});
+      if(creditRows.length&&!creditAmountsComplete)findings.push({code:'credit_amount_invalid',label:'Credit amount unavailable or invalid',detail:'At least one linked credit row has no valid numeric amount; net expected amount is withheld.'});
+      if(paymentSupplierMissing)findings.push({code:'payment_supplier_missing',label:'Payment supplier identity missing',detail:'Linked payment rows without supplier identity cannot support a payment-excess candidate.'});
+      if(creditSupplierMissing)findings.push({code:'credit_supplier_missing',label:'Credit supplier identity missing',detail:'Linked credit rows without supplier identity cannot support a net expected amount.'});
       const billedForShare=r=>Number.isFinite(r.amount)?r.amount:(Number.isFinite(r.qty)&&Number.isFinite(r.price)?r.qty*r.price:0);
       const invoiceTotal=(invoiceMap.get(key(inv.supplier,inv.invoice))||[]).reduce((s,r)=>s+billedForShare(r),0);
       const share=invoiceTotal>0?billedForShare(inv)/invoiceTotal:0;
-      const paid=currencyConflict?NaN:paymentRows.reduce((s,p)=>s+(Number.isFinite(p.amount)?p.amount:0),0)*share;
-      const credited=currencyConflict?NaN:creditRows.reduce((s,c)=>s+(Number.isFinite(c.amount)?c.amount:0),0)*share;
+      const paid=currencyConflict||!paymentAmountsComplete||paymentSupplierMissing?NaN:paymentRows.reduce((s,p)=>s+p.amount,0)*share;
+      const credited=currencyConflict||!creditAmountsComplete||creditSupplierMissing?NaN:creditRows.reduce((s,c)=>s+c.amount,0)*share;
       const currency=inv.currency||paymentRows.find(p=>p.currency)?.currency||'';
       let supportedQty=NaN, expectedBeforeCredits=NaN, expectedNet=NaN, candidate=NaN, paymentExcessCandidate=NaN, status='needs_review';
-      const canPrice=poRows.length>0&&!supplierConflict&&!currencyConflict&&!(poRows.length>1&&poPrices.length>1)&&Number.isFinite(poPrice);
-      const canQty=Number.isFinite(inv.qty)&&Number.isFinite(qtyOrdered)&&rRows.length>0;
+      const canPrice=poRows.length>0&&!supplierConflict&&!supplierEvidenceMissing&&!currencyConflict&&Number.isFinite(credited)&&!(poRows.length>1&&poPrices.length>1)&&Number.isFinite(poPrice);
+      const canQty=Number.isFinite(inv.qty)&&inv.qty>=0&&Number.isFinite(qtyOrdered)&&Number.isFinite(received)&&rRows.length>0&&!supplierEvidenceMissing&&!receiptSupplierConflict;
       if(canQty) supportedQty=Math.max(0,Math.min(inv.qty,qtyOrdered,received));
       if(canPrice&&canQty){
         expectedBeforeCredits=supportedQty*poPrice;
@@ -86,7 +125,7 @@
         const invoiceBilled=Number.isFinite(inv.amount)?inv.amount:(Number.isFinite(inv.qty)&&Number.isFinite(inv.price)?inv.qty*inv.price:NaN);
         const overcharge=Number.isFinite(invoiceBilled)?Math.max(0,invoiceBilled-expectedNet):NaN;
         candidate=overcharge;
-        if(paymentRows.length>0&&Number.isFinite(inv.amount)){
+        if(paymentRows.length>0&&Number.isFinite(inv.amount)&&Number.isFinite(paid)&&!paymentSupplierMissing){
           paymentExcessCandidate=Math.max(0,paid-expectedNet);
           status=paymentExcessCandidate>0?'payment_excess_candidate':(candidate>0?'invoice_excess_unverified':'reviewed_no_excess');
         }else status=candidate>0?'invoice_excess_unpaid_or_unverified':'review';
