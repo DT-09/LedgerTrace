@@ -18,6 +18,17 @@ for (const [name, html] of pages) {
 }
 
 const home = pages[0][1];
+const theme = fs.readFileSync('assets/ledgertrace-theme.css', 'utf8');
+const styleOpenCount = (home.match(/<style\\b/gi) || []).length;
+const styleCloseCount = (home.match(/<\\/style>/gi) || []).length;
+assert.equal(styleOpenCount, styleCloseCount, 'homepage style tags must be balanced');
+assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS fragment into visible content');
+assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
+assert.ok(home.includes('href="/assets/ledgertrace-theme.css"'), 'authoritative palette stylesheet must load after inline legacy styles');
+for (const color of ['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7']) {
+  assert.ok(theme.toLowerCase().includes(color.toLowerCase()), 'authoritative theme is missing ' + color);
+}
+
 const product = pages[1][1];
 assert.ok(home.includes('id="product"'), 'interactive reconciliation workbench anchor exists');
 assert.ok(home.includes('id="evaluation"'), 'paid evaluation anchor exists');
