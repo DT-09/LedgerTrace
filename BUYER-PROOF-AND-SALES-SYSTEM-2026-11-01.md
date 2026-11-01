@@ -68,6 +68,8 @@ Vacancy: https://jobs.smartrecruiters.com/syscogb/744000149876669
 
 Qualification needed: Is there a defined supplier cohort or recurring parked-invoice queue not already handled by existing SAP/AP controls? Are invoice, PO and receipt exports available? Is an external second-pass review permitted? Who owns the queue and can approve a bounded evaluation?
 
+### Priority 3 — SBFM (volume and improvement signal; data-shape risk)
+
 Public evidence: AP Manager vacancy describes approximately 800 invoices/month, PO/invoice discrepancies, payment delays, supplier statement reconciliation and process improvement.
 
 Official vacancy: https://careers.sb-fm.co.uk/vacancies/23742/accounts-payable-manager.html
