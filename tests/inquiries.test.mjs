@@ -26,7 +26,7 @@ function makeRequest(payload = validPayload, overrides = {}) {
   });
 }
 
-function makeDb({ fail = false } = {}) {
+function makeDb({ fail = false, rateCount = 1 } = {}) {
   const calls = [];
   return {
     calls,
@@ -42,7 +42,7 @@ function makeDb({ fail = false } = {}) {
             async first() {
               calls.push({ sql, values });
               if (fail) throw new Error("database unavailable");
-              return { request_count: 1 };
+              return { request_count: rateCount };
             }
           };
         }
@@ -89,6 +89,14 @@ assert.equal(db.calls.length, 0);
 response = await onRequestPost({ request: makeRequest(), env: {} });
 assert.equal(response.status, 503);
 
+db = makeDb({ rateCount: 6 });
+response = await onRequestPost({
+  request: makeRequest(validPayload, { headers: { "CF-Connecting-IP": "203.0.113.10" } }),
+  env: { DB: db }
+});
+assert.equal(response.status, 429);
+assert.equal(db.calls.filter(call => /INSERT INTO inquiries/.test(call.sql)).length, 0);
+
 response = await onRequestPost({
   request: makeRequest(validPayload, { headers: { "Content-Type": "text/plain" } }),
   env: { DB: makeDb() }
@@ -105,4 +113,4 @@ db = makeDb({ fail: true });
 response = await onRequestPost({ request: makeRequest(), env: { DB: db } });
 assert.equal(response.status, 500);
 
-console.log("Inquiry API tests passed: storage, origin validation, field validation, honeypot, missing binding, content type, payload limit and database failure.");
+console.log("Inquiry API tests passed: storage, origin validation, field validation, honeypot, missing binding, content type, payload limit, rate limiting and database failure.");
