@@ -1039,7 +1039,34 @@ function toastMsg(msg){const el=$('toast');if(el){el.textContent=msg;el.classLis
 function error(msg){$('recError').textContent=msg;$('recError').classList.remove('hidden')}
 function clearError(){$('recError').classList.add('hidden');$('recError').textContent=''}
 function loadSamples(){clearError();for(const t of types){state.raw[t]=LedgerTraceCore.parseCSV(sample[t]);state.files[t]='Illustrative sample';$(ids[t]).value='';$(meta[t]).textContent='Illustrative sample · '+state.raw[t].length+' rows'}state.results=[];state.summary=null;state.cases={};state.selected=null;state.filter='all';$('recResults').classList.add('hidden');$('recSearch').value='';document.querySelectorAll('[data-rec-filter]').forEach(b=>b.classList.toggle('active',b.dataset.recFilter==='all'));$('recHint').textContent='Illustrative records loaded. Run the investigation to calculate candidates.'}
-for(const t of types)$(ids[t]).addEventListener('change',async e=>{const file=e.target.files&&e.target.files[0];if(!file)return;try{const parsed=LedgerTraceCore.parseCSV(await file.text());if(!parsed.length)throw Error('CSV contains no data rows.');state.raw[t]=parsed;state.files[t]=file.name;$(meta[t]).textContent=file.name+' · '+parsed.length+' rows';clearError()}catch(err){error('Could not read '+file.name+': '+err.message)}});
+function clearIllustrativeInputs(currentType){
+ if(!types.some(type=>state.files[type]==='Illustrative sample'))return;
+ for(const type of types){
+  state.raw[type]=[];state.files[type]='';
+  if(type!==currentType)$(ids[type]).value='';
+  $(meta[type]).textContent='No file selected';
+ }
+ state.results=[];state.summary=null;state.cases={};state.selected=null;
+ $('recResults').classList.add('hidden');
+ $('recHint').textContent='Illustrative data cleared because a buyer file was selected. Load all required sources from the same dataset before running.';
+}
+for(const t of types)$(ids[t]).addEventListener('change',async e=>{
+ const file=e.target.files&&e.target.files[0];if(!file)return;
+ clearIllustrativeInputs(t);
+ try{
+  if(file.size>10*1024*1024)throw Error('File exceeds the 10 MB limit.');
+  const parsed=LedgerTraceCore.parseCSV(await file.text());
+  if(!parsed.length)throw Error('CSV contains no data rows.');
+  if(parsed.length>50000)throw Error('File exceeds the 50,000 data-row limit.');
+  state.raw[t]=parsed;state.files[t]=file.name;
+  $(meta[t]).textContent=file.name+' · '+parsed.length+' rows';
+  state.results=[];state.summary=null;$('recResults').classList.add('hidden');clearError();
+ }catch(err){
+  state.raw[t]=[];state.files[t]='';$(ids[t]).value='';$(meta[t]).textContent='No valid file loaded';
+  state.results=[];state.summary=null;$('recResults').classList.add('hidden');
+  error('Could not read '+file.name+': '+err.message);
+ }
+});
 function run(){clearError();try{if(!state.raw.invoices||!state.raw.invoices.length)throw Error('Select an invoice CSV or load the illustrative recovery sample.');const out=LedgerTraceCore.analyze({invoices:state.raw.invoices,pos:state.raw.pos||[],receipts:state.raw.receipts||[],payments:state.raw.payments||[],credits:state.raw.credits||[],amendments:state.raw.amendments||[]});state.results=out.results;state.summary=out.summary;state.runAt=new Date();state.selected=null;state.filter='all';$('recSearch').value='';document.querySelectorAll('[data-rec-filter]').forEach(b=>b.classList.toggle('active',b.dataset.recFilter==='all'));$('recResults').classList.remove('hidden');render();$('recHint').textContent='Investigation complete. Select a row to inspect evidence and record a resolution.';$('recResults').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}catch(e){error(e.message)}}
 function getCase(r){return state.cases[r.id]||{status:'needs_review',action:'Request supplier statement and invoice review',note:'',outcomeAmount:'',outcomeRef:''}}
 function activeRows(){const q=$('recSearch').value.trim().toLowerCase();return state.results.filter(r=>{const payment=Number.isFinite(r.paymentExcessCandidate)&&r.paymentExcessCandidate>0;const candidate=(Number.isFinite(r.candidate)&&r.candidate>0)||payment;const f=state.filter==='all'||(state.filter==='action'&&candidate)||(state.filter==='payment'&&payment)||(state.filter==='review'&&(!Number.isFinite(r.expectedNet)||!Number.isFinite(r.paid)||r.findings.length>0));return f&&[r.id,r.invoice,r.supplier,r.po,r.item,r.findings.map(x=>x.label+' '+x.detail).join(' ')].join(' ').toLowerCase().includes(q)})}
