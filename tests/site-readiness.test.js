@@ -4,7 +4,12 @@ const fs = require('node:fs');
 const pages = [
   ['index.html', fs.readFileSync('index.html', 'utf8')],
   ['invoice-reconciliation.html', fs.readFileSync('invoice-reconciliation.html', 'utf8')],
-  ['invoice-reconciliation-checklist.html', fs.readFileSync('invoice-reconciliation-checklist.html', 'utf8')]
+  ['invoice-reconciliation-checklist.html', fs.readFileSync('invoice-reconciliation-checklist.html', 'utf8')],
+  ['duplicate-supplier-payment-investigation.html', fs.readFileSync('duplicate-supplier-payment-investigation.html', 'utf8')],
+  ['missed-supplier-credit-detection.html', fs.readFileSync('missed-supplier-credit-detection.html', 'utf8')],
+  ['purchase-order-price-variance.html', fs.readFileSync('purchase-order-price-variance.html', 'utf8')],
+  ['supplier-invoice-overcharge-investigation.html', fs.readFileSync('supplier-invoice-overcharge-investigation.html', 'utf8')],
+  ['supplier-statement-reconciliation.html', fs.readFileSync('supplier-statement-reconciliation.html', 'utf8')]
 ];
 
 for (const [name, html] of pages) {
@@ -18,6 +23,15 @@ for (const [name, html] of pages) {
 }
 
 const home = pages[0][1];
+const allowedPalette = new Set(['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7']);
+for (const [name, html] of pages) {
+  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261101-2"'), name + ' must load the shared palette');
+  assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
+  const colors = [...new Set([...html.matchAll(/#[0-9a-fA-F]{6}\\b/g)].map(match => match[0].toUpperCase()))];
+  assert.deepEqual(colors.filter(color => !allowedPalette.has(color)), [], name + ' contains colors outside the approved palette');
+}
+assert.ok(!home.includes('ont-size:12px}}'), 'homepage must not contain the previously leaked CSS tail');
+
 const theme = fs.readFileSync('assets/ledgertrace-theme.css', 'utf8');
 const styleOpenCount = home.split('<style').length - 1;
 const styleCloseCount = home.split('</style>').length - 1;
