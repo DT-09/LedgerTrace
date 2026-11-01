@@ -2,13 +2,13 @@
 
 ## Positioning
 
-LedgerTrace is a bounded supplier-reconciliation investigation service for distributors and finance teams. The buyer is paying for a defensible review of a specific discrepancy or reconciliation backlog—not for an AI dashboard, a list of unverified anomalies, or a promise of recovered money.
+LedgerTrace is a supplier-payment investigation workbench for distributors and finance teams. A buyer uses it to compare invoice, PO, receipt, payment, credit and amendment records where supported, then receives a source-linked worklist of candidate overcharges, duplicate/excess payments, quantity gaps and missing credits for human verification. The commercial value is a defensible investigation and review handoff—not an AI dashboard, an unverified anomaly score, or a promise of recovered money.
 
 ## Best-fit buyer and initial wedge
 
-**Primary route: an AP/accounting service provider** that already manages supplier reconciliation for business clients and has a specific exception backlog, an unresolved supplier account, or a client-requested second look. The provider may have a reason to pay for a bounded overflow investigation if its current team lacks time or specialist capacity and the evidence package fits its existing review process. That willingness to pay is a hypothesis to validate—not an established customer need.
+**Primary route: supplier-payment recovery and AP review specialists** that already investigate overpayments, duplicate disbursements, pricing errors, supplier credits or statement discrepancies. The wedge is a self-service evidence workbench they can test on synthetic data, followed by a bounded second-pass investigation when their team has a specific backlog or difficult case. They may pay for overflow capacity or an auditable evidence package, but this must be validated with an actual workflow.
 
-**Secondary route: a distributor finance team** with a named unresolved supplier balance, invoice mismatch, disputed charge, or deadline-driven reconciliation backlog. Do not target a generic AP department with no current trigger.
+**Secondary route: distributor finance teams** with a named supplier balance, disputed invoice, suspected duplicate payment, missing credit or payment deadline. Do not target generic AP teams with no current trigger.
 
 A qualified buyer must:
 - name the supplier/workflow and the decision the investigation should support;
