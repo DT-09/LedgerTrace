@@ -70,7 +70,7 @@ jobs:
           healthy=false
           for attempt in $(seq 1 12); do
             status="$(curl --connect-timeout 10 --max-time 20 -sS -o /tmp/ledgertrace-inquiry-health.json -w '%{http_code}' 'https://ledgertrace.pages.dev/api/inquiries' || true)"
-            if [[ "$status" == "200" ]] && grep -q '"service":"ledgertrace-inquiry-intake"' /tmp/ledgertrace-inquiry-health.json; then
+            if [[ "$status" == "200" ]] && grep -q '"service":"ledgertrace-inquiry-intake"' /tmp/ledgertrace-inquiry-health.json && grep -Eq '"inboxConfigured":(true|false)' /tmp/ledgertrace-inquiry-health.json; then
               healthy=true
               break
             fi
