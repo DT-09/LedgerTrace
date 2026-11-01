@@ -32,8 +32,8 @@ for (const id of requiredExistingIds) {
   if (!html.includes('id="' + id + '"')) throw new Error('Existing engineered feature missing: ' + id);
 }
 
-const documentIds = new Set([...html.matchAll(/\\bid=["']([^"']+)["']/g)].map(match => match[1]));
-for (const match of html.matchAll(/\\$\\(['"]([^'"]+)['"]\\)(\\?)?\\.addEventListener/g)) {
+const documentIds = new Set([...html.matchAll(/\bid=["']([^"']+)["']/g)].map(match => match[1]));
+for (const match of html.matchAll(/\$\(['"]([^'"]+)['"]\)(\?)?\.addEventListener/g)) {
   if (!documentIds.has(match[1]) && match[2] !== '?') {
     throw new Error('Un guarded event binding targets a missing element: ' + match[1]);
   }
