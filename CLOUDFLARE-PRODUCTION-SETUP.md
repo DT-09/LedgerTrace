@@ -11,6 +11,7 @@ LedgerTrace remains a browser-side reconciliation workbench. This optional Pages
 5. Redeploy the Pages project after saving the binding.
 
 The API route is \`POST /api/inquiries\`. Without the \`DB\` binding it returns a controlled 503 response and the website falls back to its manual WhatsApp/email handoff.
+The `GET /api/inquiries` health response exposes only two non-secret booleans: `inboxConfigured` and `emailNotificationsConfigured`. Check these flags before accepting a real inquiry.
 
 ## 2. Optional email notification
 
