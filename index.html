@@ -924,22 +924,26 @@ async function handleContactSubmit(e){
  const payload={email,company:$('contactCompany').value.trim(),volume:$('contactVolume').value,cadence:$('contactCadence').value,description,website:$('contactWebsite').value};
  submit.disabled=true;submit.textContent='Submitting inquiry…';$('contactStatus').textContent='Checking the secure inquiry inbox…';
  try{
-  const response=await fetch('/api/inquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  const result=await response.json().catch(()=>({}));
-  if(response.ok&&result.ok){
-   copyText(brief);
-   $('contactStatus').textContent='Inquiry received and stored. Reference: '+(result.reference||'confirmed')+'. Only contact and scope details were submitted; no accounting files were uploaded.';
-   submit.textContent='Inquiry received';
-   return;
-  }
-  if(response.status===400||response.status===403||response.status===429||response.status===415){
-   $('contactStatus').textContent=result.error||'The inquiry could not be accepted. Check the details and try again.';
-   return;
-  }
- }catch(error){}
- copyText(brief);
- $('contactStatus').textContent='The secure inbox is unavailable, so no inquiry was stored. Use the prepared Email or WhatsApp link below to send the scope brief manually. Review the message before sending.';
-}finally{submit.disabled=false;submit.textContent='Prepare inquiry brief ↗'}
+  try{
+   const response=await fetch('/api/inquiries',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+   const result=await response.json().catch(()=>({}));
+   if(response.ok&&result.ok){
+    copyText(brief);
+    $('contactStatus').textContent='Inquiry received and stored. Reference: '+(result.reference||'confirmed')+'. Only contact and scope details were submitted; no accounting files were uploaded.';
+    return;
+   }
+   if(response.status===400||response.status===403||response.status===429||response.status===415){
+    $('contactStatus').textContent=result.error||'The inquiry could not be accepted. Check the details and try again.';
+    return;
+   }
+  }catch(error){}
+  copyText(brief);
+  $('contactStatus').textContent='The secure inbox is unavailable, so no inquiry was stored. Use the prepared Email or WhatsApp link below to send the scope brief manually. Review the message before sending.';
+ }finally{
+  submit.disabled=false;
+  submit.textContent='Prepare inquiry brief ↗';
+ }
+}
 
 function resetAll(){loadSamples();$('results').classList.add('hidden');closeDrawer();$('search').value='';$('runHint').textContent='Sample records restored. Run reconciliation to produce a fresh report.';toast('Sample restored.')}
 $('invoiceFile').addEventListener('change',e=>loadFile('invoice',e.target.files[0]));$('poFile').addEventListener('change',e=>loadFile('po',e.target.files[0]));$('receiptFile').addEventListener('change',e=>loadFile('receipt',e.target.files[0]));
