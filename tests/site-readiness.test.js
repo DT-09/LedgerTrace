@@ -19,8 +19,8 @@ for (const [name, html] of pages) {
 
 const home = pages[0][1];
 const theme = fs.readFileSync('assets/ledgertrace-theme.css', 'utf8');
-const styleOpenCount = (home.match(/<style\\b/gi) || []).length;
-const styleCloseCount = (home.match(/<\\/style>/gi) || []).length;
+const styleOpenCount = home.split('<style').length - 1;
+const styleCloseCount = home.split('</style>').length - 1;
 assert.equal(styleOpenCount, styleCloseCount, 'homepage style tags must be balanced');
 assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS fragment into visible content');
 assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
