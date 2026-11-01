@@ -53,6 +53,7 @@
   function number(v){ if(v===null||v===undefined||String(v).trim()==='') return NaN; const raw=String(v).trim().replace(/[$£€₹\s]/g,''); if(!/^[+-]?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/.test(raw)) return NaN; const n=Number(raw.replace(/,/g,'')); return Number.isFinite(n)?n:NaN; }
   function normalize(rows,type){ return rows.map(raw=>{const out={sourceRow:raw.__row}; for(const [k,names] of Object.entries(aliases[type])){if(k==='row')continue;out[k]=String(field(raw,names)).trim();} for(const k of ['qty','price','amount']) if(k in out) out[k]=number(out[k]); for(const k of ['invoice','supplier','po','item','receipt','payment','credit','currency','effective','date','amendment']) if(k in out) out[k]=String(out[k]??'').trim(); return out;});}
   const key = (...parts) => parts.map(v=>norm(v)).join('|');
+  const isoDate = value => { const v=String(value||''); if(!/^\d{4}-\d{2}-\d{2}$/.test(v)) return false; const d=new Date(v+'T00:00:00Z'); return Number.isFinite(d.getTime())&&d.toISOString().slice(0,10)===v; };
   const money = (n,currency='') => Number.isFinite(n) ? (currency ? currency+' ' : '')+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}) : 'Not available';
   function analyze(input){
     const invoices=normalize(input.invoices||[],'invoice'), pos=normalize(input.pos||[],'po'), receipts=normalize(input.receipts||[],'receipt'), payments=normalize(input.payments||[],'payment'), credits=normalize(input.credits||[],'credit'), amendments=normalize(input.amendments||[],'amendment');
@@ -72,10 +73,23 @@
       let qtyOrdered=poRows.length&&poRows.every(p=>Number.isFinite(p.qty)&&p.qty>=0)?poRows.reduce((s,p)=>s+p.qty,0):NaN;
       let poPrices=[...new Set(poRows.filter(p=>Number.isFinite(p.price)).map(p=>p.price))];
       let poPrice=poRows.length&&poRows.every(p=>Number.isFinite(p.price)&&p.price>=0)&&poPrices.length===1?poPrices[0]:NaN;
-      const applicableAmendments=(amendMap.get(k)||[]).filter(a=>!a.supplier||!inv.supplier||key(a.supplier)===key(inv.supplier));
-      if(applicableAmendments.length){
-        const dated=applicableAmendments.filter(a=>!a.effective||!inv.date||a.effective<=inv.date).sort((a,b)=>String(a.effective).localeCompare(String(b.effective)));
-        if(dated.length){const latest=dated[dated.length-1];if(Number.isFinite(latest.price))poPrice=latest.price;if(Number.isFinite(latest.qty))qtyOrdered=latest.qty;findings.push({code:'amendment_applied',label:'PO amendment considered',detail:'Amendment '+(latest.amendment||'at source row '+latest.sourceRow)+' applied by effective date; verify the change order is approved.'});}
+      const rawAmendments=amendMap.get(k)||[];
+      const amendmentSupplierMissing=rawAmendments.some(a=>!a.supplier)||(rawAmendments.length>0&&!inv.supplier);
+      const amendmentSupplierConflict=rawAmendments.some(a=>Boolean(a.supplier)&&Boolean(inv.supplier)&&key(a.supplier)!==key(inv.supplier));
+      const applicableAmendments=rawAmendments.filter(a=>Boolean(inv.supplier)&&Boolean(a.supplier)&&key(a.supplier)===key(inv.supplier));
+      const amendmentDateInvalid=applicableAmendments.length>0&&(!isoDate(inv.date)||applicableAmendments.some(a=>!isoDate(a.effective)));
+      const amendmentValuesInvalid=applicableAmendments.some(a=>(!Number.isFinite(a.price)&&!Number.isFinite(a.qty))||(Number.isFinite(a.price)&&a.price<0)||(Number.isFinite(a.qty)&&a.qty<0));
+      const amendmentEffectivityUnverified=amendmentSupplierMissing||amendmentDateInvalid||amendmentValuesInvalid;
+      let amendmentConflict=false;
+      if(applicableAmendments.length&&!amendmentEffectivityUnverified){
+        const dated=applicableAmendments.filter(a=>a.effective<=inv.date).sort((a,b)=>String(a.effective).localeCompare(String(b.effective)));
+        if(dated.length){
+          const latestDate=dated[dated.length-1].effective;
+          const latestSet=dated.filter(a=>a.effective===latestDate);
+          const signatures=new Set(latestSet.map(a=>(Number.isFinite(a.qty)?a.qty:'')+'|'+(Number.isFinite(a.price)?a.price:'')));
+          if(signatures.size>1)amendmentConflict=true;
+          else{const latest=latestSet[latestSet.length-1];if(Number.isFinite(latest.price))poPrice=latest.price;if(Number.isFinite(latest.qty))qtyOrdered=latest.qty;findings.push({code:'amendment_applied',label:'PO amendment considered',detail:'Amendment '+(latest.amendment||'at source row '+latest.sourceRow)+' applied using ISO effective dates; verify the change order is approved.'});}
+        }
       }
       const received=rRows.length&&rRows.every(r=>Number.isFinite(r.qty)&&r.qty>=0)?rRows.reduce((s,r)=>s+r.qty,0):NaN;
       if(!inv.invoice)findings.push({code:'invoice_id_missing',label:'Invoice reference missing',detail:'Cannot reliably link payment and credit records without an invoice reference.'});
@@ -87,6 +101,10 @@
       if(rRows.some(r=>!Number.isFinite(r.qty)||r.qty<0))findings.push({code:'receipt_quantity_invalid',label:'Receipt quantity unavailable or invalid',detail:'At least one matched receipt has a missing, nonnumeric or negative quantity.'});
       if(receiptSupplierMissing)findings.push({code:'receipt_supplier_incomplete',label:'Receipt supplier identity missing',detail:'Receipt rows without supplier identity were excluded from quantity support.'});
       if(supplierConflict)findings.push({code:'supplier_mismatch',label:'Supplier does not match PO',detail:'PO/item records exist, but none match the invoice supplier. Do not quantify until resolved.'});
+      if(amendmentSupplierMissing)findings.push({code:'amendment_supplier_missing',label:'Amendment supplier identity missing',detail:'A PO amendment lacks supplier identity or the invoice supplier is missing. The amendment was not applied.'});
+      if(amendmentSupplierConflict)findings.push({code:'amendment_supplier_conflict',label:'Amendment supplier conflicts with invoice',detail:'A PO amendment for this PO/item names a different supplier and was excluded.'});
+      if(amendmentEffectivityUnverified)findings.push({code:'amendment_effectivity_unverified',label:'PO amendment effectivity cannot be verified',detail:'An applicable amendment has a missing or non-ISO date, missing values, or no valid invoice date. Amount-based calculations are withheld.'});
+      if(amendmentConflict)findings.push({code:'amendment_conflict',label:'Conflicting PO amendments share an effective date',detail:'Multiple applicable amendments have the same latest effective date but different values. Resolve the approved amendment before quantifying.'});
       if(receiptSupplierConflict)findings.push({code:'receipt_supplier_mismatch',label:'Receipt supplier does not match invoice',detail:'PO/item receipt rows exist, but none match the invoice supplier. These receipts were excluded from quantity support.'});
       if(!poRows.length&&!supplierConflict)findings.push({code:'po_missing',label:'No matching purchase-order line',detail:'No PO/item line with a compatible supplier was found.'});
       if(poRows.length>1&&poPrices.length>1)findings.push({code:'ambiguous_po_price',label:'Conflicting PO unit prices',detail:'Multiple matching PO lines have different unit prices; exact line allocation is unresolved.'});
@@ -124,7 +142,7 @@
       const credited=currencyConflict||!creditAmountsComplete||creditSupplierMissing||creditSupplierConflict?NaN:creditRows.reduce((s,c)=>s+c.amount,0)*share;
       const currency=inv.currency||paymentRows.find(p=>p.currency)?.currency||'';
       let supportedQty=NaN, expectedBeforeCredits=NaN, expectedNet=NaN, candidate=NaN, paymentExcessCandidate=NaN, status='needs_review';
-      const canPrice=poRows.length>0&&!supplierConflict&&!supplierEvidenceMissing&&!currencyConflict&&Number.isFinite(credited)&&!(poRows.length>1&&poPrices.length>1)&&Number.isFinite(poPrice);
+      const canPrice=poRows.length>0&&!supplierConflict&&!supplierEvidenceMissing&&!currencyConflict&&!amendmentEffectivityUnverified&&!amendmentConflict&&Number.isFinite(credited)&&!(poRows.length>1&&poPrices.length>1)&&Number.isFinite(poPrice);
       const canQty=Number.isFinite(inv.qty)&&inv.qty>=0&&Number.isFinite(qtyOrdered)&&Number.isFinite(received)&&rRows.length>0&&!supplierEvidenceMissing&&!receiptSupplierConflict;
       if(canQty) supportedQty=Math.max(0,Math.min(inv.qty,qtyOrdered,received));
       if(canPrice&&canQty){
@@ -142,7 +160,7 @@
       if(paymentRows.length===0)findings.push({code:'payment_unverified',label:'Payment status not supplied',detail:'No matching payment row was supplied. The product cannot claim a paid overpayment.'});
       if(canPrice&&canQty&&candidate>0)findings.push({code:'excess_candidate',label:'Potential invoice excess',detail:'Calculated invoice excess is '+money(candidate,currency)+' before confirming taxes, freight, tolerances, amendments and payment allocation.'});
       if(Number.isFinite(paymentExcessCandidate)&&paymentExcessCandidate>0)findings.push({code:'payment_excess',label:'Payment exceeds reconstructed net expected amount',detail:'Matched payments exceed the reconstructed net amount by '+money(paymentExcessCandidate,currency)+'. Human review is still required before a recovery claim.'});
-      const sourceRows={invoice:inv.sourceRow,po:poRows.map(p=>p.sourceRow),receipts:rRows.map(r=>r.sourceRow),payments:paymentRows.map(p=>p.sourceRow),credits:creditRows.map(c=>c.sourceRow),amendments:applicableAmendments.map(a=>a.sourceRow)};
+      const sourceRows={invoice:inv.sourceRow,po:poRows.map(p=>p.sourceRow),receipts:rRows.map(r=>r.sourceRow),payments:paymentRows.map(p=>p.sourceRow),credits:creditRows.map(c=>c.sourceRow),amendments:rawAmendments.map(a=>a.sourceRow)};
       return {id:'LT-'+String(inv.sourceRow).padStart(4,'0'),invoice:inv.invoice||'(missing)',supplier:inv.supplier||'(missing)',po:inv.po||'(missing)',item:inv.item||'(missing)',currency,qty:inv.qty,invoicePrice:inv.price,invoiceAmount:Number.isFinite(inv.amount)?inv.amount:(Number.isFinite(inv.qty)&&Number.isFinite(inv.price)?inv.qty*inv.price:NaN),qtyOrdered,qtyReceived:received,poPrice,paid:paymentRows.length?paid:NaN,credits:credited,expectedNet,candidate,paymentExcessCandidate,status,findings,sourceRows,invoiceDate:inv.date||'',paymentCount:paymentRows.length,creditCount:creditRows.length};
     });
     return {results,summary:{invoiceLines:results.length,flagged:results.filter(r=>r.findings.some(f=>['excess_candidate','payment_excess','price_over_po','qty_over_ordered','qty_over_received'].includes(f.code))).length,paymentExcessCandidates:results.filter(r=>Number.isFinite(r.paymentExcessCandidate)&&r.paymentExcessCandidate>0).length,unverifiedPayments:results.filter(r=>!Number.isFinite(r.paid)).length,invoiceExcess:results.reduce((s,r)=>s+(Number.isFinite(r.candidate)?r.candidate:0),0),paymentExcess:results.reduce((s,r)=>s+(Number.isFinite(r.paymentExcessCandidate)?r.paymentExcessCandidate:0),0)}};
