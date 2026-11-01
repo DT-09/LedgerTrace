@@ -152,4 +152,21 @@ assert.ok(Number.isNaN(out.summary.invoiceExcess), 'summary must not add USD and
 assert.ok(Number.isNaN(out.summary.paymentExcess), 'payment summary must also withhold mixed-currency totals');
 assert.match(out.summary.interpretation, /Do not add them together/);
 
+
+assert.ok(out.results[0].findings.some(f => f.code === 'invoice_amounts_allocated_pro_rata'), 'invoice-level payment allocation must disclose its pro-rata assumption');
+
+const sharedPOInvoices = 'invoice_number,supplier,po_number,item_code,quantity,unit_price,line_amount,currency\\nINV-A,Acme,PO-1,SKU-1,7,12,84,USD\\nINV-B,Acme,PO-1,SKU-1,7,12,84,USD';
+out = analyze(sharedPOInvoices, po, grn);
+assert.equal(out.results.length, 2);
+assert.ok(out.results.every(row => Number.isNaN(row.candidate)), 'multiple invoice lines sharing one PO item must not reuse the full PO/receipt quantity independently');
+assert.ok(out.results.every(row => row.findings.some(f => f.code === 'invoice_po_item_allocation_ambiguous')), 'shared PO-item ambiguity must be explicit with source row references');
+
+const incompleteInvoiceBatch = 'invoice_number,supplier,po_number,item_code,quantity,unit_price,line_amount,currency\\nINV-3,Acme,PO-1,SKU-1,5,12,60,USD\\nINV-3,Acme,PO-2,SKU-2,,,,USD';
+const batchPOs = 'po_number,supplier,item_code,quantity,unit_price,currency\\nPO-1,Acme,SKU-1,5,10,USD\\nPO-2,Acme,SKU-2,5,10,USD';
+const batchReceipts = 'receipt_number,po_number,supplier,item_code,quantity\\nGRN-1,PO-1,Acme,SKU-1,5\\nGRN-2,PO-2,Acme,SKU-2,5';
+out = analyze(incompleteInvoiceBatch, batchPOs, batchReceipts, 'payment_id,invoice_number,supplier,paid_amount,currency\\nPAY-3,INV-3,Acme,100,USD');
+assert.ok(Number.isNaN(out.results[0].paid), 'invoice-level payment must not be pro-rated when any invoice line lacks a reliable value');
+assert.ok(Number.isNaN(out.results[0].paymentExcessCandidate), 'incomplete invoice allocation must withhold payment-excess quantification');
+assert.ok(out.results[0].findings.some(f => f.code === 'invoice_allocation_unresolved'), 'incomplete invoice allocation must be disclosed');
+
 console.log('LedgerTrace Recovery tests passed (CSV quoting, source trace, price excess, payment evidence, credits, supplier conflicts, currency guards, multi-line allocation).');
