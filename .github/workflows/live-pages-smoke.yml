@@ -84,3 +84,10 @@ jobs:
             --data '{}')"
           [[ "$status" == "403" ]] || { cat /tmp/ledgertrace-inquiry-response.json; echo "::error::Inquiry endpoint did not reject a cross-origin request (HTTP $status)."; exit 1; }
           echo "Inquiry API is deployed and rejects cross-origin submissions."
+          status="$(curl --connect-timeout 10 --max-time 20 -sS -o /tmp/ledgertrace-inquiry-invalid.json -w '%{http_code}' \
+            -X POST 'https://ledgertrace.pages.dev/api/inquiries' \
+            -H 'Origin: https://ledgertrace.pages.dev' \
+            -H 'Content-Type: application/json' \
+            --data '{"email":"invalid","description":"This is a harmless live validation probe.","website":"smoke-test"}')"
+          [[ "$status" == "202" ]] || { cat /tmp/ledgertrace-inquiry-invalid.json; echo "::error::Inquiry honeypot probe did not return the expected non-storing acceptance (HTTP $status)."; exit 1; }
+          echo "Inquiry endpoint accepts and discards honeypot probes without storing them."
