@@ -40,8 +40,8 @@ assert.ok(theme.includes('--cream:#EAE3D2') && theme.includes('--paper:#FDFBF7')
 assert.ok(!theme.includes('#FFFFFF') && !theme.includes('#ffffff'), 'pure white must not be used');
 for (const [name, html] of pages) {
   assert.ok(!html.includes('#FDFBF7-space'), name + ' must not contain the corrupted white-space property');
-  assert.ok(!/color-scheme\\s*:\\s*light/i.test(html), name + ' must not force a light color scheme');
-  const rgbColors = [...html.matchAll(/rgba?\\(([^)]+)\\)/gi)].map(match => match[1]);
+  assert.ok(!/color-scheme\s*:\s*light/i.test(html), name + ' must not force a light color scheme');
+  const rgbColors = [...html.matchAll(/rgba?\(([^)]+)\)/gi)].map(match => match[1]);
   for (const value of rgbColors) {
     const channels = value.split(',').slice(0,3).map(channel => Math.round(Number(channel.trim())));
     if (channels.length === 3 && channels.every(Number.isFinite)) {
