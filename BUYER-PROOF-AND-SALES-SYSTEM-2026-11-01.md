@@ -2,13 +2,13 @@
 
 ## Decision
 
-Stop selling a broad "supplier payment leakage detection" proposition. The first commercial wedge should be:
+Stop selling a broad "supplier payment leakage detection" proposition. The first commercial wedge should use the capability LedgerTrace already has:
 
-**Supplier Account Reconciliation & Credit Recovery Review**
+**Parked Invoice & Three-Way Match Evidence Review**
 
-A bounded, human-reviewed investigation of one supplier statement against the buyer's AP ledger, invoice, payment and credit records. The output is an evidence-backed exception register, not an automated accounting action or a promise of recovered cash.
+A bounded, human-reviewed investigation of a defined queue of supplier invoices against approved purchase orders and goods-receipt records. Optional payment and credit records can support a separate payment-excess investigation when the data is complete. The output is an evidence-backed exception register, not an automated accounting action or a promise of recovered cash.
 
-This direction is provisional until a buyer confirms the problem and authorizes a reference dataset.
+This is a better first offer because the current product already supports invoice, PO and goods-receipt comparisons. Supplier-statement-to-ledger reconciliation is a separate expansion, not a live capability.
 
 ## Economic problem: evidence and limits
 
@@ -49,15 +49,13 @@ Do not count flagged amounts as recovered cash. Do not add invoice-excess and pa
 
 ## Target account selection
 
-### Priority 1 — DDC Foods (workflow fit; freshness needs verification)
+### Priority 1 — Sysco GB (exact product fit; enterprise friction)
 
-Public evidence: purchase-ledger job description describes statement reconciliation, a credit-note spreadsheet, pairing delivery paperwork to invoices, printed statements/invoices and Excel/accounting-package data entry. Company describes itself as a wholesale distributor. The accessible job page states 80+ staff and £18m turnover but is old; verify that the role/process remains current before treating it as an active trigger.
+Public evidence: AP Account Handler vacancy describes invoices parked because they do not match approved and goods-received purchase orders, plus supplier statement reconciliations and unresolved items. The parked-invoice workflow is a direct fit for the current invoice/PO/receipt engine.
 
-Official contact: https://www.ddcfoods.co.uk/contact-us  
-Published email: info@ddcfoods.co.uk  
-Official company page: https://www.ddcfoods.co.uk/our-company/about-us
+Vacancy: https://jobs.smartrecruiters.com/syscogb/744000149876669
 
-Qualification needed: Is supplier statement reconciliation still manual? Is there an aged exception queue or missing-credit problem? Which AP export and statement formats exist? Who owns the reconciliation and who can approve a paid test?
+Qualification needed: Is there a defined supplier cohort or recurring parked-invoice queue not already handled by existing SAP/AP controls? Are invoice, PO and receipt exports available? Is an external second-pass review permitted? Who owns the queue and can approve a bounded evaluation?
 
 ### Priority 2 — SBFM (volume and improvement signal; data-shape risk)
 
@@ -67,13 +65,15 @@ Official vacancy: https://careers.sb-fm.co.uk/vacancies/23742/accounts-payable-m
 
 Qualification needed: Is this a current vacancy and is the AP workflow still as described? Does the supplier population include itemised POs and receipt/service-entry records that the current engine can reconcile? Is there a specific supplier queue that needs a second-pass review?
 
-### Priority 3 — Sysco GB (explicit parked-invoice workflow; enterprise friction)
+### Priority 3 — DDC Foods (strong manual workflow fit; stale signal)
 
-Public evidence: AP Account Handler vacancy describes invoices parked for mismatch against approved and goods-received POs, plus supplier statement reconciliation and unresolved items.
+Public evidence: purchase-ledger job description describes invoice/credit/statement handling, pairing delivery paperwork with invoices, supplier-statement reconciliation, a credit-note spreadsheet, Excel and accounting-package data entry. The accessible job page states 80+ staff and £18m turnover but is old; verify that the role/process remains current before treating it as an active trigger.
 
-Vacancy: https://jobs.smartrecruiters.com/syscogb/744000149876669
+Official contact: https://www.ddcfoods.co.uk/contact-us  
+Published email: info@ddcfoods.co.uk  
+Official company page: https://www.ddcfoods.co.uk/our-company/about-us
 
-Qualification needed: Is there a defined supplier cohort or recurring queue not already handled by existing SAP/AP controls? Is an external specialist permitted? Who owns the process and vendor onboarding?
+Qualification needed: Is there a current parked-invoice or PO/receipt mismatch queue that fits the live engine? If the need is only statement-to-ledger reconciliation, defer until that module is built.
 
 ### Do not call these customers
 
@@ -83,41 +83,41 @@ All three are researched targets only. No buying intent, decision-maker conversa
 
 ### Name
 
-**Supplier Account Reconciliation & Credit Recovery Review**
+**Parked Invoice & Three-Way Match Evidence Review**
 
 ### Initial pilot scope (commercial hypothesis)
 
-- One supplier account.
-- One statement period.
-- Up to 500 statement lines and 500 buyer-ledger lines, subject to a file-fit check.
-- Supporting invoice, payment and credit-note rows only where needed to explain exceptions.
-- One agreed currency per case for quantified comparisons.
-- Delivery target: five business days after agreed data receipt and scope approval; only confirm after file-fit and capacity review.
+- One supplier or one clearly defined parked-invoice queue.
+- One accounting period or backlog window.
+- Up to 500 invoice lines, 500 PO lines and 500 goods-receipt lines, subject to file-fit review.
+- Payment, credit and PO-amendment records only when the agreed question requires them.
+- One consistent currency per quantified case.
+- Delivery target: five business days after approved data receipt and scope sign-off; confirm only after file-fit and capacity review.
 - Initial fee hypothesis: **USD 500**, not a fixed public price. Validate willingness to pay before adopting it.
 
 ### Inputs
 
-- Supplier statement export with supplier identifier, transaction date, transaction type/reference, amount and currency.
-- AP ledger export for the same supplier and period.
-- Invoice register and payment/credit records where available.
-- Opening/closing balances where the buyer wants a balance roll-forward check.
-- Buyer-owned expected outcomes or a human-reviewed reference sample if measurement of accuracy is required.
+- Invoice export with supplier, invoice reference, PO reference, item/SKU, quantity, unit price, line amount and currency.
+- Approved PO export with supplier, PO reference, item/SKU, ordered quantity, price and currency.
+- Goods-receipt export with supplier, PO reference, item/SKU, received quantity and date.
+- Optional payment, credit-note and amendment records for a separately scoped recovery investigation.
+- Buyer-owned expected outcomes or a human-reviewed reference sample if accuracy measurement is required.
 
 ### Deliverables
 
-1. Reconciliation worklist: matched, statement-only, ledger-only, reference mismatch, amount mismatch, duplicate candidate, and unresolved/ambiguous.
-2. Source-row references for each result.
-3. A reconciliation bridge from opening balance through listed movements to closing balance, only when the supplied data supports it.
-4. A prioritised follow-up queue: potential missing invoices, unallocated payments, missing/unapplied credits, aged differences.
+1. Prioritised parked-invoice worklist: price variance, quantity above PO, quantity above receipts, missing PO/receipt, supplier conflict, duplicate candidate and unresolved/ambiguous cases.
+2. Source-row references for invoice, PO and receipt evidence.
+3. Reconstructed line calculations where inputs support them.
+4. Separate optional payment/credit candidate findings when those files are in scope; do not combine overlapping invoice and payment excess totals.
 5. Data-quality and scope limitations.
-6. A reviewer handoff: buyer confirms, rejects or leaves each candidate unresolved.
+6. Reviewer handoff: buyer confirms, rejects or leaves each candidate unresolved.
 
 ### Acceptance criteria
 
-- Every reported exception points to the statement and/or ledger source row that generated it.
-- Matched and unmatched counts tie back to the input population.
-- Amount comparisons are withheld for missing/mixed/conflicting currencies.
-- Duplicate references and ambiguous allocations are labelled, not silently resolved.
+- Every reported exception points to the invoice, PO and/or receipt source row that generated it.
+- Processed and excluded row counts tie back to the input population.
+- Amount comparisons are withheld for missing, mixed or conflicting currencies.
+- Supplier conflicts, duplicate references, shared PO/item allocations and ambiguous quantities are labelled, not silently resolved.
 - No candidate is called a confirmed loss, debt, credit or recovery until the buyer verifies it.
 - No accounting records are changed and no payment or supplier instruction is initiated.
 
@@ -140,19 +140,23 @@ Do not accept confidential financial records through the public inquiry form, or
 
 ## Product changes required before this offer can be claimed as ready
 
-### Critical functional gap
+### Current product fit
 
-The public supplier-statement page is currently a landing page, not a completed statement-to-ledger reconciliation tool. The current recovery engine supports invoice, PO, goods receipt, payment, credit and amendment files, but no supplier-statement source type. Do not represent statement reconciliation as a functioning self-serve feature until implemented and tested.
+The current browser workbench already compares invoice lines with PO lines and goods-receipt quantities, flags duplicates and missing records, preserves source-row references and exports an exception worklist. The recovery engine adds payment, credit and amendment evidence. The first pilot should stay inside these supported checks and avoid claiming full supplier statement reconciliation.
 
-### Build requirements
+### Critical marketing gap
 
-1. Add a dedicated statement CSV input and AP-ledger input with documented aliases and required fields.
-2. Match by supplier, normalized transaction reference, transaction type, amount, currency and date; expose ambiguity instead of guessing.
+The public supplier-statement page is currently a landing page, not a completed statement-to-ledger reconciliation tool. It must be clearly marked as a future capability or removed from active sales navigation until the statement source type, matching logic, exports and tests exist.
+
+### Later expansion requirements
+
+1. Add dedicated supplier-statement and AP-ledger CSV inputs with documented aliases and required fields.
+2. Match by supplier, normalized transaction reference, transaction type, amount and currency; expose ambiguity instead of guessing.
 3. Classify statement-only, ledger-only, amount mismatch, duplicate candidate, possible unallocated payment and possible missing credit.
-4. Support optional opening/closing balance roll-forward only where sign conventions and fields are explicit.
+4. Support opening/closing balance roll-forward only where sign conventions and fields are explicit.
 5. Preserve physical source-row references and original values.
 6. Export exception CSV and a printable evidence report.
-7. Add fixtures for exact match, alternate reference, missing credit, unallocated payment, amount mismatch, duplicate, mixed currency, missing supplier, malformed CSV and opening/closing balance mismatch.
+7. Add fixtures for exact match, alternate reference, missing credit, unallocated payment, amount mismatch, duplicate, mixed currency, missing supplier and malformed CSV.
 8. Test false positives and misses against a human-reviewed reference set before making any accuracy claim.
 
 ### Trust and operational blockers
@@ -219,10 +223,10 @@ The target is not email volume. It is conversion from verified trigger to qualif
 
 ## Immediate next actions
 
-1. Verify whether DDC Foods still has the described manual reconciliation workflow; it is the best narrow workflow match but its public job listing is stale.
-2. Verify the SBFM vacancy and data shape; reject if its service invoices lack compatible PO/receipt evidence.
-3. Approach Sysco only if a bounded exception cohort and external review route can be identified.
-4. Build and test the actual supplier-statement reconciliation module before promoting it as a product feature.
+1. Verify the Sysco parked-invoice workflow and whether a bounded supplier queue can be independently reviewed; this is the strongest public fit to the existing engine, not a confirmed buyer.
+2. Verify the SBFM vacancy and data shape; reject if service invoices lack compatible PO/receipt records.
+3. Verify whether DDC Foods still has a current PO/receipt exception queue; do not pitch statement reconciliation until the future module is built.
+4. Correct or retire the public supplier-statement page so it does not imply an unbuilt tool is live.
 5. Resolve the D1 inbox configuration and the legal/payment operating route before accepting real customer data or money.
 6. Run a buyer-approved, human-reviewed reference set; report precision, misses, false positives, handling time and confirmed outcomes. Do not fabricate a benchmark.
 
