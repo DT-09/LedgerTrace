@@ -52,5 +52,7 @@ if (!html.includes('<script src="./recovery-core.js"></script>')) {
 
 if (!html.includes("clearIllustrativeInputs(t)")) throw new Error('Recovery uploads must not mix buyer files with illustrative sample records');
 if (!html.includes("duplicate_invoice_line")) throw new Error('Primary workbench must distinguish duplicate lines from multi-line invoices');
+if (!html.includes('money(flaggedValue,currencyCode)')) throw new Error('Primary flagged-value summary must display its currency code');
+if (!html.includes("s.currencyUnresolved?'Currency unresolved'")) throw new Error('Recovery summary must withhold mixed-currency totals');
 if (!html.includes("File exceeds the 10 MB limit.")) throw new Error('Primary upload size guard is missing');
 console.log('HTML checks passed: recovery script parses; original workbench, evidence inspector, report, review workflow, contact builder and recovery workflow are present.');
