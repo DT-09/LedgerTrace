@@ -97,8 +97,12 @@
       if(Number.isFinite(inv.price)&&Number.isFinite(poPrice)&&Math.abs(inv.price-poPrice)>0.0101)findings.push({code:'price_over_po',label:inv.price>poPrice?'Invoice unit price above PO':'Invoice unit price below PO',detail:'Invoice unit price '+inv.price+'; reference PO price '+poPrice+'.'});
       const invoiceLines=invoiceMap.get(key(inv.supplier,inv.invoice))||[];
       if(invoiceLines.length>1)findings.push({code:'invoice_multi_line',label:'Invoice has multiple lines',detail:'This invoice reference appears on '+invoiceLines.length+' lines. This is not, by itself, a duplicate.'});
-      const paymentRows=payments.filter(p=>Boolean(p.invoice)&&key(p.invoice)===key(inv.invoice)&&(!p.supplier||!inv.supplier||key(p.supplier)===key(inv.supplier)));
-      const creditRows=credits.filter(c=>Boolean(c.invoice)&&key(c.invoice)===key(inv.invoice)&&(!c.supplier||!inv.supplier||key(c.supplier)===key(inv.supplier)));
+      const rawPaymentRows=payments.filter(p=>Boolean(p.invoice)&&key(p.invoice)===key(inv.invoice));
+      const rawCreditRows=credits.filter(c=>Boolean(c.invoice)&&key(c.invoice)===key(inv.invoice));
+      const paymentSupplierConflict=rawPaymentRows.some(p=>Boolean(p.supplier)&&Boolean(inv.supplier)&&key(p.supplier)!==key(inv.supplier));
+      const creditSupplierConflict=rawCreditRows.some(c=>Boolean(c.supplier)&&Boolean(inv.supplier)&&key(c.supplier)!==key(inv.supplier));
+      const paymentRows=rawPaymentRows.filter(p=>!p.supplier||!inv.supplier||key(p.supplier)===key(inv.supplier));
+      const creditRows=rawCreditRows.filter(c=>!c.supplier||!inv.supplier||key(c.supplier)===key(inv.supplier));
       const monetaryRows=[inv,...poRows,...paymentRows,...creditRows];
       const knownCurrencies=monetaryRows.map(r=>String(r.currency||'').trim()).filter(Boolean);
       const currencyConflict=new Set(knownCurrencies.map(v=>key(v))).size>1||monetaryRows.some(r=>!String(r.currency||'').trim());
@@ -111,11 +115,13 @@
       if(creditRows.length&&!creditAmountsComplete)findings.push({code:'credit_amount_invalid',label:'Credit amount unavailable or invalid',detail:'At least one linked credit row has no valid numeric amount; net expected amount is withheld.'});
       if(paymentSupplierMissing)findings.push({code:'payment_supplier_missing',label:'Payment supplier identity missing',detail:'Linked payment rows without supplier identity cannot support a payment-excess candidate.'});
       if(creditSupplierMissing)findings.push({code:'credit_supplier_missing',label:'Credit supplier identity missing',detail:'Linked credit rows without supplier identity cannot support a net expected amount.'});
+      if(paymentSupplierConflict)findings.push({code:'payment_supplier_conflict',label:'Payment supplier conflicts with invoice',detail:'A payment row shares this invoice reference but names a different supplier. Payment excess is withheld until the reference is resolved.'});
+      if(creditSupplierConflict)findings.push({code:'credit_supplier_conflict',label:'Credit supplier conflicts with invoice',detail:'A credit row shares this invoice reference but names a different supplier. Net expected amount is withheld until the credit is resolved.'});
       const billedForShare=r=>Number.isFinite(r.amount)?r.amount:(Number.isFinite(r.qty)&&Number.isFinite(r.price)?r.qty*r.price:0);
       const invoiceTotal=(invoiceMap.get(key(inv.supplier,inv.invoice))||[]).reduce((s,r)=>s+billedForShare(r),0);
       const share=invoiceTotal>0?billedForShare(inv)/invoiceTotal:0;
-      const paid=currencyConflict||!paymentAmountsComplete||paymentSupplierMissing?NaN:paymentRows.reduce((s,p)=>s+p.amount,0)*share;
-      const credited=currencyConflict||!creditAmountsComplete||creditSupplierMissing?NaN:creditRows.reduce((s,c)=>s+c.amount,0)*share;
+      const paid=currencyConflict||!paymentAmountsComplete||paymentSupplierMissing||paymentSupplierConflict?NaN:paymentRows.reduce((s,p)=>s+p.amount,0)*share;
+      const credited=currencyConflict||!creditAmountsComplete||creditSupplierMissing||creditSupplierConflict?NaN:creditRows.reduce((s,c)=>s+c.amount,0)*share;
       const currency=inv.currency||paymentRows.find(p=>p.currency)?.currency||'';
       let supportedQty=NaN, expectedBeforeCredits=NaN, expectedNet=NaN, candidate=NaN, paymentExcessCandidate=NaN, status='needs_review';
       const canPrice=poRows.length>0&&!supplierConflict&&!supplierEvidenceMissing&&!currencyConflict&&Number.isFinite(credited)&&!(poRows.length>1&&poPrices.length>1)&&Number.isFinite(poPrice);
@@ -127,7 +133,7 @@
         const invoiceBilled=Number.isFinite(inv.amount)?inv.amount:(Number.isFinite(inv.qty)&&Number.isFinite(inv.price)?inv.qty*inv.price:NaN);
         const overcharge=Number.isFinite(invoiceBilled)?Math.max(0,invoiceBilled-expectedNet):NaN;
         candidate=overcharge;
-        if(paymentRows.length>0&&Number.isFinite(inv.amount)&&Number.isFinite(paid)&&!paymentSupplierMissing){
+        if(paymentRows.length>0&&Number.isFinite(inv.amount)&&Number.isFinite(paid)&&!paymentSupplierMissing&&!paymentSupplierConflict){
           paymentExcessCandidate=Math.max(0,paid-expectedNet);
           status=paymentExcessCandidate>0?'payment_excess_candidate':(candidate>0?'invoice_excess_unverified':'reviewed_no_excess');
         }else status=candidate>0?'invoice_excess_unpaid_or_unverified':'review';
