@@ -30,6 +30,10 @@ async function rateLimit(request, db) {
   return Number(result?.request_count ?? 0) <= 5;
 }
 
+export async function onRequestGet() {
+  return json({ ok: true, service: "ledgertrace-inquiry-intake", submission: "POST" }, 200);
+}
+
 export async function onRequestPost({ request, env }) {
   const requestOrigin = new URL(request.url).origin;
   if (request.headers.get("Origin") !== requestOrigin) {
