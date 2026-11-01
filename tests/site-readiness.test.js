@@ -25,7 +25,7 @@ for (const [name, html] of pages) {
 const home = pages[0][1];
 const allowedPalette = new Set(['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7']);
 for (const [name, html] of pages) {
-  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261101-2"'), name + ' must load the shared palette');
+  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261101-3"'), name + ' must load the shared palette');
   assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
   const colors = [...new Set([...html.matchAll(/#[0-9a-fA-F]{6}/g)].map(match => match[0].toUpperCase()))];
   assert.deepEqual(colors.filter(color => !allowedPalette.has(color)), [], name + ' contains colors outside the approved palette');
@@ -33,12 +33,32 @@ for (const [name, html] of pages) {
 assert.ok(!home.includes('ont-size:12px}}'), 'homepage must not contain the previously leaked CSS tail');
 
 const theme = fs.readFileSync('assets/ledgertrace-theme.css', 'utf8');
+
+assert.ok(theme.includes('color-scheme:dark'), 'shared theme must force dark mode');
+assert.ok(theme.includes('--espresso:#1C120C') && theme.includes('--roast:#2B1D15') && theme.includes('--slate:#1E293B'), 'dark palette surfaces must be defined');
+assert.ok(theme.includes('--cream:#EAE3D2') && theme.includes('--paper:#FDFBF7'), 'ivory and paper text colors must be defined');
+assert.ok(!theme.includes('#FFFFFF') && !theme.includes('#ffffff'), 'pure white must not be used');
+for (const [name, html] of pages) {
+  assert.ok(!html.includes('#FDFBF7-space'), name + ' must not contain the corrupted white-space property');
+  assert.ok(!/color-scheme\\s*:\\s*light/i.test(html), name + ' must not force a light color scheme');
+  const rgbColors = [...html.matchAll(/rgba?\\(([^)]+)\\)/gi)].map(match => match[1]);
+  for (const value of rgbColors) {
+    const channels = value.split(',').slice(0,3).map(channel => Math.round(Number(channel.trim())));
+    if (channels.length === 3 && channels.every(Number.isFinite)) {
+      assert.ok([...allowedPalette].some(hex => {
+        const rgb = [1,3,5].map(index => parseInt(hex.slice(index,index+2),16));
+        return rgb.every((channel,index) => channel === channels[index]);
+      }), name + ' contains an RGB color outside the approved palette: ' + value);
+    }
+  }
+}
+
 const styleOpenCount = home.split('<style').length - 1;
 const styleCloseCount = home.split('</style>').length - 1;
 assert.equal(styleOpenCount, styleCloseCount, 'homepage style tags must be balanced');
 assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS fragment into visible content');
 assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
-assert.ok(home.includes('href="/assets/ledgertrace-theme.css?v=20261101-2"'), 'authoritative palette stylesheet must load after inline legacy styles');
+assert.ok(home.includes('href="/assets/ledgertrace-theme.css?v=20261101-3"'), 'authoritative palette stylesheet must load after inline legacy styles');
 for (const color of ['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7']) {
   assert.ok(theme.toLowerCase().includes(color.toLowerCase()), 'authoritative theme is missing ' + color);
 }
