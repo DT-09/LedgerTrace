@@ -61,9 +61,12 @@
     const group=(rows,fn)=>{const m=new Map();for(const r of rows){const k=fn(r);if(!m.has(k))m.set(k,[]);m.get(k).push(r);}return m;};
     const poMap=group(pos,r=>key(r.po,r.item)), recMap=group(receipts,r=>key(r.po,r.item));
     const invoiceMap=group(invoices,r=>key(r.supplier,r.invoice));
+    const invoicePOItemMap=group(invoices.filter(r=>r.po&&r.item),r=>key(r.supplier,r.po,r.item));
     const amendMap=group(amendments,r=>key(r.po,r.item));
     const results=invoices.map(inv=>{
       const findings=[], k=key(inv.po,inv.item), hasMatchKey=Boolean(inv.po&&inv.item), pRows=hasMatchKey?(poMap.get(k)||[]):[], rawReceiptRows=hasMatchKey?(recMap.get(k)||[]):[], rRows=rawReceiptRows.filter(r=>Boolean(inv.supplier)&&Boolean(r.supplier)&&key(r.supplier)===key(inv.supplier));
+      const invoicePOItemLines=hasMatchKey?(invoicePOItemMap.get(key(inv.supplier,inv.po,inv.item))||[]):[];
+      const invoicePOItemAmbiguous=invoicePOItemLines.length>1;
       const receiptSupplierConflict=rawReceiptRows.length>0&&rRows.length===0&&Boolean(inv.supplier)&&rawReceiptRows.some(r=>Boolean(r.supplier));
       const receiptSupplierMissing=rawReceiptRows.some(r=>!r.supplier);
       const matchingPO=pRows.filter(p=>Boolean(inv.supplier)&&Boolean(p.supplier)&&key(p.supplier)===key(inv.supplier));
@@ -94,6 +97,7 @@
       const received=rRows.length&&rRows.every(r=>Number.isFinite(r.qty)&&r.qty>=0)?rRows.reduce((s,r)=>s+r.qty,0):NaN;
       if(!inv.invoice)findings.push({code:'invoice_id_missing',label:'Invoice reference missing',detail:'Cannot reliably link payment and credit records without an invoice reference.'});
       if(!hasMatchKey)findings.push({code:'match_key_missing',label:'PO or item reference missing',detail:'A complete PO number and item code are required before source rows can be linked.'});
+      if(invoicePOItemAmbiguous)findings.push({code:'invoice_po_item_allocation_ambiguous',label:'Multiple invoice lines share this PO item',detail:'This supplier/PO/item appears on invoice source row(s) '+invoicePOItemLines.map(r=>r.sourceRow).join(', ')+'. The current line-level view cannot allocate the shared PO and receipt quantities reliably, so quantity-based excess is withheld.'});
       if(supplierEvidenceMissing)findings.push({code:'supplier_identity_incomplete',label:'Supplier identity incomplete',detail:'The invoice and matched PO records must both identify the supplier before amounts are quantified.'});
       if(!Number.isFinite(inv.qty)||inv.qty<0)findings.push({code:'invoice_quantity_invalid',label:'Invoice quantity unavailable or invalid',detail:'A non-negative numeric invoice quantity is required for quantity-based calculations.'});
       if(poRows.some(p=>!Number.isFinite(p.qty)||p.qty<0))findings.push({code:'po_quantity_invalid',label:'PO quantity unavailable or invalid',detail:'At least one matched PO line has a missing, nonnumeric or negative quantity.'});
@@ -135,15 +139,20 @@
       if(creditSupplierMissing)findings.push({code:'credit_supplier_missing',label:'Credit supplier identity missing',detail:'Linked credit rows without supplier identity cannot support a net expected amount.'});
       if(paymentSupplierConflict)findings.push({code:'payment_supplier_conflict',label:'Payment supplier conflicts with invoice',detail:'A payment row shares this invoice reference but names a different supplier (source row(s): '+rawPaymentRows.filter(p=>p.supplier&&inv.supplier&&key(p.supplier)!==key(inv.supplier)).map(p=>p.sourceRow).join(', ')+'). Payment excess is withheld until the reference is resolved.'});
       if(creditSupplierConflict)findings.push({code:'credit_supplier_conflict',label:'Credit supplier conflicts with invoice',detail:'A credit row shares this invoice reference but names a different supplier (source row(s): '+rawCreditRows.filter(c=>c.supplier&&inv.supplier&&key(c.supplier)!==key(inv.supplier)).map(c=>c.sourceRow).join(', ')+'). Net expected amount is withheld until the credit is resolved.'});
-      const billedForShare=r=>Number.isFinite(r.amount)?r.amount:(Number.isFinite(r.qty)&&Number.isFinite(r.price)?r.qty*r.price:0);
-      const invoiceTotal=(invoiceMap.get(key(inv.supplier,inv.invoice))||[]).reduce((s,r)=>s+billedForShare(r),0);
-      const share=invoiceTotal>0?billedForShare(inv)/invoiceTotal:0;
-      const paid=currencyConflict||!paymentAmountsComplete||paymentSupplierMissing||paymentSupplierConflict?NaN:paymentRows.reduce((s,p)=>s+p.amount,0)*share;
-      const credited=currencyConflict||!creditAmountsComplete||creditSupplierMissing||creditSupplierConflict?NaN:creditRows.reduce((s,c)=>s+c.amount,0)*share;
+      const billedForShare=r=>Number.isFinite(r.amount)?r.amount:(Number.isFinite(r.qty)&&Number.isFinite(r.price)?r.qty*r.price:NaN);
+      const invoiceLineValues=invoiceLines.map(billedForShare);
+      const invoiceAllocationComplete=invoiceLineValues.every(v=>Number.isFinite(v)&&v>=0);
+      const invoiceTotal=invoiceAllocationComplete?invoiceLineValues.reduce((sum,value)=>sum+value,0):NaN;
+      const share=invoiceAllocationComplete&&invoiceTotal>0?billedForShare(inv)/invoiceTotal:NaN;
+      const invoiceAllocationUnresolved=!Number.isFinite(share);
+      if((paymentRows.length||creditRows.length)&&invoiceAllocationUnresolved)findings.push({code:'invoice_allocation_unresolved',label:'Invoice-level payment or credit allocation unavailable',detail:'At least one invoice line lacks a reliable non-negative line amount, or the invoice total is zero. Invoice-level payments and credits cannot be allocated safely to this line; payment-excess and net-credit calculations are withheld.'});
+      if(invoiceLines.length>1&&(paymentRows.length||creditRows.length)&&Number.isFinite(share))findings.push({code:'invoice_amounts_allocated_pro_rata',label:'Invoice-level amounts allocated by line value',detail:'Invoice-level payments and credits are allocated across invoice lines in proportion to each line’s billed value. Verify this assumption against remittance and credit-allocation detail before confirming a payment excess.'});
+      const paid=!paymentRows.length||currencyConflict||!paymentAmountsComplete||paymentSupplierMissing||paymentSupplierConflict||!Number.isFinite(share)?NaN:paymentRows.reduce((sum,p)=>sum+p.amount,0)*share;
+      const credited=!creditRows.length?0:(currencyConflict||!creditAmountsComplete||creditSupplierMissing||creditSupplierConflict||!Number.isFinite(share)?NaN:creditRows.reduce((sum,c)=>sum+c.amount,0)*share);
       const currency=inv.currency||paymentRows.find(p=>p.currency)?.currency||'';
       let supportedQty=NaN, expectedBeforeCredits=NaN, expectedNet=NaN, candidate=NaN, paymentExcessCandidate=NaN, status='needs_review';
       const canPrice=poRows.length>0&&!supplierConflict&&!supplierEvidenceMissing&&!currencyConflict&&!amendmentEffectivityUnverified&&!amendmentConflict&&Number.isFinite(credited)&&!(poRows.length>1&&poPrices.length>1)&&Number.isFinite(poPrice);
-      const canQty=Number.isFinite(inv.qty)&&inv.qty>=0&&Number.isFinite(qtyOrdered)&&Number.isFinite(received)&&rRows.length>0&&!supplierEvidenceMissing&&!receiptSupplierConflict;
+      const canQty=Number.isFinite(inv.qty)&&inv.qty>=0&&Number.isFinite(qtyOrdered)&&Number.isFinite(received)&&rRows.length>0&&!supplierEvidenceMissing&&!receiptSupplierConflict&&!invoicePOItemAmbiguous;
       if(canQty) supportedQty=Math.max(0,Math.min(inv.qty,qtyOrdered,received));
       if(canPrice&&canQty){
         expectedBeforeCredits=supportedQty*poPrice;
