@@ -122,4 +122,22 @@ out = analyze(inv, po, grn, '', wrongSupplierCredit);
 assert.ok(Number.isNaN(out.results[0].candidate), 'a credit under a conflicting supplier identity must block the net expected amount');
 assert.ok(out.results[0].findings.some(f => f.code === 'credit_supplier_conflict' && f.detail.includes('source row')));
 
+const validAmendment = 'amendment_id,po_number,supplier,item_code,amended_quantity,amended_unit_price,effective_date\nAMD-1,PO-1,Acme,SKU-1,10,9,2026-01-05';
+out = analyze(inv, po, grn, '', '', validAmendment);
+assert.equal(out.results[0].poPrice, 9, 'an approved-date amendment can update the reference PO price');
+assert.equal(out.results[0].candidate, 30);
+assert.deepEqual(out.results[0].sourceRows.amendments, [2]);
+const invoiceWithoutDate = 'invoice_number,supplier,po_number,item_code,quantity,unit_price,line_amount,currency\nINV-1,Acme,PO-1,SKU-1,10,12,120,USD';
+out = analyze(invoiceWithoutDate, po, grn, '', '', validAmendment);
+assert.ok(Number.isNaN(out.results[0].candidate), 'an amendment must not be applied when invoice date is missing');
+assert.ok(out.results[0].findings.some(f => f.code === 'amendment_effectivity_unverified'));
+const nonIsoAmendment = 'amendment_id,po_number,supplier,item_code,amended_quantity,amended_unit_price,effective_date\nAMD-2,PO-1,Acme,SKU-1,10,9,01/05/2026';
+out = analyze(inv, po, grn, '', '', nonIsoAmendment);
+assert.ok(Number.isNaN(out.results[0].candidate), 'non-ISO amendment dates must not be compared lexicographically');
+assert.ok(out.results[0].findings.some(f => f.code === 'amendment_effectivity_unverified'));
+const conflictingAmendments = 'amendment_id,po_number,supplier,item_code,amended_quantity,amended_unit_price,effective_date\nAMD-3,PO-1,Acme,SKU-1,10,9,2026-01-05\nAMD-4,PO-1,Acme,SKU-1,10,8,2026-01-05';
+out = analyze(inv, po, grn, '', '', conflictingAmendments);
+assert.ok(Number.isNaN(out.results[0].candidate), 'conflicting amendments with the same effective date must block calculation');
+assert.ok(out.results[0].findings.some(f => f.code === 'amendment_conflict'));
+
 console.log('LedgerTrace Recovery tests passed (CSV quoting, source trace, price excess, payment evidence, credits, supplier conflicts, currency guards, multi-line allocation).');
