@@ -30,7 +30,7 @@ assert.ok(home.includes('The secure inbox is unavailable, so no inquiry was stor
 assert.ok(home.includes('Fees are negotiated privately based on record volume, data quality, selected checks and review effort'), 'pricing is negotiated rather than publicly fixed');
 assert.ok(!/\$100/.test(home), 'public site must not expose a private minimum fee');
 assert.ok(product.includes('href="#evidence-workspace"') && product.includes('Inspect example evidence'), 'product landing page must route buyers to the example evidence workspace');
-assert.ok(product.includes('href="/#evaluation"') && product.includes('See the paid Evidence Review'), 'product landing page must provide a clear paid-evaluation route');
+assert.ok(product.includes('href="/#evaluation"') && product.includes('Discuss a paid Evidence Review'), 'product landing page must provide a clear paid-evaluation route');
 assert.ok(product.includes('Synthetic values') || product.includes('SYNTHETIC DATA'), 'product examples must be labelled as synthetic');
 assert.ok(product.includes('No automatic message is sent from this page.'), 'product page must not imply an inquiry was sent automatically');
 
