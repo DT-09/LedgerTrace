@@ -30,8 +30,8 @@ async function rateLimit(request, db) {
   return Number(result?.request_count ?? 0) <= 5;
 }
 
-export async function onRequestGet() {
-  return json({ ok: true, service: "ledgertrace-inquiry-intake", submission: "POST" }, 200);
+export async function onRequestGet({ env }) {
+  return json({ ok: true, service: "ledgertrace-inquiry-intake", submission: "POST", inboxConfigured: Boolean(env?.DB), emailNotificationsConfigured: Boolean(env?.RESEND_API_KEY && env?.RESEND_FROM_EMAIL && env?.LEAD_NOTIFICATION_EMAIL) }, 200);
 }
 
 export async function onRequestPost({ request, env }) {
