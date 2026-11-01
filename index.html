@@ -938,7 +938,7 @@ async function handleContactSubmit(e){
  }catch(error){}
  copyText(brief);
  $('contactStatus').textContent='The secure inbox is unavailable, so no inquiry was stored. Use the prepared Email or WhatsApp link below to send the scope brief manually. Review the message before sending.';
-}
+}finally{submit.disabled=false;submit.textContent='Prepare inquiry brief ↗'}
 
 function resetAll(){loadSamples();$('results').classList.add('hidden');closeDrawer();$('search').value='';$('runHint').textContent='Sample records restored. Run reconciliation to produce a fresh report.';toast('Sample restored.')}
 $('invoiceFile').addEventListener('change',e=>loadFile('invoice',e.target.files[0]));$('poFile').addEventListener('change',e=>loadFile('po',e.target.files[0]));$('receiptFile').addEventListener('change',e=>loadFile('receipt',e.target.files[0]));
