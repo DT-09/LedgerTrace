@@ -3,7 +3,11 @@ import fs from "node:fs";
 
 const source = fs.readFileSync("functions/api/inquiries.js", "utf8");
 const moduleUrl = "data:text/javascript;base64," + Buffer.from(source).toString("base64");
-const { onRequestPost } = await import(moduleUrl);
+const { onRequestGet, onRequestPost } = await import(moduleUrl);
+
+const health = await onRequestGet();
+assert.equal(health.status, 200);
+assert.equal((await health.json()).service, "ledgertrace-inquiry-intake");
 
 const validPayload = {
   email: "finance@example.com",
