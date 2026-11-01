@@ -49,7 +49,18 @@ Do not count flagged amounts as recovered cash. Do not add invoice-excess and pa
 
 ## Target account selection
 
-### Priority 1 — Sysco GB (exact product fit; enterprise friction)
+### Priority 1 — Thompson Waste Ltd (fresh SME trigger; data-fit unknown)
+
+Public evidence: a current Senior Purchase Ledger Clerk listing is described as an immediate-start, temporary/part-time or temp-to-perm role. Duties include processing purchase-ledger invoices, reconciling supplier statements, scanning invoices and delivery notes, and resolving invoice queries. A separate Finance/Accounts Administrator vacancy mentions a busy office, purchase ledger work and Sage 50. The company is a small, family-run waste-management operator; public company data reports 14 employees in 2025. These are staffing and workflow signals, not proof of a backlog or willingness to outsource.
+
+Role evidence: https://www.simplyhired.co.uk/job/NkzB9aa5zZfVWW1rxrWdge97h0_5AHVKLd_1KOh2zRNQHoAiSySy2Q  
+Finance/Accounts Administrator listing: https://uk.indeed.com/viewjob?jk=fd099fc862c596b0  
+Official contact: https://www.thompsonwaste.co.uk/contact/  
+Published email: info@thompsonwaste.co.uk
+
+Qualification needed: Is there a live backlog or recurring supplier invoice queue behind the hiring need? Do invoices carry PO references and do delivery notes/receipt exports exist? Can Sage 50 export the needed fields? Would a bounded second-pass evidence review help the finance team, or are they simply hiring for routine processing? Do not pitch until these questions are answered.
+
+### Priority 2 — Sysco GB (exact product fit; enterprise friction)
 
 Public evidence: AP Account Handler vacancy describes invoices parked because they do not match approved and goods-received purchase orders, plus supplier statement reconciliations and unresolved items. The parked-invoice workflow is a direct fit for the current invoice/PO/receipt engine.
 
@@ -57,15 +68,13 @@ Vacancy: https://jobs.smartrecruiters.com/syscogb/744000149876669
 
 Qualification needed: Is there a defined supplier cohort or recurring parked-invoice queue not already handled by existing SAP/AP controls? Are invoice, PO and receipt exports available? Is an external second-pass review permitted? Who owns the queue and can approve a bounded evaluation?
 
-### Priority 2 — SBFM (volume and improvement signal; data-shape risk)
-
 Public evidence: AP Manager vacancy describes approximately 800 invoices/month, PO/invoice discrepancies, payment delays, supplier statement reconciliation and process improvement.
 
 Official vacancy: https://careers.sb-fm.co.uk/vacancies/23742/accounts-payable-manager.html
 
 Qualification needed: Is this a current vacancy and is the AP workflow still as described? Does the supplier population include itemised POs and receipt/service-entry records that the current engine can reconcile? Is there a specific supplier queue that needs a second-pass review?
 
-### Priority 3 — DDC Foods (strong manual workflow fit; stale signal)
+### Priority 4 — DDC Foods (strong manual workflow fit; stale signal)
 
 Public evidence: purchase-ledger job description describes invoice/credit/statement handling, pairing delivery paperwork with invoices, supplier-statement reconciliation, a credit-note spreadsheet, Excel and accounting-package data entry. The accessible job page states 80+ staff and £18m turnover but is old; verify that the role/process remains current before treating it as an active trigger.
 
@@ -77,7 +86,7 @@ Qualification needed: Is there a current parked-invoice or PO/receipt mismatch q
 
 ### Do not call these customers
 
-All three are researched targets only. No buying intent, decision-maker conversation, approved scope, purchase order or payment has been evidenced.
+All four are researched targets only. No buying intent, decision-maker conversation, approved scope, purchase order or payment has been evidenced.
 
 ## Concrete paid offer
 
@@ -223,9 +232,10 @@ The target is not email volume. It is conversion from verified trigger to qualif
 
 ## Immediate next actions
 
-1. Verify the Sysco parked-invoice workflow and whether a bounded supplier queue can be independently reviewed; this is the strongest public fit to the existing engine, not a confirmed buyer.
-2. Verify the SBFM vacancy and data shape; reject if service invoices lack compatible PO/receipt records.
-3. Verify whether DDC Foods still has a current PO/receipt exception queue; do not pitch statement reconciliation until the future module is built.
+1. Qualify Thompson Waste first: establish whether the current hiring signal reflects a real parked-invoice or PO/receipt exception queue and whether Sage 50 exports fit. This is the most accessible SME lead, not a confirmed buyer.
+2. Verify the Sysco parked-invoice workflow and whether a bounded supplier queue can be independently reviewed; this is the strongest explicit product fit, but an enterprise sale may be slow.
+3. Verify the SBFM vacancy and data shape; reject if service invoices lack compatible PO/receipt records.
+4. Verify whether DDC Foods still has a current PO/receipt exception queue; do not pitch statement reconciliation until the future module is built.
 4. Correct or retire the public supplier-statement page so it does not imply an unbuilt tool is live.
 5. Resolve the D1 inbox configuration and the legal/payment operating route before accepting real customer data or money.
 6. Run a buyer-approved, human-reviewed reference set; report precision, misses, false positives, handling time and confirmed outcomes. Do not fabricate a benchmark.
