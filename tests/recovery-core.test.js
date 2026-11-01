@@ -150,5 +150,6 @@ assert.equal(out.results[1].candidate, 20);
 assert.equal(out.summary.currencyUnresolved, true, 'summary must detect multiple currencies across otherwise valid invoice lines');
 assert.ok(Number.isNaN(out.summary.invoiceExcess), 'summary must not add USD and EUR candidate values');
 assert.ok(Number.isNaN(out.summary.paymentExcess), 'payment summary must also withhold mixed-currency totals');
+assert.match(out.summary.interpretation, /Do not add them together/);
 
 console.log('LedgerTrace Recovery tests passed (CSV quoting, source trace, price excess, payment evidence, credits, supplier conflicts, currency guards, multi-line allocation).');
