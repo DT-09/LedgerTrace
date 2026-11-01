@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#292D29">
-<meta name="description" content="Investigate duplicate supplier payments, missed credits, invoice overcharges and supplier statement differences. Test compatible CSV records in your browser, inspect candidate evidence and request a scoped human review.">
+<meta name="theme-color" content="#1C120C">
+<meta name="description" content="Investigate duplicate supplier payments, missed supplier credits, invoice overcharges and quantity or price variances. Run a browser-based CSV check, inspect source-linked candidate findings and request a scoped paid investigation.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="LedgerTrace — Supplier reconciliation investigation">
 <meta property="og:description" content="Investigate supplier-payment discrepancies with source-linked evidence. Test compatible CSV records and request a scoped human review.">
@@ -472,7 +472,109 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 h1,h2,h3,.section-title,.hero h1,.eval-copy h2{font-family:var(--display)!important}
 .hero h1{font-weight:600!important;letter-spacing:-.075em!important}
 #runBtn{position:relative;z-index:1;pointer-events:auto}
-</style></head>
+</style>
+<style id="ledgertrace-warm-commercial-system">
+:root{
+ color-scheme:light!important;
+ --bg:#FDFBF7!important;--panel:#EAE3D2!important;--panel2:#D1C7BD!important;
+ --line:rgba(43,29,21,.17)!important;--line2:#A89F91!important;
+ --text:#1C120C!important;--muted:#665C53!important;
+ --blue:#3B82F6!important;--amber:#D97706!important;--green:#53765F!important;--red:#B94E3B!important;
+ --lt-espresso:#1C120C;--lt-roast:#2B1D15;--lt-slate:#1E293B;--lt-stone:#A89F91;
+ --lt-linen:#D1C7BD;--lt-cream:#EAE3D2;--lt-coral:#E07A5F;--lt-blue:#3B82F6;--lt-ochre:#D97706;--lt-paper:#FDFBF7;
+}
+html,body{background:#FDFBF7!important;color:#1C120C!important}
+body:before{opacity:.22;background-image:linear-gradient(rgba(43,29,21,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(43,29,21,.045) 1px,transparent 1px)!important}
+body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgba(224,122,95,.10),transparent 38%)!important}
+h1,h2,h3,.brand-name,.footer-brand-name{color:#1C120C!important}
+p,.muted,.hero-desc,.section-lead,.eval-copy p{color:#665C53}
+.eyebrow,.section-index,.record-id,.micro,.metric-label{color:#B85B43!important}
+.header,.header.scrolled{background:rgba(253,251,247,.86)!important;border:1px solid rgba(43,29,21,.16)!important;box-shadow:0 12px 42px rgba(28,18,12,.09)!important}
+.header .brand-name{color:#1C120C!important}
+.header .nav{background:rgba(253,251,247,.97)!important;border-color:rgba(43,29,21,.16)!important}
+.header .nav a{color:#51463D!important}
+.header .nav a:hover{color:#1C120C!important;background:rgba(224,122,95,.10)!important}
+.header .menu-toggle{color:#1C120C!important;border-color:#A89F91!important;background:rgba(209,199,189,.25)!important}
+.header-cta{color:#1C120C!important;border-color:#A89F91!important}
+.button{background:#E07A5F!important;border-color:#E07A5F!important;color:#1C120C!important;font-weight:700!important}
+.button:hover{background:#D96D50!important;border-color:#D96D50!important}
+.button.secondary{background:transparent!important;border-color:#A89F91!important;color:#2B1D15!important}
+.button.secondary:hover{background:rgba(224,122,95,.09)!important;border-color:#E07A5F!important}
+.button.ghost{color:#665C53!important}
+.hero{padding-top:145px!important;min-height:660px!important}
+.hero h1{color:#1C120C!important}
+.hero h1 em{color:#E07A5F!important}
+.hero-desc{color:#51463D!important}
+.privacy-note{color:#665C53!important}
+.privacy-note:before{background:#53765F!important;box-shadow:none!important}
+.hero-proofline{color:#665C53!important}
+.scene{background:#1C120C;border:1px solid rgba(43,29,21,.15);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(28,18,12,.15)}
+.scene .ledger-art-top,.scene .ledger-art-caption{color:#D1C7BD!important}
+.scene .ledger-art-heading{fill:#FDFBF7!important}
+.signal-strip{border-color:rgba(43,29,21,.20)!important}
+.signal+.signal{border-left-color:rgba(43,29,21,.17)!important}
+.signal strong{color:#2B1D15!important}.signal span{color:#665C53!important}
+.commercial-entry{padding:60px 0;background:#2B1D15;color:#FDFBF7;border-block:1px solid rgba(28,18,12,.3)}
+.commercial-entry-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center}
+.commercial-entry .eyebrow{color:#E07A5F!important}
+.commercial-entry h2{font:600 clamp(34px,4.5vw,54px)/1.04 var(--display);letter-spacing:-.06em;color:#FDFBF7!important;max-width:650px;margin:16px 0}
+.commercial-entry-copy p{color:#D1C7BD!important;max-width:620px;line-height:1.8}
+.commercial-entry-output{padding:23px 25px;border:1px solid rgba(209,199,189,.27);border-radius:13px;background:rgba(28,18,12,.42)}
+.commercial-entry-label{font:11px var(--mono);letter-spacing:.12em;color:#E07A5F;margin-bottom:12px}
+.commercial-entry-output>div:not(.commercial-entry-label){display:flex;gap:14px;padding:12px 0;border-top:1px solid rgba(209,199,189,.15);color:#FDFBF7;font-size:13px}
+.commercial-entry-output b{font:12px var(--mono);color:#E07A5F}
+.commercial-entry-output p{margin:12px 0 0;color:#A89F91;font-size:11px;line-height:1.7}
+.section{background:transparent!important}
+.section-title{color:#1C120C!important}
+.section-lead{color:#665C53!important}
+.workbench{background:#EAE3D2!important;border-block:1px solid rgba(43,29,21,.13)!important}
+.workbench-shell{background:#1E293B!important;border-color:rgba(209,199,189,.22)!important;box-shadow:0 24px 65px rgba(28,18,12,.12)!important}
+.workbench-bar{background:#2B1D15!important;border-color:rgba(209,199,189,.18)!important}
+.workbench-title strong{color:#FDFBF7!important}.workbench-title span{color:#D1C7BD!important}
+.workbench-body{background:#1E293B!important}
+.source-card,.metric,.report,.report-block,.evidence-value{background:#2B1D15!important;border-color:rgba(209,199,189,.22)!important}
+.source-head strong,.metric-value,.results-head h3,.report-head h3,.report-block h4{color:#FDFBF7!important}
+.source-card p,.source-head small,.file-meta,.metric-note,.report-head p,.report-block p,.report-block li,.table-note{color:#D1C7BD!important}
+.source-icon{color:#E07A5F!important;border-color:rgba(224,122,95,.4)!important}
+.file-input{color:#D1C7BD!important}.file-input::file-selector-button{background:#1E293B!important;color:#FDFBF7!important;border-color:#A89F91!important}
+.metric-label{color:#D1C7BD!important}.metric-value.amber{color:#D97706!important}
+.table-wrap{border-color:rgba(209,199,189,.24)!important}
+table{color:#FDFBF7!important}th{background:#1E293B!important;color:#D1C7BD!important}
+td{border-bottom-color:rgba(209,199,189,.14)!important}tbody tr:hover{background:rgba(59,130,246,.12)!important}
+.cell-main{color:#FDFBF7!important}.cell-sub{color:#A89F91!important}.findings-cell{color:#D1C7BD!important}
+.search{background:#1E293B!important;border-color:#A89F91!important;color:#FDFBF7!important}
+.filter-btn{color:#D1C7BD!important;border-color:rgba(209,199,189,.3)!important}.filter-btn.active{background:rgba(59,130,246,.18)!important;border-color:#3B82F6!important;color:#FDFBF7!important}
+.pill.exception{color:#F4B45C!important}.pill.matched{color:#9BC6A5!important}.pill.review{color:#F19A88!important}
+.audience-card,.method-card,.faq-item,.commercial-proof,.privacy-architecture{background:#FDFBF7!important;border-color:rgba(43,29,21,.17)!important}
+.audience-card h3,.method-card h3,.commercial-proof h3,.privacy-architecture h3{color:#2B1D15!important}
+.audience-card p,.method-card p,.commercial-proof li,.privacy-architecture p{color:#665C53!important}
+.boundary,.assurance-boundary{background:rgba(217,119,6,.07)!important;border-color:rgba(217,119,6,.35)!important}
+.boundary p,.boundary strong{color:#51463D!important}
+.evaluation{background:#EAE3D2!important;border-top:1px solid rgba(43,29,21,.16)!important}
+.eval-copy h2{color:#1C120C!important}
+.eval-quick-card,.eval-deliverables,.eval-details{background:#FDFBF7!important;border-color:rgba(43,29,21,.18)!important}
+.eval-quick-card strong,.eval-deliverables-heading strong{color:#2B1D15!important}
+.eval-quick-card span,.eval-deliverables-list li,.eval-details p{color:#665C53!important}
+.eval-quick-card .step-label,.eval-deliverables-heading .step-label{color:#B85B43!important}
+.drawer,.contact-panel{background:#FDFBF7!important;color:#1C120C!important;border-color:#A89F91!important}
+.drawer h2,.drawer h3,.contact-panel h2{color:#1C120C!important}
+.drawer p,.drawer li,.contact-panel p,.contact-note{color:#665C53!important}
+.form-control,input,textarea,select{background:#FDFBF7!important;color:#1C120C!important;border-color:#A89F91!important}
+.form-control::placeholder,input::placeholder,textarea::placeholder{color:#8A8075!important}
+.form-label{color:#2B1D15!important}
+.icon-button{color:#1C120C!important;border-color:#A89F91!important}
+.footer{background:#1C120C!important;color:#FDFBF7!important;border-top-color:#A89F91!important}
+.footer h3,.footer-brand-name{color:#FDFBF7!important}
+.footer p,.footer-column a,.footer-legal p{color:#D1C7BD!important}
+.footer-column h3{color:#E07A5F!important}
+.wordmark{color:rgba(234,227,210,.22)!important}
+#toast{background:#2B1D15!important;border-color:#E07A5F!important;color:#FDFBF7!important}
+@media(max-width:850px){.commercial-entry-grid{grid-template-columns:1fr;gap:25px}.commercial-entry{padding:45px 0}}
+@media(max-width:760px){.hero{padding-top:125px!important;min-height:auto!important}.scene{min-height:380px}.commercial-entry h2{font-size:36px}}
+@media(max-width:520px){.scene{min-height:320px}.commercial-entry-output{padding:17px}.commercial-entry-output>div:not(.commercial-entry-label){font-size:12px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+</head>
 <body>
 <header class="header" id="header">
   <a class="brand" href="/" aria-label="LedgerTrace home">
@@ -506,10 +608,10 @@ h1,h2,h3,.section-title,.hero h1,.eval-copy h2{font-family:var(--display)!import
 <section class="hero container" id="top">
   <div class="hero-copy" id="product">
     <div class="eyebrow">Supplier reconciliation investigation / Distributors &amp; AP teams</div>
-    <h1>Find supplier-payment leakage. <em>Show the evidence.</em></h1>
-    <p class="hero-desc">Run a supplier-payment investigation yourself. Compare invoice, purchase-order, goods-receipt, payment and credit records where supported. LedgerTrace builds a source-linked worklist of candidate overcharges, duplicate payments, quantity gaps and missing credits for your finance team to verify.</p>
-    <div class="hero-actions"><a class="button" href="#recovery-investigation">Run a supplier-payment check <span aria-hidden="true">↘</span></a><a class="button secondary" href="#investigation">Try the invoice / PO / receipt check <span aria-hidden="true">↘</span></a></div>
-    <div class="privacy-note">SELF-SERVICE CSV ANALYSIS · FILES STAY IN YOUR BROWSER</div><p class="hero-proofline">Bring one unresolved supplier account, invoice discrepancy or exception backlog. Agree the scope, fee, data handling and acceptance criteria before work begins.</p>
+    <h1>Find the discrepancy. <em>Build the case.</em></h1>
+    <p class="hero-desc">A supplier balance does not explain itself. LedgerTrace compares the invoice, purchase-order, receipt, payment and credit records your files support—then shows the source rows, calculation and rule behind each candidate discrepancy. Your finance team decides what is valid.</p>
+    <div class="hero-actions"><a class="button" href="#recovery-investigation">Run the supplier-payment check <span aria-hidden="true">↘</span></a><a class="button secondary" href="#evaluation">Request a paid case review <span aria-hidden="true">↗</span></a></div>
+    <div class="privacy-note">LOCAL CSV ANALYSIS · FILES STAY IN THIS BROWSER TAB</div><p class="hero-proofline">Start with one supplier account, one disputed balance or one exception backlog. No ERP replacement. No automatic accounting decisions.</p>
   </div>
   <div class="scene ledger-illustration" id="scene" aria-label="LedgerTrace product illustration: invoice, purchase order and goods receipt data flow through a reconciliation engine into matched records, traceable exceptions and a reviewable evidence package">
   <div class="ledger-art-top"><span>LEDGERTRACE / PRODUCT SYSTEM</span><span>FROM RAW RECORDS TO REVIEWABLE EVIDENCE</span></div>
@@ -602,6 +704,24 @@ h1,h2,h3,.section-title,.hero h1,.eval-copy h2{font-family:var(--display)!import
   </svg>
   <div class="ledger-art-caption"><span>ILLUSTRATIVE WORKFLOW · SAMPLE RECORDS</span><span>TRACEABLE FINDINGS · HUMAN REVIEW</span></div>
 </div>
+  </div>
+</section>
+<section class="commercial-entry" aria-label="Paid supplier payment investigation">
+  <div class="container commercial-entry-grid">
+    <div class="commercial-entry-copy">
+      <div class="eyebrow">THE COMMERCIAL OFFER / ONE BOUNDED CASE</div>
+      <h2>Turn an unexplained supplier balance into an evidence file.</h2>
+      <p>LedgerTrace offers a scoped second-pass investigation for distributors and AP/accounting providers. We review the records available, separate supported discrepancies from unresolved questions, and hand back a review-ready case file.</p>
+      <a class="button" href="#evaluation">Scope a paid investigation <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="commercial-entry-output">
+      <div class="commercial-entry-label">THE HANDOFF</div>
+      <div><b>01</b><span>Exception register with source-row references</span></div>
+      <div><b>02</b><span>Reproducible comparisons and calculations</span></div>
+      <div><b>03</b><span>Unresolved evidence gaps and reviewer questions</span></div>
+      <div><b>04</b><span>Prioritized next actions for human verification</span></div>
+      <p>Scope, fee, data handling and acceptance criteria are agreed before work starts. No recovery is guaranteed.</p>
+    </div>
   </div>
 </section>
 <div class="container"><div class="trace-rule"></div><div class="signal-strip">
@@ -763,9 +883,9 @@ h1,h2,h3,.section-title,.hero h1,.eval-copy h2{font-family:var(--display)!import
   <div class="container">
     <div class="eval-grid">
       <div class="eval-copy eval-copy-compact">
-        <div class="section-index">09 / PAID EVIDENCE REVIEW</div>
-        <h2>Turn a discrepancy into a reviewable case.</h2>
-        <p class="eval-intro"><strong>For distributors with an unresolved supplier balance, invoice mismatch or reconciliation backlog.</strong> We agree one bounded investigation, compare the available invoice/PO/receipt/payment/credit records that the data supports, and deliver a source-linked exception worklist with the evidence, unresolved questions and next-review priorities. No flagged amount is represented as a confirmed loss or recoverable money.</p><p class="small muted"><strong>Partner route:</strong> AP and accounting service providers can discuss a bounded second-pass review for one client-approved supplier case or exception backlog. The provider remains responsible for client permissions, the client relationship and final accounting decisions.</p>
+        <div class="section-index">09 / PAID SUPPLIER-PAYMENT INVESTIGATION</div>
+        <h2>One supplier. One investigation. A case file your team can verify.</h2>
+        <p class="eval-intro"><strong>For distributors and AP/accounting providers with a specific unresolved supplier account or exception backlog.</strong> We agree one bounded investigation, review the available invoice/PO/receipt/payment/credit records, and deliver a source-linked exception register, reproducible calculations, evidence gaps and reviewer priorities. Candidate amounts are not presented as confirmed losses or recoverable money.</p><p class="small muted"><strong>Partner route:</strong> AP and accounting service providers can discuss a bounded second-pass review for one client-approved supplier case or exception backlog. The provider remains responsible for client permissions, the client relationship and final accounting decisions.</p>
 
         <div class="eval-quick-grid" aria-label="Evaluation at a glance">
           <div class="eval-quick-card"><span class="step-label">01 / INPUT</span><strong>Approved CSV exports</strong><span>Invoices, POs and goods receipts, as available.</span></div>
