@@ -5,15 +5,28 @@ LedgerTrace remains a browser-side reconciliation workbench. This optional Pages
 ## 1. Create and bind the inquiry database
 
 1. In Cloudflare, create a D1 database named \`ledgertrace-inquiries\`.
-2. Apply \`migrations/0001_create_inquiries.sql\` to that database.
+2. Apply migrations/0001_create_inquiries.sql and then migrations/0002_create_analytics_events.sql to that database.
 3. Open the LedgerTrace Pages project settings.
 4. Under **Settings → Functions → D1 database bindings**, add a binding named \`DB\` and select \`ledgertrace-inquiries\`.
 5. Redeploy the Pages project after saving the binding.
 
-The API route is \`POST /api/inquiries\`. Without the \`DB\` binding it returns a controlled 503 response and the website falls back to its manual WhatsApp/email handoff.
+The inquiry API is POST /api/inquiries. The first-party event API is POST /api/events; both use the same D1 binding. Without DB, inquiry submission returns a controlled 503 and uses the manual contact fallback. Event tracking fails quietly and records nothing.
 The `GET /api/inquiries` health response exposes only two non-secret booleans: `inboxConfigured` and `emailNotificationsConfigured`. Check these flags before accepting a real inquiry.
 
-## 2. Optional email notification
+
+## 2. Verify first-party event analytics
+
+The GET /api/events health response reports whether the shared D1 binding is available. After applying migration 0002 and binding DB, open the site with a tagged link, use the sample checker, and verify event counts in D1:
+
+```sql
+SELECT date(created_at) AS day, event_name, utm_source, utm_medium, utm_campaign, COUNT(*) AS events
+FROM analytics_events
+GROUP BY day, event_name, utm_source, utm_medium, utm_campaign
+ORDER BY day DESC;
+```
+
+The event table stores event names, page paths, referrer hostnames, UTM tags and timestamps only. It does not store visitor IP addresses, cookies, form fields, file names or uploaded file contents. Events are pruned after 90 days. These are event counts, not unique visitor counts.
+## 3. Optional email notification
 
 The D1 table is the inquiry inbox. To receive an email alert when a record is saved, configure these Pages environment variables:
 
@@ -23,7 +36,7 @@ The D1 table is the inquiry inbox. To receive an email alert when a record is sa
 
 Email notification is optional. A notification failure does not discard a successfully stored inquiry. Do not put API keys in GitHub source files.
 
-## 3. Verify before enabling the form
+## 4. Verify before enabling the form
 
 - Submit a test inquiry using an address you control.
 - Confirm the API returns HTTP 201 and a reference.
