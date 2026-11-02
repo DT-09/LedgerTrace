@@ -39,7 +39,7 @@ a{color:#EADEC9} a:hover{color:#FCF9F2}
 .button.secondary,.button.ghost,.btn.alt,.ep-btn-secondary{background:transparent!important;border:1px solid rgba(197,179,166,.38)!important;color:#F7F1E6!important}
 .button.secondary:hover,.button.ghost:hover,.btn.alt:hover,.ep-btn-secondary:hover{background:rgba(42,82,78,.18)!important;border-color:#2A524E!important;color:#FCF9F2!important}
 .hero,.ep-hero,.evidence-page{background:transparent!important}
-h1 em,.hero h1 em,.ep-hero h1 em{color:#C5B3A6!important}
+h1 em,.hero h1 em,.ep-hero h1 em{color:#EADEC9!important}
 .trace-rule{background:linear-gradient(90deg,#2A524E,rgba(158,126,107,.24) 70%,transparent)!important}
 .trace-rule:before{background:#2A524E!important;box-shadow:0 0 12px rgba(42,82,78,.38)!important}
 .scene-grid{background-image:linear-gradient(rgba(197,179,166,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(197,179,166,.06) 1px,transparent 1px)!important}
@@ -62,14 +62,14 @@ h1 em,.hero h1 em,.ep-hero h1 em{color:#C5B3A6!important}
 .file-input,.file-meta{color:#C5B3A6!important}
 .file-input::file-selector-button{background:#221A1E!important;border-color:rgba(197,179,166,.30)!important;color:#F7F1E6!important}
 .metric-label,.ep-metric-label{color:#C5B3A6!important}
-.metric-value.amber{color:#9E7E6B!important}
+.metric-value.amber{color:#EADEC9!important}
 .table-wrap{border-color:rgba(158,126,107,.42)!important} table{color:#F7F1E6!important}
 th{background:#221A1E!important;color:#C5B3A6!important}
 td{color:#EADEC9!important;border-bottom-color:rgba(197,179,166,.18)!important}
 tbody tr:hover,tbody tr:focus,tbody tr.selected{background:rgba(42,82,78,.14)!important}
 .cell-main{color:#F7F1E6!important}.cell-sub,.findings-cell{color:#DBCFCE!important}
 .search,.form-control,.recovery-control,.review-note,.review-state select,input,textarea,select{background:#0B0B0A!important;color:#F7F1E6!important;border-color:rgba(197,179,166,.30)!important}
-input::placeholder,textarea::placeholder,.search::placeholder{color:#9E7E6B!important;opacity:1}
+input::placeholder,textarea::placeholder,.search::placeholder{color:#C5B3A6!important;opacity:1}
 .filter-btn{background:transparent!important;color:#C5B3A6!important;border-color:rgba(197,179,166,.28)!important}
 .filter-btn.active{background:rgba(42,82,78,.22)!important;border-color:#2A524E!important;color:#F7F1E6!important}
 .pill.matched{color:#DBCFCE!important;background:rgba(42,82,78,.24)!important}
@@ -78,7 +78,7 @@ input::placeholder,textarea::placeholder,.search::placeholder{color:#9E7E6B!impo
 .boundary p,.boundary strong,.recovery-boundary p,.ep-limits-panel p{color:#EADEC9!important}
 .ep-hero-visual,.ep-flow-step,.ep-evaluation-card,.ep-evaluation-action,.ep-faq-grid details{background:#161512!important;border-color:rgba(158,126,107,.38)!important}
 .ep-source-file,.ep-file-row,.ep-illustration-values>div:not(.ep-value-compare),.ep-review-state{border-color:rgba(197,179,166,.24)!important}
-.ep-source-check,.ep-method-top,.ep-file-row>span,.ep-evaluation-points b,.ep-faq-grid summary:after{color:#9E7E6B!important}
+.ep-source-check,.ep-method-top,.ep-file-row>span,.ep-evaluation-points b,.ep-faq-grid summary:after{color:#EADEC9!important}
 .ep-chain-connector,.ep-chain-connector i{color:#C5B3A6!important;background-color:rgba(197,179,166,.42)!important}
 .ep-rule-explain,.ep-review-questions,.ep-illustration-source,.ep-illustration-review{background:#221A1E!important;border-color:rgba(158,126,107,.34)!important}
 .ep-rule-explain span,.ep-rule-icon,.ep-flow-step>span{color:#C5B3A6!important;border-color:rgba(197,179,166,.28)!important}
@@ -114,3 +114,29 @@ footer p,footer a,.footer p,.footer-column a,.footer-legal p{color:#C5B3A6!impor
 .ledger-art-svg stop[stop-color="#9E7E6B"]{stop-color:#9E7E6B!important}
 @media(max-width:760px){.header,.header.scrolled{background:rgba(11,11,10,.90)!important}}
 @media(prefers-reduced-motion:reduce){.header,.document{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
+
+
+/* Explicit text hierarchy: ivory/champagne carry meaning; brass is a restrained accent. */
+:root{
+  --text:#F7F1E6!important;
+  --ivory:#F7F1E6!important;
+  --text-soft:#EADEC9!important;
+  --cream:#EADEC9!important;
+  --muted:#C5B3A6!important;
+  --sage:#C5B3A6!important;
+  --brass:#9E7E6B!important;
+}
+html,body{color:#F7F1E6!important;background:#0B0B0A!important}
+h1,h2,h3,h4,h5,h6,strong,b,.brand-name,.footer-brand-name{color:#F7F1E6!important}
+p,li,label,.hero-desc,.section-lead,.ep-lead,.ep-detail-intro{color:#EADEC9!important}
+small,.muted,.small,.note,.privacy-note,.scene-caption,.scene-coord,.cell-sub,.table-note,.metric-note{color:#C5B3A6!important}
+/* Brass appears only in compact navigational/eyebrow accents, never body copy. */
+.eyebrow,.section-index,.ep-eyebrow,.ep-detail-kicker,.ep-method-top>span:first-child{
+  color:#9E7E6B!important;
+}
+.ep-source-check,.ep-file-row>span,.ep-evaluation-points b,.ep-faq-grid summary:after,
+.metric-value.amber,input::placeholder,textarea::placeholder,.search::placeholder{
+  color:#EADEC9!important;
+}
+.header .header-cta{background:#2A524E!important;border-color:#2A524E!important;color:#FCF9F2!important}
+.header .header-cta:hover{background:#1B2E2C!important;border-color:#2A524E!important;color:#FCF9F2!important}
