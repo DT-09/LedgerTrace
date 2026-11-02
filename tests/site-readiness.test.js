@@ -23,12 +23,13 @@ for (const [name, html] of pages) {
 }
 
 const home = pages[0][1];
-const allowedPalette = new Set(['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7']);
-for (const [name, html] of pages) {
-  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261101-3"'), name + ' must load the shared palette');
+const coreProduct = pages[1][1];
+const allowedPalette = new Set(['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7','#0B0B0A','#FCF9F2','#EADEC9','#C5B3A6','#2A524E','#9E7E6B','#221A1E','#161512']);
+for (const [index, [name, html]] of pages.entries()) {
+  if (index >= 2) assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261101-3"'), name + ' must load the shared marketing palette');
   assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
   const colors = [...new Set([...html.matchAll(/#[0-9a-fA-F]{6}/g)].map(match => match[0].toUpperCase()))];
-  assert.deepEqual(colors.filter(color => !allowedPalette.has(color)), [], name + ' contains colors outside the approved palette');
+  assert.deepEqual(colors.filter(color => !allowedPalette.has(color)), [], name + ' contains colors outside the approved palettes');
 }
 assert.ok(!home.includes('ont-size:12px}}'), 'homepage must not contain the previously leaked CSS tail');
 
@@ -58,7 +59,7 @@ const styleCloseCount = home.split('</style>').length - 1;
 assert.equal(styleOpenCount, styleCloseCount, 'homepage style tags must be balanced');
 assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS fragment into visible content');
 assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
-assert.ok(home.includes('href="/assets/ledgertrace-theme.css?v=20261101-3"'), 'authoritative palette stylesheet must load after inline legacy styles');
+assert.ok(home.includes('#0B0B0A') && coreProduct.includes('#2A524E'), 'homepage and product page must retain the restored core palette');
 for (const color of ['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7']) {
   assert.ok(theme.toLowerCase().includes(color.toLowerCase()), 'authoritative theme is missing ' + color);
 }
@@ -72,7 +73,7 @@ assert.ok(home.includes('function handleContactSubmit'), 'scope inquiry handler 
 assert.ok(home.includes("fetch('/api/inquiries'"), 'inquiry form must submit to the same-origin capture endpoint');
 assert.ok(home.includes('id="contactWebsite"'), 'inquiry form must include the spam honeypot');
 assert.ok(home.includes('The secure inbox is unavailable, so no inquiry was stored.'), 'manual fallback must not claim an inquiry was stored');
-assert.ok(home.includes('Fees are negotiated privately based on record volume, data quality, selected checks and review effort'), 'pricing is negotiated rather than publicly fixed');
+assert.ok(home.includes('Fees are negotiated privately based on queue size, data quality, selected checks and review effort'), 'pricing is negotiated rather than publicly fixed');
 assert.ok(!/\$100/.test(home), 'public site must not expose a private minimum fee');
 assert.ok(product.includes('href="#evidence-workspace"') && product.includes('Inspect example evidence'), 'product landing page must route buyers to the example evidence workspace');
 assert.ok(product.includes('href="/#evaluation"') && product.includes('Discuss a paid Evidence Review'), 'product landing page must provide a clear paid-evaluation route');
