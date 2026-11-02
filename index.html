@@ -1800,5 +1800,35 @@ body .ledger-art-svg [fill="#0B0B0A"],body .ledger-art-svg [fill="#221A1E"]{fill
 ::selection{background:rgba(42,82,78,.55)!important;color:#FCF9F2!important}:focus-visible{outline:2px solid #9E7E6B!important;outline-offset:3px!important}
 @media(max-width:760px){.header,.header.scrolled{background:rgba(11,11,10,.88)!important}}
 </style>
+
+<style id="ledgertrace-contrast-final">
+/* Final contrast authority: dark surfaces, light typography. */
+@media screen {
+  :root{color-scheme:dark!important;--bg:#0B0B0A!important;--panel:#161512!important;--panel2:#221A1E!important;--text:#F7F1E6!important;--muted:#C5B3A6!important;--cream:#EADEC9!important;--ivory:#F7F1E6!important;--brass:#9E7E6B!important}
+  html,body{background:#0B0B0A!important;color:#F7F1E6!important}
+  body{background-color:#0B0B0A!important}
+  body :is(h1,h2,h3,h4,h5,h6,strong,b,.brand-name,.footer-brand-name,.section-title,.drawer-top h2,.doc-title,.metric-value,.cell-main,.results-head h3,.report-head h3){color:#F7F1E6!important}
+  body :is(p,li,label,.hero-desc,.section-lead,.lead,.copy,.card p,.faq details p,.report-block p,.report-block li,.cta p,.workbench-shell p,.workbench-shell li,.source-card p,.ep-lead,.ep-detail-intro,.ep-rule-explain p,.ep-review-questions li){color:#EADEC9!important}
+  body :is(small,.muted,.small,.note,.privacy-note,.scene-caption,.scene-coord,.cell-sub,.table-note,.metric-note,.eyebrow,.section-index,.tag,.metric-label,.footer-legal p,.footer-intro,.doc-sub,.doc-top,.file-meta,.file-input){color:#C5B3A6!important}
+  body :is(.eyebrow,.section-index,.tag,.ep-eyebrow,.ep-detail-kicker){color:#C5B3A6!important}
+  body :is(.header,.header.scrolled,.top,footer,.footer,#site-footer,.site-footer,.foot,.drawer,.contact-panel,.workbench-shell,.workbench-body,.builder,.report,.recovery-report,.card,.panel,.step,.faq,.faq-item,.deliverable,.proof-card,.output-card,.content-card,.builder-summary,.ep-value-compare,.light-panel,.paper-panel,.cta,.metric,.report-block,.source-card,.method-card,.evidence-value,.ep-method-card,.ep-faq-grid details,.ep-preview,.ep-window,.ep-chain,.ep-review,.ep-card,.ep-detail,.ep-source-node,.ep-illustration-review){background-color:#161512!important;color:#F7F1E6!important}
+  body :is(.workbench-bar,.builder-head,.table-wrap th,th,.document,.metric,.report-block,.ep-rule-explain,.ep-review-questions,.ep-illustration-source){background-color:#221A1E!important;color:#F7F1E6!important}
+  body :is(.builder-summary,.ep-value-compare,.light-panel,.paper-panel,.card,.panel,.step,.faq,.faq-item,.deliverable,.proof-card,.output-card,.content-card) *{color:#EADEC9!important}
+  body :is(.builder-summary,.light-panel,.paper-panel) :is(strong,b,h1,h2,h3,h4){color:#F7F1E6!important}
+  body :is(input,textarea,select,.search,.form-control,.recovery-control,.review-note,.review-state select){background:#0B0B0A!important;color:#F7F1E6!important;border-color:rgba(197,179,166,.38)!important}
+  body :is(input,textarea,.search)::placeholder{color:#C5B3A6!important;opacity:1!important}
+  body :is(.header .brand-name,.header .nav a,.header .menu-toggle,.header-cta,.button,.btn,.ep-btn-primary,button[type=submit]){color:#F7F1E6!important}
+  body :is(.header-cta,.button.primary,.btn:not(.alt),.ep-btn-primary,button[type=submit]){background:#2A524E!important;border-color:#2A524E!important;color:#FCF9F2!important}
+  body :is(.button.secondary,.button.ghost,.btn.alt,.ep-btn-secondary){background:transparent!important;color:#F7F1E6!important;border-color:rgba(197,179,166,.42)!important}
+  body :is(a,.nav a){color:#EADEC9!important}
+  body a:hover{color:#FCF9F2!important}
+  body :is(.pill.exception,.pill.review,.doc-status.warn){color:#EADEC9!important}
+  body :is(.pill.matched,.doc-status){color:#DBCFCE!important}
+  body :is(.drawer,.contact-panel,.builder-summary,.ep-value-compare,.light-panel,.paper-panel) :is(h1,h2,h3,h4,strong,b,p,span,label,small,li){color:#EADEC9!important}
+  body :is(.drawer,.contact-panel,.builder-summary,.ep-value-compare,.light-panel,.paper-panel) :is(h1,h2,h3,h4,strong,b){color:#F7F1E6!important}
+  body :is(.builder-summary,.ep-value-compare,.light-panel,.paper-panel){border-color:rgba(197,179,166,.30)!important}
+}
+</style>
+
 </body>
 </html>
