@@ -51,7 +51,8 @@ jobs:
           [[ "$theme" == *'--lt-bg:#F3F6F8'* ]]
           [[ "$theme" == *'--lt-ink:#142536'* ]]
           [[ "$theme" == *'--lt-navy:#142C43'* ]]
-          [[ "$theme" == *' .case-preview-table-wrap'* ]]
+          [[ "$theme" == *'.case-preview-table-wrap'* ]]
+          [[ "$html" == *'id="example-case"'* && "$html" == *'INV-1003 · PART-C'* ]]
           echo "Live visual theme is deployed with explicit workspace text/surface and semantic exception rules."
 
       - name: Verify the inbound checklist page and sitemap
