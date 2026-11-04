@@ -51,6 +51,7 @@
 
   document.addEventListener("change", event => {
     if (event.target.matches('input[type="file"]')) track("source_file_selected");
+    if (event.target.closest(".pir-economics")) track("buyer_economics_calculated");
   });
 
   document.addEventListener("submit", event => {
