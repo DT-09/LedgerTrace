@@ -1,6 +1,6 @@
 # LedgerTrace
 
-LedgerTrace is a browser-based accounts-payable reconciliation workbench. It compares invoice lines with purchase-order lines and goods-receipt quantities, explains rule-triggered exceptions, and exports a review worklist.
+LedgerTrace is the brand for **Parked Invoice Evidence Review**: a browser-based workbench for a defined queue of supplier invoice lines that are held because invoice, approved purchase-order and goods-receipt records do not agree. It compares supported CSV fields, explains candidate exceptions with source-row references, and exports a human-review worklist. The buyer retains all accounting decisions.
 
 ## Try the working sample
 
@@ -40,20 +40,22 @@ Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_
 
 The current app reads selected CSV files through browser file APIs and processes them in the browser tab. The app code does not upload those CSV contents to a LedgerTrace server. Review notes are held in page memory for the current session. The page loads web fonts from Google, so this is not a claim that the browser makes no network requests. For initial evaluation, use synthetic or client-approved anonymized records.
 
-## Inbound marketing
+## Inbound discovery
 
-- The home page positions LedgerTrace for distributor AP teams, leads with source-linked evidence, and routes qualified visitors toward a scoped paid evaluation.
-- `invoice-reconciliation.html` is the focused distributor landing page.
+- The homepage and `parked-invoice-evidence-review.html` explain the exact Parked Invoice Evidence Review, its buyer fit, actual public procurement evidence and its current limitations.
+- `invoice-reconciliation.html` is the product workflow page.
 - `invoice-reconciliation-checklist.html` is an educational search-intent page for AP teams. It explains the review process without making unsupported savings or accuracy claims and links readers to the sample and evaluation offer.
 - `sitemap.xml` lists the public pages; `robots.txt` points crawlers to that sitemap.
 
-Search visibility takes time and is not guaranteed. The website can qualify and convert visitors, but it cannot guarantee traffic, inquiries or payments. The inquiry panel now posts contact and scope metadata to a same-origin Pages Function. When the Cloudflare D1 binding is configured, the endpoint stores the inquiry and can send an optional Resend alert. If the binding is absent or unavailable, the form clearly reports that nothing was stored and offers prefilled WhatsApp/email handoff links. It never accepts accounting files. Configure the D1 binding and verify a real test submission before relying on the inbox. See [CLOUDFLARE-PRODUCTION-SETUP.md](./CLOUDFLARE-PRODUCTION-SETUP.md) and [SALES-READINESS-AUDIT.md](./SALES-READINESS-AUDIT.md).
+Search visibility takes time and is not guaranteed. The website can support self-serve discovery, but it cannot guarantee traffic, inquiries or payments. Buyer-specific willingness to pay remains unvalidated. The inquiry panel now posts contact and scope metadata to a same-origin Pages Function. When the Cloudflare D1 binding is configured, the endpoint stores the inquiry and can send an optional Resend alert. If the binding is absent or unavailable, the form clearly reports that nothing was stored and offers prefilled WhatsApp/email handoff links. It never accepts accounting files. Configure the D1 binding and verify a real test submission before relying on the inbox. See [CLOUDFLARE-PRODUCTION-SETUP.md](./CLOUDFLARE-PRODUCTION-SETUP.md) and [SALES-READINESS-AUDIT.md](./SALES-READINESS-AUDIT.md).
 
-## Commercial offer: Parked Invoice & Three-Way Match Evidence Review
+## Product: Parked Invoice Evidence Review
 
-**Primary offer:** one supplier or one defined parked-invoice queue, one accounting period or backlog window, and up to 500 invoice lines, 500 PO lines and 500 goods-receipt lines each, subject to a file-fit check. Deliverables are a prioritised exception CSV, source-row evidence, a concise review report, unresolved questions, disclosed limitations and a human-review handoff.
+The product's exact output is a prioritised candidate-exception CSV, source-row evidence, compared values and triggered rules, a concise review report, unresolved/ambiguous record list, disclosed limitations and a human-review handoff. The current workbench processes the buyer's CSV files locally in the buyer's browser. It does not send those selected files to a LedgerTrace server.
 
-The internal first-sale target is **USD 500 as a hypothesis**, not a validated market price or a fixed public price. Quote only after confirming the live workflow, row volume, required fields, supported checks, exclusions, data handling, acceptance criteria and delivery date. Fee and terms are agreed privately in writing before work starts. Do not begin unpaid custom analysis.
+The existing evaluation scope document uses one supplier or one defined queue, one accounting period, and up to 500 invoice lines, 500 PO lines and 500 goods-receipt lines each, subject to a file-fit check. This is a proposed scope boundary, not proof of a paid customer engagement or a validated price.
+
+**Commercial status:** the public sample and CSV workbench are currently accessible without payment. There is no verified paid customer, accepted purchase order, payment checkout, validated willingness to pay or production managed-review operation. Do not advertise a fixed price, guaranteed recovery or managed audit service. A paid commercial model must be validated with an actual buyer and supported by lawful contracting, payment and data-handling operations before it is represented as available.
 
 **Initial fit check:** a written workflow review and synthetic demonstration. No free analysis of buyer records, no free custom exception report and no confidential files in the public inquiry form, ordinary email or WhatsApp. If the use case fits, issue a bounded paid scope.
 
