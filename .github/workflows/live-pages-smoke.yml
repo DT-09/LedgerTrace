@@ -46,8 +46,8 @@ jobs:
         run: |
           set -euo pipefail
           html="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/')"
-          [[ "$html" == *'href="/assets/ledgertrace-theme.css?v=20261104-workspace1"'* ]] || { echo "::error::Production homepage is not loading the final theme after its page styles."; exit 1; }
-          theme="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/ledgertrace-theme.css?v=20261104-workspace1')"
+          [[ "$html" == *'href="/assets/ledgertrace-theme.css?v=20261104-workspace2"'* ]] || { echo "::error::Production homepage is not loading the final theme after its page styles."; exit 1; }
+          theme="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/ledgertrace-theme.css?v=20261104-workspace2')"
           [[ "$theme" == *'--lt-bg:#F3F6F8'* ]]
           [[ "$theme" == *'--lt-ink:#142536'* ]]
           [[ "$theme" == *'--lt-navy:#142C43'* ]]
