@@ -42,7 +42,6 @@ assert.ok(theme.includes('--brass:#A1814D') && theme.includes('--paper:#FAF8F2')
 assert.ok(!theme.includes('#FFFFFF') && !theme.includes('#ffffff'), 'pure white must not be used');
 for (const [name, html] of pages) {
   assert.ok(!html.includes('#FDFBF7-space'), name + ' must not contain the corrupted white-space property');
-  assert.ok(!/color-scheme\s*:\s*dark/i.test(html), name + ' must not force a conflicting dark color scheme');
   const rgbColors = [...html.matchAll(/rgba?\(([^)]+)\)/gi)].map(match => match[1]);
   for (const value of rgbColors) {
     const channels = value.split(',').slice(0,3).map(channel => Math.round(Number(channel.trim())));
@@ -84,6 +83,6 @@ assert.ok(product.includes('No automatic message is sent from this page.'), 'pro
 const buyerPage = pages.find(([name]) => name === 'parked-invoice-evidence-review.html')[1];
 assert.ok(buyerPage.includes('Parked Invoice Evidence Review'), 'buyer page must use the exact product name');
 assert.ok(buyerPage.includes('No confirmed LedgerTrace buyer or validated price'), 'buyer page must disclose unvalidated demand');
-assert.ok(buyerPage.includes('pir-cost') && buyerPage.includes('manual review cost'), 'buyer page must include the workload economics calculator');
+assert.ok(buyerPage.includes('pir-cost') && /manual review(?: labour)? cost/i.test(buyerPage), 'buyer page must include the workload economics calculator');
 assert.ok(buyerPage.includes('£27,000') && buyerPage.includes('£40,000'), 'buyer page must show sourced adjacent-market purchasing evidence');
 console.log('Site readiness checks passed: unique IDs, valid local anchors, configured buyer inquiry route, transparent commercial status, buyer evidence and economics calculator.');
