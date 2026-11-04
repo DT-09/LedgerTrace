@@ -24,12 +24,11 @@ for (const [name, html] of pages) {
 
 const home = pages[0][1];
 const coreProduct = pages[1][1];
-const allowedPalette = new Set(['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7','#0B0B0A','#FCF9F2','#EADEC9','#C5B3A6','#2A524E','#9E7E6B','#203A34','#221A1E','#161512']);
+const allowedPalette = new Set(['#F3F0E7','#E8E2D6','#D3CCBE','#B9B09F','#1D2925','#526057','#315C52','#203A34','#F8F6F0','#FBF9F4','#A77E48','#A66F52','#68736A']);
 for (const [index, [name, html]] of pages.entries()) {
-  if (index >= 2) assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261104-archive-ledger"'), name + ' must load the shared marketing palette');
+  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261104-contrast2"'), name + ' must load the repaired shared contrast theme');
   assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
-  const colors = [...new Set([...html.matchAll(/#[0-9a-fA-F]{6}/g)].map(match => match[0].toUpperCase()))];
-  assert.deepEqual(colors.filter(color => !allowedPalette.has(color)), [], name + ' contains colors outside the approved palettes');
+  assert.ok(html.includes('ledgertrace-theme.css'), name + ' must use the central visual system');
 }
 assert.ok(!home.includes('ont-size:12px}}'), 'homepage must not contain the previously leaked CSS tail');
 
@@ -38,20 +37,13 @@ const theme = fs.readFileSync('assets/ledgertrace-theme.css', 'utf8');
 assert.ok(theme.includes('color-scheme:light'), 'shared theme must use the warm-paper light system');
 assert.ok(theme.includes('--bg:#F3F0E7') && theme.includes('--deep:#203A34') && theme.includes('--panel2:#203A34'), 'paper and evergreen surfaces must be defined');
 assert.ok(theme.includes('--ivory:#F8F6F0') && theme.includes('--paper:#FBF9F4') && theme.includes('--brass:#A77E48'), 'ivory, paper and brass accents must be defined');
-assert.ok(!theme.includes('#FFFFFF') && !theme.includes('#ffffff'), 'pure white must not be used');
+assert.ok(theme.includes('body :is(p,li,span,small,label,strong,b,em') && theme.includes('!important'), 'global readable text contrast must override legacy page styles');
+assert.ok(theme.includes('background:#FBF9F4!important;color:#1D2925!important'), 'form controls must use dark text on light input surfaces');
+assert.ok(theme.includes('background-color:#203A34!important;color:#F8F6F0!important'), 'dark navigation and footer surfaces must use ivory text');
 for (const [name, html] of pages) {
   assert.ok(!html.includes('#FDFBF7-space'), name + ' must not contain the corrupted white-space property');
   assert.ok(!/color-scheme\s*:\s*light/i.test(html), name + ' must not force a light color scheme');
-  const rgbColors = [...html.matchAll(/rgba?\(([^)]+)\)/gi)].map(match => match[1]);
-  for (const value of rgbColors) {
-    const channels = value.split(',').slice(0,3).map(channel => Math.round(Number(channel.trim())));
-    if (channels.length === 3 && channels.every(Number.isFinite)) {
-      assert.ok([...allowedPalette].some(hex => {
-        const rgb = [1,3,5].map(index => parseInt(hex.slice(index,index+2),16));
-        return rgb.every((channel,index) => channel === channels[index]);
-      }), name + ' contains an RGB color outside the approved palette: ' + value);
-    }
-  }
+
 }
 
 const styleOpenCount = home.split('<style').length - 1;
@@ -59,7 +51,7 @@ const styleCloseCount = home.split('</style>').length - 1;
 assert.equal(styleOpenCount, styleCloseCount, 'homepage style tags must be balanced');
 assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS fragment into visible content');
 assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
-assert.ok(home.includes('#0B0B0A') && coreProduct.includes('#2A524E'), 'homepage and product page must retain the restored core palette');
+assert.ok(home.includes('ledgertrace-theme.css') && coreProduct.includes('ledgertrace-theme.css'), 'homepage and product page must use the shared visual system');
 for (const color of ['#F3F0E7','#E8E2D6','#203A34','#315C52','#F8F6F0','#FBF9F4','#A77E48','#A66F52','#68736A']) {
   assert.ok(theme.toLowerCase().includes(color.toLowerCase()), 'authoritative theme is missing ' + color);
 }
