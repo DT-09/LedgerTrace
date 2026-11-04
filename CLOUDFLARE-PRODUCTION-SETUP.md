@@ -1,12 +1,12 @@
-# LedgerTrace Cloudflare Pages production setup
+# Caseweft Cloudflare Pages production setup
 
-LedgerTrace remains a browser-side reconciliation workbench. This optional Pages Function stores **inquiry metadata only**. It does not accept CSV uploads or accounting documents.
+Caseweft remains a browser-side reconciliation workbench. This optional Pages Function stores **inquiry metadata only**. It does not accept CSV uploads or accounting documents.
 
 ## 1. Create and bind the inquiry database
 
 1. In Cloudflare, create a D1 database named \`ledgertrace-inquiries\`.
 2. Apply migrations/0001_create_inquiries.sql and then migrations/0002_create_analytics_events.sql to that database.
-3. Open the LedgerTrace Pages project settings.
+3. Open the Caseweft Pages project settings.
 4. Under **Settings → Functions → D1 database bindings**, add a binding named \`DB\` and select \`ledgertrace-inquiries\`.
 5. Redeploy the Pages project after saving the binding.
 
