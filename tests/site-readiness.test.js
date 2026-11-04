@@ -38,7 +38,7 @@ assert.ok(theme.includes('color-scheme:light'), 'shared theme must use the warm-
 assert.ok(theme.includes('--bg:#F3F0E7') && theme.includes('--deep:#203A34') && theme.includes('--panel2:#203A34'), 'paper and evergreen surfaces must be defined');
 assert.ok(theme.includes('--ivory:#F8F6F0') && theme.includes('--paper:#FBF9F4') && theme.includes('--brass:#A77E48'), 'ivory, paper and brass accents must be defined');
 assert.ok(theme.includes('body :is(p,li,span,small,label,strong,b,em') && theme.includes('!important'), 'global readable text contrast must override legacy page styles');
-assert.ok(theme.includes('background:#FBF9F4!important;color:#1D2925!important'), 'form controls must use dark text on light input surfaces');
+assert.ok(theme.includes('background:#F8F6F0!important;color:#1D2925!important'), 'form controls must use dark text on light input surfaces');
 assert.ok(theme.includes('background-color:#203A34!important;color:#F8F6F0!important'), 'dark navigation and footer surfaces must use ivory text');
 for (const [name, html] of pages) {
   assert.ok(!html.includes('#FDFBF7-space'), name + ' must not contain the corrupted white-space property');
