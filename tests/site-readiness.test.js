@@ -26,7 +26,7 @@ const home = pages[0][1];
 const coreProduct = pages[1][1];
 const allowedPalette = new Set(['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7','#0B0B0A','#FCF9F2','#EADEC9','#C5B3A6','#2A524E','#9E7E6B','#203A34','#221A1E','#161512']);
 for (const [index, [name, html]] of pages.entries()) {
-  if (index >= 2) assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261101-3"'), name + ' must load the shared marketing palette');
+  if (index >= 2) assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261104-archive-ledger"'), name + ' must load the shared marketing palette');
   assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
   const colors = [...new Set([...html.matchAll(/#[0-9a-fA-F]{6}/g)].map(match => match[0].toUpperCase()))];
   assert.deepEqual(colors.filter(color => !allowedPalette.has(color)), [], name + ' contains colors outside the approved palettes');
