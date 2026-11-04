@@ -1,8 +1,8 @@
-# LedgerTrace buyer proof and sales system — 1 November 2026
+# Caseweft buyer proof and sales system — 1 November 2026
 
 ## Decision
 
-Stop selling a broad "supplier payment leakage detection" proposition. The first commercial wedge should use the capability LedgerTrace already has:
+Stop selling a broad "supplier payment leakage detection" proposition. The first commercial wedge should use the capability Caseweft already has:
 
 **Parked Invoice & Three-Way Match Evidence Review**
 
@@ -14,14 +14,14 @@ This is a better first offer because the current product already supports invoic
 
 ### What public evidence establishes
 
-- APQC reports a cross-industry median cost of **$6 per AP invoice**, based on 5,846 organisations. This is total AP process cost, not avoidable cost or savings attributable to LedgerTrace: https://www.apqc.org/What-Is-the-Average-Cost-to-Process-an-Invoice
+- APQC reports a cross-industry median cost of **$6 per AP invoice**, based on 5,846 organisations. This is total AP process cost, not avoidable cost or savings attributable to Caseweft: https://www.apqc.org/What-Is-the-Average-Cost-to-Process-an-Invoice
 - IFOL's 2025 AP leadership survey reports that 84% named efficiency as a top AP priority, 54% reporting/analytics, 34% payment accuracy, and 31% fraud controls. Its research also reports that invoice exception rate was a KPI tracked by 24% of respondents. These are priorities, not the incidence of exceptions: https://acarp-edu.org/wp-content/uploads/2025/04/Accounts-Payable-Leadership-Priorities-Report-2025_US_compressed.pdf
 - APQC explicitly treats duplicate or erroneous disbursements as a measurable AP control metric: https://www.apqc.org/resource-library/resource-listing/percentage-duplicate-disbursements-processed
 - Capgemini's World Payments Report 2025 describes manual workflows, non-standard invoices, data inaccuracies and reconciliation friction in automotive treasury operations. This is sector-specific evidence, not a universal rate: https://www.capgemini.com/wp-content/uploads/2024/09/WPR_2025_web.pdf
 
 ### What the public benchmark means in one real operating context
 
-SBFM's vacancy states approximately 800 supplier invoices per month. Multiplying that volume by APQC's $6 cross-industry median gives an illustrative **$4,800 per month in total AP processing cost** if the benchmark definition is comparable. This is not SBFM's reported spend, not the cost of its exception queue, and not savings LedgerTrace can claim. It shows why invoice volume can make AP efficiency economically material; only the buyer's own exception counts, handling time, labour cost and confirmed corrections can establish the addressable value.
+SBFM's vacancy states approximately 800 supplier invoices per month. Multiplying that volume by APQC's $6 cross-industry median gives an illustrative **$4,800 per month in total AP processing cost** if the benchmark definition is comparable. This is not SBFM's reported spend, not the cost of its exception queue, and not savings Caseweft can claim. It shows why invoice volume can make AP efficiency economically material; only the buyer's own exception counts, handling time, labour cost and confirmed corrections can establish the addressable value.
 
 ### What buyer-specific job descriptions establish
 
@@ -29,7 +29,7 @@ SBFM's vacancy states approximately 800 supplier invoices per month. Multiplying
 - SBFM's AP Manager vacancy describes approximately 800 supplier invoices per month, PO/invoice discrepancies, payment delays, supplier statement reconciliations and process improvement: https://careers.sb-fm.co.uk/vacancies/23742/accounts-payable-manager.html
 - Sysco GB's AP Account Handler vacancy describes parked invoices that do not match approved and goods-received POs, supplier statement reconciliations and unresolved items: https://jobs.smartrecruiters.com/syscogb/744000149876669
 
-These sources prove that the workflow exists and that organisations allocate labour to it. They do **not** prove any named company has a current external-service budget, a live backlog, willingness to share data, or willingness to pay LedgerTrace.
+These sources prove that the workflow exists and that organisations allocate labour to it. They do **not** prove any named company has a current external-service budget, a live backlog, willingness to share data, or willingness to pay Caseweft.
 
 ### Economic proof required from each buyer
 
@@ -49,7 +49,7 @@ Formulas:
 - Verified financial correction value = sum of buyer-confirmed, source-supported credits/refunds/duplicate payments, counted once.
 - Pilot value = measured labour time saved + buyer-confirmed financial corrections, less the fee and internal review cost.
 
-Do not count flagged amounts as recovered cash. Do not add invoice-excess and payment-excess totals where they overlap. Do not use APQC's $6 benchmark as LedgerTrace savings.
+Do not count flagged amounts as recovered cash. Do not add invoice-excess and payment-excess totals where they overlap. Do not use APQC's $6 benchmark as Caseweft savings.
 
 ## Target account selection
 
@@ -177,7 +177,7 @@ The public supplier-statement page is currently a landing page, not a completed 
 ### Trust and operational blockers
 
 - Cloudflare inquiry endpoint is deployed but live health previously reported D1 inbox not configured and email notifications not configured. The site must not claim server-side inquiry storage until the account owner binds D1, applies the migration and verifies a real test record.
-- The workbench reads selected CSV files in the browser; it does not currently upload accounting CSVs to LedgerTrace. This is a useful data-minimisation property, not a security certification or a complete data-processing programme.
+- The workbench reads selected CSV files in the browser; it does not currently upload accounting CSVs to Caseweft. This is a useful data-minimisation property, not a security certification or a complete data-processing programme.
 - No customer dataset, independent accuracy rate, customer case study, verified savings or recovered-cash result is evidenced.
 - No payment checkout or payment confirmation exists.
 - Before any paid cross-border engagement, the user's age/legal capacity must be handled lawfully with an appropriately authorised adult/entity. Do not misstate age or use another person's payment account without authority.
@@ -248,4 +248,4 @@ The target is not email volume. It is conversion from verified trigger to qualif
 
 ## Current commercial truth
 
-As of this document's creation: no paid LedgerTrace customer, accepted paid scope, or received payment is evidenced. The public research establishes category and workflow relevance, not buying intent. The next proof must come from a buyer who confirms a current problem and permits a bounded, paid test.
+As of this document's creation: no paid Caseweft customer, accepted paid scope, or received payment is evidenced. The public research establishes category and workflow relevance, not buying intent. The next proof must come from a buyer who confirms a current problem and permits a bounded, paid test.
