@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#203A34">
-<meta name="description" content="Review parked supplier invoices against approved purchase orders and goods receipts. LedgerTrace produces source-linked three-way match exceptions for finance review, with optional payment evidence checks when supported.">
+<meta name="description" content="Caseweft turns supplier invoices, purchase orders, goods receipts and supported payment records into source-linked exception cases for finance review.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LedgerTrace — Parked Invoice & Three-Way Match Review">
+<meta property="og:title" content="Caseweft — Supplier Payment Evidence Review">
 <meta property="og:description" content="Investigate duplicate supplier payments, missed supplier credits, invoice overcharges and quantity or price variances. Run a browser-based CSV check and request a scoped paid investigation.">
 <meta property="og:url" content="https://ledgertrace.pages.dev/">
-<link rel="canonical" href="https://ledgertrace.pages.dev/"><title>Parked Invoice &amp; Three-Way Match Evidence Review | LedgerTrace</title>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LedgerTrace","url":"https://ledgertrace.pages.dev/","applicationCategory":"BusinessApplication","operatingSystem":"Any modern browser","description":"Browser-side AP workbench for reviewing parked supplier invoices against approved purchase orders and goods receipts, with source-linked three-way match exceptions.","offers":{"@type":"Offer","url":"https://ledgertrace.pages.dev/#evaluation","description":"Scoped paid reconciliation evaluation; fee and acceptance criteria agreed privately before kickoff."}}</script>
+<link rel="canonical" href="https://ledgertrace.pages.dev/"><title>Supplier Payment Evidence Review | Caseweft</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Caseweft","url":"https://ledgertrace.pages.dev/","applicationCategory":"BusinessApplication","operatingSystem":"Any modern browser","description":"A browser-side evidence workspace that connects supplier invoices, purchase orders, goods receipts and supported payment records into reviewable exception cases.","offers":{"@type":"Offer","url":"https://ledgertrace.pages.dev/#evaluation","description":"Scoped paid reconciliation evaluation; fee and acceptance criteria agreed privately before kickoff."}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -108,7 +108,7 @@ h1{font-weight:500}h1 em{color:#C5B3A6}.hero-desc{color:#C5B3A6}
 .go-to-market{margin-top:14px;padding:25px;border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;background:rgba(28,18,12,.35)}.go-to-market h3{font-size:clamp(22px,3vw,31px);font-weight:450;line-height:1.15;letter-spacing:-.05em;margin:12px 0}.go-to-market p{font-size:12px;color:var(--muted);line-height:1.85}.go-to-market ol{padding:0;margin:0;list-style:none;counter-reset:route}.go-to-market li{counter-increment:route;display:grid;grid-template-columns:28px 1fr;column-gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.go-to-market li:last-child{border-bottom:0}.go-to-market li:before{content:counter(route,decimal-leading-zero);font:10px var(--mono);color:#C5B3A6;padding-top:3px}.go-to-market li strong{font-size:12px;font-weight:500}.go-to-market li span{grid-column:2;color:var(--muted);font-size:11px;line-height:1.7;margin-top:3px}.payment-flow{margin-top:14px;padding:25px;border:1px solid var(--line);border-radius:12px}.payment-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:20px 0}.payment-steps>div{border-top:1px solid var(--line2);padding-top:12px}.payment-steps span{display:block;font:10px var(--mono);color:#C5B3A6;margin-bottom:12px}.payment-steps strong{font:500 13px var(--display)}.payment-steps p{font-size:11px;color:var(--muted);line-height:1.7;margin:8px 0 0}.brand-mark svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.brand-mark{position:relative;width:26px;height:28px;display:block}@media(max-width:800px){.go-to-market{grid-template-columns:1fr}.payment-steps{grid-template-columns:repeat(2,1fr)}}
 
 
-/* LedgerTrace visual system: graphite, warm ivory, mineral sage, antique brass. */
+/* Caseweft visual system: graphite, warm ivory, mineral sage, antique brass. */
 :root{
  color-scheme:dark!important;
  --bg:#221A1E!important;--panel:#221A1E!important;--panel2:#161512!important;
@@ -124,7 +124,7 @@ body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgb
 .header,.header.scrolled{background:rgba(43,29,21,.95)!important;border-color:#221A1E!important;box-shadow:0 12px 34px rgba(28,18,12,.18)!important}
 .brand-mark,.footer-brand .brand-mark{width:36px!important;height:36px!important;display:grid!important;place-items:center!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important;transform:scale(1);transform-origin:center;transition:transform .18s ease!important}
 .brand:hover .brand-mark,.brand:focus-visible .brand-mark,.footer-brand:hover .brand-mark,.footer-brand:focus-visible .brand-mark{transform:scale(1.09)!important}
-.brand-mark .ledgertrace-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;overflow:visible!important}.ledgertrace-logo .logo-blue{fill:#2A524E!important;stroke:none!important}.ledgertrace-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important}
+.brand-mark .caseweft-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;overflow:visible!important}.caseweft-logo .logo-blue{fill:#2A524E!important;stroke:none!important}.caseweft-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important}
 
 
 
@@ -253,7 +253,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 
 </style>
 
-<style id="ledgertrace-final-theme">
+<style id="caseweft-final-theme">
 :root{
  color-scheme:dark;
  --bg:#0B0B0A;
@@ -302,7 +302,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:760px){.header,.header.scrolled{background:rgba(28,18,12,.98)!important}.nav{background:#221A1E!important;border-color:#C5B3A6!important}}
 </style>
 
-<style id="ledgertrace-commercial-finish">
+<style id="caseweft-commercial-finish">
 .privacy-architecture{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;margin:22px 0 4px;padding:24px;border:1px solid rgba(224,122,95,.32);border-radius:12px;background:linear-gradient(130deg,rgba(224,122,95,.07),rgba(30,41,59,.5))}
 .privacy-mark{display:grid;place-items:center;width:58px;height:58px;border:1px solid rgba(224,122,95,.4);border-radius:10px;color:var(--blue);font:600 10px var(--mono);letter-spacing:.06em}
 .privacy-architecture h3{font:600 19px var(--display);margin:5px 0 8px;letter-spacing:-.03em}
@@ -312,7 +312,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:650px){.privacy-architecture{grid-template-columns:1fr;padding:18px}.privacy-mark{width:48px;height:42px}#results .results-head{align-items:flex-start;flex-direction:column}#results .results-head>.bar-actions{justify-content:flex-start}}
 </style>
 
-<style id="ledgertrace-header-corner-fix-v3">
+<style id="caseweft-header-corner-fix-v3">
 /* Keep the wordmark at the far left and the evaluation action directly beside the menu at the far right. */
 .header{justify-content:flex-start!important}
 .header>.brand{margin-right:auto!important;flex:0 0 auto!important}
@@ -322,7 +322,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:370px){.header>.header-cta{display:none!important}.header>.menu-toggle{margin-left:auto!important}}
 </style>
 
-<style id="ledgertrace-shared-typography-v1">
+<style id="caseweft-shared-typography-v1">
 /* Shared brand typography: same font families, weights and tracking on every page. */
 :root{--body:"Inter",Arial,sans-serif;--display:"Space Grotesk","Inter",Arial,sans-serif;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;--blue:#9E7E6B;--accent:#9E7E6B;--shell-brass:#9E7E6B}
 html,body{font-family:var(--body)!important}
@@ -334,7 +334,7 @@ body{font-size:15px!important;line-height:1.7!important}
 </style>
 
 
-<style id="ledgertrace-layout-repair-2026-10">
+<style id="caseweft-layout-repair-2026-10">
 /* Layout repair: restore a clear grid, consistent alignment and controlled type scale. */
 .header {
   display:flex !important;
@@ -394,8 +394,8 @@ body{font-size:15px!important;line-height:1.7!important}
   .ledger-art-heading { font-size:12px !important; letter-spacing:.65px !important; }
 }
 </style>
-<style id="ledgertrace-consistent-shell-v2">
-/* Shared shell and editorial hierarchy across LedgerTrace pages. */
+<style id="caseweft-consistent-shell-v2">
+/* Shared shell and editorial hierarchy across Caseweft pages. */
 .header{display:flex!important;align-items:center!important;gap:clamp(10px,1.8vw,24px)!important;padding-inline:clamp(14px,2vw,22px)!important}
 .header>.brand{margin-right:auto!important;flex:0 0 auto!important}
 .header>.header-cta{margin-left:auto!important;flex:0 0 auto!important}
@@ -430,7 +430,7 @@ body{font-size:15px!important;line-height:1.7!important}
 }
 @media(prefers-reduced-motion:reduce){.ledger-illustration .ledger-art-svg{transition:none!important}.ledger-illustration:hover .ledger-art-svg{transform:none!important;filter:none!important}}
 </style>
-<style id="ledgertrace-final-brand-consistency-v2">
+<style id="caseweft-final-brand-consistency-v2">
 /* Final shared typography and header CTA, intentionally loaded after page-specific styles. */
 :root{--body:"Inter",Arial,sans-serif;--display:"Space Grotesk","Inter",Arial,sans-serif;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;--ivory:#C5B3A6;--sage:#C5B3A6;--brass:#9E7E6B}
 html,body{font-family:var(--body)!important}
@@ -440,7 +440,7 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 .header .header-cta:hover{background:rgba(168,159,145,.18)!important;border-color:var(--brass)!important;color:var(--ivory)!important}
 </style>
 
-<style id="ledgertrace-homepage-compact-footer">
+<style id="caseweft-homepage-compact-footer">
 /* Homepage only: compact the footer directory links, not the statement above them. */
 #site-footer.footer{padding:39px 0 18px!important}
 #site-footer .footer-heading{gap:22px!important;padding-bottom:30px!important}
@@ -463,7 +463,7 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 }
 </style>
 
-<style id="ledgertrace-final-interaction-polish">
+<style id="caseweft-final-interaction-polish">
 #closeContact.contact-close{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;padding:0!important;flex:0 0 30px!important;border-radius:7px!important;font-size:16px!important;line-height:1!important;cursor:pointer!important;position:relative!important;z-index:3!important;pointer-events:auto!important}
 #closeContact.contact-close:hover{background:rgba(224,122,95,.12)!important;border-color:var(--blue)!important;color:var(--blue)!important}
 #contactPanel .drawer-top{position:relative;z-index:2}
@@ -471,8 +471,8 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 #contactPanel .drawer-top h2{font-family:var(--display)!important;font-weight:600!important;letter-spacing:-.055em!important}
 h1,h2,h3,.section-title,.hero h1,.eval-copy h2{font-family:var(--display)!important}
 </style>
-<style id="ledgertrace-warm-commercial-system">
-/* LEDGERTRACE DESIGN SYSTEM — one palette, explicit surface/text pairings */
+<style id="caseweft-warm-commercial-system">
+/* CASEWEFT DESIGN SYSTEM — one palette, explicit surface/text pairings */
 :root{
  color-scheme:dark;
  --bg:#FCF9F2;--panel:#EADEC9;--panel2:#C5B3A6;--line:#C5B3A6;
@@ -569,14 +569,14 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 </head>
 <body>
 <header class="header" id="header">
-  <a class="brand" href="/" aria-label="LedgerTrace home">
-    <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span><span class="brand-name">LEDGERTRACE</span>
+  <a class="brand" href="/" aria-label="Caseweft home">
+    <span class="brand-mark" aria-hidden="true"><img class="caseweft-logo" src="/assets/caseweft-monogram.svg" alt=""></span><span class="brand-name">CASEWEFT</span>
   </a>
   <nav class="nav" id="nav" aria-label="All site sections"><a href="/invoice-reconciliation.html">For distributors</a><a href="/#product">Product</a><a href="/#investigation">Investigation</a><a href="/#buyer-assurance">Buyer proof</a><a href="/#methodology">Methodology</a><a href="/#faq">FAQ</a><a href="/#evaluation">Paid evaluation</a><a href="/#who-for">Who it serves</a><a href="/#recovery-investigation">Payment evidence review</a><a href="/#site-footer">Contact &amp; site directory</a></nav>
   <a class="header-cta" href="/#evaluation">Request an evaluation <span aria-hidden="true">↗</span></a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 </header>
-<script id="ledgertrace-reliable-menu-v2">
+<script id="caseweft-reliable-menu-v2">
 (function(){
   function initMenu(){
     const header=document.getElementById('header');
@@ -601,14 +601,14 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
   <div class="hero-copy" id="product">
     <div class="eyebrow">PARKED INVOICE REVIEW / THREE-WAY MATCH / DISTRIBUTORS &amp; AP TEAMS</div>
     <h1>Clear parked invoices. <em>Keep the evidence.</em></h1>
-    <p class="hero-desc">LedgerTrace reviews parked supplier invoice lines against approved purchase orders and goods receipts. It shows the source rows, compared values and rule behind each candidate exception. Ambiguous or incomplete records stay unresolved for your finance team to verify.</p>
+    <p class="hero-desc">Caseweft reviews parked supplier invoice lines against approved purchase orders and goods receipts. It shows the source rows, compared values and rule behind each candidate exception. Ambiguous or incomplete records stay unresolved for your finance team to verify.</p>
     <div class="hero-actions"><a class="button" href="#investigation">Run the three-way match check <span aria-hidden="true">↘</span></a><a class="button secondary" href="#evaluation">Request a paid case review <span aria-hidden="true">↗</span></a></div>
     <div class="privacy-note">LOCAL CSV ANALYSIS · FILES STAY IN THIS BROWSER TAB</div><p class="hero-proofline">Start with one supplier or one defined parked-invoice queue. No ERP replacement. No automatic accounting decisions.</p>
   </div>
-  <div class="scene ledger-illustration" id="scene" aria-label="LedgerTrace product illustration: invoice, purchase order and goods receipt data flow through a reconciliation engine into matched records, traceable exceptions and a reviewable evidence package">
-  <div class="ledger-art-top"><span>LEDGERTRACE / PRODUCT SYSTEM</span><span>FROM RAW RECORDS TO REVIEWABLE EVIDENCE</span></div>
+  <div class="scene ledger-illustration" id="scene" aria-label="Caseweft product illustration: invoice, purchase order and goods receipt data flow through a reconciliation engine into matched records, traceable exceptions and a reviewable evidence package">
+  <div class="ledger-art-top"><span>CASEWEFT / PRODUCT SYSTEM</span><span>FROM RAW RECORDS TO REVIEWABLE EVIDENCE</span></div>
   <svg class="ledger-art-svg" viewBox="0 0 900 620" role="img" aria-labelledby="ledgerArtTitle ledgerArtDesc">
-    <title id="ledgerArtTitle">How LedgerTrace works</title>
+    <title id="ledgerArtTitle">How Caseweft works</title>
     <desc id="ledgerArtDesc">Three accounts-payable data sources enter a reconciliation engine. The engine normalizes fields, matches records and applies comparison rules. Results become matched records or traceable exceptions with source evidence for human review.</desc>
     <defs>
       <linearGradient id="ltCanvas" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3F6F8"/><stop offset="1" stop-color="#EAF0F4"/></linearGradient>
@@ -702,8 +702,8 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
   <div class="container commercial-entry-grid">
     <div class="commercial-entry-copy">
       <div class="eyebrow">THE COMMERCIAL OFFER / ONE PARKED-INVOICE QUEUE</div>
-      <h2>Clear a parked-invoice queue with source-linked evidence.</h2>
-      <p>LedgerTrace offers a bounded second-pass review for distributors and AP/accounting providers. We compare invoice, approved PO and goods-receipt exports, then return the supported exceptions, source evidence and unresolved questions. Payment and credit checks are optional and separately scoped when the records support them.</p>
+      <h2>Connect the records. Understand the exception. Keep the decision reviewable.</h2>
+      <p>Caseweft offers a bounded second-pass review for distributors and AP/accounting providers. We compare invoice, approved PO and goods-receipt exports, then return the supported exceptions, source evidence and unresolved questions. Payment and credit checks are optional and separately scoped when the records support them.</p>
       <a class="button" href="#evaluation">Scope a paid Evidence Review <span aria-hidden="true">↗</span></a>
     </div>
     <div class="commercial-entry-output">
@@ -724,7 +724,7 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
         <div class="eyebrow">ILLUSTRATIVE CASE FILE / SYNTHETIC INPUTS</div>
         <h2 id="case-preview-title">A reviewer sees the disagreement—not just a red flag.</h2>
       </div>
-      <p>The sample workbench contains eight invoice lines, six PO lines and five receipt lines. Here is the kind of evidence LedgerTrace surfaces from those records.</p>
+      <p>The sample workbench contains eight invoice lines, six PO lines and five receipt lines. Here is the kind of evidence Caseweft surfaces from those records.</p>
     </div>
     <div class="case-preview-table-wrap">
       <table aria-label="Synthetic supplier invoice exception examples">
@@ -850,14 +850,14 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 
 
 <section class="section audience" id="who-for"><div class="container">
-<div class="section-top"><div class="section-index">03 / Who it serves</div><div><h2 class="section-title">Invoice reconciliation for distributor finance teams.</h2><p class="section-lead">For AP managers, controllers and accounting service providers handling recurring supplier invoices—especially industrial-parts and wholesale distributors where invoices, purchase orders and goods receipts must agree. LedgerTrace helps organize discrepancies into a source-linked review queue; your team decides what requires correction.</p></div></div>
+<div class="section-top"><div class="section-index">03 / Who it serves</div><div><h2 class="section-title">Invoice reconciliation for distributor finance teams.</h2><p class="section-lead">For AP managers, controllers and accounting service providers handling recurring supplier invoices—especially industrial-parts and wholesale distributors where invoices, purchase orders and goods receipts must agree. Caseweft helps organize discrepancies into a source-linked review queue; your team decides what requires correction.</p></div></div>
 <div class="audience-grid">
 <article class="audience-card"><span class="audience-num">A / THE PROBLEM</span><h3>Checks are scattered.</h3><p>Invoice, PO and receipt data often sit in separate exports. A status or total alone does not tell a reviewer which row disagrees or why.</p></article>
 <article class="audience-card"><span class="audience-num">B / THE OUTPUT</span><h3>One reviewable trail.</h3><p>Compare configured fields, see the triggered rule, inspect source-row references and export exceptions for human review.</p></article>
-<article class="audience-card"><span class="audience-num">C / THE REVIEW</span><h3>Keep the decision with your team.</h3><p>LedgerTrace organizes rule-triggered discrepancies and supporting records. Your reviewer determines whether a finding needs correction, explanation or no action.</p></article>
+<article class="audience-card"><span class="audience-num">C / THE REVIEW</span><h3>Keep the decision with your team.</h3><p>Caseweft organizes rule-triggered discrepancies and supporting records. Your reviewer determines whether a finding needs correction, explanation or no action.</p></article>
 </div>
 <div class="commercial-proof"><div><div class="eyebrow">What you can inspect</div><h3>Every flagged result has something concrete to review.</h3></div><ul><li>Compared values from the supplied records.</li><li>The rule that triggered each finding.</li><li>Source-row references and related PO/receipt rows.</li><li>An exportable exception list for human review.</li></ul></div>
-  <div class="privacy-architecture"><div class="privacy-mark" aria-hidden="true">LOCAL</div><div><div class="eyebrow">Data handling / Current build</div><h3>CSV processing stays in this browser tab.</h3><p>The app reads selected CSV files with browser file APIs and runs its reconciliation logic locally. Its current code does not upload those CSV contents to a LedgerTrace server. Review notes are held in page memory for this session. The site loads web fonts from Google; this is not a claim that the entire browsing session makes no network requests. Use synthetic or approved anonymized records for first evaluation.</p></div></div>
+  <div class="privacy-architecture"><div class="privacy-mark" aria-hidden="true">LOCAL</div><div><div class="eyebrow">Data handling / Current build</div><h3>CSV processing stays in this browser tab.</h3><p>The app reads selected CSV files with browser file APIs and runs its reconciliation logic locally. Its current code does not upload those CSV contents to a Caseweft server. Review notes are held in page memory for this session. The site loads web fonts from Google; this is not a claim that the entire browsing session makes no network requests. Use synthetic or approved anonymized records for first evaluation.</p></div></div>
 </div><div class="go-to-market"><div class="go-to-market-copy"><div class="eyebrow">Fit check → Paid Evidence Review</div><h3>Start with a defined parked-invoice queue.</h3><p>The first step is a written fit check and synthetic demonstration. We confirm whether invoice, approved PO and goods-receipt exports support the requested three-way match review. No free analysis of buyer records is included.</p></div><ol><li><strong>Describe the queue.</strong><span>One supplier or a defined group of parked invoices, with the period and reason they are held.</span></li><li><strong>Confirm file fit.</strong><span>Check that invoice, PO and receipt exports contain the required fields and references.</span></li><li><strong>Agree a paid scope.</strong><span>Set row limits, checks, exclusions, fee, delivery date and acceptance criteria in writing.</span></li><li><strong>Review the evidence.</strong><span>Receive a source-linked exception CSV, evidence report and human-review handoff.</span></li></ol></div>
 <div class="payment-flow"><div class="eyebrow">From fit check to paid review · Terms agreed privately</div><div class="payment-steps"><div><span>01</span><strong>Describe the workflow</strong><p>One supplier or a defined parked-invoice queue, including the current blocker.</p></div><div><span>02</span><strong>Run synthetic demo</strong><p>Confirm supported fields, matching keys and product boundaries without buyer records.</p></div><div><span>03</span><strong>Agree paid terms</strong><p>Confirm scope, row caps, fee, delivery date, data handling and acceptance criteria.</p></div><div><span>04</span><strong>Deliver evidence review</strong><p>Prioritised source-linked exceptions, limitations, unresolved cases and human-review handoff.</p></div></div><p class="small muted">No free buyer-data analysis. Do not send confidential records through the public inquiry form, ordinary email or WhatsApp. Paid work starts only after a written scope and lawful payment/contract arrangements are confirmed. No guaranteed recovery, ERP integration or automatic accounting action is implied.</p></div></section>
 <section class="section assurance" id="buyer-assurance">
@@ -868,12 +868,12 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
       <article class="method-card"><span class="number">02 / AGREE</span><h3>Define the expected answer</h3><p>Before evaluation, agree the sample/reference cases, supported CSV columns, checks in scope and acceptance criteria. Ambiguous records stay reviewable; they are not silently treated as resolved.</p></article>
       <article class="method-card"><span class="number">03 / MEASURE</span><h3>Report misses as well as catches</h3><p>The report should distinguish confirmed findings, false positives and missed exceptions against the agreed reference set. If no suitable reference set exists, we define it with you before making accuracy claims.</p></article>
     </div>
-    <div class="boundary assurance-boundary"><span aria-hidden="true" style="color:var(--amber);font-size:18px">!</span><div><strong>Commercial honesty</strong><p>LedgerTrace is an early, static browser-based pilot—not a certified accounting system. There are no claimed customer results, accuracy rate, savings figure, security certification or production readiness. A paid Evidence Review covers the agreed investigation, not a guaranteed saving or positive finding. You receive the agreed outputs even if the tool misses cases or produces false positives.</p></div></div>
+    <div class="boundary assurance-boundary"><span aria-hidden="true" style="color:var(--amber);font-size:18px">!</span><div><strong>Commercial honesty</strong><p>Caseweft is an early, static browser-based pilot—not a certified accounting system. There are no claimed customer results, accuracy rate, savings figure, security certification or production readiness. A paid Evidence Review covers the agreed investigation, not a guaranteed saving or positive finding. You receive the agreed outputs even if the tool misses cases or produces false positives.</p></div></div>
   </div>
 </section>
 <section class="section methodology" id="methodology">
   <div class="container">
-    <div class="section-top"><div class="section-index">05 / Methodology</div><div><h2 class="section-title">A finding should explain itself.</h2><p class="section-lead">LedgerTrace applies explicit comparisons to the records provided. It does not infer intent, decide whether an invoice is fraudulent, or replace an AP review process.</p></div></div>
+    <div class="section-top"><div class="section-index">05 / Methodology</div><div><h2 class="section-title">A finding should explain itself.</h2><p class="section-lead">Caseweft applies explicit comparisons to the records provided. It does not infer intent, decide whether an invoice is fraudulent, or replace an AP review process.</p></div></div>
     <div class="method-grid">
       <article class="method-card"><span class="number">01 / MATCH</span><h3>Connect the source rows</h3><p>Normalize identifiers and compare invoice lines with purchase-order and receipt rows using PO number and item code. Missing or ambiguous relationships must remain visible.</p></article>
       <article class="method-card"><span class="number">02 / EXPLAIN</span><h3>Show the rule and values</h3><p>Flag configured conditions such as possible duplicate invoice lines or repeated invoice references, supplier differences, price deltas, quantity excesses, missing receipts and unmatched source rows.</p></article>
@@ -885,12 +885,12 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 
 <section class="section methodology" id="faq">
   <div class="container">
-    <div class="section-top"><div class="section-index">06 / Product details</div><div><h2 class="section-title">Clear answers before you evaluate.</h2><p class="section-lead">The important details about matching, inputs, evidence and review are spelled out before you decide whether to use LedgerTrace.</p></div></div>
+    <div class="section-top"><div class="section-index">06 / Product details</div><div><h2 class="section-title">Clear answers before you evaluate.</h2><p class="section-lead">The important details about matching, inputs, evidence and review are spelled out before you decide whether to use Caseweft.</p></div></div>
     <div class="faq-list">
       <details class="faq-item"><summary>Which records can I compare?</summary><p>Three CSV exports: supplier invoice lines, purchase-order lines and goods-receipt lines. Each file should include the relevant identifiers, item code and quantity; invoice and PO files should include unit price for price checks.</p></details>
-      <details class="faq-item"><summary>How are records matched?</summary><p>The current matching key is purchase-order number plus item code. LedgerTrace then checks configured conditions such as possible duplicate invoice-line candidates or repeated invoice references, supplier differences, invoice-versus-PO price differences, quantity excesses, receipt gaps and unmatched PO lines. Confirm column mappings and edge cases before using a new data shape.</p></details>
+      <details class="faq-item"><summary>How are records matched?</summary><p>The current matching key is purchase-order number plus item code. Caseweft then checks configured conditions such as possible duplicate invoice-line candidates or repeated invoice references, supplier differences, invoice-versus-PO price differences, quantity excesses, receipt gaps and unmatched PO lines. Confirm column mappings and edge cases before using a new data shape.</p></details>
       <details class="faq-item"><summary>What can I inspect in a finding?</summary><p>Select a result to review the invoice row, supplier-compatible PO and receipt rows, compared values, triggered rule, and explanation. Source-row references point back to the uploaded CSV line numbers. Review notes and exports support the next human decision.</p></details>
-      <details class="faq-item"><summary>Where is uploaded data processed?</summary><p>In the current version, selected CSV files are processed in your browser; they are not uploaded to a LedgerTrace application server. Use synthetic or approved anonymized data for evaluation, and do not provide confidential records until data handling has been agreed.</p></details>
+      <details class="faq-item"><summary>Where is uploaded data processed?</summary><p>In the current version, selected CSV files are processed in your browser; they are not uploaded to a Caseweft application server. Use synthetic or approved anonymized data for evaluation, and do not provide confidential records until data handling has been agreed.</p></details>
       <details class="faq-item"><summary>What needs separate validation?</summary><p>Currency conversion, tax treatment, complex split or merged invoice lines, and full supplier master-data resolution are not general capabilities. Conflicting invoice/PO currencies block price comparisons, mixed currencies are not added into one flagged-value total, and recovery calculations stop when known currencies conflict. Receipts from a conflicting named supplier are excluded. A “matched” status means no configured rule triggered; it is not a certification that an invoice is correct or approval to pay.</p></details>
       <details class="faq-item"><summary>How do I know the results are useful?</summary><p>Use a human-reviewed reference set with expected outcomes. Compare findings against that set, record both missed exceptions and false positives, and agree the scope and acceptance criteria before a paid Evidence Review. Illustrative sample records demonstrate the workflow; they are not customer results.</p></details>
     </div>
@@ -987,20 +987,20 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 <footer class="footer" id="site-footer">
   <div class="container">
     <div class="footer-heading">
-      <div><div class="eyebrow">LedgerTrace / Site directory</div><h2>Trace the mismatch. Keep the evidence.</h2><p class="footer-intro">A browser-side parked-invoice and three-way match workbench for preparing source-linked exceptions for AP review. Human verification remains required.</p></div>
+      <div><div class="eyebrow">Caseweft / Site directory</div><h2>Trace the mismatch. Keep the evidence.</h2><p class="footer-intro">A browser-side parked-invoice and three-way match workbench for preparing source-linked exceptions for AP review. Human verification remains required.</p></div>
       <a class="button secondary footer-scope" href="#evaluation">Discuss a paid Evidence Review ↗</a>
     </div>
     <div class="footer-directory">
       <div class="footer-column"><h3>Explore</h3><a href="/invoice-reconciliation.html">Invoice reconciliation for distributors</a><a href="#product">Product overview</a><a href="#investigation">Sample investigation</a><a href="#who-for">Who it serves</a><a href="#methodology">Methodology &amp; limits</a><a href="/invoice-reconciliation-checklist.html">Free AP checklist</a><a href="/supplier-invoice-overcharge-investigation.html">Invoice overcharge investigation</a><a href="/purchase-order-price-variance.html">PO price variance</a><a href="#evaluation">Paid Evidence Review</a></div>
       <div class="footer-column"><h3>Work with us</h3><a href="#" id="footerContact">Describe your workflow ↗</a><a href="mailto:dhairytopia@gmail.com">Mail ↗</a><a href="https://wa.me/919133404350" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div>
-      <div class="footer-column"><h3>Project &amp; scope</h3><a href="https://github.com/DT-09/LedgerTrace" target="_blank" rel="noopener noreferrer">Source repository ↗</a><p>Early-stage pilot. No account system, hosted data storage or production-grade controls are implied.</p></div>
+      <div class="footer-column"><h3>Project &amp; scope</h3><a href="https://github.com/DT-09/Caseweft" target="_blank" rel="noopener noreferrer">Source repository ↗</a><p>Early-stage pilot. No account system, hosted data storage or production-grade controls are implied.</p></div>
     </div>
     <div class="footer-brand-row">
-      <a class="footer-brand" href="#top" aria-label="LedgerTrace home">
-        <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span>
-        <span class="footer-brand-name">LedgerTrace</span>
+      <a class="footer-brand" href="#top" aria-label="Caseweft home">
+        <span class="brand-mark" aria-hidden="true"><img class="caseweft-logo" src="/assets/caseweft-monogram.svg" alt=""></span>
+        <span class="footer-brand-name">Caseweft</span>
       </a>
-      <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> LedgerTrace</p><p>Browser-side AP reconciliation · Illustrative data · Human review required</p></div>
+      <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> Caseweft</p><p>Browser-side AP reconciliation · Illustrative data · Human review required</p></div>
     </div>
   </div>
 </footer>
@@ -1064,16 +1064,16 @@ function printEvidenceReport(){
  const currencyUnresolved=rowsWithCurrency.some(r=>!r.currency)||new Set(currencies).size>1;
  const flagged=currencyUnresolved?'Not aggregated — currency missing or mixed':money(state.results.filter(r=>r.status!=='matched').reduce((sum,r)=>sum+(r.risk||0),0),rowsWithCurrency[0]?.currency||'');
  w.document.open();
- w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>LedgerTrace evidence report</title><style>body{font:12px/1.5 Arial,sans-serif;color:#221A1E;margin:32px}h1{font-size:25px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 8px}.meta{color:#161512;font-size:11px}.metrics{display:flex;gap:24px;margin:20px 0;padding:14px 0;border-top:1px solid #C5B3A6;border-bottom:1px solid #C5B3A6}.metrics b{display:block;font-size:20px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{text-align:left;vertical-align:top;padding:7px;border-bottom:1px solid #EADEC9;overflow-wrap:anywhere}th{background:#FCF9F2}small{color:#C5B3A6}.note{margin-top:20px;padding:12px;border:1px solid #C5B3A6;background:#FCF9F2}@media print{body{margin:12mm}tr{break-inside:avoid}h1,h2{break-after:avoid}.note{break-inside:avoid}}</style>\n\n\n\n\n</head><body><h1>LedgerTrace — Reconciliation Evidence Report</h1><div class="meta">Generated '+escapeHTML(state.runAt?state.runAt.toLocaleString():'')+' · '+(state.usingSample?'Illustrative sample data':'User-supplied CSV data')+' · Browser-side run</div><div class="metrics"><div><b>'+total+'</b>Invoice rows</div><div><b>'+exceptions+'</b>Results needing review</div><div><b>'+matched+'</b>Invoice rows with no configured rule trigger</div><div><b>'+escapeHTML(flagged)+'</b>Indicative flagged line value</div></div><h2>Result worklist</h2><table><thead><tr><th>Status</th><th>Invoice</th><th>Supplier</th><th>PO / item</th><th>Invoice qty</th><th>PO qty</th><th>Received</th><th>Source trace</th><th>Rule finding / interpretation</th></tr></thead><tbody>'+rows+'</tbody></table><div class="note"><strong>How to audit this report:</strong> Source CSV references are physical line numbers in the loaded files (the header is line 1). The initial linkage key is normalized purchase-order number plus item code; conflicting named suppliers are excluded. Multiple compatible PO rows are treated as ambiguous rather than arbitrarily selecting one. Receipt quantities may be aggregated across compatible receipt rows. Confirm each cited row against the original invoice, PO and receipt before posting or payment. A matched row means no configured rule triggered; it is not certification of correctness or authorization to pay. Indicative flagged line value is not verified loss or recoverable value.</div><p class="meta">LedgerTrace · Illustrative output unless user-supplied CSVs were loaded.</p><script>window.addEventListener("load",()=>window.print())<\/script>\n\n</body></html>');
+ w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Caseweft evidence report</title><style>body{font:12px/1.5 Arial,sans-serif;color:#221A1E;margin:32px}h1{font-size:25px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 8px}.meta{color:#161512;font-size:11px}.metrics{display:flex;gap:24px;margin:20px 0;padding:14px 0;border-top:1px solid #C5B3A6;border-bottom:1px solid #C5B3A6}.metrics b{display:block;font-size:20px}table{width:100%;border-collapse:collapse;font-size:10px}th,td{text-align:left;vertical-align:top;padding:7px;border-bottom:1px solid #EADEC9;overflow-wrap:anywhere}th{background:#FCF9F2}small{color:#C5B3A6}.note{margin-top:20px;padding:12px;border:1px solid #C5B3A6;background:#FCF9F2}@media print{body{margin:12mm}tr{break-inside:avoid}h1,h2{break-after:avoid}.note{break-inside:avoid}}</style>\n\n\n\n\n</head><body><h1>Caseweft — Reconciliation Evidence Report</h1><div class="meta">Generated '+escapeHTML(state.runAt?state.runAt.toLocaleString():'')+' · '+(state.usingSample?'Illustrative sample data':'User-supplied CSV data')+' · Browser-side run</div><div class="metrics"><div><b>'+total+'</b>Invoice rows</div><div><b>'+exceptions+'</b>Results needing review</div><div><b>'+matched+'</b>Invoice rows with no configured rule trigger</div><div><b>'+escapeHTML(flagged)+'</b>Indicative flagged line value</div></div><h2>Result worklist</h2><table><thead><tr><th>Status</th><th>Invoice</th><th>Supplier</th><th>PO / item</th><th>Invoice qty</th><th>PO qty</th><th>Received</th><th>Source trace</th><th>Rule finding / interpretation</th></tr></thead><tbody>'+rows+'</tbody></table><div class="note"><strong>How to audit this report:</strong> Source CSV references are physical line numbers in the loaded files (the header is line 1). The initial linkage key is normalized purchase-order number plus item code; conflicting named suppliers are excluded. Multiple compatible PO rows are treated as ambiguous rather than arbitrarily selecting one. Receipt quantities may be aggregated across compatible receipt rows. Confirm each cited row against the original invoice, PO and receipt before posting or payment. A matched row means no configured rule triggered; it is not certification of correctness or authorization to pay. Indicative flagged line value is not verified loss or recoverable value.</div><p class="meta">Caseweft · Illustrative output unless user-supplied CSVs were loaded.</p><script>window.addEventListener("load",()=>window.print())<\/script>\n\n</body></html>');
  w.document.close();
 }
 
-function exportCSV(){if(!state.results.length)return;const headers=['status','invoice_number','supplier','purchase_order','item_code','source_type','invoice_source_csv_row','po_source_csv_rows','receipt_source_csv_rows','match_key','currency','invoice_quantity','invoice_unit_price','invoice_line_amount','po_quantity','po_unit_price','received_quantity','finding_codes','findings','evidence_summary','indicative_flagged_line_value'];const lines=[headers.join(',')];state.results.forEach(r=>{const invoiceRow=r.source==='invoice'?r.row:'';const poRows=(r.poRows||[]).join('; ')||(r.source==='po'?String(r.row):'');const receiptRows=(r.receiptRows||[]).join('; ')||(r.source==='receipt'?String(r.row):'');const matchKey='PO '+(r.po||'')+' / item '+(r.item||'');const evidence=r.findings.length?r.findings.map(f=>f.label+': '+f.detail).join(' | '):'No configured rule triggered; human review of original documents remains required.';lines.push([r.status,r.invoice,r.supplier,r.po,r.item,r.source,invoiceRow,poRows,receiptRows,matchKey,r.currency||'',r.qty,r.price,r.amount,r.poQty,r.poPrice,r.receiptQty,r.findings.map(f=>f.code).join('; '),r.findings.map(f=>f.label+': '+f.detail).join(' | '),evidence,r.risk].map(csvCell).join(','))});const blob=new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ledgertrace-exception-report-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function exportCSV(){if(!state.results.length)return;const headers=['status','invoice_number','supplier','purchase_order','item_code','source_type','invoice_source_csv_row','po_source_csv_rows','receipt_source_csv_rows','match_key','currency','invoice_quantity','invoice_unit_price','invoice_line_amount','po_quantity','po_unit_price','received_quantity','finding_codes','findings','evidence_summary','indicative_flagged_line_value'];const lines=[headers.join(',')];state.results.forEach(r=>{const invoiceRow=r.source==='invoice'?r.row:'';const poRows=(r.poRows||[]).join('; ')||(r.source==='po'?String(r.row):'');const receiptRows=(r.receiptRows||[]).join('; ')||(r.source==='receipt'?String(r.row):'');const matchKey='PO '+(r.po||'')+' / item '+(r.item||'');const evidence=r.findings.length?r.findings.map(f=>f.label+': '+f.detail).join(' | '):'No configured rule triggered; human review of original documents remains required.';lines.push([r.status,r.invoice,r.supplier,r.po,r.item,r.source,invoiceRow,poRows,receiptRows,matchKey,r.currency||'',r.qty,r.price,r.amount,r.poQty,r.poPrice,r.receiptQty,r.findings.map(f=>f.code).join('; '),r.findings.map(f=>f.label+': '+f.detail).join(' | '),evidence,r.risk].map(csvCell).join(','))});const blob=new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='caseweft-exception-report-'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function openDrawer(index,trigger){const r=state.results[index];if(!r)return;state.selected=index;state.lastFocus=trigger||document.activeElement;$('drawerTitle').textContent=r.findings.length?r.findings[0].label:'No configured rule triggered';$('drawerSub').textContent=(r.invoice&&r.invoice!=='—'?'Invoice '+r.invoice+' · ':'')+'PO '+(r.po||'—')+' · Item '+(r.item||'—')+' · CSV row '+(r.row??'—');const findings=r.findings.length?r.findings.map(f=>'<li><strong>'+escapeHTML(f.label)+':</strong> '+escapeHTML(f.detail)+'</li>').join(''):'<li>No currently configured rule triggered for this invoice line. This is not a certification of correctness.</li>';const inv=r.source==='invoice'?r:state.invoices.find(x=>x.row===r.row);const po=state.pos.filter(x=>key(x)===key(r)&&(!r.supplier||!x.supplier||id(x.supplier)===id(r.supplier)));const rec=state.receipts.filter(x=>key(x)===key(r)&&(!r.supplier||!x.supplier||id(x.supplier)===id(r.supplier)));$('drawerContent').innerHTML='<div class="drawer-status"><span class="pill '+(r.status==='matched'?'matched':r.status==='exception'?'exception':'review')+'">'+(r.status==='matched'?'Matched':r.status==='exception'?'Exception':'Review')+'</span></div><div class="drawer-section"><h3>Evidence / Compared values</h3><div class="evidence-pair"><div class="evidence-value"><span>Invoice quantity</span><strong>'+escapeHTML(Number.isFinite(r.qty)?r.qty:'—')+'</strong></div><div class="evidence-value"><span>PO quantity</span><strong>'+escapeHTML(Number.isFinite(r.poQty)?r.poQty:'—')+'</strong></div><div class="evidence-value"><span>Invoice unit price</span><strong>'+escapeHTML(money(r.price,r.currency))+'</strong></div><div class="evidence-value"><span>PO unit price</span><strong>'+escapeHTML(money(r.poPrice,r.currency))+'</strong></div><div class="evidence-value"><span>Received quantity</span><strong>'+escapeHTML(Number.isFinite(r.receiptQty)?r.receiptQty:'—')+'</strong></div><div class="evidence-value"><span>Invoice line amount</span><strong>'+escapeHTML(money(r.amount,r.currency))+'</strong></div><div class="evidence-value"><span>Invoice currency</span><strong>'+escapeHTML(r.currency||'Not supplied')+'</strong></div><div class="evidence-value"><span>PO currency</span><strong>'+escapeHTML(po.length?po.map(x=>x.currency||'Not supplied').join(', '):'No match')+'</strong></div></div></div><div class="drawer-section"><h3>Rule result</h3><ul class="finding-list">'+findings+'</ul></div><div class="drawer-section"><h3>Source trace</h3><div class="evidence-pair"><div class="evidence-value"><span>Invoice CSV row</span><strong>'+escapeHTML(r.source==='invoice'?'Row '+r.row:'Not linked')+'</strong></div><div class="evidence-value"><span>PO source rows</span><strong>'+escapeHTML(po.length?po.map(x=>x.row).join(', '):'No match')+'</strong></div><div class="evidence-value"><span>Receipt source rows</span><strong>'+escapeHTML(rec.length?rec.map(x=>x.row).join(', '):'No match')+'</strong></div><div class="evidence-value"><span>Linkage key</span><strong>'+escapeHTML((r.po||'—')+' / '+(r.item||'—'))+'</strong></div></div><p class="small muted" style="margin:12px 0 0">Matching starts with normalized PO number + item code, then excludes rows with a conflicting named supplier. Multiple compatible PO lines are treated as ambiguous instead of selecting the first row. Compatible receipt rows may be aggregated for quantity; split-line matching still needs separate validation.</p></div>';$('reviewStatus').value=(state.review.get(index)||{}).status||'unreviewed';$('reviewNote').value=(state.review.get(index)||{}).note||'';$('drawerBackdrop').classList.add('open');$('inspector').classList.add('open');$('inspector').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('closeDrawer').focus()}
 function closeDrawer(){if(!$('inspector').classList.contains('open'))return;$('drawerBackdrop').classList.remove('open');$('inspector').classList.remove('open');$('inspector').setAttribute('aria-hidden','true');document.body.style.overflow='';if(state.lastFocus&&state.lastFocus.focus)state.lastFocus.focus()}
 function scopeData(){const sources=[...$('sourceOptions').querySelectorAll('input:checked')].map(x=>x.value),checks=[...$('checkOptions').querySelectorAll('input:checked')].map(x=>x.value);return {sources,checks}}
-function scopeText(){const s=scopeData();return 'LedgerTrace scoped evaluation inquiry\n\nRecord sources: '+(s.sources.join(', ')||'Not selected')+'\nChecks to discuss: '+(s.checks.join(', ')||'Not selected')+'\nProposed deliverables: findings report, exception CSV, source-linked evidence and review of false positives/missed exceptions, subject to agreement.\nPotential follow-on: one-time evaluation, monthly exception review, or periodic review; confirm fit after initial results.\nCommercial terms: fee negotiated privately according to agreed requirements; scope, timeline and acceptance criteria confirmed in writing before work begins.\nData: synthetic or approved anonymized data only for initial evaluation.'}
-function updateContactLinks(){const c=$('configuredChannels');c.innerHTML='';const brief=encodeURIComponent(fullBrief());if(CONTACT_EMAIL){const a=document.createElement('a');a.className='button secondary';a.href='mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent('LedgerTrace inquiry')+'&body='+brief;a.textContent='Email a scoped inquiry ↗';c.appendChild(a)}if(WHATSAPP_NUMBER){const a=document.createElement('a');a.className='button secondary';a.href='https://wa.me/'+WHATSAPP_NUMBER.replace(/[^0-9]/g,'')+'?text='+brief;a.target='_blank';a.rel='noopener noreferrer';a.textContent='WhatsApp LedgerTrace ↗';c.appendChild(a)}}
+function scopeText(){const s=scopeData();return 'Caseweft scoped evaluation inquiry\n\nRecord sources: '+(s.sources.join(', ')||'Not selected')+'\nChecks to discuss: '+(s.checks.join(', ')||'Not selected')+'\nProposed deliverables: findings report, exception CSV, source-linked evidence and review of false positives/missed exceptions, subject to agreement.\nPotential follow-on: one-time evaluation, monthly exception review, or periodic review; confirm fit after initial results.\nCommercial terms: fee negotiated privately according to agreed requirements; scope, timeline and acceptance criteria confirmed in writing before work begins.\nData: synthetic or approved anonymized data only for initial evaluation.'}
+function updateContactLinks(){const c=$('configuredChannels');c.innerHTML='';const brief=encodeURIComponent(fullBrief());if(CONTACT_EMAIL){const a=document.createElement('a');a.className='button secondary';a.href='mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent('Caseweft inquiry')+'&body='+brief;a.textContent='Email a scoped inquiry ↗';c.appendChild(a)}if(WHATSAPP_NUMBER){const a=document.createElement('a');a.className='button secondary';a.href='https://wa.me/'+WHATSAPP_NUMBER.replace(/[^0-9]/g,'')+'?text='+brief;a.target='_blank';a.rel='noopener noreferrer';a.textContent='WhatsApp Caseweft ↗';c.appendChild(a)}}
 function updateScope(){const s=scopeData();$('summarySources').textContent=s.sources.length+' selected';$('summaryChecks').textContent=s.checks.length+' selected';state.scopeBrief=scopeText();$('contactScopeSummary').textContent=s.sources.length+' source types, '+s.checks.length+' check topics, findings report and exception CSV. You can edit the brief before using it.';updateContactLinks()}
 function toast(msg){const t=$('toast');t.textContent=msg;t.style.opacity='1';t.style.transform='translate(-50%,0)';clearTimeout(toast.timer);toast.timer=setTimeout(()=>{t.style.opacity='0';t.style.transform='translate(-50%,20px)'},2600)}
 async function copyText(text){try{await navigator.clipboard.writeText(text);toast('Brief copied to clipboard.')}catch(e){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();toast(ok?'Brief copied to clipboard.':'Copy failed. Select and copy the brief manually.')}}
@@ -1120,7 +1120,7 @@ async function handleContactSubmit(e){
 function resetAll(){loadSamples();$('results').classList.add('hidden');closeDrawer();$('search').value='';$('runHint').textContent='Sample records restored. Run reconciliation to produce a fresh report.';toast('Sample restored.')}
 $('invoiceFile').addEventListener('change',e=>loadFile('invoice',e.target.files[0]));$('poFile').addEventListener('change',e=>loadFile('po',e.target.files[0]));$('receiptFile').addEventListener('change',e=>loadFile('receipt',e.target.files[0]));
 async function loadFile(type,file){if(!file)return;hideError();const stateKey=type==='invoice'?'invoices':type==='po'?'pos':'receipts',inputId=type==='invoice'?'invoiceFile':type==='po'?'poFile':'receiptFile',metaId=type==='invoice'?'invoiceMeta':type==='po'?'poMeta':'receiptMeta';if(state.usingSample){state.invoices=[];state.pos=[];state.receipts=[];state.usingSample=false;setMeta('invoiceMeta','Select invoice CSV');setMeta('poMeta','Select PO CSV');setMeta('receiptMeta','Select receipt CSV');}try{if(file.size>10*1024*1024)throw Error('File exceeds the 10 MB limit.');const rows=parseCSV(await file.text());if(rows.length>50000)throw Error('File exceeds the 50,000 data-row limit.');const records=readRecords(rows,type);validate(records,type==='invoice'?'invoice':type==='po'?'purchase order':'goods receipt');state[stateKey]=records;setMeta(metaId,file.name+' · '+records.length+' rows');$('results').classList.add('hidden');setMeta('runHint','All three sources must be loaded before running. Files remain in this browser tab.')}catch(e){state[stateKey]=[];$(inputId).value='';setMeta(metaId,'No valid file loaded');$('results').classList.add('hidden');showError(file.name+': '+e.message)}}
-$('sampleBtn').addEventListener('click',()=>{loadSamples();reconcile();toast('Illustrative sample loaded and analysis complete.')});$('heroSampleBtn')?.addEventListener('click',e=>{e.preventDefault();loadSamples();reconcile();toast('Illustrative sample loaded and analysis complete.')});$('resetBtn').addEventListener('click',resetAll);$('reportReset').addEventListener('click',resetAll);$('clearBtn').addEventListener('click',()=>{state.invoices=[];state.pos=[];state.receipts=[];state.results=[];state.runAt=null;state.review.clear();['invoiceFile','poFile','receiptFile'].forEach(k=>$(k).value='');['invoiceMeta','poMeta','receiptMeta'].forEach(k=>setMeta(k,'No file selected'));$('results').classList.add('hidden');hideError();setMeta('runHint','Files cleared. Load sample data or choose all three CSV sources.');});$('runBtn').addEventListener('click',reconcile);$('exportBtn').addEventListener('click',exportCSV);$('reportExport').addEventListener('click',exportCSV);$('evidencePdfBtn').addEventListener('click',printEvidenceReport);$('search').addEventListener('input',drawRows);$('filters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;state.filter=b.dataset.filter;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active',x===b));drawRows()});$('rows').addEventListener('click',e=>{const tr=e.target.closest('tr[data-row]');if(tr)openDrawer(Number(tr.dataset.row),tr)});$('rows').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('tr[data-row]')){e.preventDefault();openDrawer(Number(e.target.dataset.row),e.target)}});$('closeDrawer').addEventListener('click',closeDrawer);$('closeDrawer2').addEventListener('click',closeDrawer);$('drawerBackdrop').addEventListener('click',closeDrawer);$('saveReview').addEventListener('click',()=>{if(state.selected===null)return;state.review.set(state.selected,{status:$('reviewStatus').value,note:$('reviewNote').value});$('reviewFeedback').textContent='Review state saved in memory for this page session only.';toast('Local review note saved.')});$('sourceOptions').addEventListener('change',updateScope);$('checkOptions').addEventListener('change',updateScope);$('generateBrief').addEventListener('click',()=>{updateScope();openContact();$('contactDescription').value='I would like to discuss a paid Evidence Review using the selected sources and check topics.\n\n'+state.scopeBrief;toast('Scope brief prepared for review.')});$('contactFromBuilder').addEventListener('click',openContact);$('requestQuickCheck').addEventListener('click',()=>{openContact();$('contactCadence').value='Parked Invoice Review — scope check';$('contactDescription').value='I have a defined parked-invoice or three-way match queue. Please confirm whether the invoice, approved PO and goods-receipt exports fit the current LedgerTrace checks, then propose scope, exclusions, fee, delivery date and acceptance criteria. I will not attach or send accounting records in this initial inquiry.';updateScope();$('contactScopeSummary').textContent='Scope check only: workflow description and synthetic demonstration. No buyer accounting files or unpaid custom analysis.';$('contactForm').querySelector('button[type="submit"]').textContent='Prepare paid review scope ↗'});$('footerContact').addEventListener('click',e=>{e.preventDefault();openContact()});$('closeContact').addEventListener('click',closeContact);$('contactBackdrop').addEventListener('click',closeContact);$('contactForm').addEventListener('submit',handleContactSubmit);$('contactForm').addEventListener('input',updateContactLinks);$('contactForm').addEventListener('change',updateContactLinks);$('copyBrief').addEventListener('click',()=>copyText(fullBrief()));document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeContact()}});window.addEventListener('scroll',()=>{$('header').classList.toggle('scrolled',window.scrollY>35)},{passive:true});
+$('sampleBtn').addEventListener('click',()=>{loadSamples();reconcile();toast('Illustrative sample loaded and analysis complete.')});$('heroSampleBtn')?.addEventListener('click',e=>{e.preventDefault();loadSamples();reconcile();toast('Illustrative sample loaded and analysis complete.')});$('resetBtn').addEventListener('click',resetAll);$('reportReset').addEventListener('click',resetAll);$('clearBtn').addEventListener('click',()=>{state.invoices=[];state.pos=[];state.receipts=[];state.results=[];state.runAt=null;state.review.clear();['invoiceFile','poFile','receiptFile'].forEach(k=>$(k).value='');['invoiceMeta','poMeta','receiptMeta'].forEach(k=>setMeta(k,'No file selected'));$('results').classList.add('hidden');hideError();setMeta('runHint','Files cleared. Load sample data or choose all three CSV sources.');});$('runBtn').addEventListener('click',reconcile);$('exportBtn').addEventListener('click',exportCSV);$('reportExport').addEventListener('click',exportCSV);$('evidencePdfBtn').addEventListener('click',printEvidenceReport);$('search').addEventListener('input',drawRows);$('filters').addEventListener('click',e=>{const b=e.target.closest('[data-filter]');if(!b)return;state.filter=b.dataset.filter;document.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active',x===b));drawRows()});$('rows').addEventListener('click',e=>{const tr=e.target.closest('tr[data-row]');if(tr)openDrawer(Number(tr.dataset.row),tr)});$('rows').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('tr[data-row]')){e.preventDefault();openDrawer(Number(e.target.dataset.row),e.target)}});$('closeDrawer').addEventListener('click',closeDrawer);$('closeDrawer2').addEventListener('click',closeDrawer);$('drawerBackdrop').addEventListener('click',closeDrawer);$('saveReview').addEventListener('click',()=>{if(state.selected===null)return;state.review.set(state.selected,{status:$('reviewStatus').value,note:$('reviewNote').value});$('reviewFeedback').textContent='Review state saved in memory for this page session only.';toast('Local review note saved.')});$('sourceOptions').addEventListener('change',updateScope);$('checkOptions').addEventListener('change',updateScope);$('generateBrief').addEventListener('click',()=>{updateScope();openContact();$('contactDescription').value='I would like to discuss a paid Evidence Review using the selected sources and check topics.\n\n'+state.scopeBrief;toast('Scope brief prepared for review.')});$('contactFromBuilder').addEventListener('click',openContact);$('requestQuickCheck').addEventListener('click',()=>{openContact();$('contactCadence').value='Parked Invoice Review — scope check';$('contactDescription').value='I have a defined parked-invoice or three-way match queue. Please confirm whether the invoice, approved PO and goods-receipt exports fit the current Caseweft checks, then propose scope, exclusions, fee, delivery date and acceptance criteria. I will not attach or send accounting records in this initial inquiry.';updateScope();$('contactScopeSummary').textContent='Scope check only: workflow description and synthetic demonstration. No buyer accounting files or unpaid custom analysis.';$('contactForm').querySelector('button[type="submit"]').textContent='Prepare paid review scope ↗'});$('footerContact').addEventListener('click',e=>{e.preventDefault();openContact()});$('closeContact').addEventListener('click',closeContact);$('contactBackdrop').addEventListener('click',closeContact);$('contactForm').addEventListener('submit',handleContactSubmit);$('contactForm').addEventListener('input',updateContactLinks);$('contactForm').addEventListener('change',updateContactLinks);$('copyBrief').addEventListener('click',()=>copyText(fullBrief()));document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();closeContact()}});window.addEventListener('scroll',()=>{$('header').classList.toggle('scrolled',window.scrollY>35)},{passive:true});
 const scene=$('scene');if(scene&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&matchMedia('(pointer:fine)').matches){scene.addEventListener('pointermove',e=>{const r=scene.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;scene.style.setProperty('--gx',(x*-9)+'px');scene.style.setProperty('--gy',(y*-9)+'px');scene.style.setProperty('--lx',(x*16)+'px');scene.style.setProperty('--ly',(y*16)+'px');scene.querySelectorAll('[data-depth]').forEach(el=>{const d=Number(el.dataset.depth);el.style.setProperty('--px',(x*d*9)+'px');el.style.setProperty('--py',(y*d*9)+'px')})});scene.addEventListener('pointerleave',()=>{scene.style.setProperty('--gx','0px');scene.style.setProperty('--gy','0px');scene.style.setProperty('--lx','0px');scene.style.setProperty('--ly','0px');scene.querySelectorAll('[data-depth]').forEach(el=>{el.style.setProperty('--px','0px');el.style.setProperty('--py','0px')})})}
 const copyrightYear=$('copyrightYear');if(copyrightYear)copyrightYear.textContent=String(new Date().getFullYear());
 // Deep links from service pages should open the actual QuickCheck inquiry panel, not merely scroll to a section.
@@ -1129,7 +1129,7 @@ state.usingSample=false;updateScope();setMeta('runHint','Choose all three CSV fi
 })();
 </script>
 
-<script id="ledgertrace-quickcheck-route-fallback">
+<script id="caseweft-quickcheck-route-fallback">
 (function(){
   function openQuickCheckFromRoute(){
     if(new URLSearchParams(window.location.search).get('request')!=='quickcheck') return;
@@ -1144,7 +1144,7 @@ state.usingSample=false;updateScope();setMeta('runHint','Choose all three CSV fi
     panel.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
     if(cadence) cadence.value='Parked Invoice Review — scope check';
-    if(description) description.value='I have a defined parked-invoice or three-way match queue. Please confirm whether the invoice, approved PO and goods-receipt exports fit the current LedgerTrace checks, then propose scope, exclusions, fee, delivery date and acceptance criteria. I will not attach or send accounting records in this initial inquiry.';
+    if(description) description.value='I have a defined parked-invoice or three-way match queue. Please confirm whether the invoice, approved PO and goods-receipt exports fit the current Caseweft checks, then propose scope, exclusions, fee, delivery date and acceptance criteria. I will not attach or send accounting records in this initial inquiry.';
     var summary=document.getElementById('contactScopeSummary');
     if(summary) summary.textContent='Scope check only: workflow description and synthetic demonstration. No buyer accounting files or unpaid custom analysis.';
     var submit=document.querySelector('#contactForm button[type="submit"]');
@@ -1156,7 +1156,7 @@ state.usingSample=false;updateScope();setMeta('runHint','Choose all three CSV fi
 })();
 </script>
 
-<style id="ledgertrace-recovery-extension-css">
+<style id="caseweft-recovery-extension-css">
 .recovery-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
 .recovery-input-grid .source-card{min-width:0}
 .recovery-shell{border-color:rgba(224,122,95,.28)}
@@ -1188,7 +1188,7 @@ textarea.recovery-control{resize:vertical;min-height:100px}
 
 
 <script src="./recovery-core.js"></script>
-<script id="ledgertrace-recovery-extension">
+<script id="caseweft-recovery-extension">
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
@@ -1249,19 +1249,19 @@ function showCase(r){if(!r)return;const c=getCase(r);$('recCaseTitle').textConte
 function saveCase(){if(!state.selected){toastMsg('Select a worklist row first.');return}state.cases[state.selected]={status:$('recCaseStatus').value,action:$('recCorrective').value,note:$('recReviewNote').value,outcomeAmount:$('recOutcomeAmount').value,outcomeRef:$('recOutcomeRef').value,updatedAt:new Date().toISOString()};drawRows();showCase(state.results.find(r=>r.id===state.selected));toastMsg('Case recorded in this tab. Export it to retain the record.')}
 function csvCell(v){const s=String(v??'');return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
 function download(name,content,type){const blob=new Blob([content],{type:type||'application/json;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-function pack(){return {product:'LedgerTrace Recovery',generatedAt:new Date().toISOString(),inputFiles:state.files,summary:state.summary,methodNotes:['Potential invoice excess is not verified loss.','Payment excess candidate requires finance review.','User-entered outcome is not independently verified by LedgerTrace.','Complex tax, freight, currency, tolerances and payment allocations need human review.'],cases:state.results.map(r=>({...r,caseRecord:getCase(r)}))}}
-function exportCsv(){const cols=['id','invoice','supplier','po','item','currency','invoiceAmount','poPrice','qtyOrdered','qtyReceived','expectedNet','paid','credits','candidate','paymentExcessCandidate','status','findings','sourceRows'];const lines=[cols.join(',')];for(const r of state.results){const obj={...r,status:getCase(r).status,findings:r.findings.map(f=>f.label+': '+f.detail).join(' | '),sourceRows:JSON.stringify(r.sourceRows)};lines.push(cols.map(k=>csvCell(obj[k])).join(','))}download('ledgertrace-recovery-worklist.csv','\ufeff'+lines.join('\r\n'),'text/csv;charset=utf-8')}
-function exportCase(){const r=state.results.find(x=>x.id===state.selected);if(!r){toastMsg('Select a case first.');return}download('ledgertrace-'+r.id.toLowerCase()+'-case.json',JSON.stringify({...r,caseRecord:getCase(r),generatedAt:new Date().toISOString(),inputFiles:state.files},null,2))}
+function pack(){return {product:'Caseweft Recovery',generatedAt:new Date().toISOString(),inputFiles:state.files,summary:state.summary,methodNotes:['Potential invoice excess is not verified loss.','Payment excess candidate requires finance review.','User-entered outcome is not independently verified by Caseweft.','Complex tax, freight, currency, tolerances and payment allocations need human review.'],cases:state.results.map(r=>({...r,caseRecord:getCase(r)}))}}
+function exportCsv(){const cols=['id','invoice','supplier','po','item','currency','invoiceAmount','poPrice','qtyOrdered','qtyReceived','expectedNet','paid','credits','candidate','paymentExcessCandidate','status','findings','sourceRows'];const lines=[cols.join(',')];for(const r of state.results){const obj={...r,status:getCase(r).status,findings:r.findings.map(f=>f.label+': '+f.detail).join(' | '),sourceRows:JSON.stringify(r.sourceRows)};lines.push(cols.map(k=>csvCell(obj[k])).join(','))}download('caseweft-recovery-worklist.csv','\ufeff'+lines.join('\r\n'),'text/csv;charset=utf-8')}
+function exportCase(){const r=state.results.find(x=>x.id===state.selected);if(!r){toastMsg('Select a case first.');return}download('caseweft-'+r.id.toLowerCase()+'-case.json',JSON.stringify({...r,caseRecord:getCase(r),generatedAt:new Date().toISOString(),inputFiles:state.files},null,2))}
 function reset(){for(const t of types){$(ids[t]).value='';$(meta[t]).textContent=t==='invoices'?'No file selected':'Optional source'}state.raw={};state.files={};state.results=[];state.summary=null;state.cases={};state.selected=null;state.runAt=null;$('recResults').classList.add('hidden');$('recError').classList.add('hidden');$('recSearch').value='';$('recHint').textContent='Inputs cleared. Load approved CSVs or the illustrative sample.'}
-$('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEventListener('click',reset);$('recRunBtn').addEventListener('click',run);$('recSaveCase').addEventListener('click',saveCase);$('recExportCase').addEventListener('click',exportCase);$('recExportCsv').addEventListener('click',exportCsv);$('recExportAll').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}download('ledgertrace-recovery-investigation.json',JSON.stringify(pack(),null,2))});$('recPrint').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}window.print()});$('recSearch').addEventListener('input',drawRows);document.querySelectorAll('[data-rec-filter]').forEach(b=>b.addEventListener('click',()=>{state.filter=b.dataset.recFilter;document.querySelectorAll('[data-rec-filter]').forEach(x=>x.classList.toggle('active',x===b));drawRows()}));
+$('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEventListener('click',reset);$('recRunBtn').addEventListener('click',run);$('recSaveCase').addEventListener('click',saveCase);$('recExportCase').addEventListener('click',exportCase);$('recExportCsv').addEventListener('click',exportCsv);$('recExportAll').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}download('caseweft-recovery-investigation.json',JSON.stringify(pack(),null,2))});$('recPrint').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}window.print()});$('recSearch').addEventListener('input',drawRows);document.querySelectorAll('[data-rec-filter]').forEach(b=>b.addEventListener('click',()=>{state.filter=b.dataset.recFilter;document.querySelectorAll('[data-rec-filter]').forEach(x=>x.classList.toggle('active',x===b));drawRows()}));
 })();
 </script>
 
-<style id="ledgertrace-trust-pass">
+<style id="caseweft-trust-pass">
 .header{background:rgba(28,18,12,.70)!important;border-color:rgba(168,159,145,.24)!important;box-shadow:0 10px 38px rgba(28,18,12,.16)!important;backdrop-filter:blur(18px) saturate(140%)!important;-webkit-backdrop-filter:blur(18px) saturate(140%)!important}
 .header.scrolled{background:rgba(28,18,12,.84)!important}
 .brand-mark{width:38px!important;height:38px!important;border:0!important;background:transparent!important;box-shadow:none!important}
-.ledgertrace-logo{display:block;width:100%;height:100%}
+.caseweft-logo{display:block;width:100%;height:100%}
 .brand-name{letter-spacing:.16em!important}
 .assurance-grid .method-card{min-height:210px}
 .faq-list{border-top:1px solid var(--line)}
@@ -1278,13 +1278,13 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(prefers-reduced-transparency:reduce){.header,.header.scrolled{background:#0B0B0A!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
 </style>
 
-<style id="ledgertrace-logo-nav-trust-final">
+<style id="caseweft-logo-nav-trust-final">
 /* Keep the original monogram geometry. Render it as one restrained silhouette. */
 .brand-mark,.footer-brand .brand-mark{width:36px!important;height:39px!important;flex:0 0 36px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;transform:none!important}
-.brand-mark .ledgertrace-logo,.footer-brand .ledgertrace-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;object-fit:contain;opacity:.72!important;filter:none!important;transition:opacity .2s ease!important}
-.brand:hover .ledgertrace-logo,.brand:focus-visible .ledgertrace-logo,.footer-brand:hover .ledgertrace-logo,.footer-brand:focus-visible .ledgertrace-logo{opacity:.9!important;filter:none!important}
+.brand-mark .caseweft-logo,.footer-brand .caseweft-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;object-fit:contain;opacity:.72!important;filter:none!important;transition:opacity .2s ease!important}
+.brand:hover .caseweft-logo,.brand:focus-visible .caseweft-logo,.footer-brand:hover .caseweft-logo,.footer-brand:focus-visible .caseweft-logo{opacity:.9!important;filter:none!important}
 /* Both original paths share one muted sage tone: no bright blue/grey split. */
-.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important;opacity:1!important}
+.caseweft-logo .logo-blue,.caseweft-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important;opacity:1!important}
 .header{background:rgba(28,18,12,.68)!important;border-color:rgba(234,227,210,.15)!important;backdrop-filter:blur(22px) saturate(125%)!important;-webkit-backdrop-filter:blur(22px) saturate(125%)!important;box-shadow:0 12px 42px rgba(28,18,12,.19),inset 0 1px 0 rgba(234,227,210,.045)!important}
 .header.scrolled{background:rgba(28,18,12,.76)!important;border-color:rgba(168,159,145,.24)!important}
 .hero-proofline{max-width:440px;margin:16px 0 0;color:#C5B3A6;font-size:11px;line-height:1.75}
@@ -1294,7 +1294,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(prefers-reduced-transparency:reduce){.header,.header.scrolled{background:#0B0B0A!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
 </style>
 
-<style id="ledgertrace-launch-final">
+<style id="caseweft-launch-final">
 /* Launch pass: keep navigation labels directly on the translucent bar. */
 .header .nav a,
 .header .nav a:visited,
@@ -1322,16 +1322,16 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 </style>
 
 
-<style id="ledgertrace-logo-silhouette-fix">
-.brand-mark .ledgertrace-logo,.footer-brand .ledgertrace-logo{opacity:.72!important;filter:none!important}
-.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important}
+<style id="caseweft-logo-silhouette-fix">
+.brand-mark .caseweft-logo,.footer-brand .caseweft-logo{opacity:.72!important;filter:none!important}
+.caseweft-logo .logo-blue,.caseweft-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important}
 </style>
 
 
-<style id="ledgertrace-conversion-polish">
+<style id="caseweft-conversion-polish">
 /* Sales clarity: preserve the editorial layout and use brass only for meaningful actions. */
-.ledgertrace-logo{opacity:.84!important}
-.brand:hover .ledgertrace-logo,.brand:focus-visible .ledgertrace-logo,.footer-brand:hover .ledgertrace-logo,.footer-brand:focus-visible .ledgertrace-logo{opacity:1!important}
+.caseweft-logo{opacity:.84!important}
+.brand:hover .caseweft-logo,.brand:focus-visible .caseweft-logo,.footer-brand:hover .caseweft-logo,.footer-brand:focus-visible .caseweft-logo{opacity:1!important}
 .hero-proofline{max-width:500px;color:#C5B3A6!important}
 .hero-actions .button:first-child{box-shadow:0 7px 24px rgba(224,122,95,.08)}
 .audience-card h3,.method-card h3{color:var(--text)}
@@ -1341,7 +1341,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(max-width:650px){.hero-actions .button{min-height:44px}.header-cta{font-size:10px!important}.hero-proofline{max-width:100%}}
 </style>
 
-<style id="ledgertrace-wordmark-hover-unity">
+<style id="caseweft-wordmark-hover-unity">
 /* Scale the monogram and wordmark together, without changing the header layout. */
 .brand,.footer-brand{
   transform:scale(1);
@@ -1362,7 +1362,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 </style>
 
 
-<style id="ledgertrace-final-illustration-and-wordmark">
+<style id="caseweft-final-illustration-and-wordmark">
 /* Make the wordmark readable at a glance while preserving the restrained header. */
 .header .brand-name{
   font-size:15px!important;
@@ -1374,7 +1374,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 .brand,.footer-brand{transition:transform 180ms ease,opacity 180ms ease}
 .brand:hover,.brand:focus-visible,.footer-brand:hover,.footer-brand:focus-visible{transform:scale(1.025)}
 /* A compact evidence card turns the abstract paths into a concrete, inspectable finding. */
-.ledgertrace-evidence-card{
+.caseweft-evidence-card{
   position:absolute;z-index:5;right:2.5%;bottom:5%;width:205px;
   padding:13px 14px 12px;border:1px solid rgba(224,122,95,.38);
   border-radius:9px;background:rgba(28,18,12,.96);
@@ -1396,13 +1396,13 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(max-width:760px){
  .header .brand-name{font-size:12px!important;letter-spacing:.1em!important}
  .footer-brand .brand-name{font-size:12px!important}
- .ledgertrace-evidence-card{right:2%;bottom:2%;width:176px;padding:10px}
+ .caseweft-evidence-card{right:2%;bottom:2%;width:176px;padding:10px}
  .evidence-card-title{font-size:13px;margin:8px 0}
  .evidence-card-rule{padding:7px 0}
  .evidence-card-foot{padding-top:7px}
 }
 @media(max-width:430px){
- .ledgertrace-evidence-card{right:1%;bottom:1%;width:158px;padding:8px}
+ .caseweft-evidence-card{right:1%;bottom:1%;width:158px;padding:8px}
  .evidence-card-head{font-size:7px}
  .evidence-card-title{font-size:12px}
  .evidence-values{gap:4px}
@@ -1411,10 +1411,10 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
  .evidence-card-rule b{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){.brand,.footer-brand{transition:none!important}}
-@media(prefers-reduced-transparency:reduce){.ledgertrace-evidence-card{background:#0B0B0A;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(prefers-reduced-transparency:reduce){.caseweft-evidence-card{background:#0B0B0A;backdrop-filter:none;-webkit-backdrop-filter:none}}
 </style>
 
-<style id="ledgertrace-final-scene-redesign">
+<style id="caseweft-final-scene-redesign">
 /* A coherent evidence composition: three source records, one explicit finding. */
 .scene{min-height:500px!important}
 .scene-grid{background-image:linear-gradient(rgba(209,199,189,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(209,199,189,.055) 1px,transparent 1px)!important;background-size:30px 30px!important}
@@ -1441,7 +1441,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 .doc-line{background:rgba(209,199,189,.2)!important;margin:10px 0 8px!important}
 .doc-data{font-size:9px!important}
 .doc-status{font-size:8px!important;letter-spacing:.035em}
-.ledgertrace-evidence-card{
+.caseweft-evidence-card{
  right:1%!important;bottom:3%!important;width:188px!important;padding:12px 13px 11px!important;
  background:linear-gradient(150deg,rgba(30,41,59,.98),rgba(28,18,12,.99))!important;
  border-color:rgba(224,122,95,.52)!important;border-radius:8px!important;
@@ -1470,7 +1470,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
  .doc-top{font-size:7px!important}
  .doc-data{font-size:8px!important}
  .doc-status{font-size:7px!important}
- .ledgertrace-evidence-card{right:0!important;bottom:2%!important;width:157px!important;padding:8px!important}
+ .caseweft-evidence-card{right:0!important;bottom:2%!important;width:157px!important;padding:8px!important}
  .evidence-card-head{font-size:6px!important}
  .evidence-card-title{font-size:11px!important;margin:7px 0!important}
  .evidence-values{gap:4px!important}
@@ -1486,18 +1486,18 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(max-width:380px){
  .scene{min-height:430px!important}
  .document{width:145px!important}
- .ledgertrace-evidence-card{width:145px!important}
+ .caseweft-evidence-card{width:145px!important}
 }
 @media(prefers-reduced-motion:reduce){.scene-path{animation:none!important}}
 </style>
-<style id="ledgertrace-editorial-art-css">
+<style id="caseweft-editorial-art-css">
 /* Replace the scattered floating-card scene with one composed, legible evidence view. */
 .ledger-illustration{min-height:0!important;height:auto!important;max-width:900px;width:100%;margin:0 auto;perspective:none!important;isolation:isolate;overflow:visible;padding:0!important}
 .ledger-art-top,.ledger-art-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#C5B3A6;font:8px var(--mono);letter-spacing:.11em}
 .ledger-art-top{padding:0 3px 13px}
 .ledger-art-caption{padding:12px 3px 0;font-size:9px;letter-spacing:.07em}
 .ledger-art-svg{display:block;width:100%;height:auto;filter:drop-shadow(0 22px 42px rgba(28,18,12,.22))}
-.ledger-illustration .scene-grid,.ledger-illustration .scene-glow,.ledger-illustration .scene-path,.ledger-illustration .document,.ledger-illustration .ledgertrace-evidence-card,.ledger-illustration .scene-label,.ledger-illustration .scene-coord,.ledger-illustration .scene-caption{display:none!important}
+.ledger-illustration .scene-grid,.ledger-illustration .scene-glow,.ledger-illustration .scene-path,.ledger-illustration .document,.ledger-illustration .caseweft-evidence-card,.ledger-illustration .scene-label,.ledger-illustration .scene-coord,.ledger-illustration .scene-caption{display:none!important}
 @media(max-width:650px){
  .ledger-art-top{font-size:7px;letter-spacing:.07em}
  .ledger-art-caption{align-items:flex-start;flex-direction:column;gap:5px;font-size:7px}
@@ -1505,8 +1505,8 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 }
 @media(prefers-reduced-motion:reduce){.ledger-art-svg{filter:none}}
 </style>
-<style id="ledgertrace-teal-taupe-integration">
-/* LedgerTrace visual system: smoked teal, warm charcoal, taupe, parchment, Rossi #9E7E6B and antique brass. */
+<style id="caseweft-teal-taupe-integration">
+/* Caseweft visual system: smoked teal, warm charcoal, taupe, parchment, Rossi #9E7E6B and antique brass. */
 :root{
   color-scheme:dark;
   --bg:#161512;--panel:#161512;--panel2:#161512;--line:#161512;--line2:#C5B3A6;
@@ -1523,7 +1523,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .header .nav a{color:#C5B3A6!important}
 .header .nav a:hover,.header .nav a:focus-visible{color:var(--ivory)!important}
 .brand-name,.footer-brand .brand-name{color:var(--ivory)!important}
-.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:var(--sage)!important}
+.caseweft-logo .logo-blue,.caseweft-logo .logo-gray{fill:var(--sage)!important}
 .header .header-cta{background:rgba(168,159,145,.10)!important;border-color:rgba(168,159,145,.38)!important;color:var(--ivory)!important}
 .header .header-cta:hover{background:rgba(168,159,145,.18)!important;border-color:var(--brass)!important}
 .hero-copy>.eyebrow{transform:scale(1);transform-origin:left center;transition:transform .18s ease,color .18s ease}
@@ -1764,7 +1764,7 @@ figcaption, .caption, .small, .muted, .meta, .tag, .status,
 }
 
 /* Small alignment and pointer-responsive detail pass. */
-.header .brand-mark .ledgertrace-logo {
+.header .brand-mark .caseweft-logo {
   transform: translateY(-2px);
 }
 .ledger-illustration .ledger-art-svg {
@@ -1777,8 +1777,8 @@ figcaption, .caption, .small, .muted, .meta, .tag, .status,
     transform: scale(1.018);
     filter: drop-shadow(0 26px 48px rgba(28,18,12,.28));
   }
-  .brand:hover .ledgertrace-logo,
-  .brand:focus-visible .ledgertrace-logo {
+  .brand:hover .caseweft-logo,
+  .brand:focus-visible .caseweft-logo {
     transform: translateY(-2px) scale(1.025);
   }
 }
@@ -1820,6 +1820,6 @@ figcaption, .caption, .small, .muted, .meta, .tag, .status,
 
 
 
-<link rel="stylesheet" href="/assets/ledgertrace-theme.css?v=20261104-workspace2">
+<link rel="stylesheet" href="/assets/caseweft-theme.css?v=20261104-workspace2">
 </body>
 </html>
