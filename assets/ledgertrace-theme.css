@@ -133,7 +133,7 @@ footer :is(p,li,a,small),.footer :is(p,li,a,small),.site-footer :is(p,li,a,small
 .card:hover,.panel:hover,.step:hover,.faq-item:hover,.deliverable:hover,.proof-card:hover,.output-card:hover,.content-card:hover,.audience-card:hover,.method-card:hover,.ep-card:hover,.ep-detail:hover,.item:hover,.source-card:hover{
  transform:translateY(-3px);border-color:#B9B49F!important;box-shadow:0 15px 34px rgba(24,41,35,.09)!important;
 }
-.scene,.ep-hero-visual{box-shadow:0 24px 64px rgba(24,41,35,.18)!important;overflow:hidden}
+.scene,.ep-hero-visual{position:relative!important;box-shadow:0 24px 64px rgba(24,41,35,.18)!important;overflow:hidden}
 .scene:after,.ep-hero-visual:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(247,245,236,.055),transparent 42%,rgba(177,138,80,.07));}
 .trace-rule,.scene-path,.scene-node{transition:all .3s ease}
 @keyframes ledgerFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
