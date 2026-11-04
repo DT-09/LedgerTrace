@@ -25,8 +25,8 @@ for (const [name, html] of pages) {
 const home = pages[0][1];
 const coreProduct = pages[1][1];
 for (const [index, [name, html]] of pages.entries()) {
-  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261104-workspace1"'), name + ' must load the unified evidence-workspace theme');
-  assert.ok(html.lastIndexOf('ledgertrace-theme.css?v=20261104-workspace1') > html.lastIndexOf('</style>'), name + ' must load the shared theme after all page-level styles');
+  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261104-workspace2"'), name + ' must load the unified evidence-workspace theme');
+  assert.ok(html.lastIndexOf('ledgertrace-theme.css?v=20261104-workspace2') > html.lastIndexOf('</style>'), name + ' must load the shared theme after all page-level styles');
   assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
   assert.ok(html.includes('ledgertrace-theme.css'), name + ' must use the central visual system');
 }
