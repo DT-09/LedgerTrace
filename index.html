@@ -611,87 +611,87 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
     <title id="ledgerArtTitle">How LedgerTrace works</title>
     <desc id="ledgerArtDesc">Three accounts-payable data sources enter a reconciliation engine. The engine normalizes fields, matches records and applies comparison rules. Results become matched records or traceable exceptions with source evidence for human review.</desc>
     <defs>
-      <linearGradient id="ltCanvas" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161512"/><stop offset="1" stop-color="#0B0B0A"/></linearGradient>
-      <linearGradient id="ltCore" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#161512"/><stop offset="1" stop-color="#221A1E"/></linearGradient>
-      <linearGradient id="ltGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9E7E6B" stop-opacity=".04"/><stop offset="1" stop-color="#9E7E6B" stop-opacity=".2"/></linearGradient>
+      <linearGradient id="ltCanvas" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3F6F8"/><stop offset="1" stop-color="#EAF0F4"/></linearGradient>
+      <linearGradient id="ltCore" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3F6F8"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+      <linearGradient id="ltGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B97825" stop-opacity=".04"/><stop offset="1" stop-color="#B97825" stop-opacity=".2"/></linearGradient>
     </defs>
-    <rect x="1" y="1" width="898" height="618" rx="12" fill="url(#ltCanvas)" stroke="#161512"/>
-    <path d="M1 48H899" stroke="#161512"/>
-    <circle cx="24" cy="24" r="4" fill="#9E7E6B"/><circle cx="39" cy="24" r="4" fill="#C5B3A6"/><circle cx="54" cy="24" r="4" fill="#C5B3A6"/>
-    <text class="ledger-art-heading" x="77" y="29" fill="#EADEC9" font-size="13" font-weight="600" letter-spacing="1.35" font-family="monospace">ACCOUNTS PAYABLE / RECONCILIATION WORKFLOW</text>
-    <text x="34" y="81" fill="#9E7E6B" font-size="10" letter-spacing="2" font-family="monospace">01 — INPUTS</text>
-    <text x="34" y="103" fill="#FCF9F2" font-size="19" font-family="Georgia,serif">Bring records together</text>
-    <text x="866" y="90" fill="#C5B3A6" text-anchor="end" font-size="10" letter-spacing="1.5" font-family="monospace">CSV FILES · LOCAL WORKFLOW</text>
+    <rect x="1" y="1" width="898" height="618" rx="12" fill="url(#ltCanvas)" stroke="#F3F6F8"/>
+    <path d="M1 48H899" stroke="#F3F6F8"/>
+    <circle cx="24" cy="24" r="4" fill="#B97825"/><circle cx="39" cy="24" r="4" fill="#657789"/><circle cx="54" cy="24" r="4" fill="#657789"/>
+    <text class="ledger-art-heading" x="77" y="29" fill="#142536" font-size="13" font-weight="600" letter-spacing="1.35" font-family="monospace">ACCOUNTS PAYABLE / RECONCILIATION WORKFLOW</text>
+    <text x="34" y="81" fill="#B97825" font-size="10" letter-spacing="2" font-family="monospace">01 — INPUTS</text>
+    <text x="34" y="103" fill="#142536" font-size="19" font-family="Georgia,serif">Bring records together</text>
+    <text x="866" y="90" fill="#657789" text-anchor="end" font-size="10" letter-spacing="1.5" font-family="monospace">CSV FILES · LOCAL WORKFLOW</text>
     <g>
       <g class="ledger-art-item" tabindex="0" role="group" aria-label="Source A: supplier invoices">
-      <rect x="34" y="125" width="258" height="116" rx="7" fill="#161512" stroke="#C5B3A6"/>
-      <rect x="34" y="125" width="4" height="116" rx="2" fill="#2A524E"/>
-      <rect x="54" y="145" width="31" height="39" rx="3" fill="#2A524E" fill-opacity=".12" stroke="#2A524E" stroke-opacity=".8"/>
-      <path d="M61 155H77M61 163H77M61 171H73" stroke="#2A524E" stroke-width="1.5"/>
-      <text x="101" y="154" fill="#2A524E" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE A</text>
-      <text x="101" y="176" fill="#FCF9F2" font-size="17" font-family="Georgia,serif">Supplier invoices</text>
-      <text x="54" y="215" fill="#C5B3A6" font-size="10" font-family="monospace">Line items · quantities · prices</text>
+      <rect x="34" y="125" width="258" height="116" rx="7" fill="#F3F6F8" stroke="#657789"/>
+      <rect x="34" y="125" width="4" height="116" rx="2" fill="#2F7865"/>
+      <rect x="54" y="145" width="31" height="39" rx="3" fill="#2F7865" fill-opacity=".12" stroke="#2F7865" stroke-opacity=".8"/>
+      <path d="M61 155H77M61 163H77M61 171H73" stroke="#2F7865" stroke-width="1.5"/>
+      <text x="101" y="154" fill="#2F7865" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE A</text>
+      <text x="101" y="176" fill="#142536" font-size="17" font-family="Georgia,serif">Supplier invoices</text>
+      <text x="54" y="215" fill="#657789" font-size="10" font-family="monospace">Line items · quantities · prices</text>
       </g>
       <g class="ledger-art-item" tabindex="0" role="group" aria-label="Source B: purchase orders">
-      <rect x="321" y="125" width="258" height="116" rx="7" fill="#161512" stroke="#C5B3A6"/>
-      <rect x="321" y="125" width="4" height="116" rx="2" fill="#9E7E6B"/>
-      <rect x="341" y="145" width="31" height="39" rx="3" fill="#9E7E6B" fill-opacity=".12" stroke="#9E7E6B" stroke-opacity=".8"/>
-      <path d="M348 155H364M348 163H364M348 171H360" stroke="#9E7E6B" stroke-width="1.5"/>
-      <text x="388" y="154" fill="#9E7E6B" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE B</text>
-      <text x="388" y="176" fill="#FCF9F2" font-size="17" font-family="Georgia,serif">Purchase orders</text>
-      <text x="341" y="215" fill="#C5B3A6" font-size="10" font-family="monospace">Authorised items · agreed terms</text>
+      <rect x="321" y="125" width="258" height="116" rx="7" fill="#F3F6F8" stroke="#657789"/>
+      <rect x="321" y="125" width="4" height="116" rx="2" fill="#B97825"/>
+      <rect x="341" y="145" width="31" height="39" rx="3" fill="#B97825" fill-opacity=".12" stroke="#B97825" stroke-opacity=".8"/>
+      <path d="M348 155H364M348 163H364M348 171H360" stroke="#B97825" stroke-width="1.5"/>
+      <text x="388" y="154" fill="#B97825" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE B</text>
+      <text x="388" y="176" fill="#142536" font-size="17" font-family="Georgia,serif">Purchase orders</text>
+      <text x="341" y="215" fill="#657789" font-size="10" font-family="monospace">Authorised items · agreed terms</text>
       </g>
       <g class="ledger-art-item" tabindex="0" role="group" aria-label="Source C: goods receipts">
-      <rect x="608" y="125" width="258" height="116" rx="7" fill="#161512" stroke="#C5B3A6"/>
-      <rect x="608" y="125" width="4" height="116" rx="2" fill="#C5B3A6"/>
-      <rect x="628" y="145" width="31" height="39" rx="3" fill="#C5B3A6" fill-opacity=".12" stroke="#C5B3A6" stroke-opacity=".8"/>
-      <path d="M635 155H651M635 163H651M635 171H647" stroke="#C5B3A6" stroke-width="1.5"/>
-      <text x="675" y="154" fill="#C5B3A6" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE C</text>
-      <text x="675" y="176" fill="#FCF9F2" font-size="17" font-family="Georgia,serif">Goods receipts</text>
-      <text x="628" y="215" fill="#C5B3A6" font-size="10" font-family="monospace">Delivered quantities · receipt status</text>
+      <rect x="608" y="125" width="258" height="116" rx="7" fill="#F3F6F8" stroke="#657789"/>
+      <rect x="608" y="125" width="4" height="116" rx="2" fill="#657789"/>
+      <rect x="628" y="145" width="31" height="39" rx="3" fill="#657789" fill-opacity=".12" stroke="#657789" stroke-opacity=".8"/>
+      <path d="M635 155H651M635 163H651M635 171H647" stroke="#657789" stroke-width="1.5"/>
+      <text x="675" y="154" fill="#657789" font-size="10" letter-spacing="1.5" font-family="monospace">SOURCE C</text>
+      <text x="675" y="176" fill="#142536" font-size="17" font-family="Georgia,serif">Goods receipts</text>
+      <text x="628" y="215" fill="#657789" font-size="10" font-family="monospace">Delivered quantities · receipt status</text>
       </g>
     </g>
-    <g fill="none" stroke="#C5B3A6" stroke-width="1.5">
+    <g fill="none" stroke="#657789" stroke-width="1.5">
       <path d="M163 241V265H450V287"/>
       <path d="M450 241V287"/>
       <path d="M737 241V265H450"/>
     </g>
-    <circle cx="163" cy="265" r="3" fill="#2A524E"/><circle cx="450" cy="265" r="3" fill="#9E7E6B"/><circle cx="737" cy="265" r="3" fill="#C5B3A6"/>
-    <text x="34" y="304" fill="#9E7E6B" font-size="10" letter-spacing="2" font-family="monospace">02 — RECONCILIATION ENGINE</text>
+    <circle cx="163" cy="265" r="3" fill="#2F7865"/><circle cx="450" cy="265" r="3" fill="#B97825"/><circle cx="737" cy="265" r="3" fill="#657789"/>
+    <text x="34" y="304" fill="#B97825" font-size="10" letter-spacing="2" font-family="monospace">02 — RECONCILIATION ENGINE</text>
     <g class="ledger-art-item" tabindex="0" role="group" aria-label="Reconciliation engine">
-    <rect x="34" y="322" width="832" height="132" rx="8" fill="url(#ltCore)" stroke="#C5B3A6" stroke-opacity=".8"/>
-    <text x="58" y="353" fill="#FCF9F2" font-size="22" font-family="Georgia,serif">One traceable comparison process</text>
-    <text x="58" y="376" fill="#C5B3A6" font-size="11" font-family="monospace">Normalize fields → match related records → test comparison rules</text>
-    <path d="M58 395H842" stroke="#C5B3A6"/>
+    <rect x="34" y="322" width="832" height="132" rx="8" fill="url(#ltCore)" stroke="#657789" stroke-opacity=".8"/>
+    <text x="58" y="353" fill="#142536" font-size="22" font-family="Georgia,serif">One traceable comparison process</text>
+    <text x="58" y="376" fill="#657789" font-size="11" font-family="monospace">Normalize fields → match related records → test comparison rules</text>
+    <path d="M58 395H842" stroke="#657789"/>
     <g>
-      <rect x="58" y="407" width="224" height="30" rx="4" fill="#0B0B0A" stroke="#161512"/>
-      <circle cx="73" cy="422" r="4" fill="#2A524E"/><text x="86" y="426" fill="#FCF9F2" font-size="10" font-family="monospace">FIELD NORMALIZATION</text>
-      <rect x="338" y="407" width="224" height="30" rx="4" fill="#0B0B0A" stroke="#161512"/>
-      <circle cx="353" cy="422" r="4" fill="#9E7E6B"/><text x="366" y="426" fill="#FCF9F2" font-size="10" font-family="monospace">RECORD MATCHING</text>
-      <rect x="618" y="407" width="224" height="30" rx="4" fill="#0B0B0A" stroke="#161512"/>
-      <circle cx="633" cy="422" r="4" fill="#C5B3A6"/><text x="646" y="426" fill="#FCF9F2" font-size="10" font-family="monospace">RULE VALIDATION</text>
+      <rect x="58" y="407" width="224" height="30" rx="4" fill="#EAF0F4" stroke="#F3F6F8"/>
+      <circle cx="73" cy="422" r="4" fill="#2F7865"/><text x="86" y="426" fill="#142536" font-size="10" font-family="monospace">FIELD NORMALIZATION</text>
+      <rect x="338" y="407" width="224" height="30" rx="4" fill="#EAF0F4" stroke="#F3F6F8"/>
+      <circle cx="353" cy="422" r="4" fill="#B97825"/><text x="366" y="426" fill="#142536" font-size="10" font-family="monospace">RECORD MATCHING</text>
+      <rect x="618" y="407" width="224" height="30" rx="4" fill="#EAF0F4" stroke="#F3F6F8"/>
+      <circle cx="633" cy="422" r="4" fill="#657789"/><text x="646" y="426" fill="#142536" font-size="10" font-family="monospace">RULE VALIDATION</text>
     </g>
     </g>
-    <path d="M450 454V477H245V497M450 477H655V497" fill="none" stroke="#C5B3A6" stroke-width="1.5"/>
-    <circle cx="450" cy="477" r="4" fill="#9E7E6B"/>
-    <text x="34" y="488" fill="#9E7E6B" font-size="10" letter-spacing="2" font-family="monospace">03 — REVIEWABLE OUTPUTS</text>
+    <path d="M450 454V477H245V497M450 477H655V497" fill="none" stroke="#657789" stroke-width="1.5"/>
+    <circle cx="450" cy="477" r="4" fill="#B97825"/>
+    <text x="34" y="488" fill="#B97825" font-size="10" letter-spacing="2" font-family="monospace">03 — REVIEWABLE OUTPUTS</text>
     <g class="ledger-art-item" tabindex="0" role="group" aria-label="Matched records output">
-    <rect x="34" y="504" width="404" height="88" rx="7" fill="#221A1E" stroke="#C5B3A6"/>
-    <rect x="34" y="504" width="4" height="88" rx="2" fill="#2A524E"/>
-    <circle cx="61" cy="531" r="8" fill="#2A524E" fill-opacity=".16" stroke="#2A524E"/>
-    <path d="M57 531L60 534L66 527" fill="none" stroke="#2A524E" stroke-width="1.5"/>
-    <text x="82" y="535" fill="#2A524E" font-size="10" letter-spacing="1.5" font-family="monospace">MATCHED RECORDS</text>
-    <text x="56" y="561" fill="#FCF9F2" font-size="16" font-family="Georgia,serif">Consistent lines identified</text>
-    <text x="56" y="579" fill="#C5B3A6" font-size="10" font-family="monospace">Keep the comparison result</text>
+    <rect x="34" y="504" width="404" height="88" rx="7" fill="#FFFFFF" stroke="#657789"/>
+    <rect x="34" y="504" width="4" height="88" rx="2" fill="#2F7865"/>
+    <circle cx="61" cy="531" r="8" fill="#2F7865" fill-opacity=".16" stroke="#2F7865"/>
+    <path d="M57 531L60 534L66 527" fill="none" stroke="#2F7865" stroke-width="1.5"/>
+    <text x="82" y="535" fill="#2F7865" font-size="10" letter-spacing="1.5" font-family="monospace">MATCHED RECORDS</text>
+    <text x="56" y="561" fill="#142536" font-size="16" font-family="Georgia,serif">Consistent lines identified</text>
+    <text x="56" y="579" fill="#657789" font-size="10" font-family="monospace">Keep the comparison result</text>
     </g>
     <g class="ledger-art-item ledger-art-exceptions" tabindex="0" role="group" aria-label="Exceptions and supporting evidence">
-    <rect x="462" y="504" width="404" height="88" rx="7" fill="#C5B3A6" stroke="#C5B3A6" stroke-opacity="1"/>
-    <rect x="462" y="504" width="4" height="88" rx="2" fill="#221A1E"/>
-    <circle cx="489" cy="531" r="8" fill="#221A1E" fill-opacity=".12" stroke="#221A1E"/>
-    <path d="M489 526V532M489 536V537" stroke="#221A1E" stroke-width="1.5"/>
-    <text x="510" y="535" fill="#221A1E" font-size="10" font-weight="700" letter-spacing="1.35" font-family="monospace">EXCEPTIONS + EVIDENCE</text>
-    <text x="484" y="561" fill="#221A1E" font-size="16" font-weight="600" font-family="Georgia,serif">Source values · rule · finding</text>
-    <text x="484" y="579" fill="#221A1E" font-size="10" font-weight="600" font-family="monospace">Human review before action</text>
+    <rect x="462" y="504" width="404" height="88" rx="7" fill="#657789" stroke="#657789" stroke-opacity="1"/>
+    <rect x="462" y="504" width="4" height="88" rx="2" fill="#FFFFFF"/>
+    <circle cx="489" cy="531" r="8" fill="#FFFFFF" fill-opacity=".12" stroke="#FFFFFF"/>
+    <path d="M489 526V532M489 536V537" stroke="#FFFFFF" stroke-width="1.5"/>
+    <text x="510" y="535" fill="#FFFFFF" font-size="10" font-weight="700" letter-spacing="1.35" font-family="monospace">EXCEPTIONS + EVIDENCE</text>
+    <text x="484" y="561" fill="#FFFFFF" font-size="16" font-weight="600" font-family="Georgia,serif">Source values · rule · finding</text>
+    <text x="484" y="579" fill="#FFFFFF" font-size="10" font-weight="600" font-family="monospace">Human review before action</text>
     </g>
   </svg>
   <div class="ledger-art-caption"><span>ILLUSTRATIVE WORKFLOW · SAMPLE RECORDS</span><span>TRACEABLE FINDINGS · HUMAN REVIEW</span></div>
@@ -713,6 +713,53 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
       <div><b>03</b><span>Ambiguous matches, missing records and reviewer questions</span></div>
       <div><b>04</b><span>Prioritized reviewer worklist for human verification</span></div>
       <p>Scope, fee, data handling and acceptance criteria are agreed before work starts. No recovery is guaranteed.</p>
+    </div>
+  </div>
+
+</section>
+<section class="case-preview" id="example-case" aria-labelledby="case-preview-title">
+  <div class="container">
+    <div class="case-preview-head">
+      <div>
+        <div class="eyebrow">ILLUSTRATIVE CASE FILE / SYNTHETIC INPUTS</div>
+        <h2 id="case-preview-title">A reviewer sees the disagreement—not just a red flag.</h2>
+      </div>
+      <p>The sample workbench contains eight invoice lines, six PO lines and five receipt lines. Here is the kind of evidence LedgerTrace surfaces from those records.</p>
+    </div>
+    <div class="case-preview-table-wrap">
+      <table aria-label="Synthetic supplier invoice exception examples">
+        <thead><tr><th>Candidate finding</th><th>Invoice evidence</th><th>Comparison evidence</th><th>What the reviewer checks</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="case-tag red">DUPLICATE CANDIDATE</span><strong>INV-1002 · PART-B</strong></td>
+            <td>Invoice CSV rows 3 and 4 repeat the same supplier, PO, item, quantity and line amount.</td>
+            <td>PO row 3 and receipt row 3 link to the same PO/item combination.</td>
+            <td>Confirm whether the repeated invoice line is an actual duplicate or a source-export issue.</td>
+          </tr>
+          <tr>
+            <td><span class="case-tag">PRICE VARIANCE</span><strong>INV-1003 · PART-C</strong></td>
+            <td>Invoice row 5: 20 units at $9.00.</td>
+            <td>PO row 4: $8.50 per unit. Difference: $0.50 × 20 = $10.00. Receipt row 4 records 15 units.</td>
+            <td>Check for an approved price amendment and resolve the separate five-unit receipt gap.</td>
+          </tr>
+          <tr>
+            <td><span class="case-tag">QUANTITY VARIANCE</span><strong>INV-1005 · PART-E</strong></td>
+            <td>Invoice row 7: 8 units.</td>
+            <td>PO row 6: 6 units. Receipt row 6: 4 units.</td>
+            <td>Verify any PO amendment, partial delivery or backorder before deciding what is payable.</td>
+          </tr>
+          <tr>
+            <td><span class="case-tag">MISSING REFERENCE</span><strong>INV-1006 · PART-F</strong></td>
+            <td>Invoice row 8 has no PO reference.</td>
+            <td>No supported PO/receipt match can be established from the sample records.</td>
+            <td>Request the missing approval or source reference. Do not infer a valid match.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="case-preview-foot">
+      <span>EXAMPLE VALUES ONLY · USD SAMPLE DATA</span>
+      <span>Candidate discrepancies are not confirmed losses or recovered amounts.</span>
     </div>
   </div>
 </section>
