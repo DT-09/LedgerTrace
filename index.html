@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0B0B0A">
-<meta name="description" content="Review parked supplier invoices against approved purchase orders and goods receipts. LedgerTrace produces source-linked three-way match exceptions for finance review, with optional payment evidence checks when supported.">
+<meta name="description" content="Parked Invoice Evidence Review: a source-linked second-pass review of supplier invoice lines against approved purchase orders and goods receipts, with reproducible exceptions and a human-review handoff.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LedgerTrace — Parked Invoice & Three-Way Match Review">
-<meta property="og:description" content="Investigate duplicate supplier payments, missed supplier credits, invoice overcharges and quantity or price variances. Run a browser-based CSV check and request a scoped paid investigation.">
+<meta property="og:title" content="Parked Invoice Evidence Review | LedgerTrace">
+<meta property="og:description" content="A defined second-pass review of parked supplier invoice lines against approved purchase orders and goods receipts, with source-linked exceptions and a human-review handoff.">
 <meta property="og:url" content="https://ledgertrace.pages.dev/">
-<link rel="canonical" href="https://ledgertrace.pages.dev/"><title>Parked Invoice &amp; Three-Way Match Evidence Review | LedgerTrace</title>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LedgerTrace","url":"https://ledgertrace.pages.dev/","applicationCategory":"BusinessApplication","operatingSystem":"Any modern browser","description":"Browser-side AP workbench for reviewing parked supplier invoices against approved purchase orders and goods receipts, with source-linked three-way match exceptions.","offers":{"@type":"Offer","url":"https://ledgertrace.pages.dev/#evaluation","description":"Scoped paid reconciliation evaluation; fee and acceptance criteria agreed privately before kickoff."}}</script>
+<link rel="canonical" href="https://ledgertrace.pages.dev/"><title>Parked Invoice Evidence Review | LedgerTrace</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LedgerTrace","url":"https://ledgertrace.pages.dev/","applicationCategory":"BusinessApplication","operatingSystem":"Any modern browser","description":"Browser-side CSV workbench for a source-linked Parked Invoice Evidence Review against approved purchase orders and goods receipts.","offers":{"@type":"Offer","url":"https://ledgertrace.pages.dev/#evaluation","description":"Scoped paid reconciliation evaluation; fee and acceptance criteria agreed privately before kickoff."}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -565,14 +565,14 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 @media(max-width:760px){.hero{padding-top:125px!important;min-height:auto!important}.scene{min-height:380px}.commercial-entry h2{font-size:36px}}
 @media(max-width:520px){.scene{min-height:320px}.commercial-entry-output{padding:17px}}
 </style>
-<link rel="stylesheet" href="/assets/ledgertrace-theme.css?v=20261102-restore-1">
+<link rel="stylesheet" href="/assets/ledgertrace-theme.css?v=20261104-parked-review">
 </head>
 <body>
 <header class="header" id="header">
   <a class="brand" href="/" aria-label="LedgerTrace home">
     <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-monogram.svg" alt=""></span><span class="brand-name">LEDGERTRACE</span>
   </a>
-  <nav class="nav" id="nav" aria-label="All site sections"><a href="/invoice-reconciliation.html">For distributors</a><a href="/#product">Product</a><a href="/#investigation">Investigation</a><a href="/#buyer-assurance">Buyer proof</a><a href="/#methodology">Methodology</a><a href="/#faq">FAQ</a><a href="/#evaluation">Paid evaluation</a><a href="/#who-for">Who it serves</a><a href="/#recovery-investigation">Payment evidence review</a><a href="/#site-footer">Contact &amp; site directory</a></nav>
+  <nav class="nav" id="nav" aria-label="All site sections"><a href="/invoice-reconciliation.html">For distributors</a><a href="/#product">Product</a><a href="/#investigation">Investigation</a><a href="/#buyer-assurance">Buyer proof</a><a href="/parked-invoice-evidence-review.html">Buyer economics</a><a href="/#methodology">Methodology</a><a href="/#faq">FAQ</a><a href="/#evaluation">Paid evaluation</a><a href="/#who-for">Who it serves</a><a href="/#recovery-investigation">Payment evidence review</a><a href="/#site-footer">Contact &amp; site directory</a></nav>
   <a class="header-cta" href="/#evaluation">Request an evaluation <span aria-hidden="true">↗</span></a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 </header>
@@ -599,10 +599,10 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 <main>
 <section class="hero container" id="top">
   <div class="hero-copy" id="product">
-    <div class="eyebrow">PARKED INVOICE REVIEW / THREE-WAY MATCH / DISTRIBUTORS &amp; AP TEAMS</div>
+    <div class="eyebrow">PARKED INVOICE EVIDENCE REVIEW / INVOICE · APPROVED PO · GOODS RECEIPT</div>
     <h1>Clear parked invoices. <em>Keep the evidence.</em></h1>
-    <p class="hero-desc">LedgerTrace reviews parked supplier invoice lines against approved purchase orders and goods receipts. It shows the source rows, compared values and rule behind each candidate exception. Ambiguous or incomplete records stay unresolved for your finance team to verify.</p>
-    <div class="hero-actions"><a class="button" href="#investigation">Run the three-way match check <span aria-hidden="true">↘</span></a><a class="button secondary" href="#evaluation">Request a paid case review <span aria-hidden="true">↗</span></a></div>
+    <p class="hero-desc">A focused second-pass review of parked supplier invoice lines against approved purchase orders and goods receipts. Inspect the source rows, compared values and rule behind each candidate exception. Ambiguous or incomplete records remain unresolved for your finance team to verify.</p>
+    <div class="hero-actions"><a class="button" href="#investigation">Run the three-way match check <span aria-hidden="true">↘</span></a><a class="button secondary" href="#evaluation">Scope a paid review <span aria-hidden="true">↗</span></a></div>
     <div class="privacy-note">LOCAL CSV ANALYSIS · FILES STAY IN THIS BROWSER TAB</div><p class="hero-proofline">Start with one supplier or one defined parked-invoice queue. No ERP replacement. No automatic accounting decisions.</p>
   </div>
   <div class="scene ledger-illustration" id="scene" aria-label="LedgerTrace product illustration: invoice, purchase order and goods receipt data flow through a reconciliation engine into matched records, traceable exceptions and a reviewable evidence package">
