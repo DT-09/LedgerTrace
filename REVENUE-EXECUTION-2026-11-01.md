@@ -1,6 +1,6 @@
-# LedgerTrace revenue execution — 1 November 2026
+# Caseweft revenue execution — 1 November 2026
 
-Internal operating document. This records verified product status, buyer/partner research, pipeline evidence and the next commercial actions. It does not claim that any listed prospect is a customer or that LedgerTrace has validated market demand.
+Internal operating document. This records verified product status, buyer/partner research, pipeline evidence and the next commercial actions. It does not claim that any listed prospect is a customer or that Caseweft has validated market demand.
 
 ## Executive status
 
@@ -17,7 +17,7 @@ Internal operating document. This records verified product status, buyer/partner
 ### Verified on 1 November 2026
 
 Latest GitHub Actions runs for commit `4918d470`:
-- LedgerTrace checks: success.
+- Caseweft checks: success.
 - Recovery tests: success.
 - Live Pages smoke test: success.
 
@@ -115,7 +115,7 @@ A lead is qualified only when there is a specific current workflow/problem, an a
 | EarthOne Accounting | Outbound email to hi@earthoneaccounting.com on 28 Oct 2026; no reply found in searched mailbox. Public site describes UK accounting outsourcing, AP/AR services and white-label work for UK accounting firms. | Relevant channel hypothesis; not qualified | Follow up once with a specific question about a defined supplier-reconciliation backlog or overflow second-pass review. Ask whether they would trial an anonymized sample. Do not pitch a generic platform replacement. |
 | LedgerKin | Outbound email to sam@ledgerkin.com on 28 Oct 2026; no reply found. Search did not establish reliable public evidence that the exact company/contact operates a relevant AP service. | Unverified target; not qualified | Verify the exact business and recipient before any follow-up. If not verifiable, park it. |
 | LedgerBPO | Outbound email to sales@ledgerbpo.com on 28 Oct 2026. Gmail recorded repeated SMTP connection timeouts/delivery delays on 29–30 Oct. No human reply found. A public LinkedIn result describes LedgerBPO as a new accounting/billing division of SS Support Network. | Delivery problem; not qualified | Do not resend to the same address until verified. Find the parent company's official contact route and confirm the division's AP scope. |
-| TrustLayer Labs | Actual correspondence concerns Aurelis Authority / AI-agent security assessment and possible commercial collaboration, not LedgerTrace. | Separate project; exclude from LedgerTrace revenue | Do not count as a LedgerTrace prospect or revenue opportunity. |
+| TrustLayer Labs | Actual correspondence concerns Aurelis Authority / AI-agent security assessment and possible commercial collaboration, not Caseweft. | Separate project; exclude from Caseweft revenue | Do not count as a Caseweft prospect or revenue opportunity. |
 
 ### Additional researched accounts — not contacted and not qualified
 
@@ -167,7 +167,7 @@ Do not promote an account because an email was sent. Do not count verbal interes
 
 ### Draft follow-up — EarthOne
 
-Subject: Re: LedgerTrace reconciliation review pilot
+Subject: Re: Caseweft reconciliation review pilot
 
 Respected Ketul,
 
@@ -180,7 +180,7 @@ This would not replace EarthOne's accounting workflow. The question is whether a
 Is there a current workflow where this would be useful, or is it outside your present service needs?
 
 Regards,
-LedgerTrace
+Caseweft
 
 ### Draft follow-up — LedgerBPO (only after verifying a working official contact route)
 
@@ -193,7 +193,7 @@ I previously sent a note proposing a bounded evaluation of one AP reconciliation
 If your team handles supplier invoice-to-PO/receipt reconciliation, could you direct this to the person responsible for AP operations or service delivery?
 
 Regards,
-LedgerTrace
+Caseweft
 
 ## Daily operating dashboard
 
@@ -225,7 +225,7 @@ Update these counts from evidence, not estimates:
 
 ## External configuration dependency
 
-The live inquiry endpoint currently reports `inboxConfigured=false` and `emailNotificationsConfigured=false`. A repository commit cannot complete this Cloudflare account configuration. The account owner must bind D1, apply the migration and verify a real valid submission before LedgerTrace claims secure lead capture.
+The live inquiry endpoint currently reports `inboxConfigured=false` and `emailNotificationsConfigured=false`. A repository commit cannot complete this Cloudflare account configuration. The account owner must bind D1, apply the migration and verify a real valid submission before Caseweft claims secure lead capture.
 
 ## Decision rule
 
