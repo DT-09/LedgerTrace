@@ -25,14 +25,14 @@ for (const [name, html] of pages) {
 const home = pages[0][1];
 const coreProduct = pages[1][1];
 for (const [index, [name, html]] of pages.entries()) {
-  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261104-workspace2"'), name + ' must load the unified evidence-workspace theme');
-  assert.ok(html.lastIndexOf('ledgertrace-theme.css?v=20261104-workspace2') > html.lastIndexOf('</style>'), name + ' must load the shared theme after all page-level styles');
+  assert.ok(html.includes('href="/assets/caseweft-theme.css?v=20261104-workspace2"'), name + ' must load the unified evidence-workspace theme');
+  assert.ok(html.lastIndexOf('caseweft-theme.css?v=20261104-workspace2') > html.lastIndexOf('</style>'), name + ' must load the shared theme after all page-level styles');
   assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
-  assert.ok(html.includes('ledgertrace-theme.css'), name + ' must use the central visual system');
+  assert.ok(html.includes('caseweft-theme.css'), name + ' must use the central visual system');
 }
 assert.ok(!home.includes('ont-size:12px}}'), 'homepage must not contain the previously leaked CSS tail');
 
-const theme = fs.readFileSync('assets/ledgertrace-theme.css', 'utf8');
+const theme = fs.readFileSync('assets/caseweft-theme.css', 'utf8');
 
 assert.ok(theme.includes('color-scheme:light'), 'shared theme must use the light evidence-workspace system');
 assert.ok(theme.includes('--lt-bg:#F3F6F8') && theme.includes('--lt-navy:#142C43') && theme.includes('--lt-blue:#2E6F95'), 'cool neutral and navy palette must be defined');
@@ -51,7 +51,7 @@ const styleCloseCount = home.split('</style>').length - 1;
 assert.equal(styleOpenCount, styleCloseCount, 'homepage style tags must be balanced');
 assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS fragment into visible content');
 assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
-assert.ok(home.includes('ledgertrace-theme.css') && coreProduct.includes('ledgertrace-theme.css'), 'homepage and product page must use the shared visual system');
+assert.ok(home.includes('caseweft-theme.css') && coreProduct.includes('caseweft-theme.css'), 'homepage and product page must use the shared visual system');
 assert.ok(home.includes('Caseweft — Supplier Payment Evidence Review'), 'homepage metadata must use the new product identity');
 assert.ok(home.includes('One reviewable case.'), 'homepage must state the product job clearly');
 assert.ok(home.includes('/assets/caseweft-monogram.svg'), 'homepage must use the new product mark');
