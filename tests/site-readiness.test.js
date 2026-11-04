@@ -26,7 +26,7 @@ const home = pages[0][1];
 const coreProduct = pages[1][1];
 const allowedPalette = new Set(['#F3F0E7','#E8E2D6','#D3CCBE','#B9B09F','#1D2925','#526057','#315C52','#203A34','#F8F6F0','#FBF9F4','#A77E48','#A66F52','#68736A']);
 for (const [index, [name, html]] of pages.entries()) {
-  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261104-contrast2"'), name + ' must load the repaired shared contrast theme');
+  assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261104-contrast3"'), name + ' must load the repaired shared contrast theme');
   assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
   assert.ok(html.includes('ledgertrace-theme.css'), name + ' must use the central visual system');
 }
