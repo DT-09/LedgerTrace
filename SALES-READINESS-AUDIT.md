@@ -1,11 +1,11 @@
-# LedgerTrace — first-client readiness audit
+# Caseweft — first-client readiness audit
 
 **Audit date:** 29 October 2026  
 **Purpose:** identify why the current site has not yet converted into a paid engagement and distinguish technical defects from unvalidated commercial assumptions.
 
 ## Executive finding
 
-LedgerTrace is **not yet proven sales-ready**. The browser-side reconciliation workbench and sample evidence are useful demonstration assets, but no customer results, qualified buyer, accepted scope, or payment has been evidenced. A website cannot manufacture demand or replace a real buyer channel.
+Caseweft is **not yet proven sales-ready**. The browser-side reconciliation workbench and sample evidence are useful demonstration assets, but no customer results, qualified buyer, accepted scope, or payment has been evidenced. A website cannot manufacture demand or replace a real buyer channel.
 
 The highest-priority defects are conversion-path reliability and the absence of a server-side lead inbox. The highest-priority commercial risk is that the current offer targets a broad category (distributors/AP teams) without a verified buyer who has a live, expensive problem and authority to purchase a bounded review.
 
@@ -39,7 +39,7 @@ The examples are synthetic. There are no customer case studies, validated accura
 
 Public supplier-statement/AP providers explicitly sell duplicate-invoice checks, supplier-statement reconciliation, missing-credit discovery and exception follow-up. For example, [ARDEM's vendor reconciliation service](https://ardem.com/vendor-statement-reconciliation-services/) describes recurring queues and backlogs; [Liberata's supplier statement service](https://liberata.com/introducing-our-statement-supplier-reconciliation-service/) describes time-consuming, sometimes irregular manual reconciliation; [MetaSource's AP partner page](https://www.metasource.com/partners/accounts-payable/) offers established invoice matching, exception resolution and referral/reseller routes.
 
-**Interpretation:** this supports category-level demand, not demand for LedgerTrace specifically. It also shows why a generic reconciliation tool is difficult to sell: incumbents have operational experience, customer proof, integrations and established delivery teams. LedgerTrace should not compete on broad automation or claim superior recovery. Its credible entry point is a tightly scoped, source-linked second-pass review that a smaller accounting/AP service provider can trial on approved, anonymized data—if the provider has a concrete use case and accepts the limitations. These organizations are research targets, not qualified buyers; no current need or willingness to pay has been confirmed.
+**Interpretation:** this supports category-level demand, not demand for Caseweft specifically. It also shows why a generic reconciliation tool is difficult to sell: incumbents have operational experience, customer proof, integrations and established delivery teams. Caseweft should not compete on broad automation or claim superior recovery. Its credible entry point is a tightly scoped, source-linked second-pass review that a smaller accounting/AP service provider can trial on approved, anonymized data—if the provider has a concrete use case and accepts the limitations. These organizations are research targets, not qualified buyers; no current need or willingness to pay has been confirmed.
 
 ## Commercial blockers
 
@@ -94,7 +94,7 @@ A production-hardening branch now addresses defects found during source inspecti
 - The inquiry form has a same-origin D1-backed endpoint, a schema migration, payload validation, a honeypot and rate limiting. It requires Cloudflare configuration before it is live.
 - CI includes recovery, inline-script, site-readiness and inquiry API tests. The live Pages smoke test still needs a successful post-deployment run.
 
-These changes improve technical controls; they do not establish customer accuracy, a buyer, legal contracting capacity, payment settlement, customer proof or repeatable acquisition. Do not describe LedgerTrace as a fully deployed multi-tenant SaaS. The intended launch scope remains a controlled, bounded Evidence Review service.
+These changes improve technical controls; they do not establish customer accuracy, a buyer, legal contracting capacity, payment settlement, customer proof or repeatable acquisition. Do not describe Caseweft as a fully deployed multi-tenant SaaS. The intended launch scope remains a controlled, bounded Evidence Review service.
 
 
 ## Live acceptance results — 1 November 2026
