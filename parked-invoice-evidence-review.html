@@ -16,8 +16,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/ledgertrace-theme.css?v=20261104-parked-review">
+<script src="/analytics.js" defer></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Parked Invoice Evidence Review","provider":{"@type":"Organization","name":"LedgerTrace","url":"https://ledgertrace.pages.dev/"},"serviceType":"Supplier invoice exception review","description":"A source-linked second-pass review of a defined parked-invoice queue against approved purchase orders and goods receipts. The current public workbench processes CSV files in the buyer's browser and returns candidate exceptions for human review.","areaServed":"Worldwide"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Parked Invoice Evidence Review","provider":{"@type":"Organization","name":"LedgerTrace","url":"https://ledgertrace.pages.dev/"},"applicationCategory":"BusinessApplication","operatingSystem":"Modern web browser","url":"https://ledgertrace.pages.dev/parked-invoice-evidence-review.html","description":"A source-linked second-pass review of a defined parked-invoice queue against approved purchase orders and goods receipts. The current public workbench processes CSV files in the buyer's browser and returns candidate exceptions for human review."}
 </script>
 </head>
 <body>
@@ -40,7 +41,7 @@
       <p class="pir-note">CURRENT INPUT: CSV EXPORTS · PROCESSING: BUYER'S BROWSER · DECISIONS: HUMAN-REVIEWED</p>
     </div>
     <div class="pir-art" aria-label="Illustration of invoice, purchase order and goods receipt records connected to an evidence review">
-      <div class="pir-art-label">THREE RECORDS / ONE REVIEWABLE CASE</div>
+      <div class="pir-art-label">SYNTHETIC EXAMPLE / THREE RECORDS / ONE REVIEWABLE CASE</div>
       <div class="pir-link pir-link-a"></div><div class="pir-link pir-link-b"></div>
       <div class="pir-doc pir-doc-a"><small>01 / SUPPLIER RECORD</small><strong>Invoice line</strong><span>INV-1048 · Qty 120 · £18.40</span></div>
       <div class="pir-doc pir-doc-b"><small>02 / APPROVED COMMITMENT</small><strong>Purchase order</strong><span>PO-0821 · Qty 120 · £17.90</span></div>
