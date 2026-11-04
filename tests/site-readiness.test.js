@@ -24,7 +24,7 @@ for (const [name, html] of pages) {
 
 const home = pages[0][1];
 const coreProduct = pages[1][1];
-const allowedPalette = new Set(['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7','#0B0B0A','#FCF9F2','#EADEC9','#C5B3A6','#2A524E','#9E7E6B','#221A1E','#161512']);
+const allowedPalette = new Set(['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7','#0B0B0A','#FCF9F2','#EADEC9','#C5B3A6','#2A524E','#9E7E6B','#203A34','#221A1E','#161512']);
 for (const [index, [name, html]] of pages.entries()) {
   if (index >= 2) assert.ok(html.includes('href="/assets/ledgertrace-theme.css?v=20261101-3"'), name + ' must load the shared marketing palette');
   assert.equal(html.split('<style').length - 1, html.split('</style>').length - 1, name + ' style tags must be balanced');
@@ -35,9 +35,9 @@ assert.ok(!home.includes('ont-size:12px}}'), 'homepage must not contain the prev
 
 const theme = fs.readFileSync('assets/ledgertrace-theme.css', 'utf8');
 
-assert.ok(theme.includes('color-scheme:dark'), 'shared theme must force dark mode');
-assert.ok(theme.includes('--espresso:#1C120C') && theme.includes('--roast:#2B1D15') && theme.includes('--slate:#1E293B'), 'dark palette surfaces must be defined');
-assert.ok(theme.includes('--cream:#EAE3D2') && theme.includes('--paper:#FDFBF7'), 'ivory and paper text colors must be defined');
+assert.ok(theme.includes('color-scheme:light'), 'shared theme must use the warm-paper light system');
+assert.ok(theme.includes('--bg:#F3F0E7') && theme.includes('--deep:#203A34') && theme.includes('--panel2:#203A34'), 'paper and evergreen surfaces must be defined');
+assert.ok(theme.includes('--ivory:#F8F6F0') && theme.includes('--paper:#FBF9F4') && theme.includes('--brass:#A77E48'), 'ivory, paper and brass accents must be defined');
 assert.ok(!theme.includes('#FFFFFF') && !theme.includes('#ffffff'), 'pure white must not be used');
 for (const [name, html] of pages) {
   assert.ok(!html.includes('#FDFBF7-space'), name + ' must not contain the corrupted white-space property');
@@ -60,7 +60,7 @@ assert.equal(styleOpenCount, styleCloseCount, 'homepage style tags must be balan
 assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS fragment into visible content');
 assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
 assert.ok(home.includes('#0B0B0A') && coreProduct.includes('#2A524E'), 'homepage and product page must retain the restored core palette');
-for (const color of ['#1C120C','#2B1D15','#1E293B','#A89F91','#D1C7BD','#EAE3D2','#E07A5F','#3B82F6','#D97706','#FDFBF7']) {
+for (const color of ['#F3F0E7','#E8E2D6','#203A34','#315C52','#F8F6F0','#FBF9F4','#A77E48','#A66F52','#68736A']) {
   assert.ok(theme.toLowerCase().includes(color.toLowerCase()), 'authoritative theme is missing ' + color);
 }
 
