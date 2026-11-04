@@ -23,7 +23,8 @@ const allowedEvents = new Set([
   "inquiry_attempted",
   "inquiry_stored",
   "inquiry_fallback",
-  "inquiry_failed"
+  "inquiry_failed",
+  "buyer_economics_calculated"
 ]);
 
 const cleanToken = (value, max = 80) => {
