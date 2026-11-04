@@ -53,7 +53,7 @@ assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS
 assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
 assert.ok(home.includes('ledgertrace-theme.css') && coreProduct.includes('ledgertrace-theme.css'), 'homepage and product page must use the shared visual system');
 assert.ok(home.includes('Caseweft — Supplier Payment Evidence Review'), 'homepage metadata must use the new product identity');
-assert.ok(home.includes('Turn disconnected records into reviewable cases.'), 'homepage must state the product job clearly');
+assert.ok(home.includes('One reviewable case.'), 'homepage must state the product job clearly');
 assert.ok(home.includes('/assets/caseweft-monogram.svg'), 'homepage must use the new product mark');
 assert.ok(!home.includes('LEDGERTRACE') && !home.includes('LedgerTrace home'), 'homepage must not expose the retired brand');
 for (const color of ['#F3F6F8','#EAF0F4','#142536','#425466','#142C43','#2E6F95','#3D9BA8','#2F7865','#B97825','#B84A4A','#FFFFFF']) {
