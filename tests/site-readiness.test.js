@@ -52,7 +52,7 @@ assert.equal(styleOpenCount, styleCloseCount, 'homepage style tags must be balan
 assert.ok(!home.includes('</style>ont-size:12px'), 'homepage must not leak a CSS fragment into visible content');
 assert.ok(!home.includes('id="ledgertrace-palette-final"'), 'obsolete green palette override must be removed');
 assert.ok(home.includes('ledgertrace-theme.css') && coreProduct.includes('ledgertrace-theme.css'), 'homepage and product page must use the shared visual system');
-for (const color of ['#F3F1E9','#E9E7DD','#1D4035','#2D6251','#F8F7EF','#FFFEFA','#B18A4F','#A9684E','#596B61']) {
+for (const color of ['#F3F6F8','#EAF0F4','#142536','#425466','#142C43','#2E6F95','#3D9BA8','#2F7865','#B97825','#B84A4A','#FFFFFF']) {
   assert.ok(theme.toLowerCase().includes(color.toLowerCase()), 'authoritative theme is missing ' + color);
 }
 
