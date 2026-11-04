@@ -125,3 +125,30 @@ input,textarea,select{background:#FAF8F2!important;color:#252C27!important;borde
 .pir-footnote{font-size:11px;color:#687168;line-height:1.75}
 @media(max-width:850px){.pir-hero{grid-template-columns:1fr;gap:26px}.pir-art{min-height:390px}.pir-flow{grid-template-columns:repeat(2,1fr)}.pir-flow article{border-bottom:1px solid #D4CCBE}.pir-flow article:nth-child(2n){border-right:0}.pir-flow article:last-child{border-bottom:0}.pir-economics{grid-template-columns:1fr}.pir-section-head{grid-template-columns:1fr;gap:10px}}
 @media(max-width:620px){.pir-page{width:calc(100% - 30px);padding-top:100px}.pir-hero{padding:28px 0 52px}.pir-hero h1{font-size:clamp(42px,13vw,58px)}.pir-art{min-height:350px}.pir-doc{width:48%;padding:12px;min-height:120px}.pir-doc strong{font-size:13px}.pir-doc span{font-size:8px}.pir-grid,.pir-proof{grid-template-columns:1fr}.pir-section{padding:54px 0}.pir-flow{grid-template-columns:1fr}.pir-flow article{min-height:0;border-right:0!important;border-bottom:1px solid #D4CCBE}.pir-flow article:last-child{border-bottom:0}.pir-flow b{margin-bottom:12px}.pir-inputs{grid-template-columns:1fr}.pir-cta{display:block;padding:23px}.pir-cta .button{margin-top:18px;width:100%}}
+
+/* Shared navigation geometry; the same header system is used on every page. */
+.header{position:fixed!important;z-index:50!important;top:18px!important;left:50%!important;transform:translateX(-50%)!important;width:min(1180px,calc(100% - 36px))!important;height:68px!important;padding:0 22px!important;display:flex!important;align-items:center!important;gap:24px!important;border-radius:16px!important}
+.header.scrolled{height:58px!important}
+.brand{display:inline-flex!important;align-items:center!important;gap:11px!important;text-decoration:none!important;flex-shrink:0!important}
+.brand-mark{width:31px!important;height:31px!important;display:grid!important;place-items:center!important;border:1px solid rgba(82,104,92,.3)!important;border-radius:9px!important;color:#385E55!important;font:600 13px var(--display)!important;position:relative!important;overflow:hidden!important}
+.brand-name{font:700 12px var(--display)!important;letter-spacing:.17em!important;color:#252C27!important}
+.header .nav{display:flex!important;align-items:center!important;gap:clamp(10px,1.5vw,22px)!important;margin-left:auto!important;border:0!important;background:transparent!important}
+.header .nav a{font:10px var(--mono)!important;letter-spacing:.035em!important;color:#687168!important;text-decoration:none!important;white-space:nowrap!important;padding:8px 0!important}
+.header .nav a:hover{background:transparent!important;color:#385E55!important}
+.header-cta{display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:10px 13px!important;white-space:nowrap!important;border-radius:7px!important;font-size:10px!important}
+.menu-toggle{display:none!important;background:#FAF8F2!important;border:1px solid #BEB4A3!important;color:#252C27!important;border-radius:8px!important;padding:8px 10px!important}
+@media(max-width:980px){
+  .header{width:calc(100% - 28px)!important;padding:0 16px!important;gap:12px!important}
+  .header .nav{display:none!important;position:absolute!important;top:calc(100% + 9px)!important;left:0!important;right:0!important;margin:0!important;padding:12px 16px!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;border:1px solid #D4CCBE!important;border-radius:12px!important;background:rgba(250,248,242,.98)!important;box-shadow:0 16px 35px rgba(37,44,39,.1)!important}
+  .header .nav.open{display:flex!important}
+  .header .nav a{padding:11px 5px!important;border-bottom:1px solid #EAE4D8!important}
+  .header .nav a:last-child{border-bottom:0!important}
+  .menu-toggle{display:inline-grid!important;place-items:center!important;width:38px!important;height:38px!important}
+}
+@media(max-width:520px){
+  .header{top:10px!important;height:58px!important;width:calc(100% - 20px)!important;padding:0 12px!important}
+  .header.scrolled{height:52px!important}
+  .brand-name{font-size:10px!important;letter-spacing:.13em!important}
+  .brand-mark{width:28px!important;height:28px!important}
+  .header-cta{margin-left:auto!important;padding:9px 10px!important;font-size:9px!important}
+}
