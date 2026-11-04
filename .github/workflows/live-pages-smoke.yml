@@ -24,7 +24,9 @@ jobs:
               if [[ "$html" == *"Clear parked invoices."* &&
                     "$html" == *"Sample invoices · 8 rows"* &&
                     "$html" == *"Sample POs · 6 rows"* &&
-                    "$html" == *"Sample receipts · 5 rows"* ]]; then
+                    "$html" == *"Sample receipts · 5 rows"* &&
+                    "$html" == *'ledgertrace-theme.css?v=20261104-workspace2'* &&
+                    "$html" == *'id="example-case"'* ]]; then
                 break
               fi
             fi
