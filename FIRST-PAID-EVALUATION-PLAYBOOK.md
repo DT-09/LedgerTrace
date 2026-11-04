@@ -1,6 +1,6 @@
-# LedgerTrace — first paid evaluation operating plan
+# Caseweft — first paid evaluation operating plan
 
-This is the internal operating plan for converting LedgerTrace from a working reconciliation workbench into a paid service. It is not website copy.
+This is the internal operating plan for converting Caseweft from a working reconciliation workbench into a paid service. It is not website copy.
 
 ## The commercial objective
 
@@ -23,7 +23,7 @@ Avoid teams that require production ERP integration, automated payment blocking,
 
 ## Paid Evidence Review deliverables
 
-After the free QuickCheck and written commercial agreement, the buyer supplies one agreed batch of approved records. LedgerTrace returns:
+After the free QuickCheck and written commercial agreement, the buyer supplies one agreed batch of approved records. Caseweft returns:
 1. A prioritized source-linked exception worklist in CSV, with comparison values where supported.
 2. A concise report describing each rule triggered and why the case needs review.
 3. A clear separation of observed facts, candidate discrepancies and unresolved cases.
@@ -45,7 +45,7 @@ Issue an invoice or payment request through an agreed, lawful payment method. St
 
 ### Priority 1 — distribution partners
 
-Approach people who already implement accounting systems, support distributor finance teams, or provide outsourced AP/bookkeeping services. The ask is specific: let LedgerTrace run a bounded, evidence-first evaluation on an approved sample or introduce one AP team with this recurring workflow.
+Approach people who already implement accounting systems, support distributor finance teams, or provide outsourced AP/bookkeeping services. The ask is specific: let Caseweft run a bounded, evidence-first evaluation on an approved sample or introduce one AP team with this recurring workflow.
 
 Partner value:
 - an additional diagnostic service they can offer their clients;
@@ -67,7 +67,7 @@ Ask trusted contacts for one introduction to an AP manager, finance controller, 
 
 Use only when there is a genuine relationship or a warm introduction.
 
-> LedgerTrace is a browser-based invoice-reconciliation workbench for distributor AP teams. It compares invoice lines with purchase orders and goods receipts, then gives reviewers the triggered rule, compared values and source-row references.
+> Caseweft is a browser-based invoice-reconciliation workbench for distributor AP teams. It compares invoice lines with purchase orders and goods receipts, then gives reviewers the triggered rule, compared values and source-row references.
 >
 > We are looking for one bounded paid evaluation of a real workflow—not a production rollout. Scope, fee, acceptance criteria and data handling are agreed in writing before work begins. The initial evaluation can use synthetic or approved anonymized records.
 >
@@ -134,7 +134,7 @@ Diagnose the bottleneck by stage. If there are no qualified conversations, impro
 - A flagged amount is not verified loss or recoverable money.
 - A no-finding result means only that configured rules did not trigger.
 - Do not promise universal accuracy, guaranteed savings or guaranteed recovery.
-- The current app processes selected CSV files in the browser. It is not a production multi-tenant SaaS and does not upload the selected CSV contents to a LedgerTrace server.
+- The current app processes selected CSV files in the browser. It is not a production multi-tenant SaaS and does not upload the selected CSV contents to a Caseweft server.
 - Do not imply ERP integration, automatic payment blocking, supplier contact or verified bank receipt.
 - Never use real customer data without explicit approval and an agreed data-handling arrangement.
 
