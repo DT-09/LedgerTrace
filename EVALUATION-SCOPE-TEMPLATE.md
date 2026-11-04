@@ -1,4 +1,4 @@
-# LedgerTrace — evaluation scope confirmation
+# Caseweft — evaluation scope confirmation
 
 > Working template. Adapt to the actual buyer, data, jurisdiction and payment provider. This is a commercial scope checklist, not a substitute for legal or accounting advice.
 
@@ -6,7 +6,7 @@
 
 - **Customer / legal entity:** [Customer name]
 - **Business contact and role:** [Name / role]
-- **LedgerTrace contact:** [Name / role]
+- **Caseweft contact:** [Name / role]
 - **Invoice / purchase reference:** [Reference, if applicable]
 - **Decision this evaluation should support:** [Specific AP review decision]
 
@@ -26,7 +26,7 @@ Do not transfer confidential records until the parties have agreed on the handli
 
 ## 3. Deliverables
 
-LedgerTrace will provide:
+Caseweft will provide:
 1. A source-linked exception worklist in CSV.
 2. A findings report describing triggered rules, compared values, source-row references and unresolved cases where available.
 3. A comparison against the agreed human-reviewed reference outcomes, including observed false positives and missed cases.
@@ -42,7 +42,7 @@ The evaluation is considered delivered when:
 - [ ] The report documents observed false positives, misses, unsupported cases and calculation limits.
 - [ ] The handoff has been offered for [date / window].
 
-Acceptance does not mean that every flagged case is a confirmed loss, that every unflagged line is correct, or that LedgerTrace authorizes a payment or accounting entry.
+Acceptance does not mean that every flagged case is a confirmed loss, that every unflagged line is correct, or that Caseweft authorizes a payment or accounting entry.
 
 ## 5. Commercial terms
 
@@ -71,7 +71,7 @@ A flagged amount is an investigative candidate, not verified loss or recoverable
 
 - Use only data the customer is authorized to share.
 - Prefer synthetic or anonymized records for an initial evaluation.
-- The current LedgerTrace workbench processes selected CSV files in the browser; the app does not upload those selected CSV contents to a LedgerTrace server.
+- The current Caseweft workbench processes selected CSV files in the browser; the app does not upload those selected CSV contents to a Caseweft server.
 - Any report or export generated from customer records must be handled using the agreed transfer and retention method.
 - **Agreed retention / deletion plan:** [Specify]
 - **Approved recipient(s):** [Specify]
@@ -84,6 +84,6 @@ By replying with written approval or signing below, the parties confirm this sco
 - **Approval:** [Reply / signature / purchase order]
 - **Date:** [Date]
 
-- **LedgerTrace approver:** [Name / title]
+- **Caseweft approver:** [Name / title]
 - **Approval:** [Reply / signature]
 - **Date:** [Date]
