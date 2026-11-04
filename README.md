@@ -1,5 +1,7 @@
 # Caseweft
 
+See [PRODUCT-CHARTER.md](PRODUCT-CHARTER.md) for the product definition, supported workflows, data boundaries and non-claims.
+
 Caseweft is a supplier-payment evidence workspace for accounts-payable teams. It connects invoice lines to purchase orders and goods receipts, adds supported payment and credit context, and turns rule-triggered discrepancies into source-linked cases that a finance reviewer can inspect, resolve and export.
 
 ## Try the working sample
