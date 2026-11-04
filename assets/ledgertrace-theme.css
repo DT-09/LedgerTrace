@@ -171,7 +171,7 @@ body .ep-preview-row :is(strong,span,small,b){color:#F8F6F0!important}
 body .workbench-bar{background:#203A34!important}
 body .workbench-bar :is(strong,span,small,h2,h3){color:#F8F6F0!important}
 body :is(input,textarea,select,.search,.form-control,.recovery-control,.review-note,.review-state select){
- background:#FFFFFF!important;color:#1D2925!important;border-color:#B9B09F!important
+ background:#F8F6F0!important;color:#1D2925!important;border-color:#B9B09F!important
 }
 body :is(input,textarea,select)::placeholder{color:#737D74!important;opacity:1!important}
 body :is(button,.button,.btn,.cta,.header-cta,.ep-btn-primary,button[type=submit]){
@@ -182,5 +182,5 @@ body :is(.pill,.badge,.status,.tag){text-shadow:none!important}
 body ::selection{background:rgba(49,92,82,.22)!important;color:#1D2925!important}
 @media(prefers-contrast:more){
  body :is(p,li,span,small,label,summary,td,th,.muted,.note,.meta){color:#26332D!important}
- body :is(.header,.top,footer,.footer,.site-footer,.scene,.ep-hero-visual,.document,.workbench-bar) :is(p,li,span,small,label,strong,b,a){color:#FFFFFF!important}
+ body :is(.header,.top,footer,.footer,.site-footer,.scene,.ep-hero-visual,.document,.workbench-bar) :is(p,li,span,small,label,strong,b,a){color:#F8F6F0!important}
 }
