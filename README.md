@@ -1,6 +1,6 @@
-# LedgerTrace
+# Caseweft
 
-LedgerTrace is a browser-based accounts-payable reconciliation workbench. It compares invoice lines with purchase-order lines and goods-receipt quantities, explains rule-triggered exceptions, and exports a review worklist.
+Caseweft is a supplier-payment evidence workspace for accounts-payable teams. It connects invoice lines to purchase orders and goods receipts, adds supported payment and credit context, and turns rule-triggered discrepancies into source-linked cases that a finance reviewer can inspect, resolve and export.
 
 ## Try the working sample
 
@@ -38,11 +38,11 @@ Common aliases such as `invoice_no`, `vendor`, `sku`, `qty`, `price`, `purchase_
 
 ## Data handling
 
-The current app reads selected CSV files through browser file APIs and processes them in the browser tab. The app code does not upload those CSV contents to a LedgerTrace server. Review notes are held in page memory for the current session. The page loads web fonts from Google, so this is not a claim that the browser makes no network requests. For initial evaluation, use synthetic or client-approved anonymized records.
+The current app reads selected CSV files through browser file APIs and processes them in the browser tab. The app code does not upload those CSV contents to a Caseweft server. Review notes are held in page memory for the current session. The page loads web fonts from Google, so this is not a claim that the browser makes no network requests. For initial evaluation, use synthetic or client-approved anonymized records.
 
 ## Inbound marketing
 
-- The home page positions LedgerTrace for distributor AP teams, leads with source-linked evidence, and routes qualified visitors toward a scoped paid evaluation.
+- The home page positions Caseweft for distributor AP teams, leads with source-linked evidence, and routes qualified visitors toward a scoped paid evaluation.
 - `invoice-reconciliation.html` is the focused distributor landing page.
 - `invoice-reconciliation-checklist.html` is an educational search-intent page for AP teams. It explains the review process without making unsupported savings or accuracy claims and links readers to the sample and evaluation offer.
 - `sitemap.xml` lists the public pages; `robots.txt` points crawlers to that sitemap.
@@ -65,7 +65,7 @@ Agree scope, exclusions, data handling, acceptance criteria, timeline, fee and p
 
 ## Supplier-payment recovery workflow
 
-The original reconciliation workbench remains available with its sample loader, source-row evidence inspector, rule findings, review notes, report builder, print/PDF output, exception CSV export, evaluation brief builder and contact workflow. The additional **Supplier payment recovery investigation** section extends that product rather than replacing it.
+The primary review workspace includes a sample loader, source-row evidence inspector, explicit rule findings, review notes, a print-ready evidence report, exception CSV export and a scoped evaluation inquiry. The extended investigation workspace adds supported payment and credit context, case outcomes and JSON/CSV investigation exports. The additional **Supplier payment recovery investigation** section extends that product rather than replacing it.
 
 The recovery section accepts six CSV sources:
 
