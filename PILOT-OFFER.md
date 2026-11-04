@@ -1,8 +1,8 @@
-# LedgerTrace — QuickCheck and Evidence Review
+# Caseweft — QuickCheck and Evidence Review
 
 ## Positioning
 
-LedgerTrace is a supplier-payment investigation workbench for distributors and finance teams. A buyer uses it to compare invoice, PO, receipt, payment, credit and amendment records where supported, then receives a source-linked worklist of candidate overcharges, duplicate/excess payments, quantity gaps and missing credits for human verification. The commercial value is a defensible investigation and review handoff—not an AI dashboard, an unverified anomaly score, or a promise of recovered money.
+Caseweft is a supplier-payment investigation workbench for distributors and finance teams. A buyer uses it to compare invoice, PO, receipt, payment, credit and amendment records where supported, then receives a source-linked worklist of candidate overcharges, duplicate/excess payments, quantity gaps and missing credits for human verification. The commercial value is a defensible investigation and review handoff—not an AI dashboard, an unverified anomaly score, or a promise of recovered money.
 
 ## Best-fit buyer and initial wedge
 
@@ -19,7 +19,7 @@ A qualified buyer must:
 
 ### Why a provider might pay
 
-The proposed value is **additional investigation capacity without asking the provider to replace its accounting platform or change its client-facing process**. LedgerTrace supplies a structured second-pass comparison and source-linked worklist; the provider keeps the client relationship, validates the findings and decides what action to take. This is worth paying for only if the review saves meaningful staff time, surfaces evidence the provider was not already finding, or helps clear a commercially important backlog. Validate that with a real workflow before pitching it as proven value.
+The proposed value is **additional investigation capacity without asking the provider to replace its accounting platform or change its client-facing process**. Caseweft supplies a structured second-pass comparison and source-linked worklist; the provider keeps the client relationship, validates the findings and decides what action to take. This is worth paying for only if the review saves meaningful staff time, surfaces evidence the provider was not already finding, or helps clear a commercially important backlog. Validate that with a real workflow before pitching it as proven value.
 
 ## Step 1 — Free QuickCheck
 
@@ -68,7 +68,7 @@ Acceptance criteria are specific to the agreed inputs and checks. At minimum:
 ## Commercial sequence
 
 1. Buyer describes one current problem and the decision the review should support.
-2. LedgerTrace confirms whether the QuickCheck or a paid scope fits.
+2. Caseweft confirms whether the QuickCheck or a paid scope fits.
 3. For QuickCheck, agree a limited sample and safe transfer method.
 4. If further investigation is justified, agree written scope, fee, timeline, data handling, and acceptance criteria.
 5. Confirm the payment arrangement and approved data transfer before paid work starts.
@@ -79,7 +79,7 @@ An inquiry, sample finding, demo, or verbal expression of interest is not a sale
 
 ## Data handling and product boundary
 
-The reconciliation and recovery workbenches are browser-side tools: selected CSV files are processed in the user's browser and the app code does not upload those CSV contents to a LedgerTrace server. Review notes remain in page memory unless exported. The inquiry form is separate: it can store contact and scope metadata through a same-origin Pages Function backed by Cloudflare D1 after the owner configures the DB binding. Until that binding is configured and tested, the form falls back to manual WhatsApp/email handoff and does not claim server-side receipt. The site still makes normal network requests such as loading web fonts; do not claim the entire session is offline or that the product is certified for sensitive data.
+The reconciliation and recovery workbenches are browser-side tools: selected CSV files are processed in the user's browser and the app code does not upload those CSV contents to a Caseweft server. Review notes remain in page memory unless exported. The inquiry form is separate: it can store contact and scope metadata through a same-origin Pages Function backed by Cloudflare D1 after the owner configures the DB binding. Until that binding is configured and tested, the form falls back to manual WhatsApp/email handoff and does not claim server-side receipt. The site still makes normal network requests such as loading web fonts; do not claim the entire session is offline or that the product is certified for sensitive data.
 
 For an initial QuickCheck, use synthetic or client-approved anonymized records. Do not promise production-grade security, ERP integration, automatic payment blocking, accounting entries, supplier contact, verified bank receipts, or complete treatment of tax, freight, currency conversion, supplier master-data resolution, partial payments, split/merged lines, or every credit-note scenario.
 
