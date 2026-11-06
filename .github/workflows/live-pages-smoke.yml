@@ -23,7 +23,7 @@ jobs:
             if html="$(curl --connect-timeout 3 --max-time 5 -fsSL "$url" 2>/dev/null)"; then
               if [[ "$html" == *"Blocked invoices need"* &&
                     "$html" == *"Accounts Payable Exception Intelligence"* &&
-                    "$html" == *"Parked Invoice & Three-Way Match Evidence Review"* &&
+                    "$html" == *"PARKED INVOICE & THREE-WAY MATCH EVIDENCE REVIEW"* &&
                     "$html" == *"SYNTHETIC RECORDS / INTERACTIVE"* ]]; then
                 break
               fi
