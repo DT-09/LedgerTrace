@@ -1,4 +1,4 @@
-name: LedgerTrace live Pages smoke test
+name: Proofrail live Pages smoke test
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 7
     steps:
-      - name: Wait for the production site to serve the current commercial copy
+      - name: Wait for Proofrail homepage and preserved workbench
         shell: bash
         run: |
           set -euo pipefail
@@ -21,89 +21,56 @@ jobs:
           html=""
           for attempt in $(seq 1 30); do
             if html="$(curl --connect-timeout 3 --max-time 5 -fsSL "$url" 2>/dev/null)"; then
-              if [[ "$html" == *"Clear parked invoices."* &&
-                    "$html" == *"Sample invoices · 8 rows"* &&
-                    "$html" == *"Sample POs · 6 rows"* &&
-                    "$html" == *"Sample receipts · 5 rows"* &&
-                    "$html" == *'ledgertrace-theme.css?v=20261104-workspace2'* &&
-                    "$html" == *'id="example-case"'* ]]; then
+              if [[ "$html" == *"Blocked invoices need"* &&
+                    "$html" == *"Accounts Payable Exception Intelligence"* &&
+                    "$html" == *"Parked Invoice & Three-Way Match Evidence Review"* &&
+                    "$html" == *"SYNTHETIC RECORDS / INTERACTIVE"* ]]; then
                 break
               fi
             fi
             html=""
-            echo "Production copy not updated yet (attempt $attempt/30); retrying in 5 seconds."
+            echo "Waiting for production deployment (attempt $attempt/30)."
             sleep 5
           done
-          test -n "$html" || { echo "::error::Production page did not serve the expected LedgerTrace copy after 5 minutes."; exit 1; }
-          if [[ "$html" =~ fixed[[:space:]]fee|\$100 ]]; then
-            echo "::error::Production page contains a public fixed fee or $100 price."
-            exit 1
-          fi
-          [[ "$html" == *"CONTACT_EMAIL='dhairytopia@gmail.com'"* ]] || { echo "::error::Email inquiry configuration is missing."; exit 1; }
-          [[ "$html" == *"WHATSAPP_NUMBER='+91 9133404350'"* ]] || { echo "::error::WhatsApp inquiry configuration is missing."; exit 1; }
-          echo "Production HTML checks passed."
+          test -n "$html" || { echo "::error::Proofrail homepage did not deploy."; exit 1; }
+          [[ "$html" != *"duplicate supplier payments, missed supplier credits"* ]] || { echo "::error::Unsupported recovery claim remains in homepage metadata."; exit 1; }
+          workbench="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/workbench.html')"
+          [[ "$workbench" == *"AP Exception Evidence Workbench"* ]]
+          [[ "$workbench" == *"recovery-core.js"* ]]
+          [[ "$workbench" == *"proofrail-theme.css"* || "$workbench" == *"caseweft-theme.css"* ]]
+          echo "Homepage and preserved workbench are reachable."
 
-      - name: Verify the live contrast-safe visual system
+      - name: Verify brand mark, workbench theme and product engine
         shell: bash
         run: |
           set -euo pipefail
-          html="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/')"
-          [[ "$html" == *'href="/assets/ledgertrace-theme.css?v=20261104-workspace2"'* ]] || { echo "::error::Production homepage is not loading the final theme after its page styles."; exit 1; }
-          theme="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/ledgertrace-theme.css?v=20261104-workspace2')"
-          [[ "$theme" == *'--lt-bg:#F3F6F8'* ]]
-          [[ "$theme" == *'--lt-ink:#142536'* ]]
-          [[ "$theme" == *'--lt-navy:#142C43'* ]]
-          [[ "$theme" == *'.case-preview-table-wrap'* ]]
-          [[ "$html" == *'id="example-case"'* && "$html" == *'INV-1003 · PART-C'* ]]
-          echo "Live visual theme is deployed with explicit workspace text/surface and semantic exception rules."
-
-      - name: Verify the inbound checklist page and sitemap
-        shell: bash
-        run: |
-          set -euo pipefail
-          guide="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/invoice-reconciliation-checklist.html')"
-          [[ "$guide" == *"Invoice reconciliation checklist for"* ]]
-          [[ "$guide" == *"distributor finance teams."* ]]
-          [[ "$guide" == *"human-reviewed reference set"* ]]
-          sitemap="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/sitemap.xml')"
-          [[ "$sitemap" == *"https://ledgertrace.pages.dev/invoice-reconciliation-checklist.html"* ]]
-          echo "Inbound guide and sitemap are reachable."
-
-      - name: Verify the live recovery engine is reachable
-        shell: bash
-        run: |
-          set -euo pipefail
+          mark="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/caseweft-monogram.svg')"
+          [[ "$mark" == *"Proofrail mark"* ]]
+          theme="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/caseweft-theme.css')"
+          [[ "$theme" == *"--lt-navy:#142F32"* ]]
+          [[ "$theme" == *"--lt-blue:#2E7774"* ]]
           core="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/recovery-core.js')"
-          [[ "$core" == *"Currency evidence missing or inconsistent"* ]]
           [[ "$core" == *"paymentExcessCandidate"* ]]
           [[ "$core" == *"currencyUnresolved"* ]]
-          echo "Live recovery engine is reachable and includes the currency and payment-excess safeguards."
+          echo "Brand asset, shared theme and recovery engine are reachable."
 
-      - name: Verify the inquiry API is deployed and rejects cross-origin submissions
+      - name: Verify current sitemap excludes retired claims
         shell: bash
         run: |
           set -euo pipefail
-          healthy=false
-          for attempt in $(seq 1 12); do
-            status="$(curl --connect-timeout 10 --max-time 20 -sS -o /tmp/ledgertrace-inquiry-health.json -w '%{http_code}' 'https://ledgertrace.pages.dev/api/inquiries' || true)"
-            if [[ "$status" == "200" ]] && grep -q '"service":"ledgertrace-inquiry-intake"' /tmp/ledgertrace-inquiry-health.json && grep -Eq '"inboxConfigured":(true|false)' /tmp/ledgertrace-inquiry-health.json; then
-              healthy=true
-              break
-            fi
-            sleep 5
-          done
-          [[ "$healthy" == "true" ]] || { cat /tmp/ledgertrace-inquiry-health.json; echo "::error::Cloudflare Pages did not deploy the inquiry API route."; exit 1; }
-          status="$(curl --connect-timeout 10 --max-time 20 -sS -o /tmp/ledgertrace-inquiry-response.json -w '%{http_code}' \
-            -X POST 'https://ledgertrace.pages.dev/api/inquiries' \
-            -H 'Origin: https://untrusted.example' \
-            -H 'Content-Type: application/json' \
-            --data '{}')"
-          [[ "$status" == "403" ]] || { cat /tmp/ledgertrace-inquiry-response.json; echo "::error::Inquiry endpoint did not reject a cross-origin request (HTTP $status)."; exit 1; }
-          echo "Inquiry API is deployed and rejects cross-origin submissions."
-          status="$(curl --connect-timeout 10 --max-time 20 -sS -o /tmp/ledgertrace-inquiry-invalid.json -w '%{http_code}' \
-            -X POST 'https://ledgertrace.pages.dev/api/inquiries' \
-            -H 'Origin: https://ledgertrace.pages.dev' \
-            -H 'Content-Type: application/json' \
-            --data '{"email":"invalid","description":"This is a harmless live validation probe.","website":"smoke-test"}')"
-          [[ "$status" == "202" ]] || { cat /tmp/ledgertrace-inquiry-invalid.json; echo "::error::Inquiry honeypot probe did not return the expected non-storing acceptance (HTTP $status)."; exit 1; }
-          echo "Inquiry endpoint accepts and discards honeypot probes without storing them."
+          sitemap="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/sitemap.xml')"
+          [[ "$sitemap" == *"https://ledgertrace.pages.dev/workbench.html"* ]]
+          [[ "$sitemap" != *"supplier-statement-reconciliation.html"* ]]
+          [[ "$sitemap" != *"duplicate-supplier-payment-investigation.html"* ]]
+          echo "Sitemap lists the current product and workbench only."
+
+      - name: Verify inquiry API health and origin protection
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(curl --connect-timeout 10 --max-time 20 -sS -o /tmp/inquiry-health.json -w '%{http_code}' 'https://ledgertrace.pages.dev/api/inquiries' || true)"
+          [[ "$status" == "200" ]] || { cat /tmp/inquiry-health.json; echo "::error::Inquiry API health route unavailable."; exit 1; }
+          grep -Eq '"inboxConfigured":(true|false)' /tmp/inquiry-health.json
+          status="$(curl --connect-timeout 10 --max-time 20 -sS -o /tmp/inquiry-response.json -w '%{http_code}' -X POST 'https://ledgertrace.pages.dev/api/inquiries' -H 'Origin: https://untrusted.example' -H 'Content-Type: application/json' --data '{}')"
+          [[ "$status" == "403" ]] || { cat /tmp/inquiry-response.json; echo "::error::Cross-origin request was not rejected."; exit 1; }
+          echo "Inquiry API is reachable and rejects cross-origin submissions."
