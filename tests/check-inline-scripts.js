@@ -1,13 +1,13 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
-const html = fs.readFileSync('index.html', 'utf8');
+const html = fs.readFileSync('workbench.html', 'utf8');
 const inlineScripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].filter(match => !/\bsrc\s*=/.test(match[1]) && !/\btype\s*=\s*["']application\/ld\+json["']/i.test(match[1]));
 if (inlineScripts.length < 2) throw new Error('Expected both primary and recovery inline script blocks');
 inlineScripts.forEach((match, index) => {
   const id = (match[1].match(/\bid="([^"]+)"/) || [])[1] || 'primary-inline-script';
   new vm.Script(match[2], { filename: id + '-' + index + '.js' });
 });
-if (!html.includes('<script id="ledgertrace-recovery-extension">')) {
+if (!html.includes('<script id="proofrail-recovery-extension">') || html.includes('<script id="ledgertrace-recovery-extension">')) {
   throw new Error('Recovery extension script block is missing');
 }
 const primaryReconcile = html.slice(html.indexOf('function reconcile(){'), html.indexOf('function renderResults(){'));
@@ -47,7 +47,7 @@ for (const id of recoveryIds) {
   if (!html.includes('id="' + id + '"')) throw new Error('Recovery workflow feature missing: ' + id);
 }
 if (!html.includes('<script src="./recovery-core.js"></script>')) {
-  throw new Error('Recovery analysis engine is not loaded by index.html');
+  throw new Error('Recovery analysis engine is not loaded by workbench.html');
 }
 
 if (!html.includes("clearIllustrativeInputs(t)")) throw new Error('Recovery uploads must not mix buyer files with illustrative sample records');
