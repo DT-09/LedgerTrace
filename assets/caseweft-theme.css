@@ -1,14 +1,14 @@
-/* Caseweft Design System 2026.11 — Evidence Workspace
+/* Proofrail Design System 2026.11 — Evidence Workspace
    Palette contract: light workspace = ink text; navy panels = white text.
    Exception colours are semantic, never decorative. */
 :root{
   color-scheme:light!important;
-  --lt-bg:#F3F6F8;--lt-paper:#FFFFFF;--lt-surface:#FFFFFF;--lt-soft:#EAF0F4;
+  --lt-bg:#F3F5F4;--lt-paper:#FFFFFF;--lt-surface:#FFFFFF;--lt-soft:#E8EFED;
   --lt-line:#D5DEE5;--lt-line-strong:#BAC8D3;
-  --lt-ink:#142536;--lt-body:#425466;--lt-muted:#657789;
-  --lt-navy:#142C43;--lt-navy-2:#1D4058;--lt-blue:#2E6F95;--lt-cyan:#3D9BA8;
-  --lt-green:#2F7865;--lt-amber:#B97825;--lt-amber-bg:#FFF4E3;
-  --lt-red:#B84A4A;--lt-red-bg:#FCEEEE;
+  --lt-ink:#142A2D;--lt-body:#43595A;--lt-muted:#667978;
+  --lt-navy:#142F32;--lt-navy-2:#20484A;--lt-blue:#2E7774;--lt-cyan:#6B9B83;
+  --lt-green:#39765D;--lt-amber:#B47A3C;--lt-amber-bg:#FFF4E3;
+  --lt-red:#B65348;--lt-red-bg:#FCEEEE;
   --bg:var(--lt-bg)!important;--panel:var(--lt-soft)!important;--panel2:var(--lt-navy)!important;
   --line:var(--lt-line)!important;--line2:var(--lt-line-strong)!important;
   --text:var(--lt-ink)!important;--muted:var(--lt-muted)!important;

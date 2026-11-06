@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-
+Disallow: /api/
 Sitemap: https://ledgertrace.pages.dev/sitemap.xml

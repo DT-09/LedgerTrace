@@ -1,10 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
-<title id="title">Caseweft mark</title>
-<path d="M14 4.5h15.5L37 12v31.5H14z" fill="#142C43"/>
-<path d="M29.5 4.5V12H37" fill="none" stroke="#F3F6F8" stroke-width="1.6" stroke-linejoin="round"/>
-<path d="M4 17h11.5c4.8 0 5.6 5.8 10.2 5.8H32" fill="none" stroke="#3D9BA8" stroke-width="2.2" stroke-linecap="round"/>
-<path d="M4 24h8.5c5.2 0 6.3-5.8 11.2-5.8H32" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
-<path d="M4 31h11.5c4.8 0 5.6-5.8 10.2-5.8H32" fill="none" stroke="#B97825" stroke-width="2.2" stroke-linecap="round"/>
-<circle cx="33" cy="23.9" r="2.5" fill="#FFFFFF"/>
-<path d="M19 36h12" stroke="#FFFFFF" stroke-opacity=".72" stroke-width="1.6" stroke-linecap="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title"><title id="title">Proofrail mark</title><rect x="2" y="2" width="60" height="60" rx="15" fill="#142F32"/><path d="M11 18h13c8 0 8 14 17 14h12M11 32h11c9 0 9-14 19-14h12M11 46h13c8 0 8-14 17-14h12" fill="none" stroke="#B9D4C7" stroke-width="2.7" stroke-linecap="round"/><rect x="49" y="23" width="7" height="18" rx="2" fill="#E6A56D"/><circle cx="49" cy="32" r="3" fill="#F3F5F1"/></svg>
