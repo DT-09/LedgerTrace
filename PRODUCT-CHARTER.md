@@ -1,30 +1,67 @@
-# Proofrail — Product Charter
+# LedgerTrace — Product Charter
 
-**Category:** Accounts-payable exception intelligence. **Buyer:** AP Manager, P2P Process Owner or Financial Controller at a distributor, wholesaler or manufacturer.
+**Category:** Accounts-payable exception control.  
+**Buyer:** AP Manager, P2P Process Owner or Financial Controller at a distributor, wholesaler or manufacturer.
 
-## Problem
-A defined queue of parked supplier invoices cannot be cleared efficiently because invoice, PO and goods-receipt evidence is fragmented, incomplete or inconsistent. Reviewers must reconstruct the case across separate exports and preserve a defensible handoff.
+## Product promise
 
-## Promise
-**Find the blockage. Establish the evidence. Resolve the case.** Proofrail connects supported source records into an inspectable exception case. It shows what was compared, which rule triggered, which source rows support the finding, what is missing and what remains unresolved. It is an evidence workbench—not an ERP, payment system, autonomous auditor or fraud verdict engine.
+**Every discrepancy needs evidence.**
 
-## Primary workflow
-1. Load invoice, approved PO and goods-receipt CSVs.
-2. Validate identifiers, numeric values, supplier identity, currency and supported fields.
-3. Connect records using supported PO + item relationships.
-4. Surface candidate exceptions with rule, compared values and source-row references.
-5. Record reviewer status, action and notes.
-6. Export the prioritised worklist and print-ready report.
+LedgerTrace helps an AP team work a recurring queue of parked supplier invoices. It connects supported invoice, approved purchase-order and goods-receipt records; surfaces candidate exceptions; preserves the compared values and source rows; and gives a finance reviewer a defensible way to disposition each case.
 
-The extended engine accepts supported payment, supplier-credit and PO-amendment evidence. Candidates are not confirmed losses or recoveries.
+It is an exception-review system. It is not an ERP, payment system, autonomous auditor or fraud-verdict engine.
 
-## Initial paid offer
-**Parked Invoice & Three-Way Match Evidence Review:** one supplier or defined parked-invoice queue, one agreed period, up to 500 invoice, PO and receipt lines per source, subject to file-fit review. Deliverables: prioritised worklist, source-row evidence, comparison explanations, data-quality limitations, unresolved questions and reviewer handoff. Fee, timeline, exclusions, data handling and acceptance criteria must be agreed in writing before work starts. USD 500 is an internal hypothesis, not validated pricing. No unpaid custom analysis of buyer records.
+## Recurring customer workflow
 
-## Data boundary
-Selected CSVs are processed in the browser tab; accounting CSV contents are not uploaded to the server by the current workbench. This is not a security certification or a claim that the browser makes no network requests. Inquiry metadata is stored only when D1 is configured. Do not accept confidential files before an authorised contract and approved data-transfer process exist.
+1. Open the current monthly or accounting-period review cycle.
+2. Import supplier invoice lines, approved PO lines and goods-receipt lines.
+3. Validate identifiers, supplier identity, quantities, prices, currency and supported fields.
+4. Connect records using supported PO + item relationships.
+5. Review candidate exceptions with triggered rules, compared values and source-row evidence.
+6. Record a reviewer disposition, owner and explanation.
+7. Compare repeated supplier or item exceptions with prior periods.
+8. Export the period worklist and evidence pack for the customer's own records.
 
-## Explicit non-claims
-Supplier-statement-to-AP-ledger reconciliation is not implemented. No ERP integrations, automatic payment holds/approvals/postings, supplier contact, autonomous fraud decision, guaranteed savings or cash recovery. No customer-validated accuracy, reference, paid customer or verified outcome without evidence. No currency conversion, tax treatment, robust supplier-master resolution, full split/merged-line matching or complete partial-payment accounting.
+## Subscription value
 
-A line with no triggered rule means only that current configured checks did not flag it.
+The recurring value is continuity across accounting periods:
+
+- Persistent review cycles and period history.
+- Supplier-level recurrence and unresolved-case tracking.
+- Reviewer ownership, disposition and notes.
+- A traceable change history for each case.
+- Repeatable monthly exports and management summaries.
+- Consistent checks and disclosed data-quality limitations.
+
+No public pricing is set. Pricing must be tested against the customer's invoice volume, review frequency, team size and current manual handling burden.
+
+## Current implementation — do not overstate it
+
+The current deployment is a browser-side workbench. Selected CSV files are parsed and processed in the browser tab. Review notes are session-scoped. The current application does **not** yet provide:
+
+- Authenticated customer accounts or tenant isolation.
+- Persistent cloud workspaces or shared team access.
+- Saved monthly cycles, supplier history or durable review dispositions.
+- Scheduled imports, ERP integrations or automatic accounting actions.
+- Subscription entitlements, checkout or payment-status tracking.
+- A production-approved confidential-file transfer and retention process.
+
+Therefore, the current deployment is a demonstrable pilot, not a recurring SaaS product and not yet suitable for confidential customer financial records.
+
+## Build gates for a recurring release
+
+1. **Identity and tenancy:** verified sign-in, organisation boundaries, least-privilege access and tenant-isolation tests.
+2. **Persistent review model:** period cycles, immutable source references, case dispositions, ownership and audit events.
+3. **Data protection:** approved upload/processing design, encryption, retention/deletion controls, backups, access logging and documented data-processing terms.
+4. **Repeat-cycle intelligence:** supplier and item recurrence across periods without silently merging ambiguous records.
+5. **Operational reliability:** import limits, malformed-file handling, known-answer tests, export validation, monitoring, rollback and support process.
+6. **Commercial entitlement:** a lawful billing and subscription-entitlement mechanism, cancellation handling and clear usage limits.
+7. **Customer validation:** buyer-approved reference data, human-reviewed expected results, measured false positives and misses, and documented acceptance.
+
+Do not accept confidential buyer files until the data-handling and legal-operating gates are satisfied. A legally authorised adult/business representative must handle contracts, payment-provider accounts and data-processing obligations where required.
+
+## Evidence and accounting boundaries
+
+A triggered rule is a candidate discrepancy, not proof of supplier fault, loss, overpayment or recovered cash. A line with no triggered rule means only that current configured checks did not flag it.
+
+Supplier-statement-to-AP-ledger reconciliation is not implemented. Do not claim ERP integrations, payment holds, approvals, postings, supplier contact, autonomous fraud determinations, currency conversion, tax treatment, guaranteed savings or recovered cash. Do not claim customer-validated accuracy, paid customers, customer references or verified outcomes without evidence.

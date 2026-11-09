@@ -1,4 +1,4 @@
-name: Proofrail live Pages smoke test
+name: LedgerTrace live Pages smoke test
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 7
     steps:
-      - name: Wait for Proofrail homepage and preserved workbench
+      - name: Wait for LedgerTrace homepage and preserved workbench
         shell: bash
         run: |
           set -euo pipefail
@@ -32,21 +32,21 @@ jobs:
             echo "Waiting for production deployment (attempt $attempt/30)."
             sleep 5
           done
-          test -n "$html" || { echo "::error::Proofrail homepage did not deploy."; exit 1; }
+          test -n "$html" || { echo "::error::LedgerTrace homepage did not deploy."; exit 1; }
           [[ "$html" != *"duplicate supplier payments, missed supplier credits"* ]] || { echo "::error::Unsupported recovery claim remains in homepage metadata."; exit 1; }
           workbench="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/workbench.html')"
           [[ "$workbench" == *"AP Exception Evidence Workbench"* ]]
           [[ "$workbench" == *"recovery-core.js"* ]]
-          [[ "$workbench" == *"proofrail-theme.css"* || "$workbench" == *"caseweft-theme.css"* ]]
+          [[ "$workbench" == *"ledgertrace-theme.css"* || "$workbench" == *"ledgertrace-theme.css"* ]]
           echo "Homepage and preserved workbench are reachable."
 
       - name: Verify brand mark, workbench theme and product engine
         shell: bash
         run: |
           set -euo pipefail
-          mark="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/caseweft-monogram.svg')"
-          [[ "$mark" == *"Proofrail mark"* ]]
-          theme="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/caseweft-theme.css')"
+          mark="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/ledgertrace-mark.svg')"
+          [[ "$mark" == *"LedgerTrace mark"* ]]
+          theme="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/ledgertrace-theme.css')"
           [[ "$theme" == *"--lt-navy:#142F32"* ]]
           [[ "$theme" == *"--lt-blue:#2E7774"* ]]
           core="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/recovery-core.js')"
