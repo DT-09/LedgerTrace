@@ -19,26 +19,35 @@ jobs:
           set -euo pipefail
           url="https://ledgertrace.pages.dev/"
           html=""
+          workbench=""
+          archive=""
           for attempt in $(seq 1 30); do
             if html="$(curl --connect-timeout 3 --max-time 5 -fsSL "$url" 2>/dev/null)"; then
+              workbench="$(curl --connect-timeout 3 --max-time 8 -fsSL 'https://ledgertrace.pages.dev/workbench.html' 2>/dev/null || true)"
+              archive="$(curl --connect-timeout 3 --max-time 8 -fsSL 'https://ledgertrace.pages.dev/assets/ledgertrace-cycle-archive.js' 2>/dev/null || true)"
               if [[ "$html" == *"Blocked invoices need"* &&
                     "$html" == *"Accounts Payable Exception Intelligence"* &&
                     "$html" == *"PARKED INVOICE & THREE-WAY MATCH EVIDENCE REVIEW"* &&
-                    "$html" == *"SYNTHETIC RECORDS / INTERACTIVE"* ]]; then
+                    "$html" == *"SYNTHETIC RECORDS / INTERACTIVE"* &&
+                    "$workbench" == *"AP Exception Evidence Workbench"* &&
+                    "$workbench" == *"reviewPeriod"* &&
+                    "$workbench" == *"Save encrypted cycle"* &&
+                    "$archive" == *"AES-256-GCM"* ]]; then
                 break
               fi
             fi
             html=""
-            echo "Waiting for production deployment (attempt $attempt/30)."
+            workbench=""
+            archive=""
+            echo "Waiting for homepage, workbench and cycle archive deployment (attempt $attempt/30)."
             sleep 5
           done
-          test -n "$html" || { echo "::error::LedgerTrace homepage did not deploy."; exit 1; }
+          test -n "$html" && test -n "$workbench" && test -n "$archive" || { echo "::error::LedgerTrace release assets did not deploy."; exit 1; }
           [[ "$html" != *"duplicate supplier payments, missed supplier credits"* ]] || { echo "::error::Unsupported recovery claim remains in homepage metadata."; exit 1; }
-          workbench="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/workbench.html')"
-          [[ "$workbench" == *"AP Exception Evidence Workbench"* ]]
           [[ "$workbench" == *"recovery-core.js"* ]]
-          [[ "$workbench" == *"ledgertrace-theme.css"* || "$workbench" == *"ledgertrace-theme.css"* ]]
-          echo "Homepage and preserved workbench are reachable."
+          [[ "$workbench" == *"ledgertrace-theme.css"* ]]
+          [[ "$workbench" == *"ledgertrace-cycle-archive.js"* ]]
+          echo "Homepage and current workbench release assets are reachable."
 
       - name: Verify brand mark, workbench theme and product engine
         shell: bash
@@ -51,6 +60,7 @@ jobs:
           [[ "$theme" == *"--lt-blue:#2E7774"* ]]
           core="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/recovery-core.js')"
           archive="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/ledgertrace-cycle-archive.js')"
+          workbench="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/workbench.html')"
           [[ "$archive" == *"ledgertrace-cycle-archive"* && "$archive" == *"AES-256-GCM"* ]]
           [[ "$workbench" == *"reviewPeriod"* && "$workbench" == *"Save encrypted cycle"* ]]
           [[ "$core" == *"paymentExcessCandidate"* ]]
