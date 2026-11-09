@@ -27,7 +27,7 @@ jobs:
               archive="$(curl --connect-timeout 3 --max-time 8 -fsSL 'https://ledgertrace.pages.dev/assets/ledgertrace-cycle-archive.js' 2>/dev/null || true)"
               if [[ "$html" == *"Blocked invoices need"* &&
                     "$html" == *"Accounts Payable Exception Intelligence"* &&
-                    "$html" == *"PARKED INVOICE & THREE-WAY MATCH EVIDENCE REVIEW"* &&
+                    "$html" == *"MONTHLY AP EXCEPTION CONTROL / LOCAL-FIRST"* &&
                     "$html" == *"SYNTHETIC RECORDS / INTERACTIVE"* &&
                     "$workbench" == *"AP Exception Evidence Workbench"* &&
                     "$workbench" == *"reviewPeriod"* &&
