@@ -7,7 +7,7 @@ inlineScripts.forEach((match, index) => {
   const id = (match[1].match(/\bid="([^"]+)"/) || [])[1] || 'primary-inline-script';
   new vm.Script(match[2], { filename: id + '-' + index + '.js' });
 });
-if (!html.includes('<script id="ledgertrace-recovery-extension">') || html.includes('<script id="ledgertrace-recovery-extension">')) {
+if (!html.includes('<script id="ledgertrace-recovery-extension">') || html.includes('<script id="proofrail-recovery-extension">')) {
   throw new Error('Recovery extension script block is missing');
 }
 const primaryReconcile = html.slice(html.indexOf('function reconcile(){'), html.indexOf('function renderResults(){'));
