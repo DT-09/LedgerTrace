@@ -24,9 +24,9 @@ It is an exception-review system. It is not an ERP, payment system, autonomous a
 
 ## Subscription value
 
-The recurring value is continuity across accounting periods:
+The recurring value is continuity across accounting periods. The current workbench provides a local-first starting point: export a passphrase-protected cycle archive, then import it during the next period to compare repeated exception patterns. The intended subscription value is continuity across accounting periods:
 
-- Persistent review cycles and period history.
+- Portable encrypted review-cycle history and period-to-period comparison.
 - Supplier-level recurrence and unresolved-case tracking.
 - Reviewer ownership, disposition and notes.
 - A traceable change history for each case.
@@ -37,11 +37,11 @@ No public pricing is set. Pricing must be tested against the customer's invoice 
 
 ## Current implementation — do not overstate it
 
-The current deployment is a browser-side workbench. Selected CSV files are parsed and processed in the browser tab. Review notes are session-scoped. The current application does **not** yet provide:
+The current deployment is a browser-side workbench. Selected CSV files are parsed and processed in the browser tab. Review notes are held in the current session until exported. The workbench can create passphrase-protected local cycle archives and compare an imported prior cycle by supplier, PO, item and rule. The current application does **not** yet provide:
 
 - Authenticated customer accounts or tenant isolation.
 - Persistent cloud workspaces or shared team access.
-- Saved monthly cycles, supplier history or durable review dispositions.
+- Server-side monthly history, shared supplier history or team-wide durable review dispositions; history is carried in customer-managed encrypted archive files.
 - Scheduled imports, ERP integrations or automatic accounting actions.
 - Subscription entitlements, checkout or payment-status tracking.
 - A production-approved confidential-file transfer and retention process.
