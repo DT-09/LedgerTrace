@@ -124,7 +124,7 @@ body:after{background:radial-gradient(ellipse at var(--mx,65%) var(--my,20%),rgb
 .header,.header.scrolled{background:rgba(43,29,21,.95)!important;border-color:#221A1E!important;box-shadow:0 12px 34px rgba(28,18,12,.18)!important}
 .brand-mark,.footer-brand .brand-mark{width:36px!important;height:36px!important;display:grid!important;place-items:center!important;background:transparent!important;border:0!important;border-radius:0!important;overflow:visible!important;transform:scale(1);transform-origin:center;transition:transform .18s ease!important}
 .brand:hover .brand-mark,.brand:focus-visible .brand-mark,.footer-brand:hover .brand-mark,.footer-brand:focus-visible .brand-mark{transform:scale(1.09)!important}
-.brand-mark .proofrail-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;overflow:visible!important}.proofrail-logo .logo-blue{fill:#2A524E!important;stroke:none!important}.proofrail-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important}
+.brand-mark .ledgertrace-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;overflow:visible!important}.ledgertrace-logo .logo-blue{fill:#2A524E!important;stroke:none!important}.ledgertrace-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important}
 
 
 
@@ -253,7 +253,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 
 </style>
 
-<style id="proofrail-final-theme">
+<style id="ledgertrace-final-theme">
 :root{
  color-scheme:dark;
  --bg:#0B0B0A;
@@ -302,7 +302,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:760px){.header,.header.scrolled{background:rgba(28,18,12,.98)!important}.nav{background:#221A1E!important;border-color:#C5B3A6!important}}
 </style>
 
-<style id="proofrail-commercial-finish">
+<style id="ledgertrace-commercial-finish">
 .privacy-architecture{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;margin:22px 0 4px;padding:24px;border:1px solid rgba(224,122,95,.32);border-radius:12px;background:linear-gradient(130deg,rgba(224,122,95,.07),rgba(30,41,59,.5))}
 .privacy-mark{display:grid;place-items:center;width:58px;height:58px;border:1px solid rgba(224,122,95,.4);border-radius:10px;color:var(--blue);font:600 10px var(--mono);letter-spacing:.06em}
 .privacy-architecture h3{font:600 19px var(--display);margin:5px 0 8px;letter-spacing:-.03em}
@@ -312,7 +312,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:650px){.privacy-architecture{grid-template-columns:1fr;padding:18px}.privacy-mark{width:48px;height:42px}#results .results-head{align-items:flex-start;flex-direction:column}#results .results-head>.bar-actions{justify-content:flex-start}}
 </style>
 
-<style id="proofrail-header-corner-fix-v3">
+<style id="ledgertrace-header-corner-fix-v3">
 /* Keep the wordmark at the far left and the evaluation action directly beside the menu at the far right. */
 .header{justify-content:flex-start!important}
 .header>.brand{margin-right:auto!important;flex:0 0 auto!important}
@@ -322,7 +322,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 @media(max-width:370px){.header>.header-cta{display:none!important}.header>.menu-toggle{margin-left:auto!important}}
 </style>
 
-<style id="proofrail-shared-typography-v1">
+<style id="ledgertrace-shared-typography-v1">
 /* Shared brand typography: same font families, weights and tracking on every page. */
 :root{--body:"Inter",Arial,sans-serif;--display:"Space Grotesk","Inter",Arial,sans-serif;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;--blue:#9E7E6B;--accent:#9E7E6B;--shell-brass:#9E7E6B}
 html,body{font-family:var(--body)!important}
@@ -334,7 +334,7 @@ body{font-size:15px!important;line-height:1.7!important}
 </style>
 
 
-<style id="proofrail-layout-repair-2026-10">
+<style id="ledgertrace-layout-repair-2026-10">
 /* Layout repair: restore a clear grid, consistent alignment and controlled type scale. */
 .header {
   display:flex !important;
@@ -394,7 +394,7 @@ body{font-size:15px!important;line-height:1.7!important}
   .ledger-art-heading { font-size:12px !important; letter-spacing:.65px !important; }
 }
 </style>
-<style id="proofrail-consistent-shell-v2">
+<style id="ledgertrace-consistent-shell-v2">
 /* Shared shell and editorial hierarchy across LedgerTrace pages. */
 .header{display:flex!important;align-items:center!important;gap:clamp(10px,1.8vw,24px)!important;padding-inline:clamp(14px,2vw,22px)!important}
 .header>.brand{margin-right:auto!important;flex:0 0 auto!important}
@@ -430,7 +430,7 @@ body{font-size:15px!important;line-height:1.7!important}
 }
 @media(prefers-reduced-motion:reduce){.ledger-illustration .ledger-art-svg{transition:none!important}.ledger-illustration:hover .ledger-art-svg{transform:none!important;filter:none!important}}
 </style>
-<style id="proofrail-final-brand-consistency-v2">
+<style id="ledgertrace-final-brand-consistency-v2">
 /* Final shared typography and header CTA, intentionally loaded after page-specific styles. */
 :root{--body:"Inter",Arial,sans-serif;--display:"Space Grotesk","Inter",Arial,sans-serif;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;--ivory:#C5B3A6;--sage:#C5B3A6;--brass:#9E7E6B}
 html,body{font-family:var(--body)!important}
@@ -440,7 +440,7 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 .header .header-cta:hover{background:rgba(168,159,145,.18)!important;border-color:var(--brass)!important;color:var(--ivory)!important}
 </style>
 
-<style id="proofrail-homepage-compact-footer">
+<style id="ledgertrace-homepage-compact-footer">
 /* Homepage only: compact the footer directory links, not the statement above them. */
 #site-footer.footer{padding:39px 0 18px!important}
 #site-footer .footer-heading{gap:22px!important;padding-bottom:30px!important}
@@ -463,7 +463,7 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 }
 </style>
 
-<style id="proofrail-final-interaction-polish">
+<style id="ledgertrace-final-interaction-polish">
 #closeContact.contact-close{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;padding:0!important;flex:0 0 30px!important;border-radius:7px!important;font-size:16px!important;line-height:1!important;cursor:pointer!important;position:relative!important;z-index:3!important;pointer-events:auto!important}
 #closeContact.contact-close:hover{background:rgba(224,122,95,.12)!important;border-color:var(--blue)!important;color:var(--blue)!important}
 #contactPanel .drawer-top{position:relative;z-index:2}
@@ -471,7 +471,7 @@ code,pre,kbd,samp,.mono,.eyebrow,.section-index,.record-id,.micro,.nav a,.tag,.s
 #contactPanel .drawer-top h2{font-family:var(--display)!important;font-weight:600!important;letter-spacing:-.055em!important}
 h1,h2,h3,.section-title,.hero h1,.eval-copy h2{font-family:var(--display)!important}
 </style>
-<style id="proofrail-warm-commercial-system">
+<style id="ledgertrace-warm-commercial-system">
 /* LEDGERTRACE DESIGN SYSTEM — one palette, explicit surface/text pairings */
 :root{
  color-scheme:dark;
@@ -570,13 +570,13 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
 <body>
 <header class="header" id="header">
   <a class="brand" href="/" aria-label="LedgerTrace home">
-    <span class="brand-mark" aria-hidden="true"><img class="proofrail-logo" src="/assets/ledgertrace-mark.svg" alt=""></span><span class="brand-name">LEDGERTRACE</span>
+    <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-mark.svg" alt=""></span><span class="brand-name">LEDGERTRACE</span>
   </a>
   <nav class="nav" id="nav" aria-label="All site sections"><a href="/invoice-reconciliation.html">For distributors</a><a href="/#product">Product</a><a href="/#investigation">Investigation</a><a href="/#buyer-assurance">Buyer proof</a><a href="/#methodology">Methodology</a><a href="/#faq">FAQ</a><a href="/#evaluation">Paid evaluation</a><a href="/#who-for">Who it serves</a><a href="/#recovery-investigation">Payment evidence review</a><a href="/#site-footer">Contact &amp; site directory</a></nav>
   <a class="header-cta" href="/#evaluation">Request an evaluation <span aria-hidden="true">↗</span></a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
 </header>
-<script id="proofrail-reliable-menu-v2">
+<script id="ledgertrace-reliable-menu-v2">
 (function(){
   function initMenu(){
     const header=document.getElementById('header');
@@ -1020,7 +1020,7 @@ input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{out
     </div>
     <div class="footer-brand-row">
       <a class="footer-brand" href="#top" aria-label="LedgerTrace home">
-        <span class="brand-mark" aria-hidden="true"><img class="proofrail-logo" src="/assets/ledgertrace-mark.svg" alt=""></span>
+        <span class="brand-mark" aria-hidden="true"><img class="ledgertrace-logo" src="/assets/ledgertrace-mark.svg" alt=""></span>
         <span class="footer-brand-name">LedgerTrace</span>
       </a>
       <div class="footer-legal"><p>© <span id="copyrightYear">2026</span> LedgerTrace</p><p>Browser-side AP reconciliation · Illustrative data · Human review required</p></div>
@@ -1213,7 +1213,7 @@ state.usingSample=false;updateScope();setMeta('runHint','Choose all three CSV fi
 })();
 </script>
 
-<script id="proofrail-quickcheck-route-fallback">
+<script id="ledgertrace-quickcheck-route-fallback">
 (function(){
   function openQuickCheckFromRoute(){
     if(new URLSearchParams(window.location.search).get('request')!=='quickcheck') return;
@@ -1240,7 +1240,7 @@ state.usingSample=false;updateScope();setMeta('runHint','Choose all three CSV fi
 })();
 </script>
 
-<style id="proofrail-recovery-extension-css">
+<style id="ledgertrace-recovery-extension-css">
 .recovery-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
 .recovery-input-grid .source-card{min-width:0}
 .recovery-shell{border-color:rgba(224,122,95,.28)}
@@ -1272,7 +1272,7 @@ textarea.recovery-control{resize:vertical;min-height:100px}
 
 
 <script src="./recovery-core.js"></script>
-<script id="proofrail-recovery-extension">
+<script id="ledgertrace-recovery-extension">
 (function(){
 'use strict';
 const $=id=>document.getElementById(id);
@@ -1334,18 +1334,18 @@ function saveCase(){if(!state.selected){toastMsg('Select a worklist row first.')
 function csvCell(v){const s=String(v??'');return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
 function download(name,content,type){const blob=new Blob([content],{type:type||'application/json;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function pack(){return {product:'LedgerTrace Recovery',generatedAt:new Date().toISOString(),inputFiles:state.files,summary:state.summary,methodNotes:['Potential invoice excess is not verified loss.','Payment excess candidate requires finance review.','User-entered outcome is not independently verified by LedgerTrace.','Complex tax, freight, currency, tolerances and payment allocations need human review.'],cases:state.results.map(r=>({...r,caseRecord:getCase(r)}))}}
-function exportCsv(){const cols=['id','invoice','supplier','po','item','currency','invoiceAmount','poPrice','qtyOrdered','qtyReceived','expectedNet','paid','credits','candidate','paymentExcessCandidate','status','findings','sourceRows'];const lines=[cols.join(',')];for(const r of state.results){const obj={...r,status:getCase(r).status,findings:r.findings.map(f=>f.label+': '+f.detail).join(' | '),sourceRows:JSON.stringify(r.sourceRows)};lines.push(cols.map(k=>csvCell(obj[k])).join(','))}download('proofrail-recovery-worklist.csv','\ufeff'+lines.join('\r\n'),'text/csv;charset=utf-8')}
+function exportCsv(){const cols=['id','invoice','supplier','po','item','currency','invoiceAmount','poPrice','qtyOrdered','qtyReceived','expectedNet','paid','credits','candidate','paymentExcessCandidate','status','findings','sourceRows'];const lines=[cols.join(',')];for(const r of state.results){const obj={...r,status:getCase(r).status,findings:r.findings.map(f=>f.label+': '+f.detail).join(' | '),sourceRows:JSON.stringify(r.sourceRows)};lines.push(cols.map(k=>csvCell(obj[k])).join(','))}download('ledgertrace-recovery-worklist.csv','\ufeff'+lines.join('\r\n'),'text/csv;charset=utf-8')}
 function exportCase(){const r=state.results.find(x=>x.id===state.selected);if(!r){toastMsg('Select a case first.');return}download('ledgertrace-'+r.id.toLowerCase()+'-case.json',JSON.stringify({...r,caseRecord:getCase(r),generatedAt:new Date().toISOString(),inputFiles:state.files},null,2))}
 function reset(){for(const t of types){$(ids[t]).value='';$(meta[t]).textContent=t==='invoices'?'No file selected':'Optional source'}state.raw={};state.files={};state.results=[];state.summary=null;state.cases={};state.selected=null;state.runAt=null;$('recResults').classList.add('hidden');$('recError').classList.add('hidden');$('recSearch').value='';$('recHint').textContent='Inputs cleared. Load approved CSVs or the illustrative sample.'}
-$('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEventListener('click',reset);$('recRunBtn').addEventListener('click',run);$('recSaveCase').addEventListener('click',saveCase);$('recExportCase').addEventListener('click',exportCase);$('recExportCsv').addEventListener('click',exportCsv);$('recExportAll').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}download('proofrail-recovery-investigation.json',JSON.stringify(pack(),null,2))});$('recPrint').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}window.print()});$('recSearch').addEventListener('input',drawRows);document.querySelectorAll('[data-rec-filter]').forEach(b=>b.addEventListener('click',()=>{state.filter=b.dataset.recFilter;document.querySelectorAll('[data-rec-filter]').forEach(x=>x.classList.toggle('active',x===b));drawRows()}));
+$('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEventListener('click',reset);$('recRunBtn').addEventListener('click',run);$('recSaveCase').addEventListener('click',saveCase);$('recExportCase').addEventListener('click',exportCase);$('recExportCsv').addEventListener('click',exportCsv);$('recExportAll').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}download('ledgertrace-recovery-investigation.json',JSON.stringify(pack(),null,2))});$('recPrint').addEventListener('click',()=>{if(!state.results.length){toastMsg('Run the investigation first.');return}window.print()});$('recSearch').addEventListener('input',drawRows);document.querySelectorAll('[data-rec-filter]').forEach(b=>b.addEventListener('click',()=>{state.filter=b.dataset.recFilter;document.querySelectorAll('[data-rec-filter]').forEach(x=>x.classList.toggle('active',x===b));drawRows()}));
 })();
 </script>
 
-<style id="proofrail-trust-pass">
+<style id="ledgertrace-trust-pass">
 .header{background:rgba(28,18,12,.70)!important;border-color:rgba(168,159,145,.24)!important;box-shadow:0 10px 38px rgba(28,18,12,.16)!important;backdrop-filter:blur(18px) saturate(140%)!important;-webkit-backdrop-filter:blur(18px) saturate(140%)!important}
 .header.scrolled{background:rgba(28,18,12,.84)!important}
 .brand-mark{width:38px!important;height:38px!important;border:0!important;background:transparent!important;box-shadow:none!important}
-.proofrail-logo{display:block;width:100%;height:100%}
+.ledgertrace-logo{display:block;width:100%;height:100%}
 .brand-name{letter-spacing:.16em!important}
 .assurance-grid .method-card{min-height:210px}
 .faq-list{border-top:1px solid var(--line)}
@@ -1362,13 +1362,13 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(prefers-reduced-transparency:reduce){.header,.header.scrolled{background:#0B0B0A!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
 </style>
 
-<style id="proofrail-logo-nav-trust-final">
+<style id="ledgertrace-logo-nav-trust-final">
 /* Keep the original monogram geometry. Render it as one restrained silhouette. */
 .brand-mark,.footer-brand .brand-mark{width:36px!important;height:39px!important;flex:0 0 36px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;transform:none!important}
-.brand-mark .proofrail-logo,.footer-brand .proofrail-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;object-fit:contain;opacity:.72!important;filter:none!important;transition:opacity .2s ease!important}
-.brand:hover .proofrail-logo,.brand:focus-visible .proofrail-logo,.footer-brand:hover .proofrail-logo,.footer-brand:focus-visible .proofrail-logo{opacity:.9!important;filter:none!important}
+.brand-mark .ledgertrace-logo,.footer-brand .ledgertrace-logo{display:block!important;position:static!important;width:100%!important;height:100%!important;object-fit:contain;opacity:.72!important;filter:none!important;transition:opacity .2s ease!important}
+.brand:hover .ledgertrace-logo,.brand:focus-visible .ledgertrace-logo,.footer-brand:hover .ledgertrace-logo,.footer-brand:focus-visible .ledgertrace-logo{opacity:.9!important;filter:none!important}
 /* Both original paths share one muted sage tone: no bright blue/grey split. */
-.proofrail-logo .logo-blue,.proofrail-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important;opacity:1!important}
+.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important;opacity:1!important}
 .header{background:rgba(28,18,12,.68)!important;border-color:rgba(234,227,210,.15)!important;backdrop-filter:blur(22px) saturate(125%)!important;-webkit-backdrop-filter:blur(22px) saturate(125%)!important;box-shadow:0 12px 42px rgba(28,18,12,.19),inset 0 1px 0 rgba(234,227,210,.045)!important}
 .header.scrolled{background:rgba(28,18,12,.76)!important;border-color:rgba(168,159,145,.24)!important}
 .hero-proofline{max-width:440px;margin:16px 0 0;color:#C5B3A6;font-size:11px;line-height:1.75}
@@ -1378,7 +1378,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(prefers-reduced-transparency:reduce){.header,.header.scrolled{background:#0B0B0A!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
 </style>
 
-<style id="proofrail-launch-final">
+<style id="ledgertrace-launch-final">
 /* Launch pass: keep navigation labels directly on the translucent bar. */
 .header .nav a,
 .header .nav a:visited,
@@ -1406,16 +1406,16 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 </style>
 
 
-<style id="proofrail-logo-silhouette-fix">
-.brand-mark .proofrail-logo,.footer-brand .proofrail-logo{opacity:.72!important;filter:none!important}
-.proofrail-logo .logo-blue,.proofrail-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important}
+<style id="ledgertrace-logo-silhouette-fix">
+.brand-mark .ledgertrace-logo,.footer-brand .ledgertrace-logo{opacity:.72!important;filter:none!important}
+.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:#C5B3A6!important;stroke:none!important}
 </style>
 
 
-<style id="proofrail-conversion-polish">
+<style id="ledgertrace-conversion-polish">
 /* Sales clarity: preserve the editorial layout and use brass only for meaningful actions. */
-.proofrail-logo{opacity:.84!important}
-.brand:hover .proofrail-logo,.brand:focus-visible .proofrail-logo,.footer-brand:hover .proofrail-logo,.footer-brand:focus-visible .proofrail-logo{opacity:1!important}
+.ledgertrace-logo{opacity:.84!important}
+.brand:hover .ledgertrace-logo,.brand:focus-visible .ledgertrace-logo,.footer-brand:hover .ledgertrace-logo,.footer-brand:focus-visible .ledgertrace-logo{opacity:1!important}
 .hero-proofline{max-width:500px;color:#C5B3A6!important}
 .hero-actions .button:first-child{box-shadow:0 7px 24px rgba(224,122,95,.08)}
 .audience-card h3,.method-card h3{color:var(--text)}
@@ -1425,7 +1425,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(max-width:650px){.hero-actions .button{min-height:44px}.header-cta{font-size:10px!important}.hero-proofline{max-width:100%}}
 </style>
 
-<style id="proofrail-wordmark-hover-unity">
+<style id="ledgertrace-wordmark-hover-unity">
 /* Scale the monogram and wordmark together, without changing the header layout. */
 .brand,.footer-brand{
   transform:scale(1);
@@ -1446,7 +1446,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 </style>
 
 
-<style id="proofrail-final-illustration-and-wordmark">
+<style id="ledgertrace-final-illustration-and-wordmark">
 /* Make the wordmark readable at a glance while preserving the restrained header. */
 .header .brand-name{
   font-size:15px!important;
@@ -1458,7 +1458,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 .brand,.footer-brand{transition:transform 180ms ease,opacity 180ms ease}
 .brand:hover,.brand:focus-visible,.footer-brand:hover,.footer-brand:focus-visible{transform:scale(1.025)}
 /* A compact evidence card turns the abstract paths into a concrete, inspectable finding. */
-.proofrail-evidence-card{
+.ledgertrace-evidence-card{
   position:absolute;z-index:5;right:2.5%;bottom:5%;width:205px;
   padding:13px 14px 12px;border:1px solid rgba(224,122,95,.38);
   border-radius:9px;background:rgba(28,18,12,.96);
@@ -1480,13 +1480,13 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(max-width:760px){
  .header .brand-name{font-size:12px!important;letter-spacing:.1em!important}
  .footer-brand .brand-name{font-size:12px!important}
- .proofrail-evidence-card{right:2%;bottom:2%;width:176px;padding:10px}
+ .ledgertrace-evidence-card{right:2%;bottom:2%;width:176px;padding:10px}
  .evidence-card-title{font-size:13px;margin:8px 0}
  .evidence-card-rule{padding:7px 0}
  .evidence-card-foot{padding-top:7px}
 }
 @media(max-width:430px){
- .proofrail-evidence-card{right:1%;bottom:1%;width:158px;padding:8px}
+ .ledgertrace-evidence-card{right:1%;bottom:1%;width:158px;padding:8px}
  .evidence-card-head{font-size:7px}
  .evidence-card-title{font-size:12px}
  .evidence-values{gap:4px}
@@ -1495,10 +1495,10 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
  .evidence-card-rule b{font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){.brand,.footer-brand{transition:none!important}}
-@media(prefers-reduced-transparency:reduce){.proofrail-evidence-card{background:#0B0B0A;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(prefers-reduced-transparency:reduce){.ledgertrace-evidence-card{background:#0B0B0A;backdrop-filter:none;-webkit-backdrop-filter:none}}
 </style>
 
-<style id="proofrail-final-scene-redesign">
+<style id="ledgertrace-final-scene-redesign">
 /* A coherent evidence composition: three source records, one explicit finding. */
 .scene{min-height:500px!important}
 .scene-grid{background-image:linear-gradient(rgba(209,199,189,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(209,199,189,.055) 1px,transparent 1px)!important;background-size:30px 30px!important}
@@ -1525,7 +1525,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 .doc-line{background:rgba(209,199,189,.2)!important;margin:10px 0 8px!important}
 .doc-data{font-size:9px!important}
 .doc-status{font-size:8px!important;letter-spacing:.035em}
-.proofrail-evidence-card{
+.ledgertrace-evidence-card{
  right:1%!important;bottom:3%!important;width:188px!important;padding:12px 13px 11px!important;
  background:linear-gradient(150deg,rgba(30,41,59,.98),rgba(28,18,12,.99))!important;
  border-color:rgba(224,122,95,.52)!important;border-radius:8px!important;
@@ -1554,7 +1554,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
  .doc-top{font-size:7px!important}
  .doc-data{font-size:8px!important}
  .doc-status{font-size:7px!important}
- .proofrail-evidence-card{right:0!important;bottom:2%!important;width:157px!important;padding:8px!important}
+ .ledgertrace-evidence-card{right:0!important;bottom:2%!important;width:157px!important;padding:8px!important}
  .evidence-card-head{font-size:6px!important}
  .evidence-card-title{font-size:11px!important;margin:7px 0!important}
  .evidence-values{gap:4px!important}
@@ -1570,18 +1570,18 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 @media(max-width:380px){
  .scene{min-height:430px!important}
  .document{width:145px!important}
- .proofrail-evidence-card{width:145px!important}
+ .ledgertrace-evidence-card{width:145px!important}
 }
 @media(prefers-reduced-motion:reduce){.scene-path{animation:none!important}}
 </style>
-<style id="proofrail-editorial-art-css">
+<style id="ledgertrace-editorial-art-css">
 /* Replace the scattered floating-card scene with one composed, legible evidence view. */
 .ledger-illustration{min-height:0!important;height:auto!important;max-width:900px;width:100%;margin:0 auto;perspective:none!important;isolation:isolate;overflow:visible;padding:0!important}
 .ledger-art-top,.ledger-art-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#C5B3A6;font:8px var(--mono);letter-spacing:.11em}
 .ledger-art-top{padding:0 3px 13px}
 .ledger-art-caption{padding:12px 3px 0;font-size:9px;letter-spacing:.07em}
 .ledger-art-svg{display:block;width:100%;height:auto;filter:drop-shadow(0 22px 42px rgba(28,18,12,.22))}
-.ledger-illustration .scene-grid,.ledger-illustration .scene-glow,.ledger-illustration .scene-path,.ledger-illustration .document,.ledger-illustration .proofrail-evidence-card,.ledger-illustration .scene-label,.ledger-illustration .scene-coord,.ledger-illustration .scene-caption{display:none!important}
+.ledger-illustration .scene-grid,.ledger-illustration .scene-glow,.ledger-illustration .scene-path,.ledger-illustration .document,.ledger-illustration .ledgertrace-evidence-card,.ledger-illustration .scene-label,.ledger-illustration .scene-coord,.ledger-illustration .scene-caption{display:none!important}
 @media(max-width:650px){
  .ledger-art-top{font-size:7px;letter-spacing:.07em}
  .ledger-art-caption{align-items:flex-start;flex-direction:column;gap:5px;font-size:7px}
@@ -1589,7 +1589,7 @@ $('recSampleBtn').addEventListener('click',loadSamples);$('recResetBtn').addEven
 }
 @media(prefers-reduced-motion:reduce){.ledger-art-svg{filter:none}}
 </style>
-<style id="proofrail-teal-taupe-integration">
+<style id="ledgertrace-teal-taupe-integration">
 /* LedgerTrace visual system: smoked teal, warm charcoal, taupe, parchment, Rossi #9E7E6B and antique brass. */
 :root{
   color-scheme:dark;
@@ -1607,7 +1607,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,
 .header .nav a{color:#C5B3A6!important}
 .header .nav a:hover,.header .nav a:focus-visible{color:var(--ivory)!important}
 .brand-name,.footer-brand .brand-name{color:var(--ivory)!important}
-.proofrail-logo .logo-blue,.proofrail-logo .logo-gray{fill:var(--sage)!important}
+.ledgertrace-logo .logo-blue,.ledgertrace-logo .logo-gray{fill:var(--sage)!important}
 .header .header-cta{background:rgba(168,159,145,.10)!important;border-color:rgba(168,159,145,.38)!important;color:var(--ivory)!important}
 .header .header-cta:hover{background:rgba(168,159,145,.18)!important;border-color:var(--brass)!important}
 .hero-copy>.eyebrow{transform:scale(1);transform-origin:left center;transition:transform .18s ease,color .18s ease}
@@ -1848,7 +1848,7 @@ figcaption, .caption, .small, .muted, .meta, .tag, .status,
 }
 
 /* Small alignment and pointer-responsive detail pass. */
-.header .brand-mark .proofrail-logo {
+.header .brand-mark .ledgertrace-logo {
   transform: translateY(-2px);
 }
 .ledger-illustration .ledger-art-svg {
@@ -1861,8 +1861,8 @@ figcaption, .caption, .small, .muted, .meta, .tag, .status,
     transform: scale(1.018);
     filter: drop-shadow(0 26px 48px rgba(28,18,12,.28));
   }
-  .brand:hover .proofrail-logo,
-  .brand:focus-visible .proofrail-logo {
+  .brand:hover .ledgertrace-logo,
+  .brand:focus-visible .ledgertrace-logo {
     transform: translateY(-2px) scale(1.025);
   }
 }
