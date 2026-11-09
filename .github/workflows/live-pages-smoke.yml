@@ -50,6 +50,9 @@ jobs:
           [[ "$theme" == *"--lt-navy:#142F32"* ]]
           [[ "$theme" == *"--lt-blue:#2E7774"* ]]
           core="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/recovery-core.js')"
+          archive="$(curl --connect-timeout 10 --max-time 20 -fsSL 'https://ledgertrace.pages.dev/assets/ledgertrace-cycle-archive.js')"
+          [[ "$archive" == *"ledgertrace-cycle-archive"* && "$archive" == *"AES-256-GCM"* ]]
+          [[ "$workbench" == *"reviewPeriod"* && "$workbench" == *"Save encrypted cycle"* ]]
           [[ "$core" == *"paymentExcessCandidate"* ]]
           [[ "$core" == *"currencyUnresolved"* ]]
           echo "Brand asset, shared theme and recovery engine are reachable."
