@@ -1,37 +1,51 @@
-# LedgerTrace
+# Caseweft
 
-**Accounts-payable exception intelligence.** First commercial offer: **Parked Invoice & Three-Way Match Evidence Review**.
+**AP exception evidence control.** Caseweft is a local-first workbench for finance teams that need to reconstruct and document parked supplier-invoice exceptions from supported exports.
 
-LedgerTrace investigates a defined population of parked supplier invoices by comparing invoice lines with PO lines and goods-receipt quantities. It preserves source rows, compared values, triggered rules, data-quality conflicts and unresolved questions for a finance reviewer.
+## Product position
 
-## Try it
-Open [the browser workbench](https://ledgertrace.pages.dev/workbench.html), load the synthetic sample, run the three-way comparison, inspect a finding and export the exception worklist. Sample data is illustrative, not a customer result.
+Caseweft is a vendor-neutral second-pass evidence workbench—not an ERP, invoice-capture suite, payment platform or autonomous auditor. Its narrow job is to turn fragmented invoice, approved-PO and goods-receipt exports into reviewable exception cases. Supported optional payment, supplier-credit and PO-amendment records can extend the evidence chain.
 
-## Supported workflow
-- Invoice-to-PO and invoice-to-receipt comparisons.
-- Duplicate invoice-line candidates, missing PO references and unmatched records.
-- Supplier mismatches, quantity and unit-price discrepancies, and line arithmetic checks.
-- Source-row references, rule explanations, review notes, CSV worklist and print-ready report.
-- Encrypted local cycle archives and period-to-period recurrence comparison by supplier, PO, item and rule.
-- Extended supported payment, credit-note and PO-amendment evidence.
+The buyer is an AP Manager, P2P process owner or Financial Controller at a distributor, wholesaler or manufacturer with a recurring PO-backed exception queue and usable line-level exports.
 
-A triggered rule is a candidate discrepancy, not proof of supplier fault, loss, overpayment or recovered cash. A line with no triggered rule means only that current configured checks did not flag it.
+## Live capabilities
 
-## Commercial model
+- Invoice-to-approved-PO and invoice-to-receipt comparisons.
+- Duplicate candidates, missing references, unmatched records and supplier conflicts.
+- Quantity, unit-price and line-arithmetic checks.
+- Supported payment, supplier-credit and PO-amendment evidence.
+- Currency, allocation, supplier-identity and amendment-effectivity gates that withhold unsafe calculations.
+- Source-row references, triggered-rule explanations, reviewer notes, CSV worklist and print-ready report.
+- Passphrase-protected local cycle archives and period-to-period comparison by supplier, PO, item and rule.
 
-**Entry evaluation:** one supplier or one defined parked-invoice queue; one agreed period; up to 500 invoice, PO and receipt lines per source, subject to file-fit review. Deliverables: prioritised exception worklist, source-row evidence, comparison explanations, unresolved questions, disclosed limitations and reviewer handoff. Scope, fee, delivery date, data handling and acceptance criteria are agreed in writing before work begins. USD 500 remains an internal pricing hypothesis, not validated demand or public pricing.
+A triggered rule is a candidate discrepancy, not proof of supplier fault, loss, overpayment or recovered cash. A line with no triggered rule means only that the configured checks did not flag it.
 
-**Recurring product direction:** a monthly AP exception-control workspace. Each period, the customer opens a review cycle, imports the supported invoice, approved-PO and goods-receipt exports, reviews source-linked exceptions, records dispositions and compares recurring supplier issues with prior periods. The intended subscription value is continuity: period history, supplier-level recurrence, reviewer ownership and an exportable audit trail.
+## Commercial offer
 
-**Important implementation boundary:** the current workbench supports repeat use through passphrase-protected local cycle archives and period comparison. It does not provide authenticated customer accounts, tenant isolation, persistent cloud workspaces, shared team review, subscription entitlement or billing. Period history persists only when the customer exports and later imports an encrypted archive. Do not market this as multi-user SaaS.
-## Data boundaries
-Selected CSVs are parsed and processed in the browser tab. The app does not upload accounting CSV contents to the server. An optional cycle archive contains the resulting findings, compared values, source-row references and reviewer notes—not the original CSV files—and is encrypted in the browser with AES-256-GCM using a passphrase-derived key before download. The archive is not uploaded to LedgerTrace. A lost passphrase cannot be recovered. Store archives only in the customer's approved secure file repository. This describes application behaviour; it is not a security certification or a claim that the browser makes no network requests. Do not send accounting files through the inquiry form, ordinary email or WhatsApp. A separate authorised contract and approved data-transfer process are required before confidential buyer records are accepted. D1 stores inquiry metadata only when configured; it is not payment checkout.
+**Paid, fixed-scope evaluation:** one supplier or one defined parked-invoice queue; one period or backlog window; up to 500 invoice, PO and receipt lines per source, subject to file-fit review. Deliverables: prioritised exception worklist, source-row evidence, comparison explanations, unresolved questions, disclosed limitations and reviewer handoff. Scope, fee, delivery date, data handling and acceptance criteria must be agreed in writing before work begins. The earlier USD 500 figure was a pricing hypothesis, not validated willingness to pay; do not present it as an established market price.
+
+The recurring product direction is a monthly AP exception-control workspace. **That is not the current deployment.** The live workbench has no authenticated customer accounts, tenant isolation, persistent cloud workspaces, shared team review, subscription entitlement or payment checkout. Do not market it as recurring SaaS or accept recurring SaaS payments until those controls exist and are tested.
+
+## Data handling
+
+Selected CSVs are parsed and processed in the browser tab. The inquiry API stores contact and scope metadata only; it does not accept accounting files. An optional cycle archive contains findings, compared values, source-row references and reviewer notes—not the original CSV files—and is encrypted in the browser with AES-256-GCM using a passphrase-derived key before download. The archive is not uploaded to Caseweft. A lost passphrase cannot be recovered. This describes application behaviour; it is not a security certification or a claim that the browser makes no network requests.
+
+Do not send accounting files through the inquiry form, ordinary email or WhatsApp. An approved transfer method, written scope and appropriate data-processing terms are required before confidential buyer records are accepted.
 
 ## Explicit exclusions
-Supplier-statement-to-AP-ledger reconciliation is not implemented. No ERP integrations, automatic payment holds, approvals, postings, supplier contact, autonomous fraud determination, currency conversion, tax treatment, guaranteed savings or recovery claims. No customer-validated accuracy, customer reference, paid-customer or verified-outcome claims without evidence.
 
-## Run locally
-Static Cloudflare Pages site; repository root is output directory; no build step. Run `node tests/site-readiness.test.js`, `node tests/recovery-core.test.js`, and `node tests/check-inline-scripts.js`.
+Supplier-statement-to-AP-ledger reconciliation, ERP integrations, automatic payment holds, approvals, postings, supplier contact, autonomous fraud determinations, currency conversion, tax treatment, guaranteed savings, recovered-cash claims, customer-validated accuracy and customer references are not claimed.
 
-## Name
-LedgerTrace is a working name pending trademark, company-name, domain and legal clearance.
+## Run and test
+
+Static Cloudflare Pages site; repository root is the output directory; no build step. Run:
+
+```sh
+node tests/site-readiness.test.js
+node tests/recovery-core.test.js
+node tests/check-inline-scripts.js
+```
+
+## Name and legal status
+
+Caseweft is a working product name. Trademark, company-name, domain and legal clearance have not been established.
