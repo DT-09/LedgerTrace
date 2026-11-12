@@ -1,4 +1,4 @@
-name: LedgerTrace checks
+name: Caseweft checks
 
 on:
   push:

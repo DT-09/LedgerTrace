@@ -1,4 +1,4 @@
-name: LedgerTrace live Pages smoke test
+name: Caseweft live Pages smoke test
 
 on:
   push:
